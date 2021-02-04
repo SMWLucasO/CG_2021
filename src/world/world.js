@@ -28,6 +28,10 @@ const World = (function (three) {
         return data.renderer;
     };
 
+    const setRenderer = function (webGLRenderer) {
+        data.renderer = webGLRenderer;
+    }
+
     const getCamera = function () {
         if(data.camera == null)
             data.camera = new THREE.PerspectiveCamera(
@@ -61,8 +65,11 @@ const World = (function (three) {
         getScene: getScene,
         getCamera: getCamera,
         getSkybox: getSkybox,
+        getRenderer: getRenderer,
+        setRenderer: setRenderer,
         getSun: getSun,
         init: init,
+
     };
 
 })(THREE);
