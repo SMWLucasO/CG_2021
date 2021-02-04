@@ -11,12 +11,6 @@ const Game = (function (three) {
         Controller.update();
     }
 
-    /**
-     * Add more methods in this class, e.g. to;
-     *  - Get models (these models should be in their own classes)
-     *  - other stuff, idk really LOL
-     */
-
     return {
         start: start
     };
