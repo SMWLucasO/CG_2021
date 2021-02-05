@@ -11,13 +11,17 @@
 </head>
 <body>
     <script src="vendor/threejs/three.js"></script>
-    <script src="vendor/threejs/OrbitControls.js"></script>
+    <script src="vendor/threejs/PointerControls.js"></script>
     <!-- Add things that world.js depends on here -->
+    <script src="src/game.js"></script>
+    <script src="src/controller.js"></script>
     <script src="src/world/world.js"></script>
     <!-- Add things that depend on world.js on here -->
     <script>
         // Initiating code should go here.
-        World.init();
+        Game.start();
     </script>
+
+    <script src="https://cdn.rawgit.com/zz85/zz85-bookmarklets/master/js/ThreeInspector.js"></script>
 </body>
 </html>

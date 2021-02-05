@@ -12,7 +12,7 @@ const World = (function (three) {
 
     const getScene = function () {
         if(data.scene == null)
-            scene = new THREE.Scene();
+            data.scene = new THREE.Scene();
 
         return data.scene;
     };
@@ -40,6 +40,8 @@ const World = (function (three) {
                 0.1,   // near - Camera frustum near plane
                 1000
             ); // far - Camera frustum far plane
+
+        return data.camera;
     };
 
     const getSkybox = function() {
@@ -53,6 +55,19 @@ const World = (function (three) {
     const init = function () {
         getRenderer().setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(getRenderer().domElement);
+
+        //Temp cube to test camera movement, remove later
+
+        const cubeGeometry = new THREE.BoxGeometry();
+        const cubeMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+        const cube = new THREE.Mesh( cubeGeometry, cubeMaterial );
+        getScene().add( cube );
+        getCamera().position.set( 0, 0, 10 );
+
+        //END temp code
+
+        Controller.init();
+
     }
 
     /**
@@ -68,8 +83,7 @@ const World = (function (three) {
         getRenderer: getRenderer,
         setRenderer: setRenderer,
         getSun: getSun,
-        init: init,
-
+        init: init
     };
 
 })(THREE);
