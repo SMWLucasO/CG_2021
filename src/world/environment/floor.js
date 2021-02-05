@@ -1,3 +1,3 @@
-World.environment.Floor = (function (three) {
+World.environment.Floor = (function (three, world) {
 
 })(THREE, World);
