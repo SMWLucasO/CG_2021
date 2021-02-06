@@ -112,15 +112,7 @@ const World = (function (three) {
         getRenderer().setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(getRenderer().domElement);
 
-        //Temp cube to test camera movement and the sun, remove later
-        const cubeGeometry = new three.BoxGeometry();
-        const cubeMaterial = new three.MeshPhongMaterial( { color: 0xff0000 } );
-        const cube = new three.Mesh( cubeGeometry, cubeMaterial );
-        getScene().add( cube );
-        console.log(cube.position);
-
         getCamera().position.set( 0, 0, 10 );
-        //END temp code
 
         // add the skybox and main light source.
         getScene().add(getSkybox());
