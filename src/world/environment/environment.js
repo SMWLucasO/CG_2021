@@ -39,6 +39,22 @@ World.environment = (function (three, world) {
         for(let road of getRoads())
             world.getScene().add(road);
 
+        // temporary object for testing whether the wall works.
+        World.getScene().add(World.environment.Wall.generateWall(
+            {
+                x: 4.7,
+                y: 0,
+                z: 24
+            },
+            {
+                width: 1,
+                height: 2,
+                depth: 58
+            },
+            Math.PI,
+            new three.MeshPhongMaterial({color: 0x777777})
+        ));
+
     };
 
     /**

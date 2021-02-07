@@ -115,7 +115,7 @@ const World = (function (three) {
         getRenderer().setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(getRenderer().domElement);
 
-        getCamera().position.set( 45, 0.15, 42.5 );
+        getCamera().position.set( 0, 5, 0 );
 
         // add the skybox and main light source.
         getScene().add(getSkybox());
