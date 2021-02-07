@@ -1,3 +1,6 @@
+/**
+ * World module, handles all things for the world.
+ */
 const World = (function (three) {
 
     // not final.
@@ -112,7 +115,7 @@ const World = (function (three) {
         getRenderer().setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(getRenderer().domElement);
 
-        getCamera().position.set( 0, 0.15, 10 );
+        getCamera().position.set( 45, 0.15, 42.5 );
 
         // add the skybox and main light source.
         getScene().add(getSkybox());
