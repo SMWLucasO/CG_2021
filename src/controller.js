@@ -7,7 +7,7 @@ const Controller = (function (three) {
         up: 81,
         down: 69
     }
-    const minHeight = 0; // minimum height the camera should stay at
+    const minHeight = 0.15; // minimum height the camera should stay at
     const moveSpeed = 1; // movement speed of the camera
 
     const data = {
