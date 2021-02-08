@@ -67,6 +67,7 @@ World.environment = (function (three, world) {
         for(let road of getRoads())
             world.getScene().add(road);
 
+        // generate the walls.
         for(let wall of getWalls())
             world.getScene().add(wall);
 
@@ -132,6 +133,14 @@ World.environment = (function (three, world) {
      * @param material THREE.Material material to apply to the road
      */
     const generateRoad = function (roadData, material) {
+        // load the texture
+        let texture = new three.TextureLoader().load("assets/world/environment/road.jpg");
+        // let texture repeat
+        texture.wrapS = texture.wrapT = three.MirroredRepeatWrapping;
+        // image is 1024x1024
+        texture.repeat.set(1024, 1024)
+        material.map = texture;
+
         data.roads.push(world.environment.Road.generateRoad(
             {
                 x: roadData.coords.x,
