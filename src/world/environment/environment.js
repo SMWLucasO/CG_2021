@@ -18,12 +18,40 @@ World.environment = (function (three, world) {
             { coords: { x: 46.25, z: 33 }, size: { width: 8, depth: 23 }, rotation: Math.PI*1.76 },
             { coords: { x: 6.75, z: 33 }, size: { width: 8, depth: 23 }, rotation: Math.PI*.24 },
             // END corners
+        ],
+        walls: [
+            // long wall 1
+            { coords: { x: 4.7, y: 0, z: 24.148 }, size: { width: 1, height: 2, depth: 58.4 }, rotation: Math.PI },
+            { coords: { x: -4.7, y: 0, z: -37 }, size: { width: 1, height: 2, depth: 64 }, rotation: 0 },
+
+            // long wall 2
+            { coords: { x: 48.3, y: 0, z: -34.25 }, size: { width: 1, height: 2, depth: 58.5 }, rotation: 0 },
+            { coords: { x: 57.7, y: 0, z: 27.1 }, size: { width: 1, height: 2, depth: 64.2 }, rotation: Math.PI },
+            // short wall 1
+            { coords: { x: 15.1, y: 0, z: -45.37 }, size: { width: 1, height: 2, depth: 22.8 }, rotation: Math.PI/2 },
+            { coords: { x: 41.2, y: 0, z: -54.65 }, size: { width: 1, height: 2, depth: 29.5 }, rotation: Math.PI*1.5 },
+            // short wall 2
+            { coords: { x: 37.921, y: 0, z: 35.339 }, size: { width: 1, height: 2, depth: 22.8 }, rotation: Math.PI*1.5 },
+            { coords: { x: 11.8, y: 0, z: 44.62 }, size: { width: 1, height: 2, depth: 29.5 }, rotation: Math.PI/2 },
+            // corner 1
+            { coords: { x: 41.7, y: 0, z: 44.4 }, size: { width: 1, height: 2, depth: 23.2 }, rotation: Math.PI*.76 },
+            { coords: { x: 48.49, y: 0, z: 23.76 }, size: { width: 1, height: 2, depth: 16.2 }, rotation: Math.PI*1.76 },
+            // corner 2
+            { coords: { x: 15.625, y: 0, z: 35.55 }, size: { width: 1, height: 2, depth: 16.25 }, rotation: Math.PI*1.24 },
+            { coords: { x: -4.57, y: 0, z: 27.4 }, size: { width: 1, height: 2, depth: 23.4 }, rotation: Math.PI*.24 },
+            // corner 3
+            { coords: { x: 4.51, y: 0, z: -33.78 }, size: { width: 1, height: 2, depth: 16.2 }, rotation: Math.PI*.76 },
+            { coords: { x: 11.5, y: 0, z: -54.48 }, size: { width: 1, height: 2, depth: 23.4 }, rotation: Math.PI*1.76 },
+            // corner 4
+            { coords: { x: 37.4, y: 0, z: -45.6 }, size: { width: 1, height: 2, depth: 16.2 }, rotation: Math.PI*.24 },
+            { coords: { x: 57.55, y: 0, z: -37.46 }, size: { width: 1, height: 2, depth: 23.4 }, rotation: Math.PI*-.76 },
         ]
     }
 
     let data = {
         floor: null,
-        roads: []
+        roads: [],
+        walls: []
     };
 
     /**
@@ -39,21 +67,8 @@ World.environment = (function (three, world) {
         for(let road of getRoads())
             world.getScene().add(road);
 
-        // temporary object for testing whether the wall works.
-        World.getScene().add(World.environment.Wall.generateWall(
-            {
-                x: 4.7,
-                y: 0,
-                z: 24
-            },
-            {
-                width: 1,
-                height: 2,
-                depth: 58
-            },
-            Math.PI,
-            new three.MeshPhongMaterial({color: 0x777777})
-        ));
+        for(let wall of getWalls())
+            world.getScene().add(wall);
 
     };
 
@@ -80,12 +95,33 @@ World.environment = (function (three, world) {
     }
 
     /**
-     * Place roads on the floor, these roads are determined by the constants.roads array.
+     * Get the walls, generates them beforehand if none available.
+     * @returns {[]}
+     */
+    const getWalls = function () {
+        if (data.walls.length === 0)
+            generateWalls();
+
+        return data.walls;
+    }
+
+    /**
+     * Prepare roads for insertion, these roads are determined by the constants.roads array.
      */
     const generateRoads = function() {
         for(let i = 0; i < constants.roads.length; i++) {
             let material = new three.MeshPhongMaterial();
             generateRoad(constants.roads[i], material);
+        }
+    }
+
+    /**
+     * Prepare walls for insertion, determined by constants.walls.
+     */
+    const generateWalls = function() {
+        for(let i = 0; i < constants.walls.length; i++) {
+            let material = new three.MeshPhongMaterial();
+            generateWall(constants.walls[i], material)
         }
     }
 
@@ -106,6 +142,28 @@ World.environment = (function (three, world) {
                 depth: roadData.size.depth
             },
             roadData.rotation,
+            material
+        ));
+    }
+
+    /**
+     * Generate a wall.
+     * @param wallData constants.walls array element
+     * @param material THREE.Material to apply to the road.
+     */
+    const generateWall = function(wallData, material) {
+        data.walls.push(world.environment.Wall.generateWall(
+            {
+                x: wallData.coords.x,
+                y: wallData.coords.y,
+                z: wallData.coords.z
+            },
+            {
+                width: wallData.size.width,
+                height: wallData.size.height,
+                depth: wallData.size.depth
+            },
+            wallData.rotation,
             material
         ));
     }
