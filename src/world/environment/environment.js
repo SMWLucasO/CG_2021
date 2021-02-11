@@ -77,6 +77,8 @@ World.environment = (function (three, world) {
         for (let tree of getTrees())
             world.getScene().add(tree);
 
+        world.getScene().add(world.environment.Tribune.generate(0,10,0))
+
     };
 
     /**
@@ -155,11 +157,11 @@ World.environment = (function (three, world) {
 
     /**
      * Generate a tree, and add it to the trees array.
-     * @param treeData {{x: number, y: number, z: number}}
+     * @param treeData {{x: float, y: float, z: float}}
      */
     const generateTree = function (treeData) {
         data.trees.push(
-            world.environment.Tree.generateTree(
+            world.environment.Tree.generate(
                 treeData.x,
                 treeData.y,
                 treeData.z
@@ -181,7 +183,7 @@ World.environment = (function (three, world) {
         texture.repeat.set(1024, 1024)
         material.map = texture;
 
-        data.roads.push(world.environment.Road.generateRoad(
+        data.roads.push(world.environment.Road.generate(
             {
                 x: roadData.coords.x,
                 z: roadData.coords.z,
@@ -201,7 +203,7 @@ World.environment = (function (three, world) {
      * @param material THREE.Material to apply to the road.
      */
     const generateWall = function(wallData, material) {
-        data.walls.push(world.environment.Wall.generateWall(
+        data.walls.push(world.environment.Wall.generate(
             {
                 x: wallData.coords.x,
                 y: wallData.coords.y,

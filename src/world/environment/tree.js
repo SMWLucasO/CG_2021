@@ -13,7 +13,7 @@ World.environment.Tree = (function (three, world) {
      * @param z {float} coordinate
      * @returns {Group}
      */
-    const generateTree = function (x, y, z) {
+    const generate = function (x, y, z) {
         let tree = new three.Group();
 
         let treeTrunkMesh = generateTreeTrunk();
@@ -80,7 +80,7 @@ World.environment.Tree = (function (three, world) {
     }
 
     return {
-        generateTree: generateTree
+        generate: generate
     };
 
 })(THREE, World);
