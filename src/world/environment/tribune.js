@@ -1,20 +1,35 @@
+/**
+ * Tribune model module, used to generate tribunes.
+ */
 World.environment.Tribune = (function (three, world) {
 
+    /**
+     * Materials managed by the tribune module, these need to be managed for the model to work.
+     */
     const settings = {
         tribuneBaseMaterial: new three.MeshPhongMaterial(),
         tribuneRowMaterial: three.MeshPhongMaterial // no new here, (dont want to use same material for all rows).
     };
 
-    const generate = function (x, y, z, rotation, width) {
+    /**
+     *
+     * @param x {float} the x-coordinate for the tribune
+     * @param y {float} the y-coordinate for the tribune
+     * @param z {float} the z-coordinate for the tribune
+     * @param rotation {float} radian rotation of the object.
+     * @param depth {float} the depth of the tribune, in our case the only necessary thing to set.
+     * @returns {Group}
+     */
+    const generate = function (x, y, z, rotation, depth) {
         // rectangle with stair-like form on it
         // sides have two right triangles
 
         let tribune = new three.Group();
 
-        let tribuneBaseMesh = generateTribuneBase(width);
+        let tribuneBaseMesh = generateTribuneBase(depth);
         tribune.add(tribuneBaseMesh);
 
-        let tribuneRows = generateTribuneRows(width); // array of row meshes.
+        let tribuneRows = generateTribuneRows(depth); // array of row meshes.
         tribuneRows.forEach((v,k) => tribune.add(v));
 
         tribune.position.set(x,y,z);
@@ -23,6 +38,11 @@ World.environment.Tribune = (function (three, world) {
         return tribune;
     }
 
+    /**
+     * Generate base of the tribune
+     * @param depth {float} the depth of the tribune base, in our case the only necessary thing to set.
+     * @returns {Mesh}
+     */
     const generateTribuneBase = function(depth) {
         // generate right triangle.
 
@@ -36,6 +56,11 @@ World.environment.Tribune = (function (three, world) {
         return tribuneBase;
     }
 
+    /**
+     * Generate the rows for the tribune.
+     * @param depth {float} the depth of the tribune rows, in our case the only necessary thing to set.
+     * @returns {[THREE.Mesh]}
+     */
     const generateTribuneRows = function (depth) {
         let tribuneRows = [];
 
