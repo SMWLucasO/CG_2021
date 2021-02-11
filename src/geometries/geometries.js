@@ -10,13 +10,14 @@ const geometries = (function (three) {
 
         /**
          * Generate a 3D right angle
-         * @param width {Number} The width of the right angle
-         * @param height {Number} The height of the right angle
-         * @param depth {Number} The depth of the right angle
+         *
+         * NOTE: Needs the material to have the property 'side' set to THREE.DoubleSide. Use a mesh's
+         * scale.set(...) to set width/height/depth.
+         *
          * @returns {Geometry}
          */
-        const generate = function (width, height, depth) {
-            let rightAngleGeometry = new three.Geometry(width, height, depth);
+        const generate = function () {
+            let rightAngleGeometry = new three.Geometry(1,1,1);
 
             // setup the vertices for the 3D right angle
             rightAngleGeometry.vertices.push(
@@ -40,12 +41,8 @@ const geometries = (function (three) {
                 new three.Face3(3, 2, 1)
             );
 
-            // set the side of the angle to doubleside, otherwise it will look strange.
-            rightAngleGeometry.side = three.DoubleSide;
-
             // Let the sun give color to the geometry
             rightAngleGeometry.computeFaceNormals();
-
 
             return rightAngleGeometry;
         }
