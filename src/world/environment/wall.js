@@ -11,7 +11,7 @@ World.environment.Wall = (function (three, world) {
      * @param rotation Number radians of rotation
      * @param material THREE.Material object.
      */
-    const generateWall = function(coordinates, sizes, rotation, material) {
+    const generate = function(coordinates, sizes, rotation, material) {
 
         let rightTriangleGeometry = new three.Geometry(1,1,1);
 
@@ -76,7 +76,7 @@ World.environment.Wall = (function (three, world) {
     }
 
     return {
-        generateWall: generateWall,
+        generate: generate,
     };
 
 })(THREE, World);

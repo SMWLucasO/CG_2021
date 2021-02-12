@@ -16,7 +16,7 @@ World.environment.Road = (function (three, world) {
      * @param material THREE.material material which this road uses.
      * @returns {Mesh}
      */
-    const generateRoad = function (coordinates, sizes, rotation, material) {
+    const generate = function (coordinates, sizes, rotation, material) {
 
         let roadGeometry = new three.BoxGeometry(sizes.width, constants.height, sizes.depth);
 
@@ -29,7 +29,7 @@ World.environment.Road = (function (three, world) {
     };
 
     return {
-        generateRoad: generateRoad,
+        generate: generate,
     };
 
 })(THREE, World);
