@@ -1,14 +1,24 @@
 const Game = (function (three) {
-    const start = function () {
-        World.init();
+    const data = {
+        carController: null
+    }
 
-        loop();
+    const start = function () {
+        Preloader.init().then(() => {
+            World.init();
+
+            data.carController = new World.vehicleController(World.environment.getVehicles()[0]);
+
+            loop();
+        });
     }
 
     const loop = function () {
         requestAnimationFrame(loop);
         World.getRenderer().render(World.getScene(), World.getCamera());
         Controller.update();
+
+        data.carController.move();
     }
 
     return {

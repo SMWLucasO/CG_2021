@@ -35975,7 +35975,7 @@
 							break;
 						case 'colorAmbient':
 						case 'mapAmbient':
-							console.warn( 'THREE.Loader.createMaterial:', name, 'is no longer supported.' );
+							console.warn( 'THREE.Preloader.createMaterial:', name, 'is no longer supported.' );
 							break;
 						case 'colorDiffuse':
 							json.color = color.fromArray( value ).getHex();
@@ -36087,7 +36087,7 @@
 							json.side = DoubleSide;
 							break;
 						case 'transparency':
-							console.warn( 'THREE.Loader.createMaterial: transparency has been renamed to opacity' );
+							console.warn( 'THREE.Preloader.createMaterial: transparency has been renamed to opacity' );
 							json.opacity = value;
 							break;
 						case 'depthTest':
@@ -36105,7 +36105,7 @@
 							if ( value === 'face' ) json.vertexColors = FaceColors;
 							break;
 						default:
-							console.error( 'THREE.Loader.createMaterial: Unsupported', name, value );
+							console.error( 'THREE.Preloader.createMaterial: Unsupported', name, value );
 							break;
 
 					}
@@ -44280,7 +44280,7 @@
 
 		extractUrlBase: function ( url ) {
 
-			console.warn( 'THREE.Loader: .extractUrlBase() has been deprecated. Use THREE.LoaderUtils.extractUrlBase() instead.' );
+			console.warn( 'THREE.Preloader: .extractUrlBase() has been deprecated. Use THREE.LoaderUtils.extractUrlBase() instead.' );
 			return LoaderUtils.extractUrlBase( url );
 
 		}

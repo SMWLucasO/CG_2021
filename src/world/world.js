@@ -1,3 +1,6 @@
+/**
+ * World module, handles all things for the world.
+ */
 const World = (function (three) {
 
     // not final.
@@ -33,12 +36,15 @@ const World = (function (three) {
      * @returns Three.WebGLRenderer|function
      */
     const getRenderer = function () {
-        if(data.renderer == null)
+        if(data.renderer == null) {
             data.renderer = new three.WebGLRenderer({ // create renderer with default settings delivered by ELO.
                 antialias: true,
                 alpha: true
             });
 
+            data.renderer.gammaFactor = 2.2;
+            data.renderer.gammaOutput = true;
+        }
 
         return data.renderer;
     };
@@ -77,6 +83,9 @@ const World = (function (three) {
 
             // load the materials for the skybox (x, -x, y, -y, z, -z) in order
             settings.skybox.directions.forEach(function (v, k) {
+                const texture = new three.TextureLoader().load(settings.skybox.baseUrl+v);
+                texture.encoding = THREE.sRGBEncoding;
+
                 materials.push(new three.MeshBasicMaterial({
                     map: new three.TextureLoader().load(settings.skybox.baseUrl+v),
                     side: three.BackSide
@@ -112,7 +121,7 @@ const World = (function (three) {
         getRenderer().setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(getRenderer().domElement);
 
-        getCamera().position.set( 0, 0, 10 );
+        getCamera().position.set( 0, 5, 0 );
 
         // add the skybox and main light source.
         getScene().add(getSkybox());
@@ -128,7 +137,6 @@ const World = (function (three) {
         World.environment.init();
 
         Controller.init();
-
     }
 
     /**
@@ -144,7 +152,7 @@ const World = (function (three) {
         getRenderer: getRenderer,
         setRenderer: setRenderer,
         getSun: getSun,
-        init: init
+        init: init,
     };
 
 })(THREE);
