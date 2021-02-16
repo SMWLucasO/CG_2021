@@ -1,5 +1,5 @@
 /**
- * Wall model module, used to generate walls.
+ * finish-line model module, used to generate finish lines.
  */
 World.environment.FinishLine = (function (three, world) {
 
