@@ -49,7 +49,11 @@ const Preloader = (function (three) {
      */
     const preLoad = function() {
         const load = [
-            loadObject('assets/', 'b.obj', 'b.mtl')
+            loadObject('assets/', 'b.obj', 'b.mtl'),
+            loadObject('assets/', 'lights.obj', 'lights.mtl'),
+            loadTexture("assets/world/environment/grass.jpg"),
+            loadTexture("assets/world/environment/road.jpg"),
+            loadObject('assets/', 'eltjo.obj', 'eltjo.mtl')
         ];
 
         return Promise.all(load);
@@ -60,12 +64,12 @@ const Preloader = (function (three) {
      */
     const loadObject = function (path, objName, mtlName) {
         return new Promise((res, rej) => {
-            const mtlLoader = new THREE.MTLLoader(data.manager);
+            const mtlLoader = new THREE.MTLLoader();
             mtlLoader.setPath(path);
             mtlLoader.load(mtlName, (materials) => {
                 materials.preload();
 
-                const objLoader = new three.OBJLoader(data.manager);
+                const objLoader = new three.OBJLoader();
                 objLoader.setPath(path);
                 objLoader.setMaterials(materials);
                 objLoader.load( objName, (obj) => {
@@ -95,23 +99,10 @@ const Preloader = (function (three) {
     }
 
     /**
-     * Load an Gltf file
-     */
-    const loadGltf = function (gltfPath) {
-        return new Promise((res, rej) => {
-            const gltfLoader = new THREE.GLTFLoader(data.manager)
-            gltfLoader.load(gltfPath, (gltf) => {
-                data.models[gltfPath] = gltf.scene;
-                res();
-            }, () => null, (e) => rej(e));
-        });
-    }
-
-    /**
      * Load an texture
      */
     const loadTexture = function (texturePath) {
-        new three.TextureLoader(data.manager).load(texturePath, (texture) => {
+        new three.TextureLoader().load(texturePath, (texture) => {
             texture.encoding = THREE.sRGBEncoding;
             data.textures[texturePath] = texture;
         });

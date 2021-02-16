@@ -9,44 +9,58 @@ World.vehicleController = (function(three) {
         this.debug = debug;
     }
 
+    controller.prototype._debug_draw = function (index, caster, length) {
+        World.getScene().remove(this.arrows[index]);
+        this.arrows[index] = new THREE.ArrowHelper( caster.ray.direction, caster.ray.origin, length, 0xffffff );
+        World.getScene().add(this.arrows[index++]);
+    }
+
     controller.prototype.move = function () {
         const obstacles = World.getScene().getObjectByName('walls').children;
         const carPos = this.vehicle.obj.position;
 
         const frontDirection = this.vehicle.obj.getWorldDirection();
-
-
-        const leftDirection = frontDirection.clone().applyAxisAngle(new THREE.Vector3(0, 1, 0), 25 * (Math.PI / 180));
-        const rightDirection = frontDirection.clone().applyAxisAngle(new THREE.Vector3(0, 1, 0), -25 * (Math.PI / 180));
-
-        leftDirection.normalize();
-        rightDirection.normalize();
+        const leftDirection = frontDirection.clone().applyAxisAngle(new THREE.Vector3(0, 1, 0), 25 * (Math.PI / 180)).normalize();
+        const rightDirection = frontDirection.clone().applyAxisAngle(new THREE.Vector3(0, 1, 0), -25 * (Math.PI / 180)).normalize();
+        const LeftTopDirection = frontDirection.clone().setY(25 * (Math.PI / 180)).applyAxisAngle(new THREE.Vector3(0, 1, 0), 25 * (Math.PI / 180)).normalize();
 
         let closest = null;
         let closestDistance = null;
         let closestDirection = frontDirection;
         let i = 0;
+        let shouldStop = false;
 
-        [frontDirection, leftDirection, rightDirection].forEach((direction => {
-            const caster = new THREE.Raycaster(carPos, direction, 0, 8);
+        [[frontDirection, 8], [leftDirection, 8], [rightDirection, 8], [LeftTopDirection, 25]].forEach((direction => {
+            const caster = new THREE.Raycaster(carPos, direction[0], 0, direction[1]);
 
             if (this.debug) {
-                World.getScene().remove(this.arrows[i]);
-                this.arrows[i] = new THREE.ArrowHelper( caster.ray.direction, caster.ray.origin, 8, 0xffffff );
-                World.getScene().add(this.arrows[i++]);
+                this._debug_draw(i++, caster, direction[1]);
             }
 
-            const intersects = caster.intersectObjects(obstacles);
+            for (let stopObject of World.environment.getStopPoints()) {
+                if (stopObject.shouldStop()) {
+                    const intersects = caster.intersectObjects(stopObject.obj.material ? [stopObject.obj] : stopObject.obj.children);
+                    if (intersects.length > 0) {
+                        //we are seeing an object that is telling us not to move, like a starting light. Return.
+                        shouldStop = true;
+                    }
+                }
+            }
 
-            for (let intersect of intersects) {
+            const wallIntersects = caster.intersectObjects(obstacles);
+
+            for (let intersect of wallIntersects) {
                 const dist = carPos.distanceTo(intersect.point);
                 if (closestDistance === null || dist < closestDistance) {
                     closest = intersect.object;
                     closestDistance = intersect.distance;
-                    closestDirection = direction;
+                    closestDirection = direction[0];
                 }
             }
         }));
+
+        if (shouldStop)
+            return;
 
         if (closest !== null) {
             const force = 8 / closestDistance - 0.85;
@@ -59,6 +73,8 @@ World.vehicleController = (function(three) {
                 case rightDirection:
                     this.vehicle.moveLeft(force);
                     break;
+                default:
+                    this.vehicle.moveForward();
             }
 
         } else {

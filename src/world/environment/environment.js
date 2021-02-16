@@ -52,7 +52,13 @@ World.environment = (function (three, world) {
             { coords: { x: 65, y: 0, z: -37 }, rotation: Math.PI*2, width: 64 },
             { coords: { x: 28, y: 0, z: -62 }, rotation: Math.PI*.5, width: 1 },
             { coords: { x: 28, y: 0, z: 52 }, rotation: Math.PI*1.5, width: 1 },
-        ]
+        ],
+        finishLine: {
+            coords: {x: 4, y: 0.15, z: 0},
+            width: 16,
+            size: 0.5,
+            color: 0xffffff
+        }
     }
 
     let data = {
@@ -61,7 +67,9 @@ World.environment = (function (three, world) {
         walls: new three.Group(),
         trees: new three.Group(),
         tribunes: new three.Group(),
-        vehicles: []
+        vehicles: [],
+        stopPoints: [],
+        finishLine: null
     };
 
     /**
@@ -87,6 +95,12 @@ World.environment = (function (three, world) {
 
         //get vehicles
         world.getScene().add(getVehicleGroup());
+
+        //get stop points
+        world.getScene().add(getStopPointGroup());
+
+        //get finish line
+        world.getScene().add(getFinishLine());
     };
 
     /**
@@ -95,7 +109,7 @@ World.environment = (function (three, world) {
      */
     const getVehicles = function () {
         if (data.vehicles.length === 0)
-            data.vehicles.push(new World.redCar(0, 0.15, 0, Math.PI, 0.07));
+            data.vehicles.push(new World.redCar(0, 0.15, 15, Math.PI, 0.07));
 
         return data.vehicles;
     }
@@ -111,6 +125,41 @@ World.environment = (function (three, world) {
         vehicles.forEach(vehicle => group.add(vehicle.obj));
 
         return group;
+    }
+
+    /**
+     * Get the stoppoints, these can be any point that vehicles have to stop for
+     * @returns {[World.startingLight]}
+     */
+    const getStopPoints = function () {
+        if (data.stopPoints.length === 0)
+            data.stopPoints.push(new World.startingLight(-3, 0, 0));
+
+        return data.stopPoints;
+    }
+
+    /**
+     * Get the stoppoint 3d objects as group
+     * @returns {THREE.Group}
+     */
+    const getStopPointGroup = function () {
+        const group = new three.Group();
+        group.name = "stopPoints";
+        const stopPoints = getStopPoints();
+
+        stopPoints.forEach(stopPoint => group.add(stopPoint.obj));
+
+        return group;
+    }
+
+    /**
+     * Get the floor, creates one beforehand if none available.
+     * @returns {THREE.Mesh}
+     */
+    const getFinishLine = function() {
+        if(data.finishLine == null)
+            generateFinishLine();
+        return data.finishLine;
     }
 
     /**
@@ -252,7 +301,7 @@ World.environment = (function (three, world) {
      */
     const generateRoad = function (roadData, material) {
         // load the texture
-        let texture = new three.TextureLoader().load("assets/world/environment/road.jpg");
+        let texture = Preloader.getTexture("assets/world/environment/road.jpg");
         texture.encoding = THREE.sRGBEncoding;
         // let texture repeat
         texture.wrapS = texture.wrapT = three.MirroredRepeatWrapping;
@@ -272,6 +321,24 @@ World.environment = (function (three, world) {
             roadData.rotation,
             material
         ));
+    }
+
+    /**
+     * Generate a finishLine.
+     */
+    const generateFinishLine = function () {
+        data.finishLine = World.environment.FinishLine.generate(
+            {
+                x: constants.finishLine.coords.x,
+                y: constants.finishLine.coords.y,
+                z: constants.finishLine.coords.z
+            },
+            constants.finishLine.size,
+            constants.finishLine.width,
+            new THREE.MeshBasicMaterial()
+        );
+
+        data.finishLine.material.color.set(constants.finishLine.color);
     }
 
     /**
@@ -300,7 +367,7 @@ World.environment = (function (three, world) {
      * Generate the floor.
      */
     const generateFloor = function() {
-        let texture = new three.TextureLoader().load("assets/world/environment/grass.jpg");
+        let texture =Preloader.getTexture("assets/world/environment/grass.jpg");
         texture.encoding = THREE.sRGBEncoding;
         texture.wrapS = texture.wrapT = three.MirroredRepeatWrapping;
         texture.repeat.set(1024, 1024)
@@ -320,7 +387,8 @@ World.environment = (function (three, world) {
     return {
         init: init,
         getFloor: getFloor,
-        getVehicles: getVehicles
+        getVehicles: getVehicles,
+        getStopPoints: getStopPoints,
     }
 
 })(THREE, World);

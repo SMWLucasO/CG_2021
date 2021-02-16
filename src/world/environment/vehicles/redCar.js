@@ -77,6 +77,30 @@ World.redCar = (function (three) {
             backRight: new tire(object, ["Front_Right_Tire_Plane.108", "Back_Right_Rim_Circle.035", "Back_Right_Brakes_Circle.036"], this.speed),
             backLeft: new tire(object, ["Back_Left_Brakes_Plane.060", "Back_Left_Tire_Plane.052", "Back_Left_Rim_Circle.030"], this.speed),
         };
+
+        this.driver = Preloader.getModel('assets/eltjo.obj');
+        this.driver.scale.multiplyScalar(0.01);
+
+        this.driver.children.forEach(mesh => {
+            mesh.geometry.center();
+        });
+
+        this.driver.rotateZ(Math.PI);
+        this.driver.rotateY(Math.PI);
+        this.driver.scale.set(0.002, 0.002, 0.002);
+
+        World.getScene().add(this.driver);
+        this._update_driver();
+    }
+
+    car.prototype._update_driver = function () {
+        this.driver.position.setFromMatrixPosition(this.obj.matrixWorld);
+        this.driver.translateX(-0.4);
+        this.driver.translateY(-1);
+        this.driver.translateZ(-0.4);
+        this.driver.rotation.x = this.obj.rotation.x;
+        this.driver.rotation.y = this.obj.rotation.y;
+        this.driver.rotation.z = this.obj.rotation.z + Math.PI;
     }
 
     car.prototype.moveForward = function () {
@@ -85,6 +109,8 @@ World.redCar = (function (three) {
             v.turnStraight();
             v.moveForward();
         });
+
+        this._update_driver();
     }
 
     car.prototype.moveRight = function (force = 1) {
@@ -97,6 +123,8 @@ World.redCar = (function (three) {
         [this.tires.backLeft, this.tires.backRight].forEach(v => {
             v.moveForward();
         });
+
+        this._update_driver();
     }
 
     car.prototype.moveLeft = function (force = 1) {
@@ -110,6 +138,8 @@ World.redCar = (function (three) {
         [this.tires.backLeft, this.tires.backRight].forEach(v => {
             v.moveForward();
         });
+
+        this._update_driver();
     }
 
     car.prototype.moveBack = function () {
@@ -118,6 +148,8 @@ World.redCar = (function (three) {
             v.turnStraight();
             v.moveBackward();
         });
+
+        this._update_driver();
     }
 
     return car;

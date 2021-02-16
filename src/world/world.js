@@ -137,6 +137,10 @@ const World = (function (three) {
         World.environment.init();
 
         Controller.init();
+
+        //add a bit of ambient light
+        const ambientLight = new THREE.AmbientLight( 0x404040, 0.1 ); // soft white light
+        World.getScene().add( ambientLight );
     }
 
     /**
