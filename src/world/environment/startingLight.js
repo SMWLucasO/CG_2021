@@ -1,4 +1,7 @@
 World.startingLight = (function (three) {
+    /**
+     * Represents a starting light
+     */
     const light = function (x, y, z) {
         this.obj = Preloader.getModel('assets/lights.obj');
 
@@ -20,6 +23,9 @@ World.startingLight = (function (three) {
         this.stop();
     }
 
+    /**
+     * Make light red
+     */
     light.prototype.stop = function () {
         this.colors.red.copy(new THREE.Color(1, 0, 0));
         this.colors.yellow.copy(new THREE.Color(0, 0, 0));
@@ -29,6 +35,9 @@ World.startingLight = (function (three) {
         this.state = 0;
     }
 
+    /**
+     * Make light yellow
+     */
     light.prototype.ready = function () {
         this.colors.red.copy(new THREE.Color(0, 0, 0));
         this.colors.yellow.copy(new THREE.Color(1, 1, 0));
@@ -36,6 +45,9 @@ World.startingLight = (function (three) {
         this.state = 1;
     }
 
+    /**
+     * Make light green
+     */
     light.prototype.go = function () {
         this.colors.red.copy(new THREE.Color(0, 0, 0));
         this.colors.yellow.copy(new THREE.Color(0, 0, 0));

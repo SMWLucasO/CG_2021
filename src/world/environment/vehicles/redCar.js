@@ -1,4 +1,7 @@
 World.redCar = (function (three) {
+    /**
+     * Represents a tire of the car
+     */
     const tire = function (parent, objects, speed = -0.005) {
         this.steering = new THREE.Group();
         this.speed = speed;
@@ -23,6 +26,9 @@ World.redCar = (function (three) {
         this.lastForce = 1;
     }
 
+    /**
+     * Turn tire left
+     */
     tire.prototype.turnLeft = function (force) {
         if (this.steering.rotation.y < this.maximumTurn) {
             this.steering.rotateY(this.speed * force);
@@ -30,6 +36,9 @@ World.redCar = (function (three) {
         }
     }
 
+    /**
+     * Turn tire right
+     */
     tire.prototype.turnRight = function (force = 1) {
         if (this.steering.rotation.y > this.maximumTurn * -1) {
             this.steering.rotateY(-this.speed * force);
@@ -37,24 +46,37 @@ World.redCar = (function (three) {
         }
     }
 
+    /**
+     * Turn tire straight
+     */
     tire.prototype.turnStraight = function () {
         if (this.steering.rotation.y !== 0) {
             this.steering.rotateY(this.steering.rotation.y > 0 ? -this.speed * this.lastForce : this.speed * this.lastForce);
         }
     }
 
+    /**
+     * Rotate tire forward
+     */
     tire.prototype.moveForward = function (slower = false) {
         this.meshes.forEach(v => {
             v.rotateX(slower ? this.speed * 0.9 : this.speed);
         });
     }
 
+
+    /**
+     * Rotate tire backward
+     */
     tire.prototype.moveBackward = function () {
         this.meshes.forEach(v => {
             v.rotateX(-0.1);
         });
     }
 
+    /**
+     * Represents a car
+     */
     const car = function (initialX = 0, initialY = 0, initialZ = 0, rotate = 0, speed = 0.05) {
         this.maximumTurn = 0.5;
         this.speed = speed;
@@ -79,6 +101,13 @@ World.redCar = (function (three) {
         };
 
         this.driver = Preloader.getModel('assets/eltjo.obj');
+        this.driver.traverse((mesh) => {
+            if (mesh.material) {
+                const map = mesh.material.map;
+                mesh.material = new three.MeshBasicMaterial();
+                mesh.material.map = map;
+            }
+        });
         this.driver.scale.multiplyScalar(0.01);
 
         this.driver.children.forEach(mesh => {
@@ -93,6 +122,9 @@ World.redCar = (function (three) {
         this._update_driver();
     }
 
+    /**
+     * Update driver position
+     */
     car.prototype._update_driver = function () {
         this.driver.position.setFromMatrixPosition(this.obj.matrixWorld);
         this.driver.translateX(-0.4);
@@ -103,6 +135,9 @@ World.redCar = (function (three) {
         this.driver.rotation.z = this.obj.rotation.z + Math.PI;
     }
 
+    /**
+     * Move the car forward
+     */
     car.prototype.moveForward = function () {
         this.obj.translateZ(this.speed);
         Object.values(this.tires).forEach(v => {
@@ -113,6 +148,9 @@ World.redCar = (function (three) {
         this._update_driver();
     }
 
+    /**
+     * Move the car right
+     */
     car.prototype.moveRight = function (force = 1) {
         this.obj.rotateY(-(this.speed / 5) * force);
         this.obj.translateZ(this.speed);
@@ -127,6 +165,9 @@ World.redCar = (function (three) {
         this._update_driver();
     }
 
+    /**
+     * Move the car left
+     */
     car.prototype.moveLeft = function (force = 1) {
 
         this.obj.rotateY((this.speed / 5) * force);
@@ -142,6 +183,9 @@ World.redCar = (function (three) {
         this._update_driver();
     }
 
+    /**
+     * Move the car backward
+     */
     car.prototype.moveBack = function () {
         this.obj.translateZ(-this.speed);
         Object.values(this.tires).forEach(v => {

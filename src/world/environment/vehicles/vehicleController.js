@@ -1,4 +1,7 @@
 World.vehicleController = (function(three) {
+    /**
+     * function class to control a vehicle. Vehicle must implement moveForward(force), moveLeft(force) and moveRight(force)
+     */
     const controller = function (vehicle, debug = false) {
         this.vehicle = vehicle;
 
@@ -9,12 +12,18 @@ World.vehicleController = (function(three) {
         this.debug = debug;
     }
 
+    /**
+     * Draw arrows to help with debugging
+     */
     controller.prototype._debug_draw = function (index, caster, length) {
         World.getScene().remove(this.arrows[index]);
         this.arrows[index] = new THREE.ArrowHelper( caster.ray.direction, caster.ray.origin, length, 0xffffff );
         World.getScene().add(this.arrows[index++]);
     }
 
+    /**
+     * Move the car based on what it sees
+     */
     controller.prototype.move = function () {
         const obstacles = World.getScene().getObjectByName('walls').children;
         const carPos = this.vehicle.obj.position;
@@ -30,6 +39,7 @@ World.vehicleController = (function(three) {
         let i = 0;
         let shouldStop = false;
 
+        //[direction, length]
         [[frontDirection, 8], [leftDirection, 8], [rightDirection, 8], [LeftTopDirection, 25]].forEach((direction => {
             const caster = new THREE.Raycaster(carPos, direction[0], 0, direction[1]);
 
@@ -41,7 +51,7 @@ World.vehicleController = (function(three) {
                 if (stopObject.shouldStop()) {
                     const intersects = caster.intersectObjects(stopObject.obj.material ? [stopObject.obj] : stopObject.obj.children);
                     if (intersects.length > 0) {
-                        //we are seeing an object that is telling us not to move, like a starting light. Return.
+                        //we are seeing an object that is telling us not to move, like a starting light.
                         shouldStop = true;
                     }
                 }

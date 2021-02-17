@@ -95,7 +95,6 @@ const Preloader = (function (three) {
                 }, () => null, (e) => rej(e));
             });
         });
-
     }
 
     /**
@@ -108,10 +107,16 @@ const Preloader = (function (three) {
         });
     }
 
+    /**
+     * Get an preloaded model
+     */
     const getModel = function (model) {
         return data.models[model].clone();
     };
 
+    /**
+     * Get an preloaded texture
+     */
     const getTexture = function (texture) {
         return data.textures[texture];
     };
