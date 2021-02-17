@@ -52,15 +52,24 @@ World.environment = (function (three, world) {
             { coords: { x: 65, y: 0, z: -37 }, rotation: Math.PI*2, width: 64 },
             { coords: { x: 28, y: 0, z: -62 }, rotation: Math.PI*.5, width: 1 },
             { coords: { x: 28, y: 0, z: 52 }, rotation: Math.PI*1.5, width: 1 },
-        ]
+        ],
+        finishLine: {
+            coords: {x: 4, y: 0.15, z: 0},
+            width: 16,
+            size: 0.5,
+            color: 0xffffff
+        }
     }
 
     let data = {
         floor: null,
-        roads: [],
-        walls: [],
-        trees: [],
-        tribunes: []
+        roads: new three.Group(),
+        walls: new three.Group(),
+        trees: new three.Group(),
+        tribunes: new three.Group(),
+        vehicles: [],
+        stopPoints: [],
+        finishLine: null
     };
 
     /**
@@ -73,22 +82,85 @@ World.environment = (function (three, world) {
         world.getScene().add(getFloor());
 
         // generate roads
-        for(let road of getRoads())
-            world.getScene().add(road);
+        world.getScene().add(getRoads());
 
         // generate the walls.
-        for(let wall of getWalls())
-            world.getScene().add(wall);
+        world.getScene().add(getWalls());
 
         // generate the trees
-        for (let tree of getTrees())
-            world.getScene().add(tree);
+        world.getScene().add(getTrees());
 
         // generate the tribunes
-        for (let tribune of getTribunes())
-            world.getScene().add(tribune);
+        world.getScene().add(getTribunes());
 
+        //get vehicles
+        world.getScene().add(getVehicleGroup());
+
+        //get stop points
+        world.getScene().add(getStopPointGroup());
+
+        //get finish line
+        world.getScene().add(getFinishLine());
     };
+
+    /**
+     * Get the vehicles
+     * @returns {[World.redCar]}
+     */
+    const getVehicles = function () {
+        if (data.vehicles.length === 0)
+            data.vehicles.push(new World.redCar(0, 0.15, 15, Math.PI, 0.07));
+
+        return data.vehicles;
+    }
+
+    /**
+     * Get the vehicle 3d objects as group
+     * @returns {THREE.Group}
+     */
+    const getVehicleGroup = function () {
+        const group = new three.Group();
+        const vehicles = getVehicles();
+
+        vehicles.forEach(vehicle => group.add(vehicle.obj));
+
+        return group;
+    }
+
+    /**
+     * Get the stoppoints, these can be any point that vehicles have to stop for
+     * @returns {[World.startingLight]}
+     */
+    const getStopPoints = function () {
+        if (data.stopPoints.length === 0)
+            data.stopPoints.push(new World.startingLight(-3, 0, 0));
+
+        return data.stopPoints;
+    }
+
+    /**
+     * Get the stoppoint 3d objects as group
+     * @returns {THREE.Group}
+     */
+    const getStopPointGroup = function () {
+        const group = new three.Group();
+        group.name = "stopPoints";
+        const stopPoints = getStopPoints();
+
+        stopPoints.forEach(stopPoint => group.add(stopPoint.obj));
+
+        return group;
+    }
+
+    /**
+     * Get the floor, creates one beforehand if none available.
+     * @returns {THREE.Mesh}
+     */
+    const getFinishLine = function() {
+        if(data.finishLine == null)
+            generateFinishLine();
+        return data.finishLine;
+    }
 
     /**
      * Get the floor, creates one beforehand if none available.
@@ -102,11 +174,11 @@ World.environment = (function (three, world) {
 
     /**
      * Get the roads, generates them beforehand if none available.
-     * @returns {[THREE.Mesh]}
+     * @returns {[THREE.Group]}
      */
     const getRoads = function () {
         // roads not generated yet.
-        if (data.roads.length === 0)
+        if (data.roads.children.length === 0)
             generateRoads();
 
         return data.roads;
@@ -114,10 +186,10 @@ World.environment = (function (three, world) {
 
     /**
      * Get the walls, generates them beforehand if none available.
-     * @returns {[THREE.Mesh]}
+     * @returns {[THREE.Group]}
      */
     const getWalls = function () {
-        if (data.walls.length === 0)
+        if (data.walls.children.length === 0)
             generateWalls();
 
         return data.walls;
@@ -125,10 +197,10 @@ World.environment = (function (three, world) {
 
     /**
      * Get the tribunes, generates them beforehand if none available.
-     * @returns {[THREE.Mesh]}
+     * @returns {[THREE.Group]}
      */
     const getTribunes = function() {
-        if (data.tribunes.length === 0)
+        if (data.tribunes.children.length === 0)
             generateTribunes();
 
         return data.tribunes;
@@ -136,10 +208,10 @@ World.environment = (function (three, world) {
 
     /**
      * get the trees, generates them beforehand if none available.
-     * @returns {[THREE.Mesh]}
+     * @returns {[THREE.Group]}
      */
     const getTrees = function () {
-        if(data.trees.length === 0)
+        if(data.trees.children.length === 0)
             generateTrees();
 
         return data.trees;
@@ -149,6 +221,8 @@ World.environment = (function (three, world) {
      * prepare trees for insertion, these trees are determined by the constants.trees array.
      */
     const generateTrees = function () {
+        data.trees.name = "trees";
+
         for(let i = 0; i < constants.trees.length; i++) {
             generateTree(constants.trees[i]);
         }
@@ -158,6 +232,8 @@ World.environment = (function (three, world) {
      * Prepare tribunes for insertion, these tribunes are determined by the constants.tribunes array.
      */
     const generateTribunes = function () {
+        data.tribunes.name = "tribunes";
+
         for(let i = 0; i < constants.tribunes.length; i++) {
             generateTribune(constants.tribunes[i]);
         }
@@ -167,6 +243,8 @@ World.environment = (function (three, world) {
      * Prepare roads for insertion, these roads are determined by the constants.roads array.
      */
     const generateRoads = function() {
+        data.roads.name = "road";
+
         for(let i = 0; i < constants.roads.length; i++) {
             let material = new three.MeshPhongMaterial();
             generateRoad(constants.roads[i], material);
@@ -177,6 +255,8 @@ World.environment = (function (three, world) {
      * Prepare walls for insertion, determined by constants.walls.
      */
     const generateWalls = function() {
+        data.walls.name = "walls";
+
         for(let i = 0; i < constants.walls.length; i++) {
             let material = new three.MeshPhongMaterial();
             generateWall(constants.walls[i], material)
@@ -189,7 +269,7 @@ World.environment = (function (three, world) {
      * @param treeData {{x: float, y: float, z: float}}
      */
     const generateTree = function (treeData) {
-        data.trees.push(
+        data.trees.add(
             world.environment.Tree.generate(
                 treeData.x,
                 treeData.y,
@@ -203,7 +283,7 @@ World.environment = (function (three, world) {
      * @param tribuneData {{coords:{x:float,y:float,z:float}, rotation:float}}
      */
     const generateTribune = function (tribuneData) {
-        data.tribunes.push(
+        data.tribunes.add(
             world.environment.Tribune.generate(
                 tribuneData.coords.x,
                 tribuneData.coords.y,
@@ -221,14 +301,15 @@ World.environment = (function (three, world) {
      */
     const generateRoad = function (roadData, material) {
         // load the texture
-        let texture = new three.TextureLoader().load("assets/world/environment/road.jpg");
+        let texture = Preloader.getTexture("assets/world/environment/road.jpg");
+        texture.encoding = THREE.sRGBEncoding;
         // let texture repeat
         texture.wrapS = texture.wrapT = three.MirroredRepeatWrapping;
         // image is 1024x1024
         texture.repeat.set(1024, 1024)
         material.map = texture;
 
-        data.roads.push(world.environment.Road.generate(
+        data.roads.add(world.environment.Road.generate(
             {
                 x: roadData.coords.x,
                 z: roadData.coords.z,
@@ -243,12 +324,30 @@ World.environment = (function (three, world) {
     }
 
     /**
+     * Generate a finishLine.
+     */
+    const generateFinishLine = function () {
+        data.finishLine = World.environment.FinishLine.generate(
+            {
+                x: constants.finishLine.coords.x,
+                y: constants.finishLine.coords.y,
+                z: constants.finishLine.coords.z
+            },
+            constants.finishLine.size,
+            constants.finishLine.width,
+            new THREE.MeshBasicMaterial()
+        );
+
+        data.finishLine.material.color.set(constants.finishLine.color);
+    }
+
+    /**
      * Generate a wall.
      * @param wallData constants.walls array element
      * @param material THREE.Material to apply to the road.
      */
     const generateWall = function(wallData, material) {
-        data.walls.push(world.environment.Wall.generate(
+        data.walls.add(world.environment.Wall.generate(
             {
                 x: wallData.coords.x,
                 y: wallData.coords.y,
@@ -268,7 +367,8 @@ World.environment = (function (three, world) {
      * Generate the floor.
      */
     const generateFloor = function() {
-        let texture = new three.TextureLoader().load("assets/world/environment/grass.jpg");
+        let texture =Preloader.getTexture("assets/world/environment/grass.jpg");
+        texture.encoding = THREE.sRGBEncoding;
         texture.wrapS = texture.wrapT = three.MirroredRepeatWrapping;
         texture.repeat.set(1024, 1024)
         let material = new three.MeshPhongMaterial();
@@ -287,6 +387,8 @@ World.environment = (function (three, world) {
     return {
         init: init,
         getFloor: getFloor,
+        getVehicles: getVehicles,
+        getStopPoints: getStopPoints,
     }
 
 })(THREE, World);

@@ -36,12 +36,15 @@ const World = (function (three) {
      * @returns Three.WebGLRenderer|function
      */
     const getRenderer = function () {
-        if(data.renderer == null)
+        if(data.renderer == null) {
             data.renderer = new three.WebGLRenderer({ // create renderer with default settings delivered by ELO.
                 antialias: true,
                 alpha: true
             });
 
+            data.renderer.gammaFactor = 2.2;
+            data.renderer.gammaOutput = true;
+        }
 
         return data.renderer;
     };
@@ -80,6 +83,9 @@ const World = (function (three) {
 
             // load the materials for the skybox (x, -x, y, -y, z, -z) in order
             settings.skybox.directions.forEach(function (v, k) {
+                const texture = new three.TextureLoader().load(settings.skybox.baseUrl+v);
+                texture.encoding = THREE.sRGBEncoding;
+
                 materials.push(new three.MeshBasicMaterial({
                     map: new three.TextureLoader().load(settings.skybox.baseUrl+v),
                     side: three.BackSide
@@ -132,6 +138,9 @@ const World = (function (three) {
 
         Controller.init();
 
+        //add a bit of ambient light
+        const ambientLight = new THREE.AmbientLight( 0x404040, 0.1 ); // soft white light
+        World.getScene().add( ambientLight );
     }
 
     /**
@@ -147,7 +156,7 @@ const World = (function (three) {
         getRenderer: getRenderer,
         setRenderer: setRenderer,
         getSun: getSun,
-        init: init
+        init: init,
     };
 
 })(THREE);
