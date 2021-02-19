@@ -1,4 +1,4 @@
-﻿namespace MatrixTransformations
+﻿namespace Cuby
 {
     partial class Form1
     {

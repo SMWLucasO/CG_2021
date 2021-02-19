@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace MatrixTransformations
+namespace Cuby.Utils
 {
     public class Vector : IEquatable<Vector>
     {

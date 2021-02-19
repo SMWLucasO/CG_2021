@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using Cuby.Utils;
 
-namespace MatrixTransformations
+namespace Cuby.Axis
 {
     public class AxisX
     {
@@ -14,8 +15,8 @@ namespace MatrixTransformations
             this.size = size;
 
             vb = new List<Vector>();
-            vb.Add(new Vector(0, 0));
-            vb.Add(new Vector(size, 0));
+            vb.Add(new Vector(0, 0, 0));
+            vb.Add(new Vector(size, 0, 0));
         }
 
         public void Draw(Graphics g, List<Vector> vb)

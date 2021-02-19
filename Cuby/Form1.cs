@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using Cuby.Axis;
+using Cuby.Shapes;
+using Cuby.Utils;
 
-namespace MatrixTransformations
+namespace Cuby
 {
     public partial class Form1 : Form
     {
@@ -28,9 +31,9 @@ namespace MatrixTransformations
 
             Vector v1 = new Vector();
             Console.WriteLine(v1);
-            Vector v2 = new Vector(1, 2);
+            Vector v2 = new Vector(1, 2, 0);
             Console.WriteLine(v2);
-            Vector v3 = new Vector(2, 6);
+            Vector v3 = new Vector(2, 6, 0);
             Console.WriteLine(v3);
             Vector v4 = v2 + v3;
             Console.WriteLine(v4); // 3, 8
@@ -38,8 +41,9 @@ namespace MatrixTransformations
             Matrix m1 = new Matrix();
             Console.WriteLine(m1); // 1, 0, 0, 1
             Matrix m2 = new Matrix(
-                2, 4,
-                -1, 3);
+                2, 4, 0,
+                -1, 3, 0,
+                0, 0, 0);
             Console.WriteLine(m2);
             Console.WriteLine(m1 + m2); // 3, 4, -1, 4
             Console.WriteLine(m1 - m2); // -1, -4, 1, -2
@@ -64,13 +68,13 @@ namespace MatrixTransformations
             square3 = new Square(Color.Orange, 100);
             for (int i = 0; i < square3.vb.Count; i++)
             {
-                square3.vb[i] = Matrix.RotateMatrix(20) * square3.vb[i];
+                square3.vb[i] = Matrix.RotateMatrixZ(20) * square3.vb[i];
             }
             
             square4 = new Square(Color.DarkBlue, 100);
             for (int i = 0; i < square4.vb.Count; i++)
             {
-                square4.vb[i] = (Matrix.TranslateMatrix(new Vector(75, -25)) * square4.vb[i]);
+                square4.vb[i] = (Matrix.TranslateMatrix(new Vector(75, -25, 0)) * square4.vb[i]);
             }
 
         }
@@ -95,10 +99,9 @@ namespace MatrixTransformations
             vb = ViewpointTransformation(square2.vb);
             
             square2.Draw(e.Graphics, vb);
-
+            
             vb = ViewpointTransformation(square3.vb);
             square3.Draw(e.Graphics, vb);
-            
             
             vb = ViewpointTransformation(square4.vb);
             square4.Draw(e.Graphics, vb);
@@ -113,7 +116,7 @@ namespace MatrixTransformations
 
             foreach (var vector in vb)
             {
-                Vector v2 = new Vector(vector.x + dx, dy - vector.y);
+                Vector v2 = new Vector(vector.x + dx, dy - vector.y, 0);
                 result.Add(v2);
             }
 

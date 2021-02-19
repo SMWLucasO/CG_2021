@@ -2,8 +2,13 @@
 using System.Text;
 using System.Windows.Forms;
 
-namespace MatrixTransformations
+namespace Cuby.Utils
 {
+    public enum Rotation
+    {
+        X, Y, Z
+    }
+    
     public class Matrix : IEquatable<Matrix>
     {
         float[,] mat = new float[4, 4];
@@ -137,13 +142,51 @@ namespace MatrixTransformations
             return matrix;
         }
 
-        public static Matrix RotateMatrix(float degrees)
+        public static Matrix RotateMatrix(Rotation rotation, float degrees)
+        {
+            switch (rotation)
+            {
+                case Rotation.X:
+                    return RotateMatrixX(degrees);
+                case Rotation.Y:
+                    return RotateMatrixY(degrees);
+                case Rotation.Z:
+                    return RotateMatrixZ(degrees);
+            }
+
+            return null;
+        }
+        
+        public static Matrix RotateMatrixZ(float degrees)
         {
             float rads = DegreesToRadians(degrees);
             return new Matrix
             (
-                (float)Math.Cos(rads), -((float)Math.Sin(rads)),
-                (float)Math.Sin(rads), (float)Math.Cos(rads)
+                (float)Math.Cos(rads), -((float)Math.Sin(rads)), 0,
+                (float)Math.Sin(rads), (float)Math.Cos(rads), 0,
+                0, 0, 1
+            );
+        }
+
+        public static Matrix RotateMatrixX(float degrees)
+        {
+            float rads = DegreesToRadians(degrees);
+            return new Matrix
+            (
+                1, 0, 0,
+                0, (float)Math.Cos(rads), -((float)Math.Sin(rads)),
+                0, (float)Math.Sin(rads), (float)Math.Cos(rads)
+            );
+        }
+
+        public static Matrix RotateMatrixY(float degrees)
+        {
+            float rads = DegreesToRadians(degrees);
+            return new Matrix
+            (
+                (float)Math.Cos(rads), 0, (float)Math.Sin(rads),
+                0, 1, 0,
+                -((float)Math.Sin(rads)), 0, (float)Math.Cos(rads)
             );
         }
 
@@ -154,16 +197,19 @@ namespace MatrixTransformations
 
         public bool Equals(Matrix other)
         {
-            if (mat[0, 0] == other.mat[0, 0]
-               && mat[0, 1] == other.mat[0, 1]
-               && mat[1, 0] == other.mat[1, 0]
-               && mat[1, 1] == other.mat[1, 1])
+            if (other == null) return false;
+            
+            for (int i = 0; i < this.mat.GetLength(0); i++)
             {
-                return true;
+                for (int j = 0; j < this.mat.GetLength(1); j++)
+                {
+                    if (this.mat[i, j] != other.mat[i, j])
+                        return false;
+                }
             }
 
-            return false;
-        }
+            return true;
+        } 
 
         public static float DegreesToRadians(float degrees)
             => (float) ((Math.PI / 180) * degrees);

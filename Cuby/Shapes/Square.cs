@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using Cuby.Utils;
 
-namespace MatrixTransformations
+namespace Cuby.Shapes
 {
     public class Square
     {
@@ -18,10 +19,10 @@ namespace MatrixTransformations
             this.weight = weight;
 
             vb = new List<Vector>();
-            vb.Add(new Vector(-size, -size));
-            vb.Add(new Vector(size, -size));
-            vb.Add(new Vector(size, size));
-            vb.Add(new Vector(-size, size));
+            vb.Add(new Vector(-size, -size, 0));
+            vb.Add(new Vector(size, -size, 0));
+            vb.Add(new Vector(size, size, 0));
+            vb.Add(new Vector(-size, size, 0));
         }
 
         public void Draw(Graphics g, List<Vector> vb)
