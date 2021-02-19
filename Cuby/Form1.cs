@@ -11,9 +11,10 @@ namespace Cuby
     public partial class Form1 : Form
     {
         // Axes
-        AxisX x_axis;
-        AxisY y_axis;
-
+        private AxisX _xAxis;
+        private AxisY _yAxis;
+        private AxisZ _zAxis;
+        
         // Objects
         Square square, square2, square3, square4;
 
@@ -52,9 +53,10 @@ namespace Cuby
             Console.WriteLine(m2 * v3); // 28, 16
 
             // Define axes
-            x_axis = new AxisX(200);
-            y_axis = new AxisY(200);
-
+            _xAxis = new AxisX(200);
+            _yAxis = new AxisY(200);
+            _zAxis = new AxisZ(200);
+            
             // Create object
             square = new Square(Color.Purple,100);
             
@@ -84,13 +86,13 @@ namespace Cuby
             List<Vector> vb;
             base.OnPaint(e);
 
-            vb = ViewpointTransformation(x_axis.vb);
+            vb = ViewpointTransformation(_xAxis.vb);
             // Draw axes
-            x_axis.Draw(e.Graphics, vb);
+            _xAxis.Draw(e.Graphics, vb);
 
-            vb = ViewpointTransformation(y_axis.vb);
+            vb = ViewpointTransformation(_yAxis.vb);
             
-            y_axis.Draw(e.Graphics, vb);
+            _yAxis.Draw(e.Graphics, vb);
 
             vb = ViewpointTransformation(square.vb);
             // Draw square
