@@ -40,12 +40,12 @@ namespace Cuby
             // register the axes
             Axes = new List<Axis>()
             {
-                new AxisX(),
-                new AxisY(),
-                new AxisZ()
+                new AxisX(40),
+                new AxisY(40),
+                new AxisZ(40)
             };
 
-            this.Cube = new Cube(Color.Gold);
+            this.Cube = new Cube(Color.Purple);
 
         }
 

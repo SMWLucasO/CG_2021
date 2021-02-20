@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Text;
-using System.Windows.Forms;
 
 namespace Cuby.Utils
 {
-    public enum Rotation
-    {
-        X, Y, Z
-    }
     
-    public class Matrix : IEquatable<Matrix>
+    public class Matrix
     {
         public float[,] InternalMatrix { get; set; } = new float[4, 4];
 
@@ -44,6 +38,13 @@ namespace Cuby.Utils
             InternalMatrix[3, 0] = 1;
         }
 
+        /// <summary>
+        /// Add two matrices together to form a new matrix.
+        /// </summary>
+        /// <param name="m1">The left matrix</param>
+        /// <param name="m2">The right matrix</param>
+        /// <returns></returns>
+        /// <exception cref="Exception">Exception thrown if the matrices cant be multiplied.</exception>
         public static Matrix operator +(Matrix m1, Matrix m2)
         {
             Matrix result = ZeroMatrix();
@@ -58,6 +59,13 @@ namespace Cuby.Utils
             return result;
         }
 
+        /// <summary>
+        /// Subtract the values of matrix m2 from matrix m1.
+        /// </summary>
+        /// <param name="m1">The left matrix</param>
+        /// <param name="m2">The right matrix</param>
+        /// <returns>New matrix with the result</returns>
+        /// <exception cref="Exception">Matrices must be of the same size.</exception>
         public static Matrix operator -(Matrix m1, Matrix m2)
         {
             Matrix result = ZeroMatrix();
@@ -72,6 +80,13 @@ namespace Cuby.Utils
 
             return m1;
         }
+        
+        /// <summary>
+        /// Multiply a matrix by a scalar
+        /// </summary>
+        /// <param name="m1">Left matrix</param>
+        /// <param name="f">scalar float value</param>
+        /// <returns>New matrix with the multiplication applied</returns>
         public static Matrix operator *(Matrix m1, float f)
         {
             Matrix result = ZeroMatrix();
@@ -86,8 +101,15 @@ namespace Cuby.Utils
 
         public static Matrix operator *(float f, Matrix m1)
         {
-            return m1 * f; // refer to the other operator overloader
+            return m1 * f; // refer to the other operator overload
         }
+        
+        /// <summary>
+        /// Apply matrix multiplication
+        /// </summary>
+        /// <param name="m1">The left matrix</param>
+        /// <param name="m2">The right matrix</param>
+        /// <returns>A new matrix with the result</returns>
         public static Matrix operator *(Matrix m1, Matrix m2)
         {
 
@@ -107,6 +129,12 @@ namespace Cuby.Utils
             return result;
         }
 
+        /// <summary>
+        /// Multiply a matrix by a vector
+        /// </summary>
+        /// <param name="m1">Leftside matrix</param>
+        /// <param name="v">Vector to be multiplied</param>
+        /// <returns>Vector with the result</returns>
         public static Vector operator *(Matrix m1, Vector v)
         {
             Vector result = new Vector();
@@ -120,6 +148,10 @@ namespace Cuby.Utils
         }
         
 
+        /// <summary>
+        /// Identity matrix.
+        /// </summary>
+        /// <returns>The identity matrix</returns>
         public static Matrix Identity() =>
             new Matrix(
                 1, 0, 0,
@@ -127,9 +159,18 @@ namespace Cuby.Utils
                 0, 0, 1
             );
 
+        /// <summary>
+        /// Zero matrix
+        /// </summary>
+        /// <returns>A matrix with just zeroes</returns>
         public static Matrix ZeroMatrix() 
             => new Matrix(0,0,0,0,0,0,0,0,0);
 
+        /// <summary>
+        /// Scaling transformation for the matrix
+        /// </summary>
+        /// <param name="s">The multiplier for the matrix</param>
+        /// <returns>Scale matrix</returns>
         public static Matrix ScaleMatrix(float s)
         {
             Matrix v = Identity() * s;
@@ -137,6 +178,11 @@ namespace Cuby.Utils
             return v;
         }
 
+        /// <summary>
+        /// Matrix to move a vector to a specified location
+        /// </summary>
+        /// <param name="v">The specified location</param>
+        /// <returns>Translation Matrix</returns>
         public static Matrix TranslateMatrix(Vector v)
         {
             Matrix matrix = Identity();
@@ -146,17 +192,11 @@ namespace Cuby.Utils
             return matrix;
         }
 
-        public static Matrix RotateMatrix(Rotation rotation, float degrees)
-        {
-            return rotation switch
-            {
-                Rotation.X => RotateMatrixX(degrees),
-                Rotation.Y => RotateMatrixY(degrees),
-                Rotation.Z => RotateMatrixZ(degrees),
-                _ => null
-            };
-        }
-        
+        /// <summary>
+        /// Matrix transformation to rotate across the Z-axis.
+        /// </summary>
+        /// <param name="degrees">The rotation degree</param>
+        /// <returns>Rotation matrix</returns>
         public static Matrix RotateMatrixZ(float degrees)
         {
             float rads = DegreesToRadians(degrees);
@@ -168,6 +208,11 @@ namespace Cuby.Utils
             );
         }
 
+        /// <summary>
+        /// Matrix transformation to rotate across the X-axis.
+        /// </summary>
+        /// <param name="degrees">The rotation degree</param>
+        /// <returns>Rotation matrix</returns>
         public static Matrix RotateMatrixX(float degrees)
         {
             float rads = DegreesToRadians(degrees);
@@ -179,6 +224,11 @@ namespace Cuby.Utils
             );
         }
 
+        /// <summary>
+        /// Matrix transformation to rotate across the Y-axis.
+        /// </summary>
+        /// <param name="degrees">The rotation degree</param>
+        /// <returns>Rotation matrix</returns>
         public static Matrix RotateMatrixY(float degrees)
         {
             float rads = DegreesToRadians(degrees);
@@ -209,13 +259,22 @@ namespace Cuby.Utils
             return viewTransformation;
         }
 
+        /// <summary>
+        /// Generate a projection matrix for the vector.
+        /// </summary>
+        /// <param name="camera">The camera which is being projected for</param>
+        /// <param name="vector">The vector to project</param>
+        /// <returns>Projection Matrix</returns>
         public static Matrix ProjectionMatrix(Camera camera, Vector vector)
         {
+            float vecZ = vector.Z;
+            if (vecZ > -0.0001 && vecZ < 0.0001) vecZ = 0.00001f;
+            
             Matrix projectionMatrix = new Matrix(
             
-                 camera.D/-vector.Z,  0,                    0,
-                 0,                    camera.D/-vector.Z,  0,
-                 0,                  0,                     0
+                 camera.D/-vecZ,  0,                    0,
+                 0,                    camera.D/-vecZ,  0,
+                 0,                  0,                 0
             );
 
             projectionMatrix.InternalMatrix[3, 3] = 0;
@@ -223,22 +282,11 @@ namespace Cuby.Utils
             return projectionMatrix;
         }
 
-        public bool Equals(Matrix other)
-        {
-            if (other == null) return false;
-            
-            for (int i = 0; i < this.InternalMatrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < this.InternalMatrix.GetLength(1); j++)
-                {
-                    if (this.InternalMatrix[i, j] != other.InternalMatrix[i, j])
-                        return false;
-                }
-            }
-
-            return true;
-        } 
-
+        /// <summary>
+        /// Convert degrees into radians.
+        /// </summary>
+        /// <param name="degrees">The degrees to convert.</param>
+        /// <returns>The degrees converted to radian.</returns>
         public static float DegreesToRadians(float degrees)
             => (float) ((Math.PI / 180) * degrees);
 

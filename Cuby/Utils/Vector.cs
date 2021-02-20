@@ -1,10 +1,6 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using System.Text;
-
-namespace Cuby.Utils
+﻿namespace Cuby.Utils
 {
-    public class Vector : IEquatable<Vector>
+    public class Vector
     {
         public float X, Y, Z, W;
 
@@ -23,7 +19,7 @@ namespace Cuby.Utils
             this.Z = z;
             this.W = 1;
         }
-
+        
         public static Vector operator +(Vector v1, Vector v2)
         {
             Vector nVec = v1.Clone();
@@ -62,6 +58,5 @@ namespace Cuby.Utils
 
         public Vector Clone() => new Vector(this.X, this.Y, this.Z) { W = this.W };
 
-        public bool Equals(Vector other) => this.X == other.X && this.Y == other.Y && this.Z == other.Z;
     }
 }

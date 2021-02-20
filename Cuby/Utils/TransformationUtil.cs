@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Cuby.Shapes;
 using Cuby.Shapes.Information;
 
@@ -30,11 +28,10 @@ namespace Cuby.Utils
 
                 nVec = viewTransform * nVec;
                 
-                if (vector.Z != 0)
-                {
-                    Matrix projMat = Matrix.ProjectionMatrix(camera, nVec);
-                    nVec = projMat * nVec;
-                }
+                
+                Matrix projMat = Matrix.ProjectionMatrix(camera, nVec);
+                nVec = projMat * nVec;
+                
                 
                 vb.Add(new Vector(nVec.X + dx, dy - nVec.Y, 0));
             }
@@ -49,7 +46,7 @@ namespace Cuby.Utils
         /// <param name="shape">The shape containing the transformation data.</param>
         /// <param name="vectorBuffer">The vectors being updated.</param>
         /// <returns></returns>
-        public static IEnumerable<Vector> ApplyEffects(IShape shape, IEnumerable<Vector> vectorBuffer)
+        public static IEnumerable<Vector> ApplyEffects(IShape shape, List<Vector> vectorBuffer)
         {
             List<Vector> transformedVectors = new List<Vector>();
 
