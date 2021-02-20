@@ -28,10 +28,10 @@ namespace Cuby.Shapes
         public void Draw(Graphics g, List<Vector> vb)
         {
             Pen pen = new Pen(color, weight);
-            g.DrawLine(pen, vb[0].x, vb[0].y, vb[1].x, vb[1].y);
-            g.DrawLine(pen, vb[1].x, vb[1].y, vb[2].x, vb[2].y);
-            g.DrawLine(pen, vb[2].x, vb[2].y, vb[3].x, vb[3].y);
-            g.DrawLine(pen, vb[3].x, vb[3].y, vb[0].x, vb[0].y);
+            g.DrawLine(pen, vb[0].X, vb[0].Y, vb[1].X, vb[1].Y);
+            g.DrawLine(pen, vb[1].X, vb[1].Y, vb[2].X, vb[2].Y);
+            g.DrawLine(pen, vb[2].X, vb[2].Y, vb[3].X, vb[3].Y);
+            g.DrawLine(pen, vb[3].X, vb[3].Y, vb[0].X, vb[0].Y);
         }
     }
 }

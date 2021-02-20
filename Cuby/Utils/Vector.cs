@@ -6,64 +6,64 @@ namespace Cuby.Utils
 {
     public class Vector : IEquatable<Vector>
     {
-        public float x, y, z, w;
+        public float X, Y, Z, W;
 
         public Vector()
         {
-            x = 0;
-            y = 0;
-            z = 0;
-            w = 1;
+            X = 0;
+            Y = 0;
+            Z = 0;
+            W = 1;
         }
 
         public Vector(float x, float y, float z)
         {
-            this.x = x;
-            this.y = y;
-            this.z = z;
-            this.w = 1;
+            this.X = x;
+            this.Y = y;
+            this.Z = z;
+            this.W = 1;
         }
 
         public static Vector operator +(Vector v1, Vector v2)
         {
             Vector nVec = v1.Clone();
-            nVec.x += v2.x;
-            nVec.y += v2.y;
-            nVec.z += v2.z;
+            nVec.X += v2.X;
+            nVec.Y += v2.Y;
+            nVec.Z += v2.Z;
             return nVec;
         }
 
         public static Vector operator -(Vector v1, Vector v2)
         {
             Vector nVec = v1.Clone();
-            nVec.x -= v2.x;
-            nVec.y -= v2.y;
-            nVec.z -= v2.z;
+            nVec.X -= v2.X;
+            nVec.Y -= v2.Y;
+            nVec.Z -= v2.Z;
             return nVec;
         }
 
         public static Vector operator *(Vector v1, float value)
         {
             Vector nVec = v1.Clone();
-            nVec.x *= value;
-            nVec.y *= value;
-            nVec.z *= value;
+            nVec.X *= value;
+            nVec.Y *= value;
+            nVec.Z *= value;
             return nVec;
         }
 
         public static Vector operator *(Vector v1, Vector v2)
         {
             Vector nVec = v1.Clone(); 
-            nVec.x *= v2.x;
-            nVec.y *= v2.y;
-            nVec.z *= v2.z;
+            nVec.X *= v2.X;
+            nVec.Y *= v2.Y;
+            nVec.Z *= v2.Z;
             return nVec;
         }
 
-        public override string ToString() => $"({x}, {y})";
+        public override string ToString() => $"({X}, {Y})";
 
-        public Vector Clone() => new Vector(this.x, this.y, this.z);
+        public Vector Clone() => new Vector(this.X, this.Y, this.Z) { W = this.W };
 
-        public bool Equals(Vector other) => this.x == other.x && this.y == other.y && this.z == other.z;
+        public bool Equals(Vector other) => this.X == other.X && this.Y == other.Y && this.Z == other.Z;
     }
 }

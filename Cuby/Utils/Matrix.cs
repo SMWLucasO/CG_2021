@@ -38,9 +38,9 @@ namespace Cuby.Utils
 
         public Matrix(Vector v)
         {
-            InternalMatrix[0, 0] = v.x;
-            InternalMatrix[1, 0] = v.y;
-            InternalMatrix[2, 0] = v.z;
+            InternalMatrix[0, 0] = v.X;
+            InternalMatrix[1, 0] = v.Y;
+            InternalMatrix[2, 0] = v.Z;
             InternalMatrix[3, 0] = 1;
         }
 
@@ -112,9 +112,9 @@ namespace Cuby.Utils
             Vector result = new Vector();
             Matrix tempRes = m1 * new Matrix(v);
 
-            result.x = tempRes.InternalMatrix[0, 0];
-            result.y = tempRes.InternalMatrix[1, 0];
-            result.z = tempRes.InternalMatrix[2, 0];
+            result.X = tempRes.InternalMatrix[0, 0];
+            result.Y = tempRes.InternalMatrix[1, 0];
+            result.Z = tempRes.InternalMatrix[2, 0];
 
             return result;
         }
@@ -140,9 +140,9 @@ namespace Cuby.Utils
         public static Matrix TranslateMatrix(Vector v)
         {
             Matrix matrix = Identity();
-            matrix.InternalMatrix[0, 3] = v.x;
-            matrix.InternalMatrix[1, 3] = v.y;
-            matrix.InternalMatrix[2, 3] = v.z;
+            matrix.InternalMatrix[0, 3] = v.X;
+            matrix.InternalMatrix[1, 3] = v.Y;
+            matrix.InternalMatrix[2, 3] = v.Z;
             return matrix;
         }
 
@@ -213,9 +213,9 @@ namespace Cuby.Utils
         {
             Matrix projectionMatrix = new Matrix(
             
-                 (-camera.D)/vector.z,  0,                    0,
-                 0,                    (-camera.D)/vector.z,  0,
-                 0,                    0,                    0
+                 (-camera.D)/vector.Z,  0,                    0,
+                 0,                    (-camera.D)/vector.Z,  0,
+                 0,                    0,                     0
             );
 
             projectionMatrix.InternalMatrix[3, 3] = 0;

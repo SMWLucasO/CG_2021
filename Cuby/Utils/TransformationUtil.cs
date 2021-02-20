@@ -25,17 +25,17 @@ namespace Cuby.Utils
 
             foreach (var vector in vectorBuffer)
             {
-                Vector nVec = new Vector(vector.x, vector.y, vector.z) { w = vector.w };
+                Vector nVec = new Vector(vector.X, vector.Y, vector.Z) { W = vector.W };
 
                 nVec = viewTransform * nVec;
                 
-                if (vector.z != 0)
+                if (vector.Z != 0)
                 {
                     Matrix projMat = Matrix.ProjectionMatrix(camera, nVec);
                     nVec = projMat * nVec;
                 }
                 
-                vb.Add(new Vector(nVec.x + dx, dy - nVec.y, 0));
+                vb.Add(new Vector(nVec.X + dx, dy - nVec.Y, 0));
             }
 
 
@@ -48,7 +48,7 @@ namespace Cuby.Utils
 
             foreach (var vector in vectorBuffer)
             {
-                Vector nVec = new Vector(vector.x, vector.y, vector.z) { w = vector.w };
+                Vector nVec = new Vector(vector.X, vector.Y, vector.Z) { W = vector.W };
 
                 // Leftmost: translations
                 // Then: rotations
