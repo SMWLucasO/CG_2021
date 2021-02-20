@@ -60,8 +60,6 @@ namespace Cuby.Utils
             return nVec;
         }
 
-        public override string ToString() => $"({X}, {Y})";
-
         public Vector Clone() => new Vector(this.X, this.Y, this.Z) { W = this.W };
 
         public bool Equals(Vector other) => this.X == other.X && this.Y == other.Y && this.Z == other.Z;

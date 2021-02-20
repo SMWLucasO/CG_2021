@@ -202,8 +202,8 @@ namespace Cuby.Utils
             
             Matrix viewTransformation = new Matrix(
                 (float) -Math.Sin(thetaRad),                               (float) Math.Cos(thetaRad),                           0,
-                (float) (-Math.Cos(thetaRad) * Math.Cos(phiRad)),      (float) (-Math.Cos(phiRad) * Math.Sin(thetaRad)), (float) Math.Sin(phiRad),
-                (float) (Math.Cos(thetaRad) * Math.Sin(phiRad)),       (float) (Math.Sin(thetaRad) * Math.Sin(phiRad)),  (float) Math.Cos(phiRad)
+                (float) ((-Math.Cos(thetaRad)) * Math.Cos(phiRad)),          (float) ((-Math.Cos(phiRad)) * Math.Sin(thetaRad)), (float) Math.Sin(phiRad),
+                (float) (Math.Cos(thetaRad) * Math.Sin(phiRad)),           (float) (Math.Sin(thetaRad) * Math.Sin(phiRad)),  (float) Math.Cos(phiRad)
             ) {InternalMatrix = {[2, 3] = -camera.R, [3, 3] = 1}};
             
             return viewTransformation;
@@ -213,19 +213,14 @@ namespace Cuby.Utils
         {
             Matrix projectionMatrix = new Matrix(
             
-                 (-camera.D)/vector.Z,  0,                    0,
-                 0,                    (-camera.D)/vector.Z,  0,
-                 0,                    0,                     0
+                 camera.D/-vector.Z,  0,                    0,
+                 0,                    camera.D/-vector.Z,  0,
+                 0,                  0,                     0
             );
 
             projectionMatrix.InternalMatrix[3, 3] = 0;
 
             return projectionMatrix;
-        }
-        
-        public override string ToString()
-        {
-            return $"[{InternalMatrix[0, 0]}, {InternalMatrix[0, 1]}\r\n{InternalMatrix[1, 0]}, {InternalMatrix[1, 1]}]";
         }
 
         public bool Equals(Matrix other)

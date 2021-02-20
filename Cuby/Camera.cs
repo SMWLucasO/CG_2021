@@ -9,7 +9,7 @@ namespace Cuby
         /// <summary>
         /// The angle with the x-axis
         /// </summary>
-        public int Theta { get; set; } = 100;
+        public int Theta { get; set; } = -100;
         
         /// <summary>
         /// The angle with the z-axis
