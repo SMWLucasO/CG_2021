@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using System.Collections.Generic;
-using Cuby.Commands.Movement.XY;
+using Cuby.Commands.Movement.X;
+using Cuby.Commands.Movement.Y;
 using Cuby.Commands.Movement.Z;
 using Cuby.Commands.Rotation.X;
 using Cuby.Commands.Rotation.Y;
@@ -15,7 +16,7 @@ namespace Cuby.Commands
         /// The command registry.
         /// </summary>
         /// <returns>All registered commands</returns>
-        public static IDictionary<char, ICommand> FetchCommands() => new Dictionary<char, ICommand>()
+        public static IDictionary<char, ICommand> FetchCharacterizedCommands() => new Dictionary<char, ICommand>()
         {
             { 's', new ScaleCubeUpCommand() },
             { 'S', new ScaleCubeDownCommand() },
@@ -27,8 +28,14 @@ namespace Cuby.Commands
             { 'Y', new RotateYAxisNegativelyCommand() },
             { 'z', new RotateZAxisPositivelyCommand() },
             { 'Z', new RotateZAxisNegativelyCommand() },
-            { (char)Keys.LButton, new IncreaseXYCommand() },
-            { (char)Keys.RButton, new DecreaseXYCommand() },
+        };
+
+        public static IDictionary<Keys, ICommand> FetchNonCharacterizedCommands() => new Dictionary<Keys, ICommand>()
+        {
+            { Keys.Up, new IncreaseYCommand() },
+            { Keys.Down, new DecreaseYCommand() },
+            { Keys.Right, new IncreaseXCommand() },
+            { Keys.Left, new DecreaseXCommand() },
         };
     }
 }

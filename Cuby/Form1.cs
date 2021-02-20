@@ -22,7 +22,8 @@ namespace Cuby
 
         public Camera Camera { get; set; }
         
-        private IDictionary<char, ICommand> Commands { get; set; } 
+        private IDictionary<char, ICommand> CharacterizedCommands { get; set; } 
+        private IDictionary<Keys, ICommand> NonCharacterizedCommands { get; set; } 
         
         public Form1()
         {
@@ -33,7 +34,8 @@ namespace Cuby
             this.DoubleBuffered = true;
 
             // register all the commands
-            Commands = CommandRegister.FetchCommands();
+            CharacterizedCommands = CommandRegister.FetchCharacterizedCommands();
+            NonCharacterizedCommands = CommandRegister.FetchNonCharacterizedCommands();
 
             this.Camera = new Camera();
             
@@ -69,10 +71,10 @@ namespace Cuby
             );
         }
 
-        private void Form1_KeyDown(object sender, KeyPressEventArgs e)
+        private void Form1_OnCharacterizedKeyDown(object sender, KeyPressEventArgs e)
         {
             // convert key to lowercase single-character string.
-            if (Commands.TryGetValue(e.KeyChar, out ICommand command))
+            if (CharacterizedCommands.TryGetValue(e.KeyChar, out ICommand command))
                 command.Execute(Cube, Axes, this.Camera);
             
             if (e.KeyChar == (char)Keys.Escape)
@@ -80,6 +82,14 @@ namespace Cuby
             
             this.Refresh();
             
+        }
+
+        private void Form1_OnNonCharacterizedKeyDown(object sender, KeyEventArgs e)
+        {
+            if (NonCharacterizedCommands.TryGetValue(e.KeyCode, out ICommand command))
+                command.Execute(Cube, Axes, this.Camera);
+            
+            this.Refresh();
         }
     }
 }
