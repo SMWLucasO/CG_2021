@@ -4,34 +4,36 @@ using Cuby.Utils;
 
 namespace Cuby.Shapes
 {
-    public class Square
+    public class Square : IShape
     {
-        Color color;
-        private int size;
-        private float weight;
+        public Color Color { get; set; }
+        public int Size { get; set; }
+        public float Weight { get; set; }
 
-        public List<Vector> vb;
+        public List<Vector> VectorBuffer { get; set; }
 
         public Square(Color color, int size = 100, float weight = 3)
         {
-            this.color = color;
-            this.size = size;
-            this.weight = weight;
+            this.Color = color;
+            this.Size = size;
+            this.Weight = weight;
 
-            vb = new List<Vector>();
-            vb.Add(new Vector(-size, -size, 0));
-            vb.Add(new Vector(size, -size, 0));
-            vb.Add(new Vector(size, size, 0));
-            vb.Add(new Vector(-size, size, 0));
+            VectorBuffer = new List<Vector>
+            {
+                new Vector(-size, -size, 0),
+                new Vector(size, -size, 0),
+                new Vector(size, size, 0),
+                new Vector(-size, size, 0)
+            };
         }
 
-        public void Draw(Graphics g, List<Vector> vb)
+        public void Draw(Graphics g, List<Vector> vectorBuffer)
         {
-            Pen pen = new Pen(color, weight);
-            g.DrawLine(pen, vb[0].X, vb[0].Y, vb[1].X, vb[1].Y);
-            g.DrawLine(pen, vb[1].X, vb[1].Y, vb[2].X, vb[2].Y);
-            g.DrawLine(pen, vb[2].X, vb[2].Y, vb[3].X, vb[3].Y);
-            g.DrawLine(pen, vb[3].X, vb[3].Y, vb[0].X, vb[0].Y);
+            Pen pen = new Pen(Color, Weight);
+            g.DrawLine(pen, vectorBuffer[0].X, vectorBuffer[0].Y, vectorBuffer[1].X, vectorBuffer[1].Y);
+            g.DrawLine(pen, vectorBuffer[1].X, vectorBuffer[1].Y, vectorBuffer[2].X, vectorBuffer[2].Y);
+            g.DrawLine(pen, vectorBuffer[2].X, vectorBuffer[2].Y, vectorBuffer[3].X, vectorBuffer[3].Y);
+            g.DrawLine(pen, vectorBuffer[3].X, vectorBuffer[3].Y, vectorBuffer[0].X, vectorBuffer[0].Y);
         }
     }
 }

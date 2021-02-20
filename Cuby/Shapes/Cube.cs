@@ -5,9 +5,20 @@ using Cuby.Utils;
 
 namespace Cuby.Shapes
 {
-    public class Cube
+    public class Cube : IShape, IRotatable, IScalable, ITranslatable
     {
 
+        public int RotationX { get; set; }
+        public int RotationY { get; set; }
+        public int RotationZ { get; set; }
+
+        public float Scale { get; set; } = 1;
+        
+        public float TranslationX { get; set; }
+        public float TranslationY { get; set; }
+        public float TranslationZ { get; set; }
+        
+        
         //          7----------4
         //         /|         /|
         //        / |        / |                y
@@ -41,12 +52,10 @@ namespace Cuby.Shapes
 
         public Color Color { get; set; }
         
-        public ShapeInfo CubeInfo { get; set; }
 
         public Cube(Color c)
         {
             Color = c;
-            CubeInfo = new ShapeInfo();
         }
 
         public void Draw(Graphics g, List<Vector> vb)
@@ -75,5 +84,6 @@ namespace Cuby.Shapes
                 g.DrawString(i.ToString(), font, Brushes.Black, p);
             }
         }
+        
     }   
 }

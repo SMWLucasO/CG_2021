@@ -9,7 +9,8 @@ namespace Cuby.Commands.Movement.XY
     {
         public void Execute(Cube cube, List<Axis> axes, Camera camera)
         {
-            throw new System.NotImplementedException();
+            cube.TranslationX -= 0.1f;
+            cube.TranslationY += 0.1f;
         }
     }
 }

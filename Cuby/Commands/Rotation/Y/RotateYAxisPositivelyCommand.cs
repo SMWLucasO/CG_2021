@@ -9,7 +9,11 @@ namespace Cuby.Commands.Rotation.Y
     {
         public void Execute(Cube cube, List<Axis> axes, Camera camera)
         {
-            throw new System.NotImplementedException();
+            cube.RotationY += 1;
+            foreach (var axis in axes)
+            {
+                axis.RotationY += 1;
+            }
         }
     }
 }

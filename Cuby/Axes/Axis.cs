@@ -1,12 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using Cuby.Shapes;
+using Cuby.Shapes.Information;
 using Cuby.Utils;
 
 namespace Cuby.Axes
 {
-    public abstract class Axis
+    public abstract class Axis : IShape, IRotatable
     {
-        // TODO: Implement super class for axis
+        
+        public Color Color { get; set; }
+        public int RotationX { get; set; }
+        public int RotationY { get; set; }
+        public int RotationZ { get; set; }
+        
         public int Size { get; set; }
 
         public List<Vector> VectorBuffer; 
@@ -18,6 +25,6 @@ namespace Cuby.Axes
         }
 
         public abstract void Draw(Graphics g, List<Vector> vectorBuffer);
-
+        
     }
 }

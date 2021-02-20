@@ -8,8 +8,6 @@ namespace Cuby.Commands.Scaling
     public class ScaleCubeDownCommand : ICommand
     {
         public void Execute(Cube cube, List<Axis> axes, Camera camera)
-        {
-            throw new System.NotImplementedException();
-        }
+            => cube.Scale -= 0.1f;
     }
 }

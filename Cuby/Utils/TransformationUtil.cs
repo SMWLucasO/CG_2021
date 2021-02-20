@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cuby.Shapes;
 using Cuby.Shapes.Information;
 
 namespace Cuby.Utils
@@ -42,22 +43,57 @@ namespace Cuby.Utils
             return vb;
         }
 
-        public static IEnumerable<Vector> ApplyEffects(ShapeInfo info, List<Vector> vectorBuffer)
+        /// <summary>
+        /// Apply rotation, translation and rotation effects from the shape, on the shape.
+        /// </summary>
+        /// <param name="shape">The shape containing the transformation data.</param>
+        /// <param name="vectorBuffer">The vectors being updated.</param>
+        /// <returns></returns>
+        public static IEnumerable<Vector> ApplyEffects(IShape shape, IEnumerable<Vector> vectorBuffer)
         {
             List<Vector> transformedVectors = new List<Vector>();
 
             foreach (var vector in vectorBuffer)
             {
+                Matrix resultMatrix = null;
                 Vector nVec = new Vector(vector.X, vector.Y, vector.Z) { W = vector.W };
 
-                // Leftmost: translations
-                // Then: rotations
-                // then scale
-                // T * R * S
-                nVec = Matrix.TranslateMatrix(new Vector(info.TranslationX, info.TranslationY, info.TranslationZ)) *
-                       (Matrix.RotateMatrixX(info.RotationX) * Matrix.RotateMatrixY(info.RotationY) * Matrix.RotateMatrixZ(info.RotationZ)) * 
-                       Matrix.ScaleMatrix(info.Scale) * nVec;
+                
+                // apply scaling if possible
+                if (shape is IScalable scalable) resultMatrix = Matrix.ScaleMatrix(scalable.Scale);
+                
+                // apply rotation if possible
+                if (shape is IRotatable rotatable)
+                {
+                    if (resultMatrix == null)
+                        resultMatrix = (Matrix.RotateMatrixX(rotatable.RotationX) *
+                                        Matrix.RotateMatrixY(rotatable.RotationY) *
+                                        Matrix.RotateMatrixZ(rotatable.RotationZ));
+                    else
+                        resultMatrix =
+                            (Matrix.RotateMatrixX(rotatable.RotationX) *
+                            Matrix.RotateMatrixY(rotatable.RotationY) *
+                            Matrix.RotateMatrixZ(rotatable.RotationZ)) * resultMatrix;
+                }
 
+                // apply translation if possible
+                if (shape is ITranslatable translatable)
+                {
+                    if (resultMatrix == null)
+                        resultMatrix =
+                            Matrix.TranslateMatrix(
+                                new Vector(translatable.TranslationX, translatable.TranslationY,
+                                    translatable.TranslationZ)
+                            );
+                    else
+                        resultMatrix = Matrix.TranslateMatrix(
+                            new Vector(translatable.TranslationX, translatable.TranslationY, translatable.TranslationZ)
+                        ) * resultMatrix;
+                }
+
+                // generate the resulting vector of applying the transformations, if there are any transformations.
+                if (resultMatrix != null)
+                    nVec = resultMatrix * nVec;
                 
                 transformedVectors.Add(nVec);
             }

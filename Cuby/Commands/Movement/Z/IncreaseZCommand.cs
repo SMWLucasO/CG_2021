@@ -6,9 +6,7 @@ namespace Cuby.Commands.Movement.Z
 {
     public class IncreaseZCommand : ICommand
     {
-        public void Execute(Cube cube, List<Axis> axes, Camera camera)
-        {
-            throw new System.NotImplementedException();
-        }
+        public void Execute(Cube cube, List<Axis> axes, Camera camera) 
+            => cube.TranslationZ += 0.1f;
     }
 }

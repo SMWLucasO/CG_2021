@@ -57,14 +57,15 @@ namespace Cuby
             {
                 axis.Draw(
                     e.Graphics,
-                    TransformationUtil.ViewpointTransformation(axis.VectorBuffer, this.Camera, Width, Height)
+                    TransformationUtil.ViewpointTransformation(
+                        TransformationUtil.ApplyEffects(axis, axis.VectorBuffer), this.Camera, Width, Height)
                 );
             }
 
             Cube.Draw(
                 e.Graphics,
                 TransformationUtil.ViewpointTransformation(
-                    TransformationUtil.ApplyEffects(Cube.CubeInfo, Cube.Vertexbuffer), this.Camera, Width, Height)
+                    TransformationUtil.ApplyEffects(Cube, Cube.Vertexbuffer), this.Camera, Width, Height)
             );
         }
 
@@ -76,6 +77,9 @@ namespace Cuby
             
             if (e.KeyChar == (char)Keys.Escape)
                 Application.Exit();
+            
+            this.Refresh();
+            
         }
     }
 }
