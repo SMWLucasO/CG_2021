@@ -6,7 +6,7 @@ namespace Cuby.Commands.Movement.Z
 {
     public class DecreaseZCommand : ICommand
     {
-        public void Execute(Cube cube, List<Axis> axes)
+        public void Execute(Cube cube, List<Axis> axes, Camera camera)
         {
             throw new System.NotImplementedException();
         }

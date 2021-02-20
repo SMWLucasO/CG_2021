@@ -7,7 +7,7 @@ namespace Cuby.Commands.Rotation.X
 {
     public class RotateXAxisPositivelyCommand : ICommand
     {
-        public void Execute(Cube cube, List<Axis> axes)
+        public void Execute(Cube cube, List<Axis> axes, Camera camera)
         {
             throw new System.NotImplementedException();
         }

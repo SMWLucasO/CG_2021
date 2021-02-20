@@ -20,6 +20,8 @@ namespace Cuby
         // our cube
         public Cube Cube { get; set; }
 
+        public Camera Camera { get; set; }
+        
         private IDictionary<char, ICommand> Commands { get; set; } 
         
         public Form1()
@@ -32,6 +34,8 @@ namespace Cuby
 
             // register all the commands
             Commands = CommandRegister.FetchCommands();
+
+            this.Camera = new Camera();
             
             // register the axes
             Axes = new List<Axis>()
@@ -48,20 +52,27 @@ namespace Cuby
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
+            
             foreach (var axis in Axes)
             {
                 axis.Draw(
                     e.Graphics,
-                    TransformationUtil.ViewpointTransformation(axis.VectorBuffer, Width, Height)
+                    TransformationUtil.ViewpointTransformation(axis.VectorBuffer, this.Camera, Width, Height)
                 );
             }
+
+            Cube.Draw(
+                e.Graphics,
+                TransformationUtil.ViewpointTransformation(
+                    TransformationUtil.ApplyEffects(Cube.CubeInfo, Cube.Vertexbuffer), this.Camera, Width, Height)
+            );
         }
 
         private void Form1_KeyDown(object sender, KeyPressEventArgs e)
         {
             // convert key to lowercase single-character string.
             if (Commands.TryGetValue(e.KeyChar, out ICommand command))
-                command.Execute(Cube, Axes);
+                command.Execute(Cube, Axes, this.Camera);
             
             if (e.KeyChar == (char)Keys.Escape)
                 Application.Exit();

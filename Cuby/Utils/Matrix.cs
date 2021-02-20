@@ -11,7 +11,7 @@ namespace Cuby.Utils
     
     public class Matrix : IEquatable<Matrix>
     {
-        float[,] mat = new float[4, 4];
+        public float[,] InternalMatrix { get; set; } = new float[4, 4];
 
         public Matrix()
         {
@@ -23,60 +23,65 @@ namespace Cuby.Utils
         {
             
             // our values
-            mat[0, 0] = m11; mat[0, 1] = m12; mat[0, 2] = m13;
-            mat[1, 0] = m21; mat[1, 1] = m22; mat[1, 2] = m23;
-            mat[2, 0] = m31; mat[2, 1] = m32; mat[2, 2] = m33;
+            InternalMatrix[0, 0] = m11; InternalMatrix[0, 1] = m12; InternalMatrix[0, 2] = m13;
+            InternalMatrix[1, 0] = m21; InternalMatrix[1, 1] = m22; InternalMatrix[1, 2] = m23;
+            InternalMatrix[2, 0] = m31; InternalMatrix[2, 1] = m32; InternalMatrix[2, 2] = m33;
             
             
             // around our values.
-            mat[3, 0] = 0; mat[3, 1] = 0; mat[3, 2] = 0;
-            mat[3, 0] = 0; mat[3, 1] = 0; mat[3, 2] = 0;
+            InternalMatrix[3, 0] = 0; InternalMatrix[3, 1] = 0; InternalMatrix[3, 2] = 0;
+            InternalMatrix[3, 0] = 0; InternalMatrix[3, 1] = 0; InternalMatrix[3, 2] = 0;
             
-            mat[3, 3] = 1;
+            InternalMatrix[3, 3] = 1;
 
         }
 
         public Matrix(Vector v)
         {
-            mat[0, 0] = v.x;
-            mat[1, 0] = v.y;
-            mat[2, 0] = v.z;
-            mat[3, 0] = 1;
+            InternalMatrix[0, 0] = v.x;
+            InternalMatrix[1, 0] = v.y;
+            InternalMatrix[2, 0] = v.z;
+            InternalMatrix[3, 0] = 1;
         }
 
         public static Matrix operator +(Matrix m1, Matrix m2)
         {
+            Matrix result = ZeroMatrix();
             // not allowed
-            if (m1.mat.GetLength(0) != m1.mat.GetLength(1))
+            if (m1.InternalMatrix.GetLength(0) != m1.InternalMatrix.GetLength(1))
                 throw new Exception();
 
-            for (int i = 0; i < m1.mat.GetLength(0); i++)
-                for (int j = 0; j < m1.mat.GetLength(1); j++)
-                    m1.mat[i, j] += m2.mat[i, j];
+            for (int i = 0; i < m1.InternalMatrix.GetLength(0); i++)
+                for (int j = 0; j < m1.InternalMatrix.GetLength(1); j++)
+                    result.InternalMatrix[i,j] = m1.InternalMatrix[i, j] + m2.InternalMatrix[i, j];
 
-            return m1;
+            return result;
         }
 
         public static Matrix operator -(Matrix m1, Matrix m2)
         {
-
-            if (m1.mat.GetLength(0) != m1.mat.GetLength(1))
+            Matrix result = ZeroMatrix();
+            
+            
+            if (m1.InternalMatrix.GetLength(0) != m1.InternalMatrix.GetLength(1))
                 throw new Exception();
 
-            for (int i = 0; i < m1.mat.GetLength(0); i++)
-                for (int j = 0; j < m1.mat.GetLength(1); j++)
-                    m1.mat[i, j] -= m2.mat[i, j];
+            for (int i = 0; i < m1.InternalMatrix.GetLength(0); i++)
+                for (int j = 0; j < m1.InternalMatrix.GetLength(1); j++)
+                    result.InternalMatrix[i,j] = m1.InternalMatrix[i, j] - m2.InternalMatrix[i, j];
 
             return m1;
         }
         public static Matrix operator *(Matrix m1, float f)
         {
-            for (int i = 0; i < m1.mat.GetLength(0); i++)
-                for (int j = 0; j < m1.mat.GetLength(1); j++)
-                    m1.mat[i, j] *= f;
+            Matrix result = ZeroMatrix();
+            
+            for (int i = 0; i < m1.InternalMatrix.GetLength(0); i++)
+                for (int j = 0; j < m1.InternalMatrix.GetLength(1); j++)
+                    result.InternalMatrix[i,j] = m1.InternalMatrix[i, j] * f;
 
 
-            return m1;
+            return result;
         }
 
         public static Matrix operator *(float f, Matrix m1)
@@ -86,22 +91,20 @@ namespace Cuby.Utils
         public static Matrix operator *(Matrix m1, Matrix m2)
         {
 
-            Matrix result = new Matrix();
+            Matrix result = ZeroMatrix();
 
             // loop through columns and rows
-            for(int i = 0; i < m1.mat.GetLength(0); i++)
+            for(int i = 0; i < m1.InternalMatrix.GetLength(0); i++)
             {
-                for(int j = 0; j < m1.mat.GetLength(1); j++)
+                for(int j = 0; j < m1.InternalMatrix.GetLength(1); j++)
                 {
                     // multiply each element of the row, by each element of the column and sum this up.
-                    for (int k = 0; k < m1.mat.GetLength(1); k++)
-                        result.mat[i, j] += m1.mat[i, k] * m2.mat[k, j];
+                    for (int k = 0; k < m1.InternalMatrix.GetLength(1); k++)
+                        result.InternalMatrix[i, j] += m1.InternalMatrix[i, k] * m2.InternalMatrix[k, j];
                 }
             }
 
-            m1.mat = result.mat;
-
-            return m1;
+            return result;
         }
 
         public static Vector operator *(Matrix m1, Vector v)
@@ -109,52 +112,49 @@ namespace Cuby.Utils
             Vector result = new Vector();
             Matrix tempRes = m1 * new Matrix(v);
 
-            result.x = tempRes.mat[0, 0];
-            result.y = tempRes.mat[1, 0];
-            result.z = tempRes.mat[2, 0];
+            result.x = tempRes.InternalMatrix[0, 0];
+            result.y = tempRes.InternalMatrix[1, 0];
+            result.z = tempRes.InternalMatrix[2, 0];
 
             return result;
         }
         
 
-        public static Matrix Identity()
-        {
-            return new Matrix(
+        public static Matrix Identity() =>
+            new Matrix(
                 1, 0, 0,
                 0, 1, 0,
                 0, 0, 1
             );
-        }
+
+        public static Matrix ZeroMatrix() 
+            => new Matrix(0,0,0,0,0,0,0,0,0);
 
         public static Matrix ScaleMatrix(float s)
         {
             Matrix v = Identity() * s;
-            v.mat[3, 3] = 1;
+            v.InternalMatrix[3, 3] = 1;
             return v;
         }
 
         public static Matrix TranslateMatrix(Vector v)
         {
             Matrix matrix = Identity();
-            matrix.mat[0, 3] = v.x;
-            matrix.mat[1, 3] = v.y;
-            matrix.mat[2, 3] = v.z;
+            matrix.InternalMatrix[0, 3] = v.x;
+            matrix.InternalMatrix[1, 3] = v.y;
+            matrix.InternalMatrix[2, 3] = v.z;
             return matrix;
         }
 
         public static Matrix RotateMatrix(Rotation rotation, float degrees)
         {
-            switch (rotation)
+            return rotation switch
             {
-                case Rotation.X:
-                    return RotateMatrixX(degrees);
-                case Rotation.Y:
-                    return RotateMatrixY(degrees);
-                case Rotation.Z:
-                    return RotateMatrixZ(degrees);
-            }
-
-            return null;
+                Rotation.X => RotateMatrixX(degrees),
+                Rotation.Y => RotateMatrixY(degrees),
+                Rotation.Z => RotateMatrixZ(degrees),
+                _ => null
+            };
         }
         
         public static Matrix RotateMatrixZ(float degrees)
@@ -189,21 +189,54 @@ namespace Cuby.Utils
                 -((float)Math.Sin(rads)), 0, (float)Math.Cos(rads)
             );
         }
+        
+        /// <summary>
+        /// Generate the view transformation matrix
+        /// </summary>
+        /// <param name="camera">The camera from which we look</param>
+        /// <returns>View transformation matrix</returns>
+        public static Matrix ViewTransformationMatrix(Camera camera)
+        {
+            float thetaRad = DegreesToRadians(camera.Theta);
+            float phiRad = DegreesToRadians(camera.Phi);
+            
+            Matrix viewTransformation = new Matrix(
+                (float) -Math.Sin(thetaRad),                               (float) Math.Cos(thetaRad),                           0,
+                (float) (-Math.Cos(thetaRad) * Math.Cos(phiRad)),      (float) (-Math.Cos(phiRad) * Math.Sin(thetaRad)), (float) Math.Sin(phiRad),
+                (float) (Math.Cos(thetaRad) * Math.Sin(phiRad)),       (float) (Math.Sin(thetaRad) * Math.Sin(phiRad)),  (float) Math.Cos(phiRad)
+            ) {InternalMatrix = {[2, 3] = -camera.R, [3, 3] = 1}};
+            
+            return viewTransformation;
+        }
 
+        public static Matrix ProjectionMatrix(Camera camera, Vector vector)
+        {
+            Matrix projectionMatrix = new Matrix(
+            
+                 (-camera.D)/vector.z,  0,                    0,
+                 0,                    (-camera.D)/vector.z,  0,
+                 0,                    0,                    0
+            );
+
+            projectionMatrix.InternalMatrix[3, 3] = 0;
+
+            return projectionMatrix;
+        }
+        
         public override string ToString()
         {
-            return $"[{mat[0, 0]}, {mat[0, 1]}\r\n{mat[1, 0]}, {mat[1, 1]}]";
+            return $"[{InternalMatrix[0, 0]}, {InternalMatrix[0, 1]}\r\n{InternalMatrix[1, 0]}, {InternalMatrix[1, 1]}]";
         }
 
         public bool Equals(Matrix other)
         {
             if (other == null) return false;
             
-            for (int i = 0; i < this.mat.GetLength(0); i++)
+            for (int i = 0; i < this.InternalMatrix.GetLength(0); i++)
             {
-                for (int j = 0; j < this.mat.GetLength(1); j++)
+                for (int j = 0; j < this.InternalMatrix.GetLength(1); j++)
                 {
-                    if (this.mat[i, j] != other.mat[i, j])
+                    if (this.InternalMatrix[i, j] != other.InternalMatrix[i, j])
                         return false;
                 }
             }

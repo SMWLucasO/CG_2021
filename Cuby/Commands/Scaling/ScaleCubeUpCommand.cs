@@ -7,7 +7,7 @@ namespace Cuby.Commands.Scaling
 {
     public class ScaleCubeUpCommand : ICommand
     {
-        public void Execute(Cube cube, List<Axis> axes)
+        public void Execute(Cube cube, List<Axis> axes, Camera camera)
         {
             throw new System.NotImplementedException();
         }

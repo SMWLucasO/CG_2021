@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using Cuby.Shapes.Information;
 using Cuby.Utils;
 
 namespace Cuby.Shapes
@@ -15,9 +16,7 @@ namespace Cuby.Shapes
         //      | /        | /                 /
         //      |/         |/                  z
         //      2----------1
-
-        private const int size = 1;
-        public List<Vector> vertexbuffer = new List<Vector>
+        public List<Vector> Vertexbuffer { get; set; } = new List<Vector>
         {
             new Vector( 1.0f,  1.0f, 1.0f),     //0
             new Vector( 1.0f, -1.0f, 1.0f),     //1
@@ -40,13 +39,19 @@ namespace Cuby.Shapes
             new Vector(-1.2f,  1.2f, -1.2f)     //7
         };
 
-        Color col;
+        public Color Color { get; set; }
+        
+        public ShapeInfo CubeInfo { get; set; }
 
-        public Cube(Color c) { col = c; }
+        public Cube(Color c)
+        {
+            Color = c;
+            CubeInfo = new ShapeInfo();
+        }
 
         public void Draw(Graphics g, List<Vector> vb)
         {
-            Pen pen = new Pen(col, 2f);
+            Pen pen = new Pen(Color, 2f);
             g.DrawLine(pen, vb[0].x, vb[0].y, vb[1].x, vb[1].y);    //0 -> 1
             g.DrawLine(pen, vb[1].x, vb[1].y, vb[2].x, vb[2].y);    //1 -> 2
             g.DrawLine(pen, vb[2].x, vb[2].y, vb[3].x, vb[3].y);    //2 -> 3

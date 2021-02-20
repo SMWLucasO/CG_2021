@@ -7,7 +7,7 @@ namespace Cuby.Commands
 {
     public interface ICommand
     {
-        void Execute(Cube cube, List<Axis> axes);
+        void Execute(Cube cube, List<Axis> axes, Camera camera);
         
     }
 }
