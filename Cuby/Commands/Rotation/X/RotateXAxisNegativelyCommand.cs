@@ -5,7 +5,7 @@ using Cuby.Shapes;
 
 namespace Cuby.Commands.Rotation.X
 {
-    public class RotateXAxisPositivelyCommand : ICommand
+    public class RotateXAxisNegativelyCommand : ICommand
     {
         public void Execute(Cube cube, List<Axis> axes)
         {

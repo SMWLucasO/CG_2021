@@ -3,11 +3,11 @@ using System.Windows.Forms;
 using Cuby.Axes;
 using Cuby.Shapes;
 
-namespace Cuby.Commands.Movement
+namespace Cuby.Commands.Movement.XY
 {
-    public class MoveAwayCommand : ICommand
+    public class DecreaseXYCommand : ICommand
     {
-        public void Execute(Keys key, Cube cube, List<Axis> axes)
+        public void Execute(Cube cube, List<Axis> axes)
         {
             throw new System.NotImplementedException();
         }

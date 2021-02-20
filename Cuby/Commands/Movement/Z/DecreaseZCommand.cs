@@ -2,9 +2,9 @@
 using Cuby.Axes;
 using Cuby.Shapes;
 
-namespace Cuby.Commands.Movement
+namespace Cuby.Commands.Movement.Z
 {
-    public class MoveAwayCommand : ICommand
+    public class DecreaseZCommand : ICommand
     {
         public void Execute(Cube cube, List<Axis> axes)
         {

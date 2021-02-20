@@ -3,9 +3,9 @@ using System.Windows.Forms;
 using Cuby.Axes;
 using Cuby.Shapes;
 
-namespace Cuby.Commands.Rotation
+namespace Cuby.Commands.Rotation.X
 {
-    public class RotateXAxisCommand : ICommand
+    public class RotateXAxisPositivelyCommand : ICommand
     {
         public void Execute(Cube cube, List<Axis> axes)
         {

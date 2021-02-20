@@ -2,9 +2,9 @@
 using Cuby.Axes;
 using Cuby.Shapes;
 
-namespace Cuby.Commands.Rotation.Z
+namespace Cuby.Commands.Movement.Z
 {
-    public class RotateZAxisNegativelyCommand : ICommand
+    public class IncreaseZCommand : ICommand
     {
         public void Execute(Cube cube, List<Axis> axes)
         {
