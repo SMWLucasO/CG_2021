@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using Cuby.Axes;
 using Cuby.Commands;
@@ -21,7 +20,7 @@ namespace Cuby
         // our cube
         public Cube Cube { get; set; }
 
-        private IDictionary<Keys, ICommand> Commands { get; set; } 
+        private IDictionary<char, ICommand> Commands { get; set; } 
         
         public Form1()
         {
@@ -31,8 +30,10 @@ namespace Cuby
             ((Control) this).Height = Height;
             this.DoubleBuffered = true;
 
-            Commands = new Dictionary<Keys, ICommand>();
+            // register all the commands
+            Commands = CommandRegister.FetchCommands();
             
+            // register the axes
             Axes = new List<Axis>()
             {
                 new AxisX(),
@@ -56,11 +57,13 @@ namespace Cuby
             }
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void Form1_KeyDown(object sender, KeyPressEventArgs e)
         {
             // convert key to lowercase single-character string.
-            Commands[e.KeyCode].Execute(Cube, Axes);
-            if (e.KeyCode == Keys.Escape)
+            if (Commands.TryGetValue(e.KeyChar, out ICommand command))
+                command.Execute(Cube, Axes);
+            
+            if (e.KeyChar == (char)Keys.Escape)
                 Application.Exit();
         }
     }
