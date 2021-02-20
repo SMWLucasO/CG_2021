@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
-using Cuby.Axis;
+using Cuby.Axes;
+using Cuby.Commands;
 using Cuby.Shapes;
 using Cuby.Utils;
 
@@ -10,123 +11,55 @@ namespace Cuby
 {
     public partial class Form1 : Form
     {
-        // Axes
-        private AxisX _xAxis;
-        private AxisY _yAxis;
-        private AxisZ _zAxis;
+        // The axes 
+        private List<Axis> Axes { get; set; }
         
-        // Objects
-        Square square, square2, square3, square4;
-
         // Window dimensions
-        const int WIDTH = 800;
-        const int HEIGHT = 600;
+        private const int Width = 800;
+        private const int Height = 600;
+        
+        // our cube
+        public Cube Cube { get; set; }
 
+        private IDictionary<Keys, ICommand> Commands { get; set; } 
+        
         public Form1()
         {
             InitializeComponent();
 
-            this.Width = WIDTH;
-            this.Height = HEIGHT;
+            ((Control) this).Width = Width;
+            ((Control) this).Height = Height;
             this.DoubleBuffered = true;
 
-            Vector v1 = new Vector();
-            Console.WriteLine(v1);
-            Vector v2 = new Vector(1, 2, 0);
-            Console.WriteLine(v2);
-            Vector v3 = new Vector(2, 6, 0);
-            Console.WriteLine(v3);
-            Vector v4 = v2 + v3;
-            Console.WriteLine(v4); // 3, 8
-
-            Matrix m1 = new Matrix();
-            Console.WriteLine(m1); // 1, 0, 0, 1
-            Matrix m2 = new Matrix(
-                2, 4, 0,
-                -1, 3, 0,
-                0, 0, 0);
-            Console.WriteLine(m2);
-            Console.WriteLine(m1 + m2); // 3, 4, -1, 4
-            Console.WriteLine(m1 - m2); // -1, -4, 1, -2
-            Console.WriteLine(m2 * m2); // 0, 20, -5, 5
-
-            Console.WriteLine(m2 * v3); // 28, 16
-
-            // Define axes
-            _xAxis = new AxisX(200);
-            _yAxis = new AxisY(200);
-            _zAxis = new AxisZ(200);
+            Commands = new Dictionary<Keys, ICommand>();
             
-            // Create object
-            square = new Square(Color.Purple,100);
-            
-            square2 = new Square(Color.Cyan, 150);
-            for (int i = 0; i < square2.vb.Count; i++)
+            Axes = new List<Axis>()
             {
-                square2.vb[i] = Matrix.ScaleMatrix(1.5f) * square2.vb[i];
-            }
-            
-            
-            square3 = new Square(Color.Orange, 100);
-            for (int i = 0; i < square3.vb.Count; i++)
-            {
-                square3.vb[i] = Matrix.RotateMatrixZ(20) * square3.vb[i];
-            }
-            
-            square4 = new Square(Color.DarkBlue, 100);
-            for (int i = 0; i < square4.vb.Count; i++)
-            {
-                square4.vb[i] = (Matrix.TranslateMatrix(new Vector(75, -25, 0)) * square4.vb[i]);
-            }
+                new AxisX(),
+                new AxisY(),
+                new AxisZ()
+            };
+
+            this.Cube = new Cube(Color.Gold);
 
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            List<Vector> vb;
             base.OnPaint(e);
-
-            vb = ViewpointTransformation(_xAxis.vb);
-            // Draw axes
-            _xAxis.Draw(e.Graphics, vb);
-
-            vb = ViewpointTransformation(_yAxis.vb);
-            
-            _yAxis.Draw(e.Graphics, vb);
-
-            vb = ViewpointTransformation(square.vb);
-            // Draw square
-            square.Draw(e.Graphics, vb);
-
-            vb = ViewpointTransformation(square2.vb);
-            
-            square2.Draw(e.Graphics, vb);
-            
-            vb = ViewpointTransformation(square3.vb);
-            square3.Draw(e.Graphics, vb);
-            
-            vb = ViewpointTransformation(square4.vb);
-            square4.Draw(e.Graphics, vb);
-
-        }
-
-        public static List<Vector> ViewpointTransformation(List<Vector> vb)
-        {
-            List<Vector> result = new List<Vector>();
-            float dx = WIDTH / 2;
-            float dy = HEIGHT / 2;
-
-            foreach (var vector in vb)
+            foreach (var axis in Axes)
             {
-                Vector v2 = new Vector(vector.x + dx, dy - vector.y, 0);
-                result.Add(v2);
+                axis.Draw(
+                    e.Graphics,
+                    TransformationUtil.ViewpointTransformation(axis.VectorBuffer, Width, Height)
+                );
             }
-
-            return result;
         }
-        
+
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            // convert key to lowercase single-character string.
+            Commands[e.KeyCode].Execute(Cube, Axes);
             if (e.KeyCode == Keys.Escape)
                 Application.Exit();
         }
