@@ -268,16 +268,15 @@ namespace Cuby.Utils
         public static Matrix ProjectionMatrix(Camera camera, Vector vector)
         {
             float vecZ = vector.Z;
-            if (vecZ > -0.0001 && vecZ < 0.0001) vecZ = 0.00001f;
             
             Matrix projectionMatrix = new Matrix(
             
                  camera.D/-vecZ,  0,                    0,
                  0,                    camera.D/-vecZ,  0,
-                 0,                  0,                 0
+                 0,                  0,                 1
             );
 
-            projectionMatrix.InternalMatrix[3, 3] = 0;
+            projectionMatrix.InternalMatrix[3, 3] = 1;
 
             return projectionMatrix;
         }
