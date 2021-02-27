@@ -35,5 +35,7 @@ namespace Cuby.Shapes
             g.DrawLine(pen, vectorBuffer[2].X, vectorBuffer[2].Y, vectorBuffer[3].X, vectorBuffer[3].Y);
             g.DrawLine(pen, vectorBuffer[3].X, vectorBuffer[3].Y, vectorBuffer[0].X, vectorBuffer[0].Y);
         }
+
+        public void ResetTransformations() { }
     }
 }

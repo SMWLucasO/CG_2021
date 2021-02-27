@@ -10,6 +10,7 @@ namespace Cuby.Axes
     {
         
         public Color Color { get; set; }
+
         public int RotationX { get; set; }
         public int RotationY { get; set; }
         public int RotationZ { get; set; }
@@ -25,6 +26,16 @@ namespace Cuby.Axes
         }
 
         public abstract void Draw(Graphics g, List<Vector> vectorBuffer);
+        
+        /// <summary>
+        /// Reset applied transformations.
+        /// </summary>
+        public void ResetTransformations()
+        {
+            RotationX = 0;
+            RotationY = 0;
+            RotationZ = 0;
+        }
         
     }
 }
