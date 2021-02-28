@@ -44,9 +44,12 @@ namespace Cuby.Animation
         
         public void End()
         {
-            Timer.Stop();
+            if (Timer != null)
+                Timer.Stop();
+            
             _animationPartIndex = 0;
             AnimationParts = null;
+            AnimationHasStarted = false;
         }
 
         private void TimerOnElapsed(object sender, ElapsedEventArgs e)

@@ -2,6 +2,7 @@
 using Cuby.Animation;
 using Cuby.Animation.Parts;
 using Cuby.Axes;
+using Cuby.Commands.Reset;
 using Cuby.Shapes;
 
 namespace Cuby.Commands.Animation
@@ -13,8 +14,10 @@ namespace Cuby.Commands.Animation
             if (AnimationManager.Instance.AnimationHasStarted)
                 return;
 
-            // TODO: RESET VARIABLES BEFORE STARTING ANIMATION
+            // Reset the  variables before starting the animation.
+            new ResetVariablesCommand().Execute(cube, axes, camera);
             
+            // Start the animation.
             AnimationManager.Instance.AnimationHasStarted = true;
             AnimationManager.Instance.AnimationParts = GetAnimation(cube, camera, axes);
             AnimationManager.Instance.Start();
