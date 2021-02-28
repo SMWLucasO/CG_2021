@@ -13,6 +13,8 @@ namespace Cuby.Commands.Animation
             if (AnimationManager.Instance.AnimationHasStarted)
                 return;
 
+            // TODO: RESET VARIABLES BEFORE STARTING ANIMATION
+            
             AnimationManager.Instance.AnimationHasStarted = true;
             AnimationManager.Instance.AnimationParts = GetAnimation(cube, camera, axes);
             AnimationManager.Instance.Start();
@@ -22,7 +24,10 @@ namespace Cuby.Commands.Animation
         {
             return new List<IAnimationPart>()
             {
-                new ScaleCubeAnimationPart() {Cube = cube, Camera = camera, Axes = axes }
+                new ScaleCubeAnimationPart() {Cube = cube, Camera = camera, Axes = axes },
+                new RotateXAnimationPart() {Cube = cube, Camera = camera, Axes = axes },
+                new RotateYAnimationPart() {Cube = cube, Camera = camera, Axes = axes },
+                new ResetAnimationPart() {Cube = cube, Camera = camera, Axes = axes }
             };
         }
         

@@ -38,7 +38,9 @@ namespace Cuby.Animation
 
 
         public void Execute()
-            => AnimationParts[_animationPartIndex].Execute();
+        {
+            AnimationParts[_animationPartIndex].Execute();
+        }
         
         public void End()
         {
@@ -56,7 +58,9 @@ namespace Cuby.Animation
             Form.Refresh();
         }
 
-        public void Next() 
-            => ++_animationPartIndex;
+        public void Next()
+        {
+            ++_animationPartIndex;
+        }
     }
 }
