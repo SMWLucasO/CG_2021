@@ -9,6 +9,8 @@ namespace Cuby.Shapes
         /// The shape's color.
         /// </summary>
         public Color Color { get; set; }
-        
+
+        public void ResetTransformations();
+
     }
 }

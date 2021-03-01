@@ -52,7 +52,6 @@ namespace Cuby.Shapes
         };
 
         public Color Color { get; set; }
-        
 
         public Cube(Color c)
         {
@@ -84,6 +83,20 @@ namespace Cuby.Shapes
                 PointF p = new PointF(vb[i + 8].X, vb[i + 8].Y);
                 g.DrawString(i.ToString(), font, Brushes.Black, p);
             }
+        }
+        
+        /// <summary>
+        /// Reset all applied transformations.
+        /// </summary>
+        public void ResetTransformations()
+        {
+            RotationX = 0;
+            RotationY = 0;
+            RotationZ = 0;
+            Scale = 1;
+            TranslationX = 0;
+            TranslationY = 0;
+            TranslationZ = 0;
         }
         
     }   

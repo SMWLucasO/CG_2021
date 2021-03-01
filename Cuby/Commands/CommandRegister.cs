@@ -1,8 +1,10 @@
 ﻿using System.Windows.Forms;
 using System.Collections.Generic;
+using Cuby.Commands.Animation;
 using Cuby.Commands.Movement.X;
 using Cuby.Commands.Movement.Y;
 using Cuby.Commands.Movement.Z;
+using Cuby.Commands.Reset;
 using Cuby.Commands.Rotation.X;
 using Cuby.Commands.Rotation.Y;
 using Cuby.Commands.Rotation.Z;
@@ -28,6 +30,8 @@ namespace Cuby.Commands
             { 'Y', new RotateYAxisNegativelyCommand() },
             { 'z', new RotateZAxisPositivelyCommand() },
             { 'Z', new RotateZAxisNegativelyCommand() },
+            { 'A', new StartAnimationCommand() },
+            { 'C', new ResetVariablesCommand() },
         };
 
         public static IDictionary<Keys, ICommand> FetchNonCharacterizedCommands() => new Dictionary<Keys, ICommand>()

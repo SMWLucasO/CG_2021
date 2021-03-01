@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using Cuby.Animation;
 using Cuby.Axes;
 using Cuby.Commands;
 using Cuby.Shapes;
@@ -38,6 +39,8 @@ namespace Cuby
             NonCharacterizedCommands = CommandRegister.FetchNonCharacterizedCommands();
 
             this.Camera = new Camera();
+
+            AnimationManager.Instance.Form = this;
             
             // register the axes
             Axes = new List<Axis>()
