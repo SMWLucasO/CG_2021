@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
+using Cuby.Utils;
 
 namespace Cuby.Shapes
 {
@@ -9,6 +11,10 @@ namespace Cuby.Shapes
         /// The shape's color.
         /// </summary>
         public Color Color { get; set; }
+
+        public List<Vector> VectorBuffer { get; set; }
         
+        public void ResetTransformations();
+
     }
 }

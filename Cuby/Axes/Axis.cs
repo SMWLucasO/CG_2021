@@ -6,17 +6,15 @@ using Cuby.Utils;
 
 namespace Cuby.Axes
 {
-    public abstract class Axis : IShape, IRotatable
+    public abstract class Axis : IShape
     {
         
         public Color Color { get; set; }
-        public int RotationX { get; set; }
-        public int RotationY { get; set; }
-        public int RotationZ { get; set; }
+        
         
         public int Size { get; set; }
 
-        public List<Vector> VectorBuffer; 
+        public List<Vector> VectorBuffer { get; set; }
         
         public Axis(int size)
         {
@@ -25,6 +23,11 @@ namespace Cuby.Axes
         }
 
         public abstract void Draw(Graphics g, List<Vector> vectorBuffer);
+        
+        /// <summary>
+        /// Reset applied transformations.
+        /// </summary>
+        public void ResetTransformations() {}
         
     }
 }
