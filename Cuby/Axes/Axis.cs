@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using Cuby.Shapes;
-using Cuby.Shapes.Information;
 using Cuby.Utils;
 
 namespace Cuby.Axes
@@ -10,8 +9,7 @@ namespace Cuby.Axes
     {
         
         public Color Color { get; set; }
-        
-        
+
         public int Size { get; set; }
 
         public List<Vector> VectorBuffer { get; set; }
@@ -23,11 +21,6 @@ namespace Cuby.Axes
         }
 
         public abstract void Draw(Graphics g, List<Vector> vectorBuffer);
-        
-        /// <summary>
-        /// Reset applied transformations.
-        /// </summary>
-        public void ResetTransformations() {}
-        
+
     }
 }

@@ -3,7 +3,7 @@
     /// <summary>
     /// Interface for specifying that a shape is translatable.
     /// </summary>
-    public interface ITranslatable
+    public interface ITranslatable : ITransformable
     {
         
         /// <summary>

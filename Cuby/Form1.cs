@@ -78,7 +78,7 @@ namespace Cuby
         {
             // convert key to lowercase single-character string.
             if (CharacterizedCommands.TryGetValue(e.KeyChar, out ICommand command))
-                command.Execute(Cube, Axes, this.Camera);
+                command.Execute(Cube, this.Camera);
             
             if (e.KeyChar == (char)Keys.Escape)
                 Application.Exit();
@@ -90,7 +90,7 @@ namespace Cuby
         private void Form1_OnNonCharacterizedKeyDown(object sender, KeyEventArgs e)
         {
             if (NonCharacterizedCommands.TryGetValue(e.KeyCode, out ICommand command))
-                command.Execute(Cube, Axes, this.Camera);
+                command.Execute(Cube, this.Camera);
             
             this.Refresh();
         }

@@ -11,10 +11,8 @@ namespace Cuby.Shapes
         /// The shape's color.
         /// </summary>
         public Color Color { get; set; }
-
-        public List<Vector> VectorBuffer { get; set; }
         
-        public void ResetTransformations();
+        public List<Vector> VectorBuffer { get; set; }
 
     }
 }

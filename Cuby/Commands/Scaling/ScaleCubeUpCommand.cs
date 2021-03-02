@@ -7,7 +7,7 @@ namespace Cuby.Commands.Scaling
 {
     public class ScaleCubeUpCommand : ICommand
     {
-        public void Execute(Cube cube, List<Axis> axes, Camera camera)
+        public void Execute(Cube cube, Camera camera)
             => cube.Scale += 0.1f;
     }
 }

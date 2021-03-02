@@ -3,7 +3,7 @@
     /// <summary>
     /// Interface for specifying that a shape is rotatable.
     /// </summary>
-    public interface IRotatable
+    public interface IRotatable : ITransformable
     {
      
         /// <summary>

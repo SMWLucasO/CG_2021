@@ -7,7 +7,7 @@ namespace Cuby.Commands.Rotation.X
 {
     public class RotateXAxisNegativelyCommand : ICommand
     {
-        public void Execute(Cube cube, List<Axis> axes, Camera camera)
+        public void Execute(Cube cube, Camera camera)
             => cube.RotationX -= 1;
     }
 }
