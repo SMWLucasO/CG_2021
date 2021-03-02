@@ -17,6 +17,8 @@ namespace Cuby
         // Window dimensions
         private const int Width = 800;
         private const int Height = 600;
+
+        public List<Cube> PlacedCubes { get; set; } = new List<Cube>();
         
         // our cube
         public Cube Cube { get; set; }
@@ -34,6 +36,8 @@ namespace Cuby
             ((Control) this).Height = Height;
             this.DoubleBuffered = true;
 
+            CommandRegister.Form = this;
+            
             // register all the commands
             CharacterizedCommands = CommandRegister.FetchCharacterizedCommands();
             NonCharacterizedCommands = CommandRegister.FetchNonCharacterizedCommands();
@@ -67,6 +71,16 @@ namespace Cuby
                 );
             }
 
+
+            foreach (Cube cube in PlacedCubes)
+            {
+                cube.Draw(
+                    e.Graphics,
+                    TransformationUtil.ViewpointTransformation(cube,
+                        TransformationUtil.ApplyEffects(cube, cube.VectorBuffer), this.Camera, Width, Height)
+                );
+            }
+            
             Cube.Draw(
                 e.Graphics,
                 TransformationUtil.ViewpointTransformation(Cube,

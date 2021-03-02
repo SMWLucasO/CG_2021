@@ -4,6 +4,7 @@ using Cuby.Commands.Animation;
 using Cuby.Commands.Movement.X;
 using Cuby.Commands.Movement.Y;
 using Cuby.Commands.Movement.Z;
+using Cuby.Commands.Placement;
 using Cuby.Commands.Reset;
 using Cuby.Commands.Rotation.X;
 using Cuby.Commands.Rotation.Y;
@@ -14,6 +15,9 @@ namespace Cuby.Commands
 {
     public static class CommandRegister
     {
+        
+        public static Form1 Form { get; set; }
+        
         /// <summary>
         /// The command registry.
         /// </summary>
@@ -31,7 +35,7 @@ namespace Cuby.Commands
             { 'z', new RotateZAxisPositivelyCommand() },
             { 'Z', new RotateZAxisNegativelyCommand() },
             { 'A', new StartAnimationCommand() },
-            { 'C', new ResetVariablesCommand() },
+            { 'C', new ResetVariablesCommand() }
         };
 
         public static IDictionary<Keys, ICommand> FetchNonCharacterizedCommands() => new Dictionary<Keys, ICommand>()
@@ -40,6 +44,7 @@ namespace Cuby.Commands
             { Keys.Down, new DecreaseYCommand() },
             { Keys.Right, new IncreaseXCommand() },
             { Keys.Left, new DecreaseXCommand() },
+            { Keys.Space, new PlaceCubeCommand() }
         };
     }
 }
