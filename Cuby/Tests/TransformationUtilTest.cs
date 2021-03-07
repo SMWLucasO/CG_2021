@@ -10,48 +10,6 @@ namespace Tests
 {
     public class TransformationUtilTest
     {
-        private Matrix GetMatrix1()
-        {
-            return new Matrix
-            {
-                InternalMatrix =
-                    new [,] {
-                        {5f, 0f, 0f, 0f},
-                        {0f, 4f, 0f, 0f},
-                        {0f, 0f, 2f, 0f},
-                        {0f, 0f, 0f, 1f},
-                    }
-            };
-        }
-
-        private Matrix GetMatrix2()
-        {
-            return new Matrix
-            {
-                InternalMatrix =
-                    new [,] {
-                        {1f, 0f, 0f, 0f},
-                        {0f, 0f, 0f, 0f},
-                        {0f, 0f, 0f, 0f},
-                        {0f, 0f, 0f, 1f},
-                    }
-            };
-        }
-
-        private Matrix GetMatrix3()
-        {
-            return new Matrix
-            {
-                InternalMatrix =
-                    new [,] {
-                        {4f, 0f, 0f, 0f},
-                        {0f, 0f, 0f, 0f},
-                        {0f, 3f, 3f, 0f},
-                        {0f, 0f, 0f, 1f},
-                    }
-            };
-        }
-        
         [Test]
         public void TestScale()
         {
