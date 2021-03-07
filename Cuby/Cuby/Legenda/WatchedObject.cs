@@ -16,6 +16,7 @@ namespace Cuby
             {
                 _properties = value;
 
+                //find the longest name and save it
                 LongestName = _properties.Aggregate("", (max, cur) => max.Length > cur.Name.Length ? max : cur.Name);
             }
         }
