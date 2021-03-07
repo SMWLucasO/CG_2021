@@ -1,3 +1,4 @@
-Cuby/obj/
-Cuby/bin/
-Cuby/.idea/
+obj
+bin
+.idea
+.sln.DotSettings.user

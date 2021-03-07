@@ -21,12 +21,24 @@ namespace Cuby
         public List<Cube> PlacedCubes { get; set; } = new List<Cube>();
         
         // our cube
-        public Cube Cube { get; set; }
+        private Cube _cube;
+
+        public Cube Cube
+        {
+            get => _cube;
+            set
+            {
+                var prev = _cube;
+                _cube = value;
+                
+                Legenda.ReplaceObject(_cube, prev);
+            }
+        }
 
         public Camera Camera { get; set; }
         
         private IDictionary<char, ICommand> CharacterizedCommands { get; set; } 
-        private IDictionary<Keys, ICommand> NonCharacterizedCommands { get; set; } 
+        private IDictionary<Keys, ICommand> NonCharacterizedCommands { get; set; }
         
         public Form1()
         {
@@ -55,7 +67,24 @@ namespace Cuby
             };
 
             this.Cube = new Cube(Color.Purple);
-
+            
+            Legenda.WatchObject(Cube, new List<(string, string)>
+            {
+                (nameof(Cube.Scale), "S/s"),
+                (nameof(Cube.TranslationX), "Left/Right"),
+                (nameof(Cube.TranslationY), "Up/Down"),
+                (nameof(Cube.TranslationZ), "PgDn/PgUp"),
+                (nameof(Cube.RotationX), "X/x"),
+                (nameof(Cube.RotationY), "Y/y"),
+                (nameof(Cube.RotationZ), "Z/z"),
+            });
+            Legenda.WatchObject(Camera, new List<(string, string)>
+            {
+                (nameof(Camera.R), "R/r"),
+                (nameof(Camera.D), "D/d"),
+                (nameof(Camera.Theta), "T/t"),
+                (nameof(Camera.Phi), "P/p"),
+            });
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -86,26 +115,27 @@ namespace Cuby
                 TransformationUtil.ViewpointTransformation(Cube,
                     TransformationUtil.ApplyEffects(Cube, Cube.VectorBuffer), this.Camera, Width, Height)
             );
+            
+            Legenda.Render(e.Graphics);
         }
 
         private void Form1_OnCharacterizedKeyDown(object sender, KeyPressEventArgs e)
         {
             // convert key to lowercase single-character string.
             if (CharacterizedCommands.TryGetValue(e.KeyChar, out ICommand command))
+            {
                 command.Execute(Cube, this.Camera);
+                this.Refresh();
+            }
             
             if (e.KeyChar == (char)Keys.Escape)
                 Application.Exit();
-            
-            this.Refresh();
-            
         }
 
         private void Form1_OnNonCharacterizedKeyDown(object sender, KeyEventArgs e)
         {
-            if (NonCharacterizedCommands.TryGetValue(e.KeyCode, out ICommand command))
-                command.Execute(Cube, this.Camera);
-            
+            if (!NonCharacterizedCommands.TryGetValue(e.KeyCode, out ICommand command)) return;
+            command.Execute(Cube, this.Camera);
             this.Refresh();
         }
     }
