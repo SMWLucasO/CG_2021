@@ -6,6 +6,10 @@
     &lt;TestId&gt;NUnit3x::65CD7B67-2AD8-46FC-907B-356DA461DAB5::.NETCoreApp,Version=v3.1::Tests.MatrixTest.TestMatrixMultiplyMatrix&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::65CD7B67-2AD8-46FC-907B-356DA461DAB5::.NETCoreApp,Version=v3.1::Tests.MatrixTest.TestMultiplyByVector&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::65CD7B67-2AD8-46FC-907B-356DA461DAB5::.NETCoreApp,Version=v3.1::Tests.MatrixTest.TestMultiplyByScalar&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::65CD7B67-2AD8-46FC-907B-356DA461DAB5::.NETCoreApp,Version=v3.1::Tests.MatrixTest.TestScale&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::65CD7B67-2AD8-46FC-907B-356DA461DAB5::.NETCoreApp,Version=v3.1::Tests.MatrixTest.TestTransform&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::65CD7B67-2AD8-46FC-907B-356DA461DAB5::.NETCoreApp,Version=v3.1::Tests.MatrixTest.TestRotateX&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::65CD7B67-2AD8-46FC-907B-356DA461DAB5::.NETCoreApp,Version=v3.1::Tests.MatrixTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=Cuby_002FForm1/@EntryIndexedValue">True</s:Boolean>

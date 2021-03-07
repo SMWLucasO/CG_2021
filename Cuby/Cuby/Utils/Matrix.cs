@@ -78,7 +78,7 @@ namespace Cuby.Utils
                 for (int j = 0; j < m1.InternalMatrix.GetLength(1); j++)
                     result.InternalMatrix[i,j] = m1.InternalMatrix[i, j] - m2.InternalMatrix[i, j];
 
-            return m1;
+            return result;
         }
         
         /// <summary>
