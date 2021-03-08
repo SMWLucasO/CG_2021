@@ -27,8 +27,6 @@ namespace Cuby.Commands
         {
             { 's', new ScaleCubeUpCommand() },
             { 'S', new ScaleCubeDownCommand() },
-            { (char)Keys.PageUp, new DecreaseZCommand() },
-            { (char)Keys.PageDown, new IncreaseZCommand() },
             { 'x', new RotateXAxisPositivelyCommand() },
             { 'X', new RotateXAxisNegativelyCommand() },
             { 'y', new RotateYAxisPositivelyCommand() },
@@ -53,7 +51,9 @@ namespace Cuby.Commands
             { Keys.Down, new DecreaseYCommand() },
             { Keys.Right, new IncreaseXCommand() },
             { Keys.Left, new DecreaseXCommand() },
-            { Keys.Space, new PlaceCubeCommand() }
+            { Keys.Space, new PlaceCubeCommand() },
+            { Keys.PageUp, new DecreaseZCommand() },
+            { Keys.PageDown, new IncreaseZCommand() },
         };
     }
 }
