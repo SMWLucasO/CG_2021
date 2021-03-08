@@ -61,9 +61,9 @@ namespace Cuby
             // register the axes
             Axes = new List<Axis>()
             {
-                new AxisX(40),
-                new AxisY(40),
-                new AxisZ(40)
+                new AxisX(1),
+                new AxisY(1),
+                new AxisZ(1)
             };
 
             this.Cube = new Cube(Color.Purple);
@@ -95,7 +95,7 @@ namespace Cuby
             {
                 axis.Draw(
                     e.Graphics,
-                    TransformationUtil.ViewpointTransformation(axis,
+                    TransformationUtil.ViewpointTransformation(
                         TransformationUtil.ApplyEffects(axis, axis.VectorBuffer), this.Camera, Width, Height)
                 );
             }
@@ -105,14 +105,14 @@ namespace Cuby
             {
                 cube.Draw(
                     e.Graphics,
-                    TransformationUtil.ViewpointTransformation(cube,
+                    TransformationUtil.ViewpointTransformation(
                         TransformationUtil.ApplyEffects(cube, cube.VectorBuffer), this.Camera, Width, Height)
                 );
             }
             
             Cube.Draw(
                 e.Graphics,
-                TransformationUtil.ViewpointTransformation(Cube,
+                TransformationUtil.ViewpointTransformation(
                     TransformationUtil.ApplyEffects(Cube, Cube.VectorBuffer), this.Camera, Width, Height)
             );
             

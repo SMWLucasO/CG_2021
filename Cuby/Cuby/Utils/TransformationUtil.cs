@@ -10,13 +10,12 @@ namespace Cuby.Utils
         /// <summary>
         /// Apply a viewpoint transformation to the input vectors.
         /// </summary>
-        /// <param name="shape">The shape to apply the transformation upon</param>
         /// <param name="vectorBuffer">The vectors to transform.</param>
         /// <param name="camera">The camera from which we look</param>
         /// <param name="width">The width of the screen.</param>
         /// <param name="height">The height of the screen.</param>
         /// <returns></returns>
-        public static List<Vector> ViewpointTransformation(IShape shape, IEnumerable<Vector> vectorBuffer, Camera camera, int width, int height)
+        public static List<Vector> ViewpointTransformation(IEnumerable<Vector> vectorBuffer, Camera camera, int width, int height)
         {
             List<Vector> vb = new List<Vector>();
             Matrix viewTransform = Matrix.ViewTransformationMatrix(camera);
@@ -29,15 +28,10 @@ namespace Cuby.Utils
                 Vector nVec = new Vector(vector.X, vector.Y, vector.Z) { W = vector.W };
 
                 nVec = viewTransform * nVec;
-
-
-                if (vectorBuffer.Count() >= 4)
-                {
-                    Matrix projMat = Matrix.ProjectionMatrix(camera, nVec);
                 
-                    nVec = projMat * nVec;
-
-                }
+                Matrix projMat = Matrix.ProjectionMatrix(camera, nVec);
+                
+                nVec = projMat * nVec;
                 
                 vb.Add(new Vector(nVec.X + dx, dy - nVec.Y, nVec.Z) { W = nVec.W});
             }

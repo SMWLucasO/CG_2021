@@ -73,10 +73,10 @@ namespace Tests
                 Phi = -10
             };
             
-            var v = TransformationUtil.ViewpointTransformation(cube, new List<Vector>() {new Vector(0, 3, 4)}, camera, 800, 800).First();
+            var v = TransformationUtil.ViewpointTransformation( new List<Vector>() {new Vector(0, 3, 4)}, camera, 800, 800).First();
             
-            Assert.AreEqual(399.479065f, v.X, 0.01);
-            Assert.AreEqual(403.604126f, v.Y, 0.01);
+            Assert.AreEqual(336.60351f, v.X, 0.01);
+            Assert.AreEqual(838.605590f, v.Y, 0.01);
             Assert.AreEqual(-6.57379913f, v.Z, 0.01);
         }
     }
