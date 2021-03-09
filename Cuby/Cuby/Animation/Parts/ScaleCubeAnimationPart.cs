@@ -25,8 +25,9 @@ namespace Cuby.Animation.Parts
                 _increment = -_increment;
             }
 
-            if (Cube.Scale.Equals(1) && _switchedBack)
+            if (Math.Abs(Cube.Scale - 1) < 0.001 && _switchedBack)
             {
+                Cube.Scale = 1f;
                 _increment = -_increment; // reset increment.
                 _switchedBack = false;
                 AnimationManager.Instance.Next();
