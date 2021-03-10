@@ -2,3 +2,7 @@ obj
 bin
 .idea
 .sln.DotSettings.user
+*.exe
+*.ilk
+*.pdb
+.vs
