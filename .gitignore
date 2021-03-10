@@ -2,7 +2,5 @@ obj
 bin
 .idea
 .sln.DotSettings.user
-Debug/Project1.exe
-Debug/Project1.ilk
-Debug/Project1.pdb
+Debug
 .vs
