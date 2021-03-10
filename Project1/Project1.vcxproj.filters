@@ -13,10 +13,45 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\loaders">
+      <UniqueIdentifier>{a3f7498d-a7bf-4075-9bc1-a8a812674753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\shaders">
+      <UniqueIdentifier>{c3bd0a53-ee9a-409b-b2be-3ef892d2a20a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\loaders\glsl">
+      <UniqueIdentifier>{936a326f-613d-403c-8270-77cf03a629ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\loaders\object">
+      <UniqueIdentifier>{1c58defa-ff53-4500-9fa1-58b320c02cad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\loaders">
+      <UniqueIdentifier>{83b5b942-5a09-4368-8ed9-5b50fc063731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\loaders\object">
+      <UniqueIdentifier>{eacc892b-a6e1-40fd-b467-71ae1835d739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\loaders\glsl">
+      <UniqueIdentifier>{e151e4cb-6826-4d63-8bb7-d5f4c54e4847}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="loaders\object\objloader.cpp">
+      <Filter>Source Files\loaders\object</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\glsl\glsl.cpp">
+      <Filter>Source Files\loaders\glsl</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="loaders\glsl\glsl.h">
+      <Filter>Header Files\loaders\glsl</Filter>
+    </ClInclude>
+    <ClInclude Include="loaders\object\objloader.h">
+      <Filter>Header Files\loaders\object</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
