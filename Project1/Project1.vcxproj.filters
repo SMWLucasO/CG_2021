@@ -34,6 +34,15 @@
     <Filter Include="Header Files\loaders\glsl">
       <UniqueIdentifier>{e151e4cb-6826-4d63-8bb7-d5f4c54e4847}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\shaders\basic">
+      <UniqueIdentifier>{9747cbf1-faca-4102-88fd-d2c00a0fef61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\shaders\lambert">
+      <UniqueIdentifier>{ee5c23da-7bd3-4975-a1a6-b9731dcd9a3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\shaders\phong">
+      <UniqueIdentifier>{d260179d-5c90-48cf-9cc1-6d0ed5fbd2a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -53,5 +62,25 @@
     <ClInclude Include="loaders\object\objloader.h">
       <Filter>Header Files\loaders\object</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\basic\fragmentshader.frag">
+      <Filter>Source Files\shaders\basic</Filter>
+    </None>
+    <None Include="shaders\basic\vertexshader.vert">
+      <Filter>Source Files\shaders\basic</Filter>
+    </None>
+    <None Include="shaders\lambert\vertexshader.vert">
+      <Filter>Source Files\shaders\lambert</Filter>
+    </None>
+    <None Include="shaders\lambert\fragmentshader.frag">
+      <Filter>Source Files\shaders\lambert</Filter>
+    </None>
+    <None Include="shaders\phong\fragmentshader.frag">
+      <Filter>Source Files\shaders\phong</Filter>
+    </None>
+    <None Include="shaders\phong\vertexshader.vert">
+      <Filter>Source Files\shaders\phong</Filter>
+    </None>
   </ItemGroup>
 </Project>
