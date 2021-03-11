@@ -20,9 +20,9 @@ public:
 	std::vector<Geometry> load_environment(std::string filename);
 };
 
-//
+
 // The below has been marked as static, so that it is local to this .ccp/.h file.
-//
+
 static Geometry create_geometry_from_document(std::string type, json_object object);
 static Geometry create_box_geometry(json_object object);
 static Geometry create_sphere_geometry(json_object object);
