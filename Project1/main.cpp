@@ -31,8 +31,6 @@ void keyboardHandler(unsigned char key, int a, int b)
 void Render()
 {
     // Define background
-    static const GLfloat blue[] = { 0.0, 0.0, 0.4, 1.0 };
-    glClearBufferfv(GL_COLOR, 0, blue);
 
     // Swap buffers
     glutSwapBuffers();

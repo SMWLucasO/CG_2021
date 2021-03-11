@@ -43,6 +43,114 @@
     <Filter Include="Source Files\shaders\phong">
       <UniqueIdentifier>{d260179d-5c90-48cf-9cc1-6d0ed5fbd2a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\world">
+      <UniqueIdentifier>{a0c81d39-f813-4d8f-9f52-e7fe49c38ad5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controls">
+      <UniqueIdentifier>{4cf28077-f86d-48f8-8d32-65ff5ca95d6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controls\managers">
+      <UniqueIdentifier>{7fdae6bc-694c-4f0e-aa65-ac7ab356cad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\shading">
+      <UniqueIdentifier>{2f1d7ad4-d8bd-402e-9e1e-1c71ba00143c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\animation">
+      <UniqueIdentifier>{b9d735a8-c336-434d-a2f2-cf5286ded57c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\animation\animation_shards">
+      <UniqueIdentifier>{7a1dff0c-30e0-4a57-9864-df9c8d894b5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\controls">
+      <UniqueIdentifier>{3082441b-5ece-4174-b2bd-d261340b9a88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\controls\managers">
+      <UniqueIdentifier>{aa73c4b0-f3b8-4e6c-9a9d-7815f13cc876}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\animation">
+      <UniqueIdentifier>{381ec90c-de33-4f77-a6b6-b9689c4a47d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\animation\animation_shards">
+      <UniqueIdentifier>{ba064084-07e7-4dde-8065-5c3ea55fb95e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\shading">
+      <UniqueIdentifier>{499adf29-7f6b-4df8-bfaa-5abdc4f114a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\world">
+      <UniqueIdentifier>{095fa932-e955-42d0-a806-cc3d993f4759}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\command">
+      <UniqueIdentifier>{ae5a4615-3b03-414c-a589-9286161bb793}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\command\commands">
+      <UniqueIdentifier>{e27948f6-fc1d-4316-8260-c1c37d73dd40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\command">
+      <UniqueIdentifier>{1f9cc885-a3e1-4a95-afec-79a6dda789b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\command\commands">
+      <UniqueIdentifier>{1e8e75ef-62cd-4dc2-868a-f5274c08773b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\world\camera">
+      <UniqueIdentifier>{44ee68b7-0014-43db-bc9d-2d2c2b8f5970}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\world\lighting">
+      <UniqueIdentifier>{04b51c32-5615-4275-87b0-5c139f43f38b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\world\camera">
+      <UniqueIdentifier>{8f7300fc-d8ff-4389-97e1-597a1f3bb216}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\world\lighting">
+      <UniqueIdentifier>{c35d0395-472d-4f24-b3da-e50ce1be80c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\geometry">
+      <UniqueIdentifier>{791c65b8-d2e2-48c3-b2b1-6fc5a6597f71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\geometry\materials">
+      <UniqueIdentifier>{8aabfcac-a8a8-4dbe-9544-d3dd39a9182b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\geometry\materials\reflexive">
+      <UniqueIdentifier>{f1c68de1-889f-43e1-8015-044897dd6e6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\geometry\geometries">
+      <UniqueIdentifier>{3af3036c-b351-4cc0-8118-0e6818342c23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geometry">
+      <UniqueIdentifier>{5aac4c93-bca6-43ab-802c-7c22e70a1faa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geometry\materials">
+      <UniqueIdentifier>{cc40bd4c-2f11-4b7e-96d7-cd1b42fcbdf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geometry\materials\reflexive">
+      <UniqueIdentifier>{2bb3f847-5acb-416a-82b6-87b14479da29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geometry\geometries">
+      <UniqueIdentifier>{ca95a421-eeff-4cb8-a98b-de645f20a745}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\geometry\materials\visual">
+      <UniqueIdentifier>{2bbb5f5e-5a90-47d9-9d18-28b59c002e78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\geometry\materials\visual\visuals">
+      <UniqueIdentifier>{2aeb8e9a-9d3a-42ed-8e50-b35371dc1403}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geometry\materials\visual">
+      <UniqueIdentifier>{34e7d24d-b5ee-40ad-b3ff-df6b5ed6d841}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geometry\materials\visual\visuals">
+      <UniqueIdentifier>{b3ffc0d9-26de-43ca-a565-7416aef4a6d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\render">
+      <UniqueIdentifier>{8d80355b-5c5a-44ee-ac7e-4cf3c51288d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\render">
+      <UniqueIdentifier>{15105607-8ecd-4bdd-91b1-65f12e4d5e92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\world\environment">
+      <UniqueIdentifier>{7a37e71c-50ef-4080-9780-7e06d2b545a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\loaders\environment">
+      <UniqueIdentifier>{595307f5-9f77-496d-906d-72b82be4d31d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,6 +162,75 @@
     <ClCompile Include="loaders\glsl\glsl.cpp">
       <Filter>Source Files\loaders\glsl</Filter>
     </ClCompile>
+    <ClCompile Include="animation\AnimationSequence.cpp">
+      <Filter>Source Files\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\AnimationShard.cpp">
+      <Filter>Source Files\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="command\CommandRegister.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="controls\managers\MouseManager.cpp">
+      <Filter>Source Files\controls\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="controls\managers\KeyboardManager.cpp">
+      <Filter>Source Files\controls\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\Transformations.cpp">
+      <Filter>Source Files\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\Geometry.cpp">
+      <Filter>Source Files\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\geometries\SphereGeometry.cpp">
+      <Filter>Source Files\geometry\geometries</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\geometries\BoxGeometry.cpp">
+      <Filter>Source Files\geometry\geometries</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\geometries\ObjectGeometry.cpp">
+      <Filter>Source Files\geometry\geometries</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\geometries\RightAngleGeometry.cpp">
+      <Filter>Source Files\geometry\geometries</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\materials\Material.cpp">
+      <Filter>Source Files\geometry\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\materials\BasicMaterial.cpp">
+      <Filter>Source Files\geometry\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\materials\reflexive\ReflexiveMaterial.cpp">
+      <Filter>Source Files\geometry\materials\reflexive</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\materials\visual\Visual.cpp">
+      <Filter>Source Files\geometry\materials\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\materials\visual\visuals\TextureVisual.cpp">
+      <Filter>Source Files\geometry\materials\visual\visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\materials\visual\visuals\ColorVisual.cpp">
+      <Filter>Source Files\geometry\materials\visual\visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="render\Renderer.cpp">
+      <Filter>Source Files\render</Filter>
+    </ClCompile>
+    <ClCompile Include="shading\ShadingManager.cpp">
+      <Filter>Source Files\shading</Filter>
+    </ClCompile>
+    <ClCompile Include="world\Scene.cpp">
+      <Filter>Source Files\world</Filter>
+    </ClCompile>
+    <ClCompile Include="world\light\Light.cpp">
+      <Filter>Source Files\world\lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="world\camera\Camera.cpp">
+      <Filter>Source Files\world\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="command\Command.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="loaders\glsl\glsl.h">
@@ -61,6 +238,72 @@
     </ClInclude>
     <ClInclude Include="loaders\object\objloader.h">
       <Filter>Header Files\loaders\object</Filter>
+    </ClInclude>
+    <ClInclude Include="command\CommandRegister.h">
+      <Filter>Header Files\command\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="controls\managers\MouseManager.h">
+      <Filter>Header Files\controls\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="controls\managers\KeyboardManager.h">
+      <Filter>Header Files\controls\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\Geometry.h">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\Transformations.h">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\geometries\RightAngleGeometry.h">
+      <Filter>Header Files\geometry\geometries</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\geometries\SphereGeometry.h">
+      <Filter>Header Files\geometry\geometries</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\geometries\BoxGeometry.h">
+      <Filter>Header Files\geometry\geometries</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\geometries\ObjectGeometry.h">
+      <Filter>Header Files\geometry\geometries</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\materials\BasicMaterial.h">
+      <Filter>Header Files\geometry\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\materials\Material.h">
+      <Filter>Header Files\geometry\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\materials\reflexive\ReflexiveMaterial.h">
+      <Filter>Header Files\geometry\materials\reflexive</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\materials\visual\visuals\ColorVisual.h">
+      <Filter>Header Files\geometry\materials\visual\visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\materials\visual\visuals\TextureVisual.h">
+      <Filter>Header Files\geometry\materials\visual\visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\materials\visual\Visual.h">
+      <Filter>Header Files\geometry\materials\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="render\Renderer.h">
+      <Filter>Header Files\render</Filter>
+    </ClInclude>
+    <ClInclude Include="shading\ShadingManager.h">
+      <Filter>Header Files\shading</Filter>
+    </ClInclude>
+    <ClInclude Include="world\camera\Camera.h">
+      <Filter>Header Files\world\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="world\light\Light.h">
+      <Filter>Header Files\world\lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\AnimationSequence.h">
+      <Filter>Header Files\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\AnimationShard.h">
+      <Filter>Header Files\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="command\Command.h">
+      <Filter>Header Files\command</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

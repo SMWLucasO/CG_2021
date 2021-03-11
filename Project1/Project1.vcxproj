@@ -129,13 +129,58 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="animation\AnimationSequence.cpp" />
+    <ClCompile Include="animation\AnimationShard.cpp" />
+    <ClCompile Include="command\Command.cpp" />
+    <ClCompile Include="command\CommandRegister.cpp" />
+    <ClCompile Include="controls\managers\KeyboardManager.cpp" />
+    <ClCompile Include="controls\managers\MouseManager.cpp" />
+    <ClCompile Include="geometry\geometries\BoxGeometry.cpp" />
+    <ClCompile Include="geometry\geometries\ObjectGeometry.cpp" />
+    <ClCompile Include="geometry\geometries\RightAngleGeometry.cpp" />
+    <ClCompile Include="geometry\geometries\SphereGeometry.cpp" />
+    <ClCompile Include="geometry\Geometry.cpp" />
+    <ClCompile Include="geometry\materials\BasicMaterial.cpp" />
+    <ClCompile Include="geometry\materials\Material.cpp" />
+    <ClCompile Include="geometry\materials\reflexive\ReflexiveMaterial.cpp" />
+    <ClCompile Include="geometry\materials\visual\Visual.cpp" />
+    <ClCompile Include="geometry\materials\visual\visuals\ColorVisual.cpp" />
+    <ClCompile Include="geometry\materials\visual\visuals\TextureVisual.cpp" />
+    <ClCompile Include="geometry\Transformations.cpp" />
     <ClCompile Include="loaders\glsl\glsl.cpp" />
     <ClCompile Include="loaders\object\objloader.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="render\Renderer.cpp" />
+    <ClCompile Include="shading\ShadingManager.cpp" />
+    <ClCompile Include="world\camera\Camera.cpp" />
+    <ClCompile Include="world\light\Light.cpp" />
+    <ClCompile Include="world\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="animation\AnimationSequence.h" />
+    <ClInclude Include="animation\AnimationShard.h" />
+    <ClInclude Include="command\Command.h" />
+    <ClInclude Include="command\CommandRegister.h" />
+    <ClInclude Include="controls\managers\KeyboardManager.h" />
+    <ClInclude Include="controls\managers\MouseManager.h" />
+    <ClInclude Include="geometry\geometries\BoxGeometry.h" />
+    <ClInclude Include="geometry\geometries\ObjectGeometry.h" />
+    <ClInclude Include="geometry\geometries\RightAngleGeometry.h" />
+    <ClInclude Include="geometry\geometries\SphereGeometry.h" />
+    <ClInclude Include="geometry\Geometry.h" />
+    <ClInclude Include="geometry\materials\BasicMaterial.h" />
+    <ClInclude Include="geometry\materials\Material.h" />
+    <ClInclude Include="geometry\materials\reflexive\ReflexiveMaterial.h" />
+    <ClInclude Include="geometry\materials\visual\Visual.h" />
+    <ClInclude Include="geometry\materials\visual\visuals\ColorVisual.h" />
+    <ClInclude Include="geometry\materials\visual\visuals\TextureVisual.h" />
+    <ClInclude Include="geometry\Transformations.h" />
     <ClInclude Include="loaders\glsl\glsl.h" />
     <ClInclude Include="loaders\object\objloader.h" />
+    <ClInclude Include="render\Renderer.h" />
+    <ClInclude Include="shading\ShadingManager.h" />
+    <ClInclude Include="world\camera\Camera.h" />
+    <ClInclude Include="world\light\Light.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\basic\fragmentshader.frag" />

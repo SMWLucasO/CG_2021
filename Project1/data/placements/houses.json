@@ -1,0 +1,54 @@
+{
+	"type": "House",
+	"general": {
+		"textures": {
+			"wall_texture": [
+				"path/to/image",
+				"path/to/image",
+				"path/to/image"
+			],
+		},
+		"default_sizes": [
+			"wall": {
+				"width": 1,
+				"height": 1,
+				"depth": 1
+			},
+			"roof": {
+				"width": 1,
+				"height": 1,
+				"depth": 1
+			},
+		]
+	},
+	"data_points": [
+		{
+			"position": {
+				"x": 0,
+				"y": 0, 
+				"z": 0
+			},
+			"transformations": {
+				"rotation": {
+					"x": 0,
+					"y": 0,
+					"z": 0
+				},
+				"translation": {
+					"x": 0,
+					"y": 0,
+					"z": 0
+				},
+				"scaling": {
+					"x": 0,
+					"y": 0,
+					"z": 0 
+				},
+			},
+			"width": 1,
+			"height": 1,
+			"depth": 1
+		}
+		
+	]
+}
