@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Libraries\glew-2.0.0-win32\glew-2.0.0\include;C:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\include;C:\Libraries\glm-0.9.6.3\glm;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Libraries\glew-2.0.0-win32\glew-2.0.0\include;C:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\include;C:\Libraries\glm-0.9.6.3\glm;$(SolutionDir)\vendor\rapidjson;$(IncludePath)</IncludePath>
     <LibraryPath>c:\Libraries\glew-2.0.0-win32\glew-2.0.0\lib\Release\Win32;c:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
