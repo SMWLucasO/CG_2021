@@ -10,8 +10,8 @@ private:
 	glm::vec3 target;
 	glm::vec3 up;
 	float FOV = 45.0;
-	float near = 0.5;
-	float far = 100.0;
+	float camNear = 0.5;
+	float camFar = 100.0;
 
 public:
 	void set_position(glm::vec3 position);

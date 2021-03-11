@@ -1,5 +1,8 @@
 #pragma once
-class SphereGeometry
+
+#include "../Geometry.h"
+
+class SphereGeometry : public Geometry
 {
 };
 

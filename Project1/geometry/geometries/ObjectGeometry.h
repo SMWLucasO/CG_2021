@@ -1,5 +1,8 @@
 #pragma once
-class ObjectGeometry
+
+#include "../Geometry.h"
+
+class ObjectGeometry : public Geometry
 {
 };
 

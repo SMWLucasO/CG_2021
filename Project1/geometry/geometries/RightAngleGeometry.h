@@ -1,5 +1,8 @@
 #pragma once
-class RightAngleGeometry
+
+#include "../Geometry.h"
+
+class RightAngleGeometry : public Geometry
 {
 };
 

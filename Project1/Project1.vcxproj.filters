@@ -145,11 +145,11 @@
     <Filter Include="Source Files\render">
       <UniqueIdentifier>{15105607-8ecd-4bdd-91b1-65f12e4d5e92}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\world\environment">
-      <UniqueIdentifier>{7a37e71c-50ef-4080-9780-7e06d2b545a9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\loaders\environment">
       <UniqueIdentifier>{595307f5-9f77-496d-906d-72b82be4d31d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\loaders\environment">
+      <UniqueIdentifier>{8842656b-85dc-4bf0-bb27-e2302ca1eeb3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -176,9 +176,6 @@
     </ClCompile>
     <ClCompile Include="controls\managers\KeyboardManager.cpp">
       <Filter>Source Files\controls\managers</Filter>
-    </ClCompile>
-    <ClCompile Include="geometry\Transformations.cpp">
-      <Filter>Source Files\geometry</Filter>
     </ClCompile>
     <ClCompile Include="geometry\Geometry.cpp">
       <Filter>Source Files\geometry</Filter>
@@ -231,6 +228,9 @@
     <ClCompile Include="command\Command.cpp">
       <Filter>Source Files\command</Filter>
     </ClCompile>
+    <ClCompile Include="loaders\environment\EnvironmentLoader.cpp">
+      <Filter>Source Files\loaders\environment</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="loaders\glsl\glsl.h">
@@ -249,9 +249,6 @@
       <Filter>Header Files\controls\managers</Filter>
     </ClInclude>
     <ClInclude Include="geometry\Geometry.h">
-      <Filter>Header Files\geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="geometry\Transformations.h">
       <Filter>Header Files\geometry</Filter>
     </ClInclude>
     <ClInclude Include="geometry\geometries\RightAngleGeometry.h">
@@ -304,6 +301,12 @@
     </ClInclude>
     <ClInclude Include="command\Command.h">
       <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="loaders\environment\EnvironmentLoader.h">
+      <Filter>Header Files\loaders\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="world\Scene.h">
+      <Filter>Header Files\world</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

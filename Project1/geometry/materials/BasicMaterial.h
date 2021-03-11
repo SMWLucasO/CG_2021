@@ -1,5 +1,8 @@
 #pragma once
-class BasicMaterial
+
+#include "Material.h"
+
+class BasicMaterial: public Material
 {
 };
 

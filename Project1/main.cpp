@@ -3,6 +3,8 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 
+#include "world/Scene.h"
+
 using namespace std;
 
 
@@ -12,6 +14,7 @@ using namespace std;
 
 const int WIDTH = 800, HEIGHT = 600;
 
+Scene scene;
 
 //--------------------------------------------------------------------------------
 // Keyboard handling
@@ -58,10 +61,12 @@ void InitGlutGlew(int argc, char** argv)
 int main(int argc, char** argv)
 {
     InitGlutGlew(argc, argv);
+    scene = Scene();
+    scene.init("data/environment/");
 
     // Hide console window
     HWND hWnd = GetConsoleWindow();
-    ShowWindow(hWnd, SW_HIDE);
+    ShowWindow(hWnd, SW_SHOW);
 
     // Main loop
     glutMainLoop();
