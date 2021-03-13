@@ -112,9 +112,9 @@ static void set_standard_geometry_data(Geometry &geometry, json_object transform
     glm::vec3 position;
 
     // set rotation
-    transform.rotation.x = transformation_obj["rotation"]["x"].GetFloat();
-    transform.rotation.y = transformation_obj["rotation"]["y"].GetFloat();
-    transform.rotation.z = transformation_obj["rotation"]["z"].GetFloat();
+    transform.rotation_x = transformation_obj["rotation"]["x"].GetFloat();
+    transform.rotation_y = transformation_obj["rotation"]["y"].GetFloat();
+    transform.rotation_z = transformation_obj["rotation"]["z"].GetFloat();
 
     // set translation
     transform.translation.x = transformation_obj["translation"]["x"].GetFloat();

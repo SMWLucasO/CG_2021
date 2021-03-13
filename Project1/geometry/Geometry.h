@@ -12,7 +12,9 @@
 #include <glm/glm.hpp>
 
 struct Transformations {
-	glm::vec3 rotation;
+	float rotation_x;
+	float rotation_y;
+	float rotation_z;
 	glm::vec3 translation;
 	glm::vec3 scaling;
 };

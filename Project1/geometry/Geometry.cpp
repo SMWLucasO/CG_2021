@@ -22,7 +22,16 @@ void Geometry::render(Camera &camera)
 	// 'load' shader
 
 
-	// setup matrices (essentially just the camera lmao)
+	// setup matrices
+	glm::mat4 model;
+	glm::scale(model, this->transformations.scaling);
+
+	// rotations
+	glm::rotate(model, glm::radians(this->transformations.rotation_x), glm::vec3(1.0f, 0.0f, 0.0f));
+	glm::rotate(model, glm::radians(this->transformations.rotation_y), glm::vec3(0.0f, 1.0f, 0.0f));
+	glm::rotate(model, glm::radians(this->transformations.rotation_z), glm::vec3(0.0f, 0.0f, 1.0f));
+	
+	glm::translate(model, this->transformations.translation);
 
 	// setup buffers
 
