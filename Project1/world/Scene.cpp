@@ -16,7 +16,7 @@ void Scene::init(std::string data_environment_folder)
 		if (!entry.exists() || !entry.is_regular_file()) continue;
 
 		// load the geometries
-		std::vector<Geometry> geoms = envLoader.load_environment(entry.path().string());
+		std::vector<Geometry> geoms = envLoader.load_environment(entry.path().string(), this->camera, this->screen_width, this->screen_height);
 		
 		// do not add if there are no geometries.
 		if (geoms.size() <= 0) continue;

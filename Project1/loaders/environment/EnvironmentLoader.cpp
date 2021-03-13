@@ -1,6 +1,6 @@
 #include "EnvironmentLoader.h"
 
-std::vector<Geometry> EnvironmentLoader::load_environment(std::string filename)
+std::vector<Geometry> EnvironmentLoader::load_environment(std::string filename, Camera &camera, float screen_width, float screen_height)
 {
     std::vector<Geometry> geometry;
     rapidjson::Document document = this->load_environment_json(filename);
@@ -28,7 +28,7 @@ std::vector<Geometry> EnvironmentLoader::load_environment(std::string filename)
         assert(object.HasMember("height"));
         assert(object.HasMember("depth"));
 
-        geometry.push_back(create_geometry_from_document(document["type"].GetString(), object));
+        geometry.push_back(create_geometry_from_document(document["type"].GetString(), object, camera, screen_width, screen_height));
     }
 
     return geometry;
@@ -56,7 +56,7 @@ std::string EnvironmentLoader::get_file_contents(std::string filename) {
 
 // dirty function to createt a geometry based upon a function, not very clean. Temporary? TODO
 
-static Geometry create_geometry_from_document(std::string type, json_object object) {
+static Geometry create_geometry_from_document(std::string type, json_object object, Camera &camera, float screen_width, float screen_height) {
     
     rapidjson::GenericObj transformations = get_json_placement_transformations(object),
         position = get_json_placement_position(object);
@@ -71,38 +71,43 @@ static Geometry create_geometry_from_document(std::string type, json_object obje
     assert_xyz(transformations["scaling"].GetObj());
     assert_xyz(position);
 
-    if (type == "Box") return create_box_geometry(object);
-    if (type == "Sphere") return create_sphere_geometry(object);
-    if (type == "RightAngle") return create_right_angle_geometry(object);
+    if (type == "Box") return create_box_geometry(object, camera, screen_width, screen_height);
+    if (type == "Sphere") return create_sphere_geometry(object, camera, screen_width, screen_height);
+    if (type == "RightAngle") return create_right_angle_geometry(object, camera, screen_width, screen_height);
 
     assert(0);
 }
 
-static Geometry create_box_geometry(json_object object) {
+static Geometry create_box_geometry(json_object object, Camera& camera, float screen_width, float screen_height) {
     BoxGeometry box;
 
     rapidjson::GenericObj transformations = get_json_placement_transformations(object),
         position = get_json_placement_position(object);
 
+    set_standard_geometry_data(box, transformations, position);
+    box.init_matrices(camera, screen_width, screen_height);
+
     return box;
 }
 
-static Geometry create_sphere_geometry(json_object object) {
+static Geometry create_sphere_geometry(json_object object, Camera& camera, float screen_width, float screen_height) {
     SphereGeometry sphere;
 
     rapidjson::GenericObj transformations = get_json_placement_transformations(object),
         position = get_json_placement_position(object);
 
+    set_standard_geometry_data(sphere, transformations, position);
+
     return sphere;
 }
 
-static Geometry create_right_angle_geometry(json_object object) {
+static Geometry create_right_angle_geometry(json_object object, Camera& camera, float screen_width, float screen_height) {
     RightAngleGeometry right_angle;
 
     rapidjson::GenericObj transformations = get_json_placement_transformations(object),
         position = get_json_placement_position(object);
 
-    
+    set_standard_geometry_data(right_angle, transformations, position);
 
     return right_angle;
 }

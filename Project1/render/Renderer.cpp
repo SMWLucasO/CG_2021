@@ -5,4 +5,6 @@ void Renderer::render(std::vector<Geometry>& environment, Camera camera, float s
 	for (Geometry& geometry : environment) {
 		geometry.render(camera, screen_width, screen_height);
 	}
+
+	glutSwapBuffers();
 }

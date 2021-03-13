@@ -10,6 +10,7 @@
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
+#include "materials/visual/Visual.h"
 
 struct Transformations {
 	float rotation_x;
@@ -28,13 +29,22 @@ private:
 	glm::vec3 position;
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec3> faces;
-	
+
+protected:
+	GLuint vertex_array_object;
+	GLuint position_id;
+	GLuint vbo_vertices;
+	GLuint ibo_faces;
+
+	virtual void init_buffers(GLuint program_id);
 public:
 	Geometry(Material material, glm::vec3 position);
 	Geometry(Material material);
 	Geometry();
 	
 	virtual void render(Camera& camera, float screen_width, float screen_height);
+
+	void init_matrices(Camera& camera, float screen_width, float screen_height);
 
 	Transformations get_transformations();
 	void set_transformations(Transformations transformations);
