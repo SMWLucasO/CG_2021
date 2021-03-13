@@ -17,6 +17,17 @@ Geometry::Geometry(): Geometry(BasicMaterial())
 {
 }
 
+void Geometry::render(Camera &camera)
+{
+	// 'load' shader
+
+
+	// setup matrices (essentially just the camera lmao)
+
+	// setup buffers
+
+}
+
 Transformations Geometry::get_transformations()
 {
 	return this->transformations;

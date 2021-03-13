@@ -4,5 +4,6 @@
 
 class BoxGeometry: public Geometry
 {
+	void render(Camera& camera);
 };
 

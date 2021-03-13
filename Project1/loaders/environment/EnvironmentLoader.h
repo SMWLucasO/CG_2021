@@ -5,11 +5,15 @@
 #include <sstream>
 #include <tuple>
 
-#include <document.h>
-
 #include "../../geometry/Geometry.h"
 
-#define json_object rapidjson::GenericObject<true, rapidjson::Value>
+#include "../../geometry/geometries/BoxGeometry.h"
+#include "../../geometry/geometries/RightAngleGeometry.h"
+#include "../../geometry/geometries/SphereGeometry.h"
+
+#include <document.h>
+
+#define json_object rapidjson::GenericObj<true, rapidjson::Value>
 
 class EnvironmentLoader
 {

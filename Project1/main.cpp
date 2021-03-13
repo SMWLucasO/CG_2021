@@ -3,6 +3,8 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 
+#include "shading/shading.h"
+
 #include "world/Scene.h"
 
 using namespace std;
@@ -20,7 +22,7 @@ Scene scene;
 // Keyboard handling
 //--------------------------------------------------------------------------------
 
-void keyboardHandler(unsigned char key, int a, int b)
+void keyboard_handler(unsigned char key, int a, int b)
 {
     if (key == 27)
         glutExit();
@@ -31,7 +33,7 @@ void keyboardHandler(unsigned char key, int a, int b)
 // Rendering
 //--------------------------------------------------------------------------------
 
-void Render()
+void render()
 {
     // Define background
 
@@ -41,18 +43,17 @@ void Render()
 
 
 //------------------------------------------------------------
-// void InitGlutGlew(int argc, char **argv)
 // Initializes Glut and Glew
 //------------------------------------------------------------
 
-void InitGlutGlew(int argc, char** argv)
+void init_glut_glew(int argc, char** argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
     glutInitWindowSize(WIDTH, HEIGHT);
-    glutCreateWindow("Hello OpenGL");
-    glutDisplayFunc(Render);
-    glutKeyboardFunc(keyboardHandler);
+    glutCreateWindow("Lucas' neighbourhood");
+    glutDisplayFunc(render);
+    glutKeyboardFunc(keyboard_handler);
 
     glewInit();
 }
@@ -60,7 +61,13 @@ void InitGlutGlew(int argc, char** argv)
 
 int main(int argc, char** argv)
 {
-    InitGlutGlew(argc, argv);
+    init_glut_glew(argc, argv);
+    
+    // initiate shaders from main.
+    init_shader(Lambert, "shaders/lambert/vertexshader.vert", "shaders/lambert/fragmentshader.frag");
+    init_shader(Phong, "shaders/phong/vertexshader.vert", "shaders/phong/fragmentshader.frag");
+    init_shader(Basic, "shaders/basic/vertexshader.vert", "shaders/basic/fragmentshader.frag");
+
     scene = Scene();
     scene.init("data/environment/");
 

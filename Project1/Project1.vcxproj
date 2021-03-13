@@ -143,6 +143,8 @@
     <ClCompile Include="geometry\Geometry.cpp" />
     <ClCompile Include="geometry\materials\BasicMaterial.cpp" />
     <ClCompile Include="geometry\materials\Material.cpp" />
+    <ClCompile Include="geometry\materials\reflexive\LambertMaterial.cpp" />
+    <ClCompile Include="geometry\materials\reflexive\PhongMaterial.cpp" />
     <ClCompile Include="geometry\materials\reflexive\ReflexiveMaterial.cpp" />
     <ClCompile Include="geometry\materials\visual\Visual.cpp" />
     <ClCompile Include="geometry\materials\visual\visuals\ColorVisual.cpp" />
@@ -152,7 +154,7 @@
     <ClCompile Include="loaders\object\objloader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="render\Renderer.cpp" />
-    <ClCompile Include="shading\ShadingManager.cpp" />
+    <ClCompile Include="shading\shading.cpp" />
     <ClCompile Include="world\camera\Camera.cpp" />
     <ClCompile Include="world\light\Light.cpp" />
     <ClCompile Include="world\Scene.cpp" />
@@ -171,6 +173,8 @@
     <ClInclude Include="geometry\Geometry.h" />
     <ClInclude Include="geometry\materials\BasicMaterial.h" />
     <ClInclude Include="geometry\materials\Material.h" />
+    <ClInclude Include="geometry\materials\reflexive\LambertMaterial.h" />
+    <ClInclude Include="geometry\materials\reflexive\PhongMaterial.h" />
     <ClInclude Include="geometry\materials\reflexive\ReflexiveMaterial.h" />
     <ClInclude Include="geometry\materials\visual\Visual.h" />
     <ClInclude Include="geometry\materials\visual\visuals\ColorVisual.h" />
@@ -179,7 +183,7 @@
     <ClInclude Include="loaders\glsl\glsl.h" />
     <ClInclude Include="loaders\object\objloader.h" />
     <ClInclude Include="render\Renderer.h" />
-    <ClInclude Include="shading\ShadingManager.h" />
+    <ClInclude Include="shading\shading.h" />
     <ClInclude Include="world\camera\Camera.h" />
     <ClInclude Include="world\light\Light.h" />
     <ClInclude Include="world\Scene.h" />

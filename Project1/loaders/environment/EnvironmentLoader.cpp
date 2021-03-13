@@ -1,16 +1,12 @@
 #include "EnvironmentLoader.h"
 
-#include "../../geometry/geometries/BoxGeometry.h"
-#include "../../geometry/geometries/RightAngleGeometry.h"
-#include "../../geometry/geometries/SphereGeometry.h"
-
 std::vector<Geometry> EnvironmentLoader::load_environment(std::string filename)
 {
     std::vector<Geometry> geometry;
     rapidjson::Document document = this->load_environment_json(filename);
 
     // JSON object's root MUST be an object.
-    assert(document.IsObject());
+    assert(document.IsObj());
 
     // Every JSON file must have a type.
     assert(document.HasMember("type"));
@@ -23,7 +19,7 @@ std::vector<Geometry> EnvironmentLoader::load_environment(std::string filename)
     for (rapidjson::Value::ConstValueIterator it = document["data_points"].Begin(); it != document["data_points"].End(); ++it) {
 
         // assertions for things that must exist
-        rapidjson::GenericObject object = it->GetObject();
+        rapidjson::GenericObj object = it->GetObj();
 
         // assert required elements.
         assert(object.HasMember("position"));
@@ -45,7 +41,6 @@ rapidjson::Document EnvironmentLoader::load_environment_json(std::string filenam
     return document;
 }
 
-
 std::string EnvironmentLoader::get_file_contents(std::string filename) {
     std::ifstream file(filename);
 
@@ -63,7 +58,7 @@ std::string EnvironmentLoader::get_file_contents(std::string filename) {
 
 static Geometry create_geometry_from_document(std::string type, json_object object) {
     
-    rapidjson::GenericObject transformations = get_json_placement_transformations(object),
+    rapidjson::GenericObj transformations = get_json_placement_transformations(object),
         position = get_json_placement_position(object);
 
     // assertions
@@ -71,9 +66,9 @@ static Geometry create_geometry_from_document(std::string type, json_object obje
     assert(transformations.HasMember("translation"));
     assert(transformations.HasMember("scaling"));
 
-    assert_xyz(transformations["rotation"].GetObject());
-    assert_xyz(transformations["translation"].GetObject());
-    assert_xyz(transformations["scaling"].GetObject());
+    assert_xyz(transformations["rotation"].GetObj());
+    assert_xyz(transformations["translation"].GetObj());
+    assert_xyz(transformations["scaling"].GetObj());
     assert_xyz(position);
 
     if (type == "Box") return create_box_geometry(object);
@@ -86,7 +81,7 @@ static Geometry create_geometry_from_document(std::string type, json_object obje
 static Geometry create_box_geometry(json_object object) {
     BoxGeometry box;
 
-    rapidjson::GenericObject transformations = get_json_placement_transformations(object),
+    rapidjson::GenericObj transformations = get_json_placement_transformations(object),
         position = get_json_placement_position(object);
 
     return box;
@@ -95,7 +90,7 @@ static Geometry create_box_geometry(json_object object) {
 static Geometry create_sphere_geometry(json_object object) {
     SphereGeometry sphere;
 
-    rapidjson::GenericObject transformations = get_json_placement_transformations(object),
+    rapidjson::GenericObj transformations = get_json_placement_transformations(object),
         position = get_json_placement_position(object);
 
     return sphere;
@@ -104,7 +99,7 @@ static Geometry create_sphere_geometry(json_object object) {
 static Geometry create_right_angle_geometry(json_object object) {
     RightAngleGeometry right_angle;
 
-    rapidjson::GenericObject transformations = get_json_placement_transformations(object),
+    rapidjson::GenericObj transformations = get_json_placement_transformations(object),
         position = get_json_placement_position(object);
 
     
@@ -146,11 +141,11 @@ static void set_standard_geometry_data(Geometry &geometry, json_object transform
 }
 
 static json_object get_json_placement_position(json_object object) {
-    return object["position"].GetObject();
+    return object["position"].GetObj();
 }
 
 static json_object get_json_placement_transformations(json_object object) {
-    return object["transformations"].GetObject();
+    return object["transformations"].GetObj();
 }
 
 static void assert_xyz(json_object object) {

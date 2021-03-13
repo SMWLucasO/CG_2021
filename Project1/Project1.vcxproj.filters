@@ -52,9 +52,6 @@
     <Filter Include="Source Files\controls\managers">
       <UniqueIdentifier>{7fdae6bc-694c-4f0e-aa65-ac7ab356cad3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\shading">
-      <UniqueIdentifier>{2f1d7ad4-d8bd-402e-9e1e-1c71ba00143c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\animation">
       <UniqueIdentifier>{b9d735a8-c336-434d-a2f2-cf5286ded57c}</UniqueIdentifier>
     </Filter>
@@ -151,6 +148,9 @@
     <Filter Include="Source Files\loaders\environment">
       <UniqueIdentifier>{8842656b-85dc-4bf0-bb27-e2302ca1eeb3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\shading">
+      <UniqueIdentifier>{afc4e063-6bbe-4ac1-83cb-3df4c34cfa73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -158,9 +158,6 @@
     </ClCompile>
     <ClCompile Include="loaders\object\objloader.cpp">
       <Filter>Source Files\loaders\object</Filter>
-    </ClCompile>
-    <ClCompile Include="loaders\glsl\glsl.cpp">
-      <Filter>Source Files\loaders\glsl</Filter>
     </ClCompile>
     <ClCompile Include="animation\AnimationSequence.cpp">
       <Filter>Source Files\animation</Filter>
@@ -213,9 +210,6 @@
     <ClCompile Include="render\Renderer.cpp">
       <Filter>Source Files\render</Filter>
     </ClCompile>
-    <ClCompile Include="shading\ShadingManager.cpp">
-      <Filter>Source Files\shading</Filter>
-    </ClCompile>
     <ClCompile Include="world\Scene.cpp">
       <Filter>Source Files\world</Filter>
     </ClCompile>
@@ -231,11 +225,20 @@
     <ClCompile Include="loaders\environment\EnvironmentLoader.cpp">
       <Filter>Source Files\loaders\environment</Filter>
     </ClCompile>
+    <ClCompile Include="geometry\materials\reflexive\LambertMaterial.cpp">
+      <Filter>Source Files\geometry\materials\reflexive</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\materials\reflexive\PhongMaterial.cpp">
+      <Filter>Source Files\geometry\materials\reflexive</Filter>
+    </ClCompile>
+    <ClCompile Include="shading\shading.cpp">
+      <Filter>Source Files\shading</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\glsl\glsl.cpp">
+      <Filter>Source Files\loaders\glsl</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="loaders\glsl\glsl.h">
-      <Filter>Header Files\loaders\glsl</Filter>
-    </ClInclude>
     <ClInclude Include="loaders\object\objloader.h">
       <Filter>Header Files\loaders\object</Filter>
     </ClInclude>
@@ -284,9 +287,6 @@
     <ClInclude Include="render\Renderer.h">
       <Filter>Header Files\render</Filter>
     </ClInclude>
-    <ClInclude Include="shading\ShadingManager.h">
-      <Filter>Header Files\shading</Filter>
-    </ClInclude>
     <ClInclude Include="world\camera\Camera.h">
       <Filter>Header Files\world\camera</Filter>
     </ClInclude>
@@ -307,6 +307,18 @@
     </ClInclude>
     <ClInclude Include="world\Scene.h">
       <Filter>Header Files\world</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\materials\reflexive\PhongMaterial.h">
+      <Filter>Header Files\geometry\materials\reflexive</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\materials\reflexive\LambertMaterial.h">
+      <Filter>Header Files\geometry\materials\reflexive</Filter>
+    </ClInclude>
+    <ClInclude Include="shading\shading.h">
+      <Filter>Header Files\shading</Filter>
+    </ClInclude>
+    <ClInclude Include="loaders\glsl\glsl.h">
+      <Filter>Header Files\loaders\glsl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

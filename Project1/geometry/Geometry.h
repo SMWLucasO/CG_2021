@@ -1,11 +1,15 @@
 #pragma once
 
+#include <iostream>
+#include <vector>
+
 #include "materials/Material.h"
 #include "materials/BasicMaterial.h"
 
-#include <glm/glm.hpp>
+#include "../world/camera/Camera.h"
 
-#include <iostream>
+#include <GL/glew.h>
+#include <glm/glm.hpp>
 
 struct Transformations {
 	glm::vec3 rotation;
@@ -20,14 +24,16 @@ private:
 	Transformations transformations;
 	Material material;
 	glm::vec3 position;
-	float width = 1;
-	float height = 1;
-	float depth = 1;
+	std::vector<glm::vec3> vertices;
+	std::vector<glm::vec3> faces;
+	
 public:
 	Geometry(Material material, glm::vec3 position);
 	Geometry(Material material);
 	Geometry();
 	
+	virtual void render(Camera& camera);
+
 	Transformations get_transformations();
 	void set_transformations(Transformations transformations);
 
