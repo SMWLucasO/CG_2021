@@ -1,5 +1,13 @@
 #include "Scene.h"
 
+Scene::Scene(float screen_width, float screen_height)
+{
+	this->renderer = Renderer();
+	this->environment = std::vector<Geometry>();
+	this->screen_width = screen_width;
+	this->screen_height = screen_height;
+}
+
 void Scene::init(std::string data_environment_folder)
 {
 	EnvironmentLoader envLoader;
@@ -17,4 +25,9 @@ void Scene::init(std::string data_environment_folder)
 		this->environment.insert(std::end(this->environment), std::begin(geoms), std::end(geoms));
 	}
 
+}
+
+void Scene::render()
+{
+	this->renderer.render(this->environment, this->camera, this->screen_width, this->screen_height);
 }

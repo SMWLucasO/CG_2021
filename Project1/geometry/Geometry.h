@@ -34,7 +34,7 @@ public:
 	Geometry(Material material);
 	Geometry();
 	
-	virtual void render(Camera& camera);
+	virtual void render(Camera& camera, float screen_width, float screen_height);
 
 	Transformations get_transformations();
 	void set_transformations(Transformations transformations);

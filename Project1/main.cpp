@@ -16,7 +16,7 @@ using namespace std;
 
 const int WIDTH = 800, HEIGHT = 600;
 
-Scene scene;
+Scene scene = Scene(WIDTH, HEIGHT);
 
 //--------------------------------------------------------------------------------
 // Keyboard handling
@@ -68,7 +68,6 @@ int main(int argc, char** argv)
     init_shader(Phong, "shaders/phong/vertexshader.vert", "shaders/phong/fragmentshader.frag");
     init_shader(Basic, "shaders/basic/vertexshader.vert", "shaders/basic/fragmentshader.frag");
 
-    scene = Scene();
     scene.init("data/environment/");
 
     // Hide console window
