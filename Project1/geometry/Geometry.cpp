@@ -6,6 +6,8 @@ Geometry::Geometry(Material material, glm::vec3 position)
 	this->transformations = Transformations();
 	this->position = position;
 
+	this->init();
+
 	// setup the buffers
 	this->init_buffers(material.get_shader()->program_id);
 
@@ -49,6 +51,7 @@ void Geometry::init_matrices(Camera& camera, float screen_width, float screen_he
 void Geometry::init_buffers(GLuint program_id) {
 	
 	// vbo for vertices
+
 	glGenBuffers(1, &this->vbo_vertices);
 	glBindBuffer(GL_ARRAY_BUFFER, this->vbo_vertices);
 	glBufferData(GL_ARRAY_BUFFER, this->vertices.size() * sizeof(glm::vec3), &this->vertices[0], GL_STATIC_DRAW);
@@ -123,6 +126,10 @@ void Geometry::render(Camera &camera, float screen_width, float screen_height)
 	glBindVertexArray(this->vertex_array_object);
 	glDrawArrays(GL_TRIANGLES, 0, this->vertices.size());
 	glBindVertexArray(0);
+}
+
+void Geometry::init()
+{
 }
 
 Transformations Geometry::get_transformations()

@@ -27,14 +27,15 @@ private:
 	Transformations transformations;
 	Material material;
 	glm::vec3 position;
-	std::vector<glm::vec3> vertices;
-	std::vector<glm::vec3> faces;
 
 protected:
 	GLuint vertex_array_object;
 	GLuint position_id;
 	GLuint vbo_vertices;
 	GLuint ibo_faces;
+
+	std::vector<glm::vec3> vertices;
+	std::vector<glm::vec3> faces;
 
 	virtual void init_buffers(GLuint program_id);
 public:
@@ -43,6 +44,7 @@ public:
 	Geometry();
 	
 	virtual void render(Camera& camera, float screen_width, float screen_height);
+	virtual void init();
 
 	void init_matrices(Camera& camera, float screen_width, float screen_height);
 

@@ -6,6 +6,9 @@ Scene::Scene(float screen_width, float screen_height)
 	this->environment = std::vector<Geometry>();
 	this->screen_width = screen_width;
 	this->screen_height = screen_height;
+
+	this->light = Light();
+	this->light.set_position(glm::vec3(0.0f, 10.0f, 0.0f));
 }
 
 void Scene::init(std::string data_environment_folder)
@@ -16,7 +19,7 @@ void Scene::init(std::string data_environment_folder)
 		if (!entry.exists() || !entry.is_regular_file()) continue;
 
 		// load the geometries
-		std::vector<Geometry> geoms = envLoader.load_environment(entry.path().string(), this->camera, this->screen_width, this->screen_height);
+		std::vector<Geometry> geoms = envLoader.load_environment(entry.path().string(), this->camera, this->screen_width, this->screen_height, this->light);
 		
 		// do not add if there are no geometries.
 		if (geoms.size() <= 0) continue;
@@ -31,3 +34,4 @@ void Scene::render()
 {
 	this->renderer.render(this->environment, this->camera, this->screen_width, this->screen_height);
 }
+
