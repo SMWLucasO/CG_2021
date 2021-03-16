@@ -16,9 +16,6 @@
     <Filter Include="Source Files\loaders">
       <UniqueIdentifier>{a3f7498d-a7bf-4075-9bc1-a8a812674753}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\shaders">
-      <UniqueIdentifier>{c3bd0a53-ee9a-409b-b2be-3ef892d2a20a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\loaders\glsl">
       <UniqueIdentifier>{936a326f-613d-403c-8270-77cf03a629ed}</UniqueIdentifier>
     </Filter>
@@ -34,6 +31,42 @@
     <Filter Include="Header Files\loaders\glsl">
       <UniqueIdentifier>{e151e4cb-6826-4d63-8bb7-d5f4c54e4847}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\loaders\texture">
+      <UniqueIdentifier>{1a0d25f8-0125-4bfa-ab9f-1b076a0ecc08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\loaders\texture">
+      <UniqueIdentifier>{5be00efd-3f2b-4af8-a6fc-eff1cbedc4f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\camera">
+      <UniqueIdentifier>{aeb1e39e-d130-42e8-975e-ae8f4107286f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\camera">
+      <UniqueIdentifier>{7e435573-7187-43ba-bcc0-7ae600d313de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\environment">
+      <UniqueIdentifier>{c2261068-6f44-4c65-9818-c6bb86eb5293}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\geometry">
+      <UniqueIdentifier>{da786a26-b367-47a7-9af8-fe462ab429bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\environment">
+      <UniqueIdentifier>{96d2615c-dad3-4230-b03f-9cbe7dea0f7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geometry">
+      <UniqueIdentifier>{a1a4f214-c199-481b-a4f1-469a38e69109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\managers">
+      <UniqueIdentifier>{886c4ccc-f12d-4d25-982a-6cc9c06bb507}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\managers">
+      <UniqueIdentifier>{5d973f49-08b9-42fe-85e4-1067dc876062}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\shading">
+      <UniqueIdentifier>{64236ab5-edfd-45cc-8a5d-2eb5528f2f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\shading">
+      <UniqueIdentifier>{aa013fcc-ab71-4bac-9a1d-9dee58f07d18}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,6 +78,27 @@
     <ClCompile Include="loaders\glsl\glsl.cpp">
       <Filter>Source Files\loaders\glsl</Filter>
     </ClCompile>
+    <ClCompile Include="loaders\texture\texture.cpp">
+      <Filter>Source Files\loaders\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Source Files\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="environment.cpp">
+      <Filter>Source Files\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry.cpp">
+      <Filter>Source Files\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="shadingmanager.cpp">
+      <Filter>Source Files\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="geometrymanager.cpp">
+      <Filter>Source Files\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="shader.cpp">
+      <Filter>Source Files\shading</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="loaders\glsl\glsl.h">
@@ -52,6 +106,27 @@
     </ClInclude>
     <ClInclude Include="loaders\object\objloader.h">
       <Filter>Header Files\loaders\object</Filter>
+    </ClInclude>
+    <ClInclude Include="loaders\texture\texture.h">
+      <Filter>Header Files\loaders\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Header Files\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="environment.h">
+      <Filter>Header Files\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry.h">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="shadingmanager.h">
+      <Filter>Header Files\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="geometrymanager.h">
+      <Filter>Header Files\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>Header Files\shading</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
