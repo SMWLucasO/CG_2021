@@ -4,6 +4,7 @@
 #include <GL/freeglut.h>
 
 #include "camera.h"
+
 #include "shadingmanager.h"
 #include "geometrymanager.h"
 
@@ -19,6 +20,8 @@ using namespace std;
 
 const int WIDTH = 800, HEIGHT = 600;
 
+const int DELTA_TIME = 10;
+
 ShadingManager* shadingmanager = ShadingManager::get_instance();
 GeometryManager* geometrymanager = GeometryManager::get_instance();
 EnvironmentManager* environmentmanager = EnvironmentManager::get_instance();
@@ -33,6 +36,12 @@ void keyboardHandler(unsigned char key, int a, int b)
 {
     if (key == 27)
         glutExit();
+    if (key == 'r') {
+        EnvironmentManager & _env = *EnvironmentManager::get_instance();
+        Environment::refresh_environment(_env);
+    }
+    else
+        Camera::get_instance()->handle_keyboard(key, a, b);
 }
 
 
@@ -46,6 +55,12 @@ void Render()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     environmentmanager->render();
     glutSwapBuffers();
+}
+
+void Render(int n)
+{
+    Render();
+    glutTimerFunc(DELTA_TIME, Render, 0);
 }
 
 
@@ -62,6 +77,7 @@ void init_glut_glew(int argc, char** argv)
     glutCreateWindow("Hello OpenGL");
     glutDisplayFunc(Render);
     glutKeyboardFunc(keyboardHandler);
+    glutTimerFunc(DELTA_TIME, Render, 0);
 
     glewInit();
 }

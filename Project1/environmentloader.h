@@ -29,7 +29,6 @@ private:
 	glm::vec3 load_position(json_object json);
 
 public:
-
 	EnvironmentLoader(EnvironmentLoader& environment_manager) = delete;
 	EnvironmentLoader(const EnvironmentLoader& environment_manager) = delete;
 

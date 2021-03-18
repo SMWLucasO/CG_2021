@@ -3,8 +3,8 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "lighting.h"
 #include "camera.h"
+#include "lighting.h"
 #include "shadingmanager.h"
 #include "geometry.h"
 #include "shader.h"

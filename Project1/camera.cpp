@@ -39,13 +39,29 @@ void Camera::set_projection(glm::mat4 projection) {
 	this->projection = projection;
 }
 
-void Camera::handle_keyboard(int keycode)
+void Camera::handle_keyboard(unsigned char key, int a, int b)
 {
+
+	switch (key) {
+		case 'w':
+			break;
+		case 's':
+			break;
+		case 'a':
+			break;
+		case 'd':
+			break;
+		case 'i':
+			break;
+		case 'j':
+			break;
+		case 'k':
+			break;
+		case 'l':
+			break;
+	}
+
 	// W/A/S/D for movement
 	// i/j/k/l for look around / change directions
 	// r for reloading json data.
-}
-
-void Camera::handle_mouse()
-{
 }

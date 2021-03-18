@@ -3,7 +3,6 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-
 class Camera
 {
 private:
@@ -33,8 +32,6 @@ public:
 	glm::mat4 get_projection();
 	void set_projection(glm::mat4 projection);
 
-
-	void handle_keyboard(int keycode);
-	void handle_mouse();
+	void handle_keyboard(unsigned char key, int a, int b);
 };
 
