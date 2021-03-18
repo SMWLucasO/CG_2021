@@ -27,6 +27,11 @@ void EnvironmentManager::add(EnvironmentEntity entity)
 	this->entities.push_back(entity);
 }
 
+void EnvironmentManager::clear_entities()
+{
+	entities.clear();
+}
+
 void EnvironmentManager::render()
 {
 	for (EnvironmentEntity& entity : this->entities)

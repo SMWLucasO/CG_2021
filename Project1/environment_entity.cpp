@@ -6,9 +6,7 @@ EnvironmentEntity::EnvironmentEntity(Geometry* geometry, glm::vec3 position, Tra
 	this->position = position;
 	this->transformations = transformations;
 
-	// only init once.
-	if(!geometry->is_inited())
-		this->setup();
+	this->setup();
 }
 
 EnvironmentEntity::EnvironmentEntity(Geometry* geometry, glm::vec3 position) : EnvironmentEntity(geometry, position, Transformations())
@@ -107,7 +105,6 @@ void EnvironmentEntity::setup()
 	glUniform1f(this->geometry->get_uniforms().uniform_material_power, this->geometry->get_material().power);
 	glUniform3fv(this->geometry->get_uniforms().uniform_specular, 1, glm::value_ptr(this->geometry->get_material().specular));
 
-	this->geometry->set_inited(true);
 }
 
 void EnvironmentEntity::render()
@@ -169,15 +166,15 @@ glm::mat4 EnvironmentEntity::get_model()
 	glm::mat4 model;
 
 	// scaling
-	glm::scale(model, this->transformations.scaling);
+	model = glm::scale(model, this->transformations.scaling);
 
 	// rotation
-	glm::rotate(model, glm::radians(this->transformations.rotations.x), glm::vec3(1, 0, 0));
-	glm::rotate(model, glm::radians(this->transformations.rotations.y), glm::vec3(0, 1, 0));
-	glm::rotate(model, glm::radians(this->transformations.rotations.z), glm::vec3(0, 0, 1));
+	model = glm::rotate(model, glm::radians(this->transformations.rotations.x), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(this->transformations.rotations.y), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(this->transformations.rotations.z), glm::vec3(0, 0, 1));
 
 	// translation
-	glm::translate(model, this->transformations.translation);
+	model = glm::translate(model, this->position);
 
 	return model;
 }
@@ -195,14 +192,4 @@ void EnvironmentEntity::set_scaling(glm::vec3 scaling)
 glm::vec3 EnvironmentEntity::get_scaling()
 {
 	return this->transformations.scaling;
-}
-
-void EnvironmentEntity::set_translations(glm::vec3 translations)
-{
-	this->transformations.translation = translations;
-}
-
-glm::vec3 EnvironmentEntity::get_translations()
-{
-	return this->transformations.translation;
 }

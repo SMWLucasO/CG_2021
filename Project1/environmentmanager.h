@@ -22,6 +22,7 @@ public:
 	static EnvironmentManager* get_instance();
 
 	void add(EnvironmentEntity entity);
+	void clear_entities();
 
 	void render();
 

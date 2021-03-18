@@ -43,16 +43,6 @@ void Geometry::set_uniforms(Uniforms uniforms)
 	this->uniforms = uniforms;
 }
 
-void Geometry::set_inited(bool inited)
-{
-	this->inited = inited;
-}
-
-bool Geometry::is_inited()
-{
-	return this->inited;
-}
-
 std::vector<glm::vec3> Geometry::get_normals()
 {
 	return this->vertices;

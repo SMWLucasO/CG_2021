@@ -1,6 +1,7 @@
 #pragma once
 
-#include <map>
+#include <unordered_map>
+#include <string>
 
 #include "shader.h"
 
@@ -9,7 +10,7 @@ class ShadingManager
 private:
 	static ShadingManager* instance;
 
-	std::map<ShaderType, Shader> shaders;
+	std::unordered_map<ShaderType, Shader> shaders;
 
 	ShadingManager();
 	~ShadingManager();
@@ -28,5 +29,6 @@ public:
 
 	Shader& get_shader(ShaderType type);
 	void init(std::string folder_name);
+	ShaderType get_shader_type_from_string(std::string name);
 };	
 

@@ -54,9 +54,6 @@ public:
 	Uniforms get_uniforms();
 	void set_uniforms(Uniforms uniforms);
 
-	void set_inited(bool inited);
-	bool is_inited();
-
 	std::vector<glm::vec3> get_normals();
 	std::vector<glm::vec2> get_uvs();
 	std::vector<glm::vec3> get_vertices();

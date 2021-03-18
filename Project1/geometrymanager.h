@@ -38,6 +38,8 @@ public:
 
 	Geometry* get_geometry(GeometryType geometry_type);
 
+	Geometry* get_geometry_by_name(std::string name);
+
 	void init(std::string folder_name);
 };
 

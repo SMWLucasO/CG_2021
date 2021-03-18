@@ -1,12 +1,11 @@
 #include "environment.h"
 
-void Environment::init(EnvironmentManager& env_manager)
+void Environment::init(EnvironmentManager& env_manager, std::string folder)
 {
-	EnvironmentEntity tmp1 = EnvironmentEntity(
-		GeometryManager::get_instance()->get_geometry(GeometryType::Box),
-		glm::vec3(0, 0, 0)
-	);
+	for (const auto& entry : std::filesystem::directory_iterator(folder))
+	{
+		if (!entry.exists() || !entry.is_regular_file()) continue;
 
-	env_manager.add(tmp1);
-
+		EnvironmentLoader::get_instance()->load_environment(env_manager, entry.path().string());
+	}
 }

@@ -73,6 +73,12 @@
     <Filter Include="Source Files\lighting">
       <UniqueIdentifier>{81e45341-75c1-40dd-aa80-ff5de2fa5a9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\loaders\environment">
+      <UniqueIdentifier>{2185e43b-3b8e-4272-9463-69cd6e59d0df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\loaders\environment">
+      <UniqueIdentifier>{eae1e1f8-0635-4996-9a9b-abb106c0963b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -114,6 +120,9 @@
     <ClCompile Include="lighting.cpp">
       <Filter>Source Files\lighting</Filter>
     </ClCompile>
+    <ClCompile Include="environmentloader.cpp">
+      <Filter>Source Files\loaders\environment</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="loaders\glsl\glsl.h">
@@ -151,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="lighting.h">
       <Filter>Header Files\lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="environmentloader.h">
+      <Filter>Header Files\loaders\environment</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

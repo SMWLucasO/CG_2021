@@ -28,6 +28,13 @@ Geometry* GeometryManager::get_geometry(GeometryType geometry_type)
 	return geom;
 }
 
+Geometry* GeometryManager::get_geometry_by_name(std::string name)
+{
+	if (name == "box") return &geometries[GeometryType::Box]; // add more here & replace this one.
+
+	return &geometries[GeometryType::Box]; // this is actually the default.
+}
+
 void GeometryManager::init(std::string folder_name)
 {
 	// text for loading geoms for now.

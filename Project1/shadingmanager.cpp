@@ -26,6 +26,14 @@ void ShadingManager::init(std::string folder_name) {
 	this->shaders.emplace(ShaderType::Phong, Shader((folder_name + "/phong/")));
 }
 
+ShaderType ShadingManager::get_shader_type_from_string(std::string name)
+{
+	if (name == "phong") return ShaderType::Phong;
+	if (name == "lambert") ShaderType::Lambert;
+	
+	return ShaderType::Basic;
+}
+
 Shader& ShadingManager::get_shader(ShaderType type)
 {
 	return shaders[type];

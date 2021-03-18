@@ -80,6 +80,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="environment.cpp" />
+    <ClCompile Include="environmentloader.cpp" />
     <ClCompile Include="environment_entity.cpp" />
     <ClCompile Include="environmentmanager.cpp" />
     <ClCompile Include="geometry.cpp" />
@@ -145,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="camera.h" />
     <ClInclude Include="environment.h" />
+    <ClInclude Include="environmentloader.h" />
     <ClInclude Include="environment_entity.h" />
     <ClInclude Include="environmentmanager.h" />
     <ClInclude Include="geometry.h" />

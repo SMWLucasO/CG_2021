@@ -90,7 +90,7 @@ int main(int argc, char** argv)
     geometrymanager->init("models");
     
     // initiate the environment
-    Environment::init(*environmentmanager);
+    Environment::init(*environmentmanager, "data/entities/");
     
     // Hide console window
     HWND hWnd = GetConsoleWindow();

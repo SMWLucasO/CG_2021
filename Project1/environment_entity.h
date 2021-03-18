@@ -10,8 +10,7 @@
 #include "shader.h"
 
 struct Transformations {
-	glm::vec3 translation = glm::vec3(0, 0, 0);
-	glm::vec3 scaling = glm::vec3(0, 0, 0);
+	glm::vec3 scaling = glm::vec3(1, 1, 1);
 	glm::vec3 rotations = glm::vec3(0, 0, 0);
 };
 
@@ -55,9 +54,6 @@ public:
 
 	void set_scaling(glm::vec3 scaling);
 	glm::vec3 get_scaling();
-
-	void set_translations(glm::vec3 translations);
-	glm::vec3 get_translations();
 
 };
 
