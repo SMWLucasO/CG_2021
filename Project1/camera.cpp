@@ -41,15 +41,18 @@ void Camera::set_projection(glm::mat4 projection) {
 
 void Camera::handle_keyboard(unsigned char key, int a, int b)
 {
-
 	switch (key) {
 		case 'w':
+			position.z += 1;
 			break;
 		case 's':
+			position.z -= 1;
 			break;
 		case 'a':
+			position.x -= 1;
 			break;
 		case 'd':
+			position.x += 1;
 			break;
 		case 'i':
 			break;
