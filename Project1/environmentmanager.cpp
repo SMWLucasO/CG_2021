@@ -1,8 +1,6 @@
 #include "environmentmanager.h"
 
 EnvironmentManager* EnvironmentManager::instance{ nullptr };
-std::mutex EnvironmentManager::_mutex;
-
 
 EnvironmentManager::EnvironmentManager()
 {
@@ -14,13 +12,23 @@ EnvironmentManager::~EnvironmentManager()
 }
 
 
-EnvironmentManager* EnvironmentManager::get_instance() {
-
-	std::lock_guard<std::mutex> lock(_mutex);
+EnvironmentManager* EnvironmentManager::get_instance()
+{
 
 	if (EnvironmentManager::instance == nullptr) {
 		instance = new EnvironmentManager();
 	}
 
 	return EnvironmentManager::instance;
+}
+
+void EnvironmentManager::add(EnvironmentEntity entity)
+{
+	this->entities.push_back(entity);
+}
+
+void EnvironmentManager::render()
+{
+	for (EnvironmentEntity& entity : this->entities)
+		entity.render();
 }

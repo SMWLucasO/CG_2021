@@ -1,11 +1,18 @@
 #include "environment_entity.h"
-#include "camera.cpp"
 
-EnvironmentEntity::EnvironmentEntity(Geometry& geometry, glm::vec3 position, Transformations transformations)
+EnvironmentEntity::EnvironmentEntity(Geometry* geometry, glm::vec3 position, Transformations transformations)
 {
-	this->geometry = &geometry;
+	this->geometry = geometry;
 	this->position = position;
 	this->transformations = transformations;
+
+	// only init once.
+	if(!geometry->is_inited())
+		this->setup();
+}
+
+EnvironmentEntity::EnvironmentEntity(Geometry* geometry, glm::vec3 position) : EnvironmentEntity(geometry, position, Transformations())
+{
 }
 
 void EnvironmentEntity::setup()
@@ -33,8 +40,8 @@ void EnvironmentEntity::setup()
 	);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	glGenBuffers(1, &this->vbo_vertices);
-	glBindBuffer(GL_ARRAY_BUFFER, this->vbo_vertices);
+	glGenBuffers(1, &this->vbo_uvs);
+	glBindBuffer(GL_ARRAY_BUFFER, this->vbo_uvs);
 	glBufferData(
 		GL_ARRAY_BUFFER,
 		this->geometry->get_uvs().size() * sizeof(glm::vec2),
@@ -45,8 +52,11 @@ void EnvironmentEntity::setup()
 
 	this->normal_id = glGetAttribLocation(program_id, "normal");
 	this->position_id = glGetAttribLocation(program_id, "position");
+	this->uv_id = glGetAttribLocation(program_id, "uv");
 
 	glGenVertexArrays(1, &this->vao);
+
+	glBindVertexArray(this->vao);
 
 	// Bind normals to vao
 	glBindBuffer(GL_ARRAY_BUFFER, this->vbo_normals);
@@ -62,45 +72,72 @@ void EnvironmentEntity::setup()
 
 	// Bind uvs to vao
 	glBindBuffer(GL_ARRAY_BUFFER, this->vbo_uvs);
-	glVertexAttribPointer(this->uv_id, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glVertexAttribPointer(this->uv_id, 2, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(this->uv_id);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glBindVertexArray(0);
 
-	this->uniforms.uniform_mv = glGetUniformLocation(program_id, "mv");
-	this->uniforms.uniform_proj = glGetUniformLocation(program_id, "projection");
-	this->uniforms.uniform_light_pos = glGetUniformLocation(program_id, "light_pos");
-	this->uniforms.uniform_specular = glGetUniformLocation(program_id, "mat_specular");
-	this->uniforms.uniform_material_power = glGetUniformLocation(program_id, "mat_power");
-	this->uniforms.uniform_material_ambient = glGetUniformLocation(program_id, "mat_ambient");
-	this->uniforms.uniform_material_diffuse = glGetUniformLocation(program_id, "mat_diffuse");
+	Uniforms uniforms = Uniforms();
+
+	uniforms.uniform_mv = glGetUniformLocation(program_id, "mv");
+	uniforms.uniform_proj = glGetUniformLocation(program_id, "projection");
+	uniforms.uniform_light_pos = glGetUniformLocation(program_id, "light_pos");
+	uniforms.uniform_specular = glGetUniformLocation(program_id, "mat_specular");
+	uniforms.uniform_material_power = glGetUniformLocation(program_id, "mat_power");
+	uniforms.uniform_material_ambient = glGetUniformLocation(program_id, "mat_ambient");
+	uniforms.uniform_material_diffuse = glGetUniformLocation(program_id, "mat_diffuse");
+
+	this->geometry->set_uniforms(uniforms);
 
 	glm::mat4 mv = Camera::get_instance()->get_view() * this->get_model();
 
 	glUseProgram(program_id);
 
-	// Fill uniform vars
-	glUniformMatrix4fv(this->uniforms.uniform_mv, 1, GL_FALSE, glm::value_ptr(mv));
-	glUniformMatrix4fv(this->uniforms.uniform_proj, 1, GL_FALSE, glm::value_ptr(Camera::get_instance()->get_projection()));
-	
-	//glUniform3fv(this->uniforms.uniform_light_pos, 1, glm::value_ptr(light_position));
-	
-	glUniform3fv(this->uniforms.uniform_material_ambient, 1, glm::value_ptr(this->geometry->get_material().ambient_color));
-    glUniform3fv(this->uniforms.uniform_material_diffuse, 1, glm::value_ptr(this->geometry->get_material().diffuse_color));
-	glUniform1f(this->uniforms.uniform_material_power, this->geometry->get_material().power);
-	glUniform3fv(this->uniforms.uniform_specular, 1, glm::value_ptr(this->geometry->get_material().specular));
+	Lighting* lighting = Lighting::get_instance();
 
+	// Fill uniform vars
+	glUniformMatrix4fv(this->geometry->get_uniforms().uniform_mv, 1, GL_FALSE, glm::value_ptr(mv));
+	glUniformMatrix4fv(this->geometry->get_uniforms().uniform_proj, 1, GL_FALSE, glm::value_ptr(Camera::get_instance()->get_projection()));
+	
+	glUniform3fv(this->geometry->get_uniforms().uniform_light_pos, 1, glm::value_ptr(lighting->get_position()));
+	
+	glUniform3fv(this->geometry->get_uniforms().uniform_material_ambient, 1, glm::value_ptr(lighting->get_ambient_color()));
+    glUniform3fv(this->geometry->get_uniforms().uniform_material_diffuse, 1, glm::value_ptr(lighting->get_diffuse_color()));
+	glUniform1f(this->geometry->get_uniforms().uniform_material_power, this->geometry->get_material().power);
+	glUniform3fv(this->geometry->get_uniforms().uniform_specular, 1, glm::value_ptr(this->geometry->get_material().specular));
+
+	this->geometry->set_inited(true);
 }
 
 void EnvironmentEntity::render()
 {
-	// do something here for rendering
+	GLuint program_id = 
+		ShadingManager::get_instance()->get_shader(this->shader_type).get_id();
+
+	glUseProgram(program_id);
+	//glBindTexture(GL_TEXTURE_2D, this->geometry->get_texture().texture_id);
+
+	glm::mat4 mv = Camera::get_instance()->get_view() * this->get_model();
+
+	Lighting* lighting = Lighting::get_instance();
+
+	// send uniforms and stuff.
+	glUniformMatrix4fv(this->geometry->get_uniforms().uniform_mv, 1, GL_FALSE, glm::value_ptr(mv));
+	glUniformMatrix4fv(this->geometry->get_uniforms().uniform_proj, 1, GL_FALSE, glm::value_ptr(Camera::get_instance()->get_projection()));
+	
+	glUniform3fv(this->geometry->get_uniforms().uniform_material_ambient, 1, glm::value_ptr(lighting->get_ambient_color()));
+	glUniform3fv(this->geometry->get_uniforms().uniform_material_diffuse, 1, glm::value_ptr(lighting->get_diffuse_color()));
+	glUniform3fv(this->geometry->get_uniforms().uniform_specular, 1, glm::value_ptr(this->geometry->get_material().specular));
+	glUniform1f(this->geometry->get_uniforms().uniform_material_power, this->geometry->get_material().power);
+
+	// send VAO
+	glBindVertexArray(this->vao);
+	glDrawArrays(GL_TRIANGLES, 0, this->geometry->get_vertices().size());
+	glBindVertexArray(0);
+
 }
 
-EnvironmentEntity::EnvironmentEntity(Geometry& geometry, glm::vec3 position) : EnvironmentEntity(geometry, position)
-{
-}
 
 glm::vec3 EnvironmentEntity::get_position()
 {

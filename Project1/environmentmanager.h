@@ -1,6 +1,5 @@
 #pragma once
 
-#include <mutex>
 #include <vector>
 
 #include "environment_entity.h"
@@ -10,7 +9,6 @@ private:
 	std::vector<EnvironmentEntity> entities;
 
 	static EnvironmentManager* instance;
-	static std::mutex _mutex;
 
 	EnvironmentManager();
 	~EnvironmentManager();
@@ -22,5 +20,10 @@ public:
 	void operator =(const EnvironmentManager&) = delete;
 
 	static EnvironmentManager* get_instance();
+
+	void add(EnvironmentEntity entity);
+
+	void render();
+
 
 };

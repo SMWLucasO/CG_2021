@@ -1,7 +1,5 @@
 #pragma once
 
-#include <mutex>
-
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -9,16 +7,14 @@
 class Camera
 {
 private:
-	glm::vec3 position;
+	glm::vec3 position = glm::vec3(-3, 5, 0);
 
-	float yaw;
-	float pitch;
+	float yaw = 0;
+	float pitch = 0;
 
-	// it's here for now, perhaps not the right place. Idk.
 	glm::mat4 projection;
 
 	static Camera* instance;
-	static std::mutex _mutex;
 
 	Camera();
 	~Camera();

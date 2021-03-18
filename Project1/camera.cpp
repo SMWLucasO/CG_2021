@@ -1,7 +1,6 @@
 #include "camera.h"
 
 Camera* Camera::instance{ nullptr };
-std::mutex Camera::_mutex;
 
 Camera::Camera()
 {
@@ -12,9 +11,8 @@ Camera::~Camera()
 	delete instance;
 }
 
-Camera* Camera::get_instance() {
-
-	std::lock_guard<std::mutex> lock(_mutex);
+Camera* Camera::get_instance()
+{
 
 	if (Camera::instance == nullptr) {
 		Camera::instance = new Camera();
@@ -25,7 +23,11 @@ Camera* Camera::get_instance() {
 
 glm::mat4 Camera::get_view()
 {
-	return glm::mat4();
+	return glm::lookAt(
+		this->position,
+		glm::vec3(0, 0, 0),
+		glm::vec3(0, 1, 0)
+	);
 }
 
 glm::mat4 Camera::get_projection()

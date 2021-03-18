@@ -3,6 +3,8 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "lighting.h"
+#include "camera.h"
 #include "shadingmanager.h"
 #include "geometry.h"
 #include "shader.h"
@@ -11,18 +13,6 @@ struct Transformations {
 	glm::vec3 translation = glm::vec3(0, 0, 0);
 	glm::vec3 scaling = glm::vec3(0, 0, 0);
 	glm::vec3 rotations = glm::vec3(0, 0, 0);
-};
-
-// Maybe these uniforms belong to the shader? Doubtful, but possible.
-struct Uniforms {
-	GLuint uniform_mv;
-	GLuint uniform_p;
-	GLuint uniform_proj;
-	GLuint uniform_light_pos;
-	GLuint uniform_specular;
-	GLuint uniform_material_power;
-	GLuint uniform_material_ambient;
-	GLuint uniform_material_diffuse;
 };
 
 class EnvironmentEntity
@@ -37,8 +27,6 @@ private:
 	// OpenGL things
 	GLuint vao;
 
-	Uniforms uniforms;
-
 	GLuint position_id;
 	GLuint normal_id;
 	GLuint uv_id;
@@ -48,8 +36,8 @@ private:
 	GLuint vbo_uvs;
 public:
 
-	EnvironmentEntity(Geometry& geometry, glm::vec3 position);
-	EnvironmentEntity(Geometry& geometry, glm::vec3 position, Transformations transformations);
+	EnvironmentEntity(Geometry* geometry, glm::vec3 position);
+	EnvironmentEntity(Geometry* geometry, glm::vec3 position, Transformations transformations);
 
 	void setup();
 	void render();

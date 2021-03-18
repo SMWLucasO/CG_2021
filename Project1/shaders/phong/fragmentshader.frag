@@ -12,6 +12,9 @@ in VS_OUT
 uniform vec3 mat_ambient;
 uniform vec3 mat_diffuse;
 
+uniform vec3 mat_specular;
+uniform float mat_power;
+
 void main()
 {
     // Normalize the incoming N, L and V vectors

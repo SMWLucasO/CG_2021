@@ -1,6 +1,18 @@
 #include "geometry.h"
 
 
+Geometry::Geometry(std::vector<glm::vec3> vertices, std::vector<glm::vec2> uvs, std::vector<glm::vec3> normals)
+{
+	this->vertices = vertices;
+	this->normals = normals;
+	this->uvs = uvs;
+}
+
+Geometry::Geometry()
+{
+	// in this  case, do nothing.
+}
+
 Material Geometry::get_material()
 {
 	return this->material;
@@ -19,6 +31,26 @@ Texture Geometry::get_texture()
 void Geometry::set_texture(Texture texture)
 {
 	this->texture = texture;
+}
+
+Uniforms Geometry::get_uniforms()
+{
+	return this->uniforms;
+}
+
+void Geometry::set_uniforms(Uniforms uniforms)
+{
+	this->uniforms = uniforms;
+}
+
+void Geometry::set_inited(bool inited)
+{
+	this->inited = inited;
+}
+
+bool Geometry::is_inited()
+{
+	return this->inited;
 }
 
 std::vector<glm::vec3> Geometry::get_normals()

@@ -1,7 +1,6 @@
 #include "shadingmanager.h"
 
 ShadingManager* ShadingManager::instance { nullptr };
-std::mutex ShadingManager::_mutex;
 
 ShadingManager::ShadingManager()
 {
@@ -12,10 +11,8 @@ ShadingManager::~ShadingManager()
 	delete instance;
 }
 
-ShadingManager* ShadingManager::get_instance() {
-
-	std::lock_guard<std::mutex> lock(_mutex);
-
+ShadingManager* ShadingManager::get_instance()
+{
 	if (ShadingManager::instance == nullptr) {
 		instance = new ShadingManager();
 	}

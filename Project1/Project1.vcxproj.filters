@@ -67,6 +67,12 @@
     <Filter Include="Source Files\shading">
       <UniqueIdentifier>{aa013fcc-ab71-4bac-9a1d-9dee58f07d18}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\lighting">
+      <UniqueIdentifier>{c6d336fe-b606-405c-b89e-9c6664fd1f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lighting">
+      <UniqueIdentifier>{81e45341-75c1-40dd-aa80-ff5de2fa5a9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -84,9 +90,6 @@
     <ClCompile Include="camera.cpp">
       <Filter>Source Files\camera</Filter>
     </ClCompile>
-    <ClCompile Include="environment.cpp">
-      <Filter>Source Files\environment</Filter>
-    </ClCompile>
     <ClCompile Include="geometry.cpp">
       <Filter>Source Files\geometry</Filter>
     </ClCompile>
@@ -98,6 +101,18 @@
     </ClCompile>
     <ClCompile Include="shader.cpp">
       <Filter>Source Files\shading</Filter>
+    </ClCompile>
+    <ClCompile Include="environmentmanager.cpp">
+      <Filter>Source Files\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="environment_entity.cpp">
+      <Filter>Source Files\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="environment.cpp">
+      <Filter>Source Files\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="lighting.cpp">
+      <Filter>Source Files\lighting</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,9 +128,6 @@
     <ClInclude Include="camera.h">
       <Filter>Header Files\camera</Filter>
     </ClInclude>
-    <ClInclude Include="environment.h">
-      <Filter>Header Files\environment</Filter>
-    </ClInclude>
     <ClInclude Include="geometry.h">
       <Filter>Header Files\geometry</Filter>
     </ClInclude>
@@ -127,6 +139,18 @@
     </ClInclude>
     <ClInclude Include="shader.h">
       <Filter>Header Files\shading</Filter>
+    </ClInclude>
+    <ClInclude Include="environment_entity.h">
+      <Filter>Header Files\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="environmentmanager.h">
+      <Filter>Header Files\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="environment.h">
+      <Filter>Header Files\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="lighting.h">
+      <Filter>Header Files\lighting</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <map>
-#include <mutex>
 
 #include "shader.h"
 
@@ -9,7 +8,6 @@ class ShadingManager
 {
 private:
 	static ShadingManager* instance;
-	static std::mutex _mutex;
 
 	std::map<ShaderType, Shader> shaders;
 

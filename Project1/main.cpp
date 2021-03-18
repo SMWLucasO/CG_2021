@@ -42,11 +42,9 @@ void keyboardHandler(unsigned char key, int a, int b)
 
 void Render()
 {
-    // Define background
-    static const GLfloat blue[] = { 0.0, 0.0, 0.4, 1.0 };
-    glClearBufferfv(GL_COLOR, 0, blue);
-
-    // Swap buffers
+    glClearColor(0.0, 0.0, 0.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    environmentmanager->render();
     glutSwapBuffers();
 }
 
@@ -82,19 +80,22 @@ int main(int argc, char** argv)
         )
     );
 
+    // set the position of our light.
+    Lighting::get_instance()->set_position(glm::vec3(3, 10, 2));
+
     // initiate the shaders
     shadingmanager->init("shaders");
-
+    
     // initiate the geometries
-    geometrymanager->init("<FOLDER_NAME_HERE_TODO>");
-
+    geometrymanager->init("models");
+    
     // initiate the environment
     Environment::init(*environmentmanager);
-
+    
     // Hide console window
     HWND hWnd = GetConsoleWindow();
-    ShowWindow(hWnd, SW_HIDE);
-
+    ShowWindow(hWnd, SW_SHOW);
+    
     // Main loop
     glutMainLoop();
 
