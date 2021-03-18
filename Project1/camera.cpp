@@ -25,8 +25,8 @@ glm::mat4 Camera::get_view()
 {
 	return glm::lookAt(
 		this->position,
-		glm::vec3(0, 0, 0),
-		glm::vec3(0, 1, 0)
+		this->position + this->target,
+		this->up
 	);
 }
 
@@ -41,18 +41,20 @@ void Camera::set_projection(glm::mat4 projection) {
 
 void Camera::handle_keyboard(unsigned char key, int a, int b)
 {
+	// inspired by the following tutorial (the maths, mostly.)
+	// http://tuttlem.github.io/2013/12/30/a-camera-implementation-in-c.html
 	switch (key) {
 		case 'w':
-			position.z += 1;
+			position += this->target;
 			break;
 		case 's':
-			position.z -= 1;
+			position -= this->target;
 			break;
 		case 'a':
-			position.x -= 1;
+			
 			break;
 		case 'd':
-			position.x += 1;
+			
 			break;
 		case 'i':
 			break;

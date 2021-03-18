@@ -7,6 +7,8 @@ class Camera
 {
 private:
 	glm::vec3 position = glm::vec3(-3, 5, 0);
+	glm::vec3 target = glm::vec3(0, 0, -1);
+	glm::vec3 up = glm::vec3(0, 1, 0);
 
 	float yaw = 0;
 	float pitch = 0;

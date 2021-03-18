@@ -108,6 +108,7 @@ int main(int argc, char** argv)
     // initiate the environment
     Environment::init(*environmentmanager, "data/entities/");
     
+    // forgive me teacher, for I have sinned.
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
 
