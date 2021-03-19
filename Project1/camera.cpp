@@ -66,6 +66,12 @@ void Camera::handle_keyboard(unsigned char key, int a, int b)
 			break;
 		case 'l':
 			break;
+		case 'q':
+			position.y -= 1;
+			break;
+		case 'e':
+			position.y += 1;
+			break;
 	}
 
 	// W/A/S/D for movement
