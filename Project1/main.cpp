@@ -32,7 +32,7 @@ Camera* camera = Camera::get_instance();
 // Keyboard handling
 //--------------------------------------------------------------------------------
 
-void keyboardHandler(unsigned char key, int a, int b)
+void keyboard_handler(unsigned char key, int a, int b)
 {
     if (key == 27)
         glutExit();
@@ -41,8 +41,26 @@ void keyboardHandler(unsigned char key, int a, int b)
         GeometryManager& _geom = *geometrymanager;
         Environment::refresh_environment(_env, _geom);
     }
+    else if (key == 'b') { // b = deBug
+        std::cout << "(" << camera->get_position().x << ", " << camera->get_position().y << ", " << camera->get_position().z << ")" << std::endl;
+        std::cout << "(" << camera->get_target().x << ", " << camera->get_target().y << ", " << camera->get_target().z << ")" << std::endl;
+        std::cout << camera->get_yaw() << std::endl;
+        std::cout << camera->get_pitch() << std::endl;
+    }
     else
         Camera::get_instance()->handle_keyboard(key, a, b);
+}
+
+
+void enable_cam_handler(int x, int y, int z, int d) {
+    // enable camera and then remove handler.
+    camera->set_enabled(true);
+    glutMouseFunc(0);
+}
+
+void mouse_handler(int xpos, int ypos)
+{
+    camera->handle_mouse(xpos, ypos, WIDTH / 2, HEIGHT / 2);
 }
 
 
@@ -50,7 +68,7 @@ void keyboardHandler(unsigned char key, int a, int b)
 // Rendering
 //--------------------------------------------------------------------------------
 
-void Render()
+void render()
 {
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -58,12 +76,11 @@ void Render()
     glutSwapBuffers();
 }
 
-void Render(int n)
+void render(int n)
 {
-    Render();
-    glutTimerFunc(DELTA_TIME, Render, 0);
+    render();
+    glutTimerFunc(DELTA_TIME, render, 0);
 }
-
 
 //------------------------------------------------------------
 // void InitGlutGlew(int argc, char **argv)
@@ -75,10 +92,13 @@ void init_glut_glew(int argc, char** argv)
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
     glutInitWindowSize(WIDTH, HEIGHT);
-    glutCreateWindow("Hello OpenGL");
-    glutDisplayFunc(Render);
-    glutKeyboardFunc(keyboardHandler);
-    glutTimerFunc(DELTA_TIME, Render, 0);
+    glutCreateWindow("Lucas' neighbourhood");
+    glutDisplayFunc(render);
+    glutSetCursor(GLUT_CURSOR_NONE); // hide cursor
+    glutKeyboardFunc(keyboard_handler);
+    glutPassiveMotionFunc(mouse_handler);
+    glutMouseFunc(enable_cam_handler);
+    glutTimerFunc(DELTA_TIME, render, 0);
 
     glewInit();
 }
