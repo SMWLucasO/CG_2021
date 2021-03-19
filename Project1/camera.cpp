@@ -1,3 +1,7 @@
+// inspired by the following tutorials (the maths, mostly.)
+// https://learnopengl.com/Getting-started/Camera
+// http://tuttlem.github.io/2013/12/30/a-camera-implementation-in-c.html
+
 #include "camera.h"
 
 Camera* Camera::instance{ nullptr };
@@ -41,8 +45,6 @@ void Camera::set_projection(glm::mat4 projection) {
 
 void Camera::handle_keyboard(unsigned char key, int a, int b)
 {
-	// inspired by the following tutorial (the maths, mostly.)
-	// http://tuttlem.github.io/2013/12/30/a-camera-implementation-in-c.html
 	switch (key) {
 		case 'w':
 			position += this->target;
@@ -51,10 +53,10 @@ void Camera::handle_keyboard(unsigned char key, int a, int b)
 			position -= this->target;
 			break;
 		case 'a':
-			
+			position -= glm::normalize(glm::cross(this->target, this->up));
 			break;
 		case 'd':
-			
+			position += glm::normalize(glm::cross(this->target, this->up));
 			break;
 		case 'i':
 			break;
