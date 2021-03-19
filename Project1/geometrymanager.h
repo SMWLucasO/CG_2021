@@ -3,24 +3,13 @@
 #include "geometry.h"
 #include "loaders/object/objloader.h"
 
-
 #include <unordered_map>
 #include <string>
-
-enum class GeometryType {
-	House,
-	Bush,
-	Floor,
-	Road,
-	Tree,
-	Lamp,
-	Box,
-};
 
 class GeometryManager
 {
 private:
-	std::unordered_map<GeometryType, Geometry> geometries;
+	std::unordered_map<std::string, Geometry> geometries;
 
 	static GeometryManager* instance;
 
@@ -36,10 +25,9 @@ public:
 	
 	static GeometryManager* get_instance();
 
-	Geometry* get_geometry(GeometryType geometry_type);
+	Geometry* get_geometry(std::string name);
 
-	Geometry* get_geometry_by_name(std::string name);
-
-	void init(std::string folder_name);
+	void add_geometry(std::string name, Geometry geometry);
+	void clear_geoms();
 };
 

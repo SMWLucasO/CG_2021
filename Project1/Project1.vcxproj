@@ -135,7 +135,9 @@
     <ClCompile Include="environment_entity.cpp" />
     <ClCompile Include="environmentmanager.cpp" />
     <ClCompile Include="geometry.cpp" />
+    <ClCompile Include="geometryloader.cpp" />
     <ClCompile Include="geometrymanager.cpp" />
+    <ClCompile Include="jsonloader.cpp" />
     <ClCompile Include="lighting.cpp" />
     <ClCompile Include="loaders\glsl\glsl.cpp" />
     <ClCompile Include="loaders\object\objloader.cpp" />
@@ -151,7 +153,9 @@
     <ClInclude Include="environment_entity.h" />
     <ClInclude Include="environmentmanager.h" />
     <ClInclude Include="geometry.h" />
+    <ClInclude Include="geometryloader.h" />
     <ClInclude Include="geometrymanager.h" />
+    <ClInclude Include="jsonloader.h" />
     <ClInclude Include="lighting.h" />
     <ClInclude Include="loaders\glsl\glsl.h" />
     <ClInclude Include="loaders\object\objloader.h" />

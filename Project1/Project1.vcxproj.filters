@@ -79,6 +79,18 @@
     <Filter Include="Source Files\loaders\environment">
       <UniqueIdentifier>{eae1e1f8-0635-4996-9a9b-abb106c0963b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\loaders\json">
+      <UniqueIdentifier>{a494596d-2b96-4095-bc49-de0d10357cf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\loaders\geometry">
+      <UniqueIdentifier>{91dbe8da-39cd-41b5-8efc-aa4691b4d67e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\loaders\geometry">
+      <UniqueIdentifier>{a6eaf538-2b84-46fc-baff-4cebde46e675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\loaders\json">
+      <UniqueIdentifier>{919d0408-8975-4a8c-87da-dd5db9886b32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -123,6 +135,12 @@
     <ClCompile Include="environmentloader.cpp">
       <Filter>Source Files\loaders\environment</Filter>
     </ClCompile>
+    <ClCompile Include="jsonloader.cpp">
+      <Filter>Source Files\loaders\json</Filter>
+    </ClCompile>
+    <ClCompile Include="geometryloader.cpp">
+      <Filter>Source Files\loaders\geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="loaders\glsl\glsl.h">
@@ -163,6 +181,12 @@
     </ClInclude>
     <ClInclude Include="environmentloader.h">
       <Filter>Header Files\loaders\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="jsonloader.h">
+      <Filter>Header Files\loaders\json</Filter>
+    </ClInclude>
+    <ClInclude Include="geometryloader.h">
+      <Filter>Header Files\loaders\geometry</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -21,28 +21,21 @@ GeometryManager* GeometryManager::get_instance()
 	return GeometryManager::instance;
 }
 
-Geometry* GeometryManager::get_geometry(GeometryType geometry_type)
+Geometry* GeometryManager::get_geometry(std::string name)
 {
 	// since the address doesn't change in here, we can return a pointer to the geom's address.
-	Geometry* geom = &this->geometries[geometry_type];
+	Geometry* geom = &this->geometries[name];
 	return geom;
 }
 
-Geometry* GeometryManager::get_geometry_by_name(std::string name)
+void GeometryManager::add_geometry(std::string name, Geometry geometry)
 {
-	if (name == "box") return &geometries[GeometryType::Box]; // add more here & replace this one.
-
-	return &geometries[GeometryType::Box]; // this is actually the default.
+	this->geometries.emplace(name, geometry);
 }
 
-void GeometryManager::init(std::string folder_name)
+void GeometryManager::clear_geoms()
 {
-	// text for loading geoms for now.
-	std::vector<glm::vec3> vertices;
-	std::vector<glm::vec2> uvs;
-	std::vector<glm::vec3> normals;
-	bool res = false;
-
-	res = loadOBJ((folder_name + "/box.obj").c_str(), vertices, uvs, normals);
-	this->geometries.emplace(GeometryType::Box, Geometry(vertices, uvs, normals));
+	this->geometries.clear();
 }
+
+

@@ -1,9 +1,12 @@
 #include "environment.h"
 
-void Environment::init(EnvironmentManager& env_manager, std::string _folder)
+void Environment::init(EnvironmentManager& env_manager, GeometryManager& geom_manager, std::string _data_folder)
 {
-	folder = _folder;
-	for (const auto& entry : std::filesystem::directory_iterator(folder))
+	folder = _data_folder;
+	
+	GeometryLoader::get_instance()->load_geometry(geom_manager, _data_folder + "Geometries.json");
+	
+	for (const auto& entry : std::filesystem::directory_iterator((folder + "entities/")))
 	{
 		if (!entry.exists() || !entry.is_regular_file()) continue;
 
@@ -11,8 +14,9 @@ void Environment::init(EnvironmentManager& env_manager, std::string _folder)
 	}
 }
 
-void Environment::refresh_environment(EnvironmentManager& env_manager)
+void Environment::refresh_environment(EnvironmentManager& env_manager, GeometryManager& geom_manager)
 {
 	env_manager.clear_entities();
-	init(env_manager, folder);
+	geom_manager.clear_geoms();
+	init(env_manager, geom_manager, folder);
 }

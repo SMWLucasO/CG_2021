@@ -100,10 +100,10 @@ void EnvironmentEntity::setup()
 	
 	glUniform3fv(this->geometry->get_uniforms().uniform_light_pos, 1, glm::value_ptr(lighting->get_position()));
 	
-	glUniform3fv(this->geometry->get_uniforms().uniform_material_ambient, 1, glm::value_ptr(lighting->get_ambient_color()));
-    glUniform3fv(this->geometry->get_uniforms().uniform_material_diffuse, 1, glm::value_ptr(lighting->get_diffuse_color()));
-	glUniform1f(this->geometry->get_uniforms().uniform_material_power, this->geometry->get_material().power);
-	glUniform3fv(this->geometry->get_uniforms().uniform_specular, 1, glm::value_ptr(this->geometry->get_material().specular));
+	glUniform3fv(this->geometry->get_uniforms().uniform_material_ambient, 1, glm::value_ptr(this->material.ambient_color));
+    glUniform3fv(this->geometry->get_uniforms().uniform_material_diffuse, 1, glm::value_ptr(this->material.diffuse_color));
+	glUniform1f(this->geometry->get_uniforms().uniform_material_power, this->material.power);
+	glUniform3fv(this->geometry->get_uniforms().uniform_specular, 1, glm::value_ptr(this->material.specular));
 
 }
 
@@ -123,10 +123,10 @@ void EnvironmentEntity::render()
 	glUniformMatrix4fv(this->geometry->get_uniforms().uniform_mv, 1, GL_FALSE, glm::value_ptr(mv));
 	glUniformMatrix4fv(this->geometry->get_uniforms().uniform_proj, 1, GL_FALSE, glm::value_ptr(Camera::get_instance()->get_projection()));
 	
-	glUniform3fv(this->geometry->get_uniforms().uniform_material_ambient, 1, glm::value_ptr(lighting->get_ambient_color()));
-	glUniform3fv(this->geometry->get_uniforms().uniform_material_diffuse, 1, glm::value_ptr(lighting->get_diffuse_color()));
-	glUniform3fv(this->geometry->get_uniforms().uniform_specular, 1, glm::value_ptr(this->geometry->get_material().specular));
-	glUniform1f(this->geometry->get_uniforms().uniform_material_power, this->geometry->get_material().power);
+	glUniform3fv(this->geometry->get_uniforms().uniform_material_ambient, 1, glm::value_ptr(this->material.ambient_color));
+	glUniform3fv(this->geometry->get_uniforms().uniform_material_diffuse, 1, glm::value_ptr(this->material.diffuse_color));
+	glUniform3fv(this->geometry->get_uniforms().uniform_specular, 1, glm::value_ptr(this->material.specular));
+	glUniform1f(this->geometry->get_uniforms().uniform_material_power, this->material.power);
 
 	// send VAO
 	glBindVertexArray(this->vao);
@@ -154,6 +154,16 @@ Transformations EnvironmentEntity::get_transformations()
 void EnvironmentEntity::set_transformations(Transformations transformations)
 {
 	this->transformations = transformations;
+}
+
+Material EnvironmentEntity::get_material()
+{
+	return this->material;
+}
+
+void EnvironmentEntity::set_material(Material material)
+{
+	this->material = material;
 }
 
 void EnvironmentEntity::set_rotations(glm::vec3 rotations)

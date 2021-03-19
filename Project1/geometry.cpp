@@ -13,16 +13,6 @@ Geometry::Geometry()
 	// in this  case, do nothing.
 }
 
-Material Geometry::get_material()
-{
-	return this->material;
-}
-
-void Geometry::set_material(Material material)
-{
-	this->material = material;
-}
-
 Texture Geometry::get_texture()
 {
 	return this->texture;

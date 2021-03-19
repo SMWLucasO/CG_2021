@@ -14,11 +14,20 @@ struct Transformations {
 	glm::vec3 rotations = glm::vec3(0, 0, 0);
 };
 
+struct Material {
+	glm::vec3 ambient_color = glm::vec3(0.2, 0.2, 0.1);
+	glm::vec3 diffuse_color = glm::vec3(0.5, 0.5, 1.0);
+	glm::vec3 specular = glm::vec3(0.7, 0.7, 0.7);
+	float power = 1024;
+};
+
 class EnvironmentEntity
 {
 private:
 	Transformations transformations;
 	Geometry* geometry;
+
+	Material material = Material();
 
 	glm::vec3 position = glm::vec3(0,0,0);
 	ShaderType shader_type = ShaderType::Phong;
@@ -48,6 +57,9 @@ public:
 
 	Transformations get_transformations();
 	void set_transformations(Transformations transformations);
+
+	Material get_material();
+	void set_material(Material material);
 
 	void set_rotations(glm::vec3 rotations);
 	glm::vec3 get_rotations();

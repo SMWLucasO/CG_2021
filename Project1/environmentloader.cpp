@@ -11,10 +11,16 @@ EnvironmentLoader::~EnvironmentLoader()
 	delete instance;
 }
 
+/**
+* Load all objects into the environment.
+*
+* @param env_manager - EnvironmentManager& containing our environment
+* @param path - the path to the json file (incl. the filename + extension).
+*/
 void EnvironmentLoader::load_environment(EnvironmentManager& env_manager, std::string path)
 {
 	
-		rapidjson::Document document = this->load_json_from_file(path); // todo loop through each file in folder.
+		rapidjson::Document document = JsonLoader::get_instance()->load_json_from_file(path); // todo loop through each file in folder.
 
 		assert(document.IsObj());
 		assert(document.HasMember("geomtype"));
@@ -25,13 +31,12 @@ void EnvironmentLoader::load_environment(EnvironmentManager& env_manager, std::s
 		std::string geom_type = document["geomtype"].GetString();
 		std::string shader_name = document["shader"].GetString();
 
-		Geometry* geom = GeometryManager::get_instance()->get_geometry_by_name(geom_type);
+		Geometry* geom = GeometryManager::get_instance()->get_geometry(geom_type);
 		ShaderType shader_type = ShadingManager::get_instance()->get_shader_type_from_string(shader_name);
 
 		for (rapidjson::Value::ConstValueIterator it = document["data_points"].Begin(); it != document["data_points"].End(); ++it)
 		{
 			// pos, geom, transf.
-
 			json_object object = it->GetObj();
 
 			assert(object.HasMember("position"));
@@ -41,11 +46,24 @@ void EnvironmentLoader::load_environment(EnvironmentManager& env_manager, std::s
 			assert(object.HasMember("sizes"));
 			assert(object["sizes"].IsObj());
 
-			env_manager.add(EnvironmentEntity(geom, this->load_position(object["position"].GetObj()), this->load_transformations(object)));
+			EnvironmentEntity entity = EnvironmentEntity(geom, this->get_position(object["position"].GetObj()), this->get_transformations(object));
+
+			// material changes are optional
+			if (object.HasMember("material_data")) {
+				entity.set_material(this->get_material(entity.get_material(), object["material_data"].GetObj()));
+			}
+
+			env_manager.add(entity);
 		}	
 }
 
-Transformations EnvironmentLoader::load_transformations(json_object json)
+/**
+* Get all transformation data from the json object.
+*
+* @param json json object containing the previously mentioned data.
+* @return Transformations containing the optionally defined data.
+*/
+Transformations EnvironmentLoader::get_transformations(json_object json)
 {
 	Transformations transforms;
 
@@ -71,7 +89,62 @@ Transformations EnvironmentLoader::load_transformations(json_object json)
 	return transforms;
 }
 
-glm::vec3 EnvironmentLoader::load_position(json_object json)
+/**
+* Get all material data from the json object.
+*
+* @param json json object containing the previously mentioned data.
+* @return Material containing the optionally defined data.
+*/
+Material EnvironmentLoader::get_material(Material initial_material, json_object json)
+{
+	Material material;
+
+	// within the material data, each data point is optional.
+	// possible points: power, specular, diffuse_color and ambient_color.
+
+	if (json.HasMember("power")) {
+		assert(json["power"].IsNumber());
+
+		material.power = json["power"].GetFloat();
+	}
+
+	if (json.HasMember("specular")) {
+		assert(json["specular"].IsObj());
+
+		assert(json["specular"].HasMember("x"));
+		assert(json["specular"].HasMember("y"));
+		assert(json["specular"].HasMember("z"));
+
+		assert(json["specular"]["x"].IsNumber());
+		assert(json["specular"]["y"].IsNumber());
+		assert(json["specular"]["z"].IsNumber());
+
+		material.specular = glm::vec3(json["specular"]["x"].GetFloat(), json["specular"]["y"].GetFloat(), json["specular"]["z"].GetFloat());
+	}
+
+	if (json.HasMember("diffuse_color")) {
+		assert(json["diffuse_color"].IsObj());
+
+		material.diffuse_color = this->get_color(json["diffuse_color"].GetObj());
+	}
+
+	if (json.HasMember("ambient_color")) {
+		assert(json["ambient_color"].IsObj());
+
+		material.ambient_color = this->get_color(json["ambient_color"].GetObj());
+	}
+
+	return material;
+
+}
+
+/**
+* Get the JSON object position (an {x: 1, y: 1, z: 1} obj)
+*
+* @param json json object containing the previously mentioned data.
+* @return glm::vec3 position
+*/
+glm::vec3 EnvironmentLoader::get_position(json_object json)
 {
 	assert(json.HasMember("x"));
 	assert(json.HasMember("y"));
@@ -85,23 +158,30 @@ glm::vec3 EnvironmentLoader::load_position(json_object json)
 	return glm::vec3(json["x"].GetFloat(), json["y"].GetFloat(), json["z"].GetFloat());
 }
 
-rapidjson::Document EnvironmentLoader::load_json_from_file(std::string path)
+/**
+* Get the color defined in JSON (an {r: 1, g: 1, b: 1} obj)
+*
+* @param json json object containing the previously mentioned data.
+* @return glm::vec3 rgb-color
+*/
+glm::vec3 EnvironmentLoader::get_color(json_object json)
 {
-	std::ifstream file(path);
+	assert(json.HasMember("r"));
+	assert(json.HasMember("g"));
+	assert(json.HasMember("b"));
 
-	std::stringstream output;
+	assert(json["r"].IsNumber());
+	assert(json["g"].IsNumber());
+	assert(json["b"].IsNumber());
 
-	std::string input;
-	while (file >> input) {
-		output << input;
-	}
-
-	rapidjson::Document document;
-	document.Parse(output.str().c_str());
-
-	return document;
+	return glm::vec3(json["r"].GetFloat(), json["g"].GetFloat(), json["b"].GetFloat());
 }
 
+/**
+* Get the instance of the singleton environment loader.
+*
+* @return A pointer to the EnvironmentLoader singleton
+*/
 EnvironmentLoader* EnvironmentLoader::get_instance()
 {
 

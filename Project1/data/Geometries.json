@@ -1,0 +1,5 @@
+{
+	"geometries": [
+		{"name": "Box", "obj_file_location": "models/sphere.obj"}
+	]
+}

@@ -37,8 +37,9 @@ void keyboardHandler(unsigned char key, int a, int b)
     if (key == 27)
         glutExit();
     if (key == 'r') {
-        EnvironmentManager & _env = *EnvironmentManager::get_instance();
-        Environment::refresh_environment(_env);
+        EnvironmentManager& _env = *environmentmanager;
+        GeometryManager& _geom = *geometrymanager;
+        Environment::refresh_environment(_env, _geom);
     }
     else
         Camera::get_instance()->handle_keyboard(key, a, b);
@@ -102,11 +103,8 @@ int main(int argc, char** argv)
     // initiate the shaders
     shadingmanager->init("shaders");
     
-    // initiate the geometries
-    geometrymanager->init("models");
-    
     // initiate the environment
-    Environment::init(*environmentmanager, "data/entities/");
+    Environment::init(*environmentmanager, *geometrymanager, "data/");
     
     // forgive me teacher, for I have sinned.
     glEnable(GL_DEPTH_TEST);
