@@ -46,11 +46,12 @@ void EnvironmentLoader::load_environment(EnvironmentManager& env_manager, std::s
 			assert(object.HasMember("sizes"));
 			assert(object["sizes"].IsObj());
 
-			EnvironmentEntity entity = EnvironmentEntity(geom, this->get_position(object["position"].GetObj()), this->get_transformations(object));
+			// we have to use pointers, we are making use of a pure-virtual Entity abstract class.
+			EnvironmentEntity* entity = new EnvironmentEntity(geom, this->get_position(object["position"].GetObj()), this->get_transformations(object));
 
 			// material changes are optional
 			if (object.HasMember("material_data")) {
-				entity.set_material(this->get_material(entity.get_material(), object["material_data"].GetObj()));
+				entity->set_material(this->get_material(entity->get_material(), object["material_data"].GetObj()));
 			}
 
 			env_manager.add(entity);

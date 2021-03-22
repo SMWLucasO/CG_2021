@@ -2,11 +2,12 @@
 
 #include <vector>
 
+#include "entity.h"
 #include "environment_entity.h"
 
 class EnvironmentManager {
 private:
-	std::vector<EnvironmentEntity> entities;
+	std::vector<Entity*> entities;
 
 	static EnvironmentManager* instance;
 
@@ -21,7 +22,7 @@ public:
 
 	static EnvironmentManager* get_instance();
 
-	void add(EnvironmentEntity entity);
+	void add(Entity* entity);
 	void clear_entities();
 
 	void render();

@@ -91,6 +91,24 @@
     <Filter Include="Header Files\loaders\json">
       <UniqueIdentifier>{919d0408-8975-4a8c-87da-dd5db9886b32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\geometry\primitives">
+      <UniqueIdentifier>{fb01903c-b16d-40ae-a1fb-050be116be8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geometry\primitives">
+      <UniqueIdentifier>{11832c0c-2522-4454-bb01-473e3cb44d98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\camera\controllers">
+      <UniqueIdentifier>{5e867713-863a-4276-8627-1aeb4e55955a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\entity">
+      <UniqueIdentifier>{9b923320-c371-4f4c-a36d-59f496f1fc5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\entity">
+      <UniqueIdentifier>{4b42ed62-12e7-4857-a0d5-a7243f621d47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\camera\controllers">
+      <UniqueIdentifier>{d9078994-667f-4243-849f-5ed81181c2f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -141,6 +159,27 @@
     <ClCompile Include="geometryloader.cpp">
       <Filter>Source Files\loaders\geometry</Filter>
     </ClCompile>
+    <ClCompile Include="anglegeometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="boxgeometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="environment_entity_group.cpp">
+      <Filter>Source Files\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>Source Files\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="view_movement_controller.cpp">
+      <Filter>Source Files\camera\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="movement_controller.cpp">
+      <Filter>Source Files\camera\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="drone_movement_controller.cpp">
+      <Filter>Source Files\camera\controllers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="loaders\glsl\glsl.h">
@@ -187,6 +226,27 @@
     </ClInclude>
     <ClInclude Include="geometryloader.h">
       <Filter>Header Files\loaders\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="anglegeometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="boxgeometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="environment_entity_group.h">
+      <Filter>Header Files\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.h">
+      <Filter>Header Files\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="view_movement_controller.h">
+      <Filter>Header Files\camera\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="movement_controller.h">
+      <Filter>Header Files\camera\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="drone_movement_controller.h">
+      <Filter>Header Files\camera\controllers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

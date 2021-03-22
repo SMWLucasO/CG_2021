@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "entity.h"
 #include "camera.h"
 #include "lighting.h"
 #include "shadingmanager.h"
@@ -21,7 +22,7 @@ struct Material {
 	float power = 1024;
 };
 
-class EnvironmentEntity
+class EnvironmentEntity: public Entity
 {
 private:
 	Transformations transformations;

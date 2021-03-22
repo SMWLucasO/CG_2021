@@ -12,6 +12,7 @@ Camera::Camera()
 
 Camera::~Camera()
 {
+	delete movement_controller;
 	delete instance;
 }
 
@@ -75,29 +76,35 @@ void Camera::set_projection(glm::mat4 projection) {
 
 void Camera::handle_keyboard(unsigned char key, int a, int b)
 {
-	switch (key) {
-		case 'w':
-			position += this->target;
-			break;
-		case 's':
-			position -= this->target;
-			break;
-		case 'a':
-			position -= glm::normalize(glm::cross(this->target, this->up));
-			break;
-		case 'd':
-			position += glm::normalize(glm::cross(this->target, this->up));
-			break;
-		case 'q':	
-			position.y -= 1;
-			break;
-		case 'e':
-			position.y += 1;
-			break;
+	if (key == 'v') {
+		MovementController* tmp = this->movement_controller;
+		if (drone_mode) {
+			this->movement_controller = new ViewMovementController();
+		}
+		else {
+			this->movement_controller = new DroneMovementController();
+		}
+		this->drone_mode = !drone_mode;
+		this->movement_controller->setup(this->position);
+		delete tmp;
+	}
+	else if (key == 'q')
+	{
+		// I doubt it will happen, but bugs may occur that will otherwwise let it happen
+		// (without this condition, of course.)
+		if (position.y + y_increase >= MovementController::Y_LOWEST_POINT)
+			position.y += y_increase;
+	}
+	else if (key == 'e')
+	{
+		if (position.y - y_increase >= MovementController::Y_LOWEST_POINT)
+			position.y -= y_increase;
+	}
+	else {
+		this->movement_controller->handle_movement(key, this->position, this->up, this->target);
 	}
 
 	// W/A/S/D for movement
-	// i/j/k/l for look around / change directions
 	// q/e for down/up
 	// r for reloading json data.
 }

@@ -89,22 +89,6 @@ void EnvironmentEntity::setup()
 	this->geometry->set_uniforms(uniforms);
 
 	glm::mat4 mv = Camera::get_instance()->get_view() * this->get_model();
-
-	glUseProgram(program_id);
-
-	Lighting* lighting = Lighting::get_instance();
-
-	// Fill uniform vars
-	glUniformMatrix4fv(this->geometry->get_uniforms().uniform_mv, 1, GL_FALSE, glm::value_ptr(mv));
-	glUniformMatrix4fv(this->geometry->get_uniforms().uniform_proj, 1, GL_FALSE, glm::value_ptr(Camera::get_instance()->get_projection()));
-	
-	glUniform3fv(this->geometry->get_uniforms().uniform_light_pos, 1, glm::value_ptr(lighting->get_position()));
-	
-	glUniform3fv(this->geometry->get_uniforms().uniform_material_ambient, 1, glm::value_ptr(this->material.ambient_color));
-    glUniform3fv(this->geometry->get_uniforms().uniform_material_diffuse, 1, glm::value_ptr(this->material.diffuse_color));
-	glUniform1f(this->geometry->get_uniforms().uniform_material_power, this->material.power);
-	glUniform3fv(this->geometry->get_uniforms().uniform_specular, 1, glm::value_ptr(this->material.specular));
-
 }
 
 void EnvironmentEntity::render()
@@ -123,6 +107,8 @@ void EnvironmentEntity::render()
 	glUniformMatrix4fv(this->geometry->get_uniforms().uniform_mv, 1, GL_FALSE, glm::value_ptr(mv));
 	glUniformMatrix4fv(this->geometry->get_uniforms().uniform_proj, 1, GL_FALSE, glm::value_ptr(Camera::get_instance()->get_projection()));
 	
+	glUniform3fv(this->geometry->get_uniforms().uniform_light_pos, 1, glm::value_ptr(lighting->get_position()));
+
 	glUniform3fv(this->geometry->get_uniforms().uniform_material_ambient, 1, glm::value_ptr(this->material.ambient_color));
 	glUniform3fv(this->geometry->get_uniforms().uniform_material_diffuse, 1, glm::value_ptr(this->material.diffuse_color));
 	glUniform3fv(this->geometry->get_uniforms().uniform_specular, 1, glm::value_ptr(this->material.specular));
