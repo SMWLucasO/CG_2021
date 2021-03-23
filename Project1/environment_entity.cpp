@@ -5,8 +5,6 @@ EnvironmentEntity::EnvironmentEntity(Geometry* geometry, glm::vec3 position, Tra
 	this->geometry = geometry;
 	this->position = position;
 	this->transformations = transformations;
-
-	this->setup();
 }
 
 EnvironmentEntity::EnvironmentEntity(Geometry* geometry, glm::vec3 position) : EnvironmentEntity(geometry, position, Transformations())
@@ -85,6 +83,7 @@ void EnvironmentEntity::setup()
 	uniforms.uniform_material_power = glGetUniformLocation(program_id, "mat_power");
 	uniforms.uniform_material_ambient = glGetUniformLocation(program_id, "mat_ambient");
 	uniforms.uniform_material_diffuse = glGetUniformLocation(program_id, "mat_diffuse");
+	uniforms.uniform_texture_enabled = glGetUniformLocation(program_id, "texture_enabled");
 
 	this->geometry->set_uniforms(uniforms);
 
@@ -97,7 +96,8 @@ void EnvironmentEntity::render()
 		ShadingManager::get_instance()->get_shader(this->shader_type).get_id();
 
 	glUseProgram(program_id);
-	//glBindTexture(GL_TEXTURE_2D, this->geometry->get_texture().texture_id);
+	
+	glBindTexture(GL_TEXTURE_2D, this->geometry->get_texture().texture_id);
 
 	glm::mat4 mv = Camera::get_instance()->get_view() * this->get_model();
 
@@ -113,6 +113,8 @@ void EnvironmentEntity::render()
 	glUniform3fv(this->geometry->get_uniforms().uniform_material_diffuse, 1, glm::value_ptr(this->material.diffuse_color));
 	glUniform3fv(this->geometry->get_uniforms().uniform_specular, 1, glm::value_ptr(this->material.specular));
 	glUniform1f(this->geometry->get_uniforms().uniform_material_power, this->material.power);
+
+	glUniform1i(this->geometry->get_uniforms().uniform_texture_enabled, this->texture_enabled);
 
 	// send VAO
 	glBindVertexArray(this->vao);
@@ -157,6 +159,11 @@ void EnvironmentEntity::set_rotations(glm::vec3 rotations)
 	this->transformations.rotations = rotations;
 }
 
+void EnvironmentEntity::set_shader_type(ShaderType type)
+{
+	this->shader_type = type;
+}
+
 glm::mat4 EnvironmentEntity::get_model()
 {
 	glm::mat4 model;
@@ -188,4 +195,14 @@ void EnvironmentEntity::set_scaling(glm::vec3 scaling)
 glm::vec3 EnvironmentEntity::get_scaling()
 {
 	return this->transformations.scaling;
+}
+
+void EnvironmentEntity::set_texture_enabled(bool texture_enabled)
+{
+	this->texture_enabled = texture_enabled;
+}
+
+bool EnvironmentEntity::is_texture_enabled()
+{
+	return this->texture_enabled;
 }

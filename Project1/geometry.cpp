@@ -33,6 +33,18 @@ void Geometry::set_uniforms(Uniforms uniforms)
 	this->uniforms = uniforms;
 }
 
+void Geometry::load_texture(std::string url, TextureType texture_type)
+{
+	switch (texture_type) {
+		case TextureType::BMP:
+			this->texture.texture_id = loadBMP(url.c_str());
+			break;
+		case TextureType::DDS:
+			this->texture.texture_id = loadDDS(url.c_str());
+			break;
+	}
+}
+
 std::vector<glm::vec3> Geometry::get_normals()
 {
 	return this->vertices;

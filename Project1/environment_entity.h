@@ -33,6 +33,8 @@ private:
 	glm::vec3 position = glm::vec3(0,0,0);
 	ShaderType shader_type = ShaderType::Phong;
 
+	bool texture_enabled = false;
+
 	// OpenGL things
 	GLuint vao;
 
@@ -68,5 +70,9 @@ public:
 	void set_scaling(glm::vec3 scaling);
 	glm::vec3 get_scaling();
 
+	void set_shader_type(ShaderType type);
+
+	void set_texture_enabled(bool texture_enabled);
+	bool is_texture_enabled();
 };
 

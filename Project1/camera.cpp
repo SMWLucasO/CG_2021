@@ -92,13 +92,13 @@ void Camera::handle_keyboard(unsigned char key, int a, int b)
 	{
 		// I doubt it will happen, but bugs may occur that will otherwwise let it happen
 		// (without this condition, of course.)
-		if (position.y + y_increase >= MovementController::Y_LOWEST_POINT)
-			position.y += y_increase;
+		if (position.y + Y_INCREMENT >= MovementController::Y_LOWEST_POINT)
+			position.y += Y_INCREMENT;
 	}
 	else if (key == 'e')
 	{
-		if (position.y - y_increase >= MovementController::Y_LOWEST_POINT)
-			position.y -= y_increase;
+		if (position.y - Y_INCREMENT >= MovementController::Y_LOWEST_POINT)
+			position.y -= Y_INCREMENT;
 	}
 	else {
 		this->movement_controller->handle_movement(key, this->position, this->up, this->target);

@@ -35,8 +35,29 @@ void GeometryLoader::load_geometry(GeometryManager& geom_manager, std::string pa
 
 		if (!(object.HasMember("obj_file_location") || object.HasMember("name"))) continue; // !(a v b) == !a ^ !b
 
+		// load the normals, vertices and UVs for the object.
 		loadOBJ(object["obj_file_location"].GetString(), vertices, uvs, normals);
 		Geometry geom = Geometry(vertices, uvs, normals);
+
+		// load the texture for the geometry if there is one.
+		if (object.HasMember("texture")) {
+			assert(object["texture"].IsObj());
+
+			json_object texture_obj = object["texture"].GetObj();
+
+			// these two members must exist if we want to use textures.
+			assert(texture_obj.HasMember("url"));
+			assert(texture_obj.HasMember("type"));
+			assert(texture_obj["url"].IsString());
+			assert(texture_obj["type"].IsString());
+
+			// dds is a special case, bmp is the default. Thus, we apply bmp by default.
+			TextureType texture_type = TextureType::BMP;
+			if (texture_obj["type"].GetString() == "dds")
+				texture_type = TextureType::DDS;
+
+			geom.load_texture(texture_obj["url"].GetString(), texture_type);
+		}
 
 		geom_manager.add_geometry(object["name"].GetString(), geom);
 	}

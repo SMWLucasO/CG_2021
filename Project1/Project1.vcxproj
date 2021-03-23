@@ -149,6 +149,7 @@
     <ClCompile Include="loaders\texture\texture.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="movement_controller.cpp" />
+    <ClCompile Include="primitives.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="shadingmanager.cpp" />
     <ClCompile Include="view_movement_controller.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="loaders\object\objloader.h" />
     <ClInclude Include="loaders\texture\texture.h" />
     <ClInclude Include="movement_controller.h" />
+    <ClInclude Include="primitives.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shadingmanager.h" />
     <ClInclude Include="view_movement_controller.h" />

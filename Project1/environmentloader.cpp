@@ -48,11 +48,22 @@ void EnvironmentLoader::load_environment(EnvironmentManager& env_manager, std::s
 
 			// we have to use pointers, we are making use of a pure-virtual Entity abstract class.
 			EnvironmentEntity* entity = new EnvironmentEntity(geom, this->get_position(object["position"].GetObj()), this->get_transformations(object));
+			entity->set_shader_type(shader_type);
+
+			if (object.HasMember("texture_enabled")) {
+				assert(object["texture_enabled"].IsBool());
+
+				entity->set_texture_enabled(object["texture_enabled"].GetBool());
+			}
 
 			// material changes are optional
 			if (object.HasMember("material_data")) {
 				entity->set_material(this->get_material(entity->get_material(), object["material_data"].GetObj()));
 			}
+
+
+			// end with setting the entity up.
+			entity->setup();
 
 			env_manager.add(entity);
 		}	

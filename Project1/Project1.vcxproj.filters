@@ -180,6 +180,9 @@
     <ClCompile Include="drone_movement_controller.cpp">
       <Filter>Source Files\camera\controllers</Filter>
     </ClCompile>
+    <ClCompile Include="primitives.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="loaders\glsl\glsl.h">
@@ -247,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="drone_movement_controller.h">
       <Filter>Header Files\camera\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives.h">
+      <Filter>Header Files\geometry\primitives</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

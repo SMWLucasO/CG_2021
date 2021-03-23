@@ -4,7 +4,6 @@
 #include "loaders/glsl/glsl.h"
 
 enum class ShaderType{
-	Basic,
 	Lambert,
 	Phong
 };

@@ -13,17 +13,19 @@
 class Camera
 {
 private:
-	const unsigned int y_increase = 1;
+	const unsigned int Y_INCREMENT = 1;
 
 	glm::vec3 position = glm::vec3(-7, 0, 2);
 	glm::vec3 target = glm::vec3(1, 0, -0.18);
 	glm::vec3 up = glm::vec3(0, 1, 0);
 
+	// The camera is disabled until you click on the screen
 	bool enabled = false;
 
 	float yaw = 0;
 	float pitch = 0;
 
+	// true if we're in drone mode, false otherwise.
 	bool drone_mode = true;
 
 	glm::mat4 projection;

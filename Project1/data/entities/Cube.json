@@ -1,8 +1,9 @@
 {
 	"geomtype": "Box",
-	"shader": "phong",
+	"shader": "lambert",
 	"data_points": [
 		{
+			"enable_texture": false,
 			"position": {
 				"x": 0.0,
 				"y": 0.0, 

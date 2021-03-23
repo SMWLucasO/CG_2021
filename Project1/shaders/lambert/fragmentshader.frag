@@ -7,6 +7,11 @@ in VS_OUT
     vec3 L;
 } fs_in;
 
+in vec2 UV;
+uniform sampler2D texsampler;
+
+uniform bool texture_enabled;
+
 // Material properties
 uniform vec3 mat_ambient;
 uniform vec3 mat_diffuse;
@@ -17,9 +22,15 @@ void main()
     vec3 N = normalize(fs_in.N);
     vec3 L = normalize(fs_in.L);
 
-    // Compute the diffuse and specular components for each fragment
-    vec3 diffuse = max(dot(N, L), 0.0) * mat_diffuse;
+    vec3 diffuse;
 
+    // Compute the diffuse and specular components for each fragment
+	if (texture_enabled) {
+		diffuse = max(dot(N, L), 0.0) * texture2D(texsampler, UV).rgb;
+	} else {
+		diffuse = max(dot(N, L), 0.0) * mat_diffuse;
+	}
+	
     // Write final color to the framebuffer
     gl_FragColor = vec4(mat_ambient + diffuse, 1.0);
 }
