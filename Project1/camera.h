@@ -13,9 +13,7 @@
 class Camera
 {
 private:
-	const unsigned int Y_INCREMENT = 1;
-
-	glm::vec3 position = glm::vec3(-7, 0, 2);
+	glm::vec3 position = glm::vec3(0, 1, 0);
 	glm::vec3 target = glm::vec3(1, 0, -0.18);
 	glm::vec3 up = glm::vec3(0, 1, 0);
 
@@ -60,7 +58,7 @@ public:
 	void set_projection(glm::mat4 projection);
 
 
-	void handle_keyboard(unsigned char key, int a, int b);
+	void handle_keyboard(unsigned char key);
 	void handle_mouse(int xpos, int ypos, int x_center, int y_center);
 
 };

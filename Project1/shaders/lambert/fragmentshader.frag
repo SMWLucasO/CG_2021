@@ -7,10 +7,10 @@ in VS_OUT
     vec3 L;
 } fs_in;
 
+uniform bool texture_enabled;
+
 in vec2 UV;
 uniform sampler2D texsampler;
-
-uniform bool texture_enabled;
 
 // Material properties
 uniform vec3 mat_ambient;
@@ -23,8 +23,6 @@ void main()
     vec3 L = normalize(fs_in.L);
 
     vec3 diffuse;
-
-    // Compute the diffuse and specular components for each fragment
 	if (texture_enabled) {
 		diffuse = max(dot(N, L), 0.0) * texture2D(texsampler, UV).rgb;
 	} else {

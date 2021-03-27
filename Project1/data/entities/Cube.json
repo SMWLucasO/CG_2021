@@ -1,9 +1,9 @@
 {
-	"geomtype": "Box",
+	"geomtype": "box",
 	"shader": "lambert",
 	"data_points": [
 		{
-			"enable_texture": false,
+			"texture_enabled": true,
 			"position": {
 				"x": 0.0,
 				"y": 0.0, 

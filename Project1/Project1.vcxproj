@@ -129,54 +129,58 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="anglegeometry.cpp" />
-    <ClCompile Include="boxgeometry.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="drone_movement_controller.cpp" />
     <ClCompile Include="entity.cpp" />
-    <ClCompile Include="environment.cpp" />
-    <ClCompile Include="environmentloader.cpp" />
-    <ClCompile Include="environment_entity.cpp" />
+    <ClCompile Include="environmentbuilder.cpp" />
+    <ClCompile Include="fireblocker_geometry.cpp" />
+    <ClCompile Include="firesticks_geometry.cpp" />
+    <ClCompile Include="houseblock_geometry.cpp" />
+    <ClCompile Include="houseroof_geometry.cpp" />
+    <ClCompile Include="mesh.cpp" />
     <ClCompile Include="environmentmanager.cpp" />
-    <ClCompile Include="environment_entity_group.cpp" />
+    <ClCompile Include="meshing_group.cpp" />
+    <ClCompile Include="floortile_geometry.cpp" />
     <ClCompile Include="geometry.cpp" />
-    <ClCompile Include="geometryloader.cpp" />
+    <ClCompile Include="geometrybuilder.cpp" />
     <ClCompile Include="geometrymanager.cpp" />
-    <ClCompile Include="jsonloader.cpp" />
     <ClCompile Include="lighting.cpp" />
     <ClCompile Include="loaders\glsl\glsl.cpp" />
     <ClCompile Include="loaders\object\objloader.cpp" />
     <ClCompile Include="loaders\texture\texture.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="movement_controller.cpp" />
-    <ClCompile Include="primitives.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="shadingmanager.cpp" />
+    <ClCompile Include="tentpole_geometry.cpp" />
+    <ClCompile Include="tentside_geometry.cpp" />
     <ClCompile Include="view_movement_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="anglegeometry.h" />
-    <ClInclude Include="boxgeometry.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="drone_movement_controller.h" />
     <ClInclude Include="entity.h" />
-    <ClInclude Include="environment.h" />
-    <ClInclude Include="environmentloader.h" />
-    <ClInclude Include="environment_entity.h" />
+    <ClInclude Include="environmentbuilder.h" />
+    <ClInclude Include="fireblocker_geometry.h" />
+    <ClInclude Include="firesticks_geometry.h" />
+    <ClInclude Include="houseblock_geometry.h" />
+    <ClInclude Include="houseroof_geometry.h" />
+    <ClInclude Include="mesh.h" />
     <ClInclude Include="environmentmanager.h" />
-    <ClInclude Include="environment_entity_group.h" />
+    <ClInclude Include="mesh_grouping.h" />
+    <ClInclude Include="floortile_geometry.h" />
     <ClInclude Include="geometry.h" />
-    <ClInclude Include="geometryloader.h" />
+    <ClInclude Include="geometrybuilder.h" />
     <ClInclude Include="geometrymanager.h" />
-    <ClInclude Include="jsonloader.h" />
     <ClInclude Include="lighting.h" />
     <ClInclude Include="loaders\glsl\glsl.h" />
     <ClInclude Include="loaders\object\objloader.h" />
     <ClInclude Include="loaders\texture\texture.h" />
     <ClInclude Include="movement_controller.h" />
-    <ClInclude Include="primitives.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shadingmanager.h" />
+    <ClInclude Include="tentpole_geometry.h" />
+    <ClInclude Include="tentside_geometry.h" />
     <ClInclude Include="view_movement_controller.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

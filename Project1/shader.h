@@ -5,7 +5,8 @@
 
 enum class ShaderType{
 	Lambert,
-	Phong
+	Phong,
+	Basic
 };
 
 class Shader

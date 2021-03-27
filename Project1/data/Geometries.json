@@ -1,5 +1,5 @@
 {
 	"geometries": [
-		{"name": "Box", "obj_file_location": "models/sphere.obj"}
+		{"name": "box", "obj_file_location": "models/tree/test.obj", "texture": { "url": "models/tree/textures/maple_bark.bmp", "type": "bmp" } }
 	]
 }

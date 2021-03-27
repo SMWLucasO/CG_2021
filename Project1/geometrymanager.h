@@ -1,10 +1,12 @@
 #pragma once
 
-#include "geometry.h"
-#include "loaders/object/objloader.h"
-
+#include <vector>
 #include <unordered_map>
 #include <string>
+
+#include "geometry.h"
+
+#include "loaders/texture/texture.h"
 
 class GeometryManager
 {

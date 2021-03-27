@@ -2,8 +2,9 @@
 
 #include <vector>
 
+#include "geometrymanager.h"
 #include "entity.h"
-#include "environment_entity.h"
+#include "mesh.h"
 
 class EnvironmentManager {
 private:

@@ -73,24 +73,6 @@
     <Filter Include="Source Files\lighting">
       <UniqueIdentifier>{81e45341-75c1-40dd-aa80-ff5de2fa5a9f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\loaders\environment">
-      <UniqueIdentifier>{2185e43b-3b8e-4272-9463-69cd6e59d0df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\loaders\environment">
-      <UniqueIdentifier>{eae1e1f8-0635-4996-9a9b-abb106c0963b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\loaders\json">
-      <UniqueIdentifier>{a494596d-2b96-4095-bc49-de0d10357cf1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\loaders\geometry">
-      <UniqueIdentifier>{91dbe8da-39cd-41b5-8efc-aa4691b4d67e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\loaders\geometry">
-      <UniqueIdentifier>{a6eaf538-2b84-46fc-baff-4cebde46e675}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\loaders\json">
-      <UniqueIdentifier>{919d0408-8975-4a8c-87da-dd5db9886b32}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\geometry\primitives">
       <UniqueIdentifier>{fb01903c-b16d-40ae-a1fb-050be116be8a}</UniqueIdentifier>
     </Filter>
@@ -108,6 +90,12 @@
     </Filter>
     <Filter Include="Header Files\camera\controllers">
       <UniqueIdentifier>{d9078994-667f-4243-849f-5ed81181c2f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\builders">
+      <UniqueIdentifier>{47394a27-5a01-42e1-b283-745e9d1cff7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\builders">
+      <UniqueIdentifier>{3ffe7924-5a6c-4c8d-b749-c8faca4dabb5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -141,32 +129,8 @@
     <ClCompile Include="environmentmanager.cpp">
       <Filter>Source Files\environment</Filter>
     </ClCompile>
-    <ClCompile Include="environment_entity.cpp">
-      <Filter>Source Files\environment</Filter>
-    </ClCompile>
-    <ClCompile Include="environment.cpp">
-      <Filter>Source Files\environment</Filter>
-    </ClCompile>
     <ClCompile Include="lighting.cpp">
       <Filter>Source Files\lighting</Filter>
-    </ClCompile>
-    <ClCompile Include="environmentloader.cpp">
-      <Filter>Source Files\loaders\environment</Filter>
-    </ClCompile>
-    <ClCompile Include="jsonloader.cpp">
-      <Filter>Source Files\loaders\json</Filter>
-    </ClCompile>
-    <ClCompile Include="geometryloader.cpp">
-      <Filter>Source Files\loaders\geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="anglegeometry.cpp">
-      <Filter>Source Files\geometry\primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="boxgeometry.cpp">
-      <Filter>Source Files\geometry\primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="environment_entity_group.cpp">
-      <Filter>Source Files\environment</Filter>
     </ClCompile>
     <ClCompile Include="entity.cpp">
       <Filter>Source Files\entity</Filter>
@@ -180,7 +144,37 @@
     <ClCompile Include="drone_movement_controller.cpp">
       <Filter>Source Files\camera\controllers</Filter>
     </ClCompile>
-    <ClCompile Include="primitives.cpp">
+    <ClCompile Include="geometrybuilder.cpp">
+      <Filter>Source Files\builders</Filter>
+    </ClCompile>
+    <ClCompile Include="environmentbuilder.cpp">
+      <Filter>Source Files\builders</Filter>
+    </ClCompile>
+    <ClCompile Include="floortile_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh.cpp">
+      <Filter>Source Files\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="meshing_group.cpp">
+      <Filter>Source Files\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="tentside_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="tentpole_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="houseroof_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="firesticks_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="houseblock_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="fireblocker_geometry.cpp">
       <Filter>Source Files\geometry\primitives</Filter>
     </ClCompile>
   </ItemGroup>
@@ -209,35 +203,11 @@
     <ClInclude Include="shader.h">
       <Filter>Header Files\shading</Filter>
     </ClInclude>
-    <ClInclude Include="environment_entity.h">
-      <Filter>Header Files\environment</Filter>
-    </ClInclude>
     <ClInclude Include="environmentmanager.h">
-      <Filter>Header Files\environment</Filter>
-    </ClInclude>
-    <ClInclude Include="environment.h">
       <Filter>Header Files\environment</Filter>
     </ClInclude>
     <ClInclude Include="lighting.h">
       <Filter>Header Files\lighting</Filter>
-    </ClInclude>
-    <ClInclude Include="environmentloader.h">
-      <Filter>Header Files\loaders\environment</Filter>
-    </ClInclude>
-    <ClInclude Include="jsonloader.h">
-      <Filter>Header Files\loaders\json</Filter>
-    </ClInclude>
-    <ClInclude Include="geometryloader.h">
-      <Filter>Header Files\loaders\geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="anglegeometry.h">
-      <Filter>Header Files\geometry\primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="boxgeometry.h">
-      <Filter>Header Files\geometry\primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="environment_entity_group.h">
-      <Filter>Header Files\environment</Filter>
     </ClInclude>
     <ClInclude Include="entity.h">
       <Filter>Header Files\entity</Filter>
@@ -251,7 +221,37 @@
     <ClInclude Include="drone_movement_controller.h">
       <Filter>Header Files\camera\controllers</Filter>
     </ClInclude>
-    <ClInclude Include="primitives.h">
+    <ClInclude Include="environmentbuilder.h">
+      <Filter>Header Files\builders</Filter>
+    </ClInclude>
+    <ClInclude Include="geometrybuilder.h">
+      <Filter>Header Files\builders</Filter>
+    </ClInclude>
+    <ClInclude Include="floortile_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh.h">
+      <Filter>Header Files\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh_grouping.h">
+      <Filter>Header Files\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="tentside_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="tentpole_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="houseroof_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="firesticks_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="houseblock_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="fireblocker_geometry.h">
       <Filter>Header Files\geometry\primitives</Filter>
     </ClInclude>
   </ItemGroup>

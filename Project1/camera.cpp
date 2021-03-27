@@ -26,6 +26,7 @@ Camera* Camera::get_instance()
 	return Camera::instance;
 }
 
+
 glm::mat4 Camera::get_view()
 {
 	return glm::lookAt(
@@ -34,6 +35,7 @@ glm::mat4 Camera::get_view()
 		this->up
 	);
 }
+
 
 glm::vec3 Camera::get_position()
 {
@@ -74,7 +76,13 @@ void Camera::set_projection(glm::mat4 projection) {
 	this->projection = projection;
 }
 
-void Camera::handle_keyboard(unsigned char key, int a, int b)
+
+/**
+* Handle the keyboard pressed events for the camera.
+* 
+* @param key the key pressed
+*/
+void Camera::handle_keyboard(unsigned char key)
 {
 	if (key == 'v') {
 		MovementController* tmp = this->movement_controller;
@@ -88,18 +96,6 @@ void Camera::handle_keyboard(unsigned char key, int a, int b)
 		this->movement_controller->setup(this->position);
 		delete tmp;
 	}
-	else if (key == 'q')
-	{
-		// I doubt it will happen, but bugs may occur that will otherwwise let it happen
-		// (without this condition, of course.)
-		if (position.y + Y_INCREMENT >= MovementController::Y_LOWEST_POINT)
-			position.y += Y_INCREMENT;
-	}
-	else if (key == 'e')
-	{
-		if (position.y - Y_INCREMENT >= MovementController::Y_LOWEST_POINT)
-			position.y -= Y_INCREMENT;
-	}
 	else {
 		this->movement_controller->handle_movement(key, this->position, this->up, this->target);
 	}
@@ -109,6 +105,16 @@ void Camera::handle_keyboard(unsigned char key, int a, int b)
 	// r for reloading json data.
 }
 
+/**
+* Handle the mouse movement for the camera.
+*
+* Deals with the direction which the camera is facing.
+*
+* @param xpos the x-position moved towards
+* @param ypos the y-position moved towards
+* @param x_center the x-center of the screen
+* @param y_center the y-center of the screen
+*/
 void Camera::handle_mouse(int xpos, int ypos, int x_center, int y_center)
 {
 	if (!this->enabled) return; // only start working when enabled.

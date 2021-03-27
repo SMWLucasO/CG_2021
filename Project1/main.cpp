@@ -8,8 +8,11 @@
 #include "shadingmanager.h"
 #include "geometrymanager.h"
 
+#include "geometrybuilder.h"
+#include "environmentbuilder.h"
+
+
 #include "environmentmanager.h"
-#include "environment.h"
 
 using namespace std;
 
@@ -38,11 +41,6 @@ void keyboard_handler(unsigned char key, int a, int b)
 {
     if (key == 27)
         glutExit();
-    if (key == 'r') {
-        EnvironmentManager& _env = *environmentmanager;
-        GeometryManager& _geom = *geometrymanager;
-        Environment::refresh_environment(_env, _geom);
-    }
     else if (key == 'b') { // b = deBug
         std::cout << "(" << camera->get_position().x << ", " << camera->get_position().y << ", " << camera->get_position().z << ")" << std::endl;
         std::cout << "(" << camera->get_target().x << ", " << camera->get_target().y << ", " << camera->get_target().z << ")" << std::endl;
@@ -50,7 +48,7 @@ void keyboard_handler(unsigned char key, int a, int b)
         std::cout << camera->get_pitch() << std::endl;
     }
     else
-        Camera::get_instance()->handle_keyboard(key, a, b);
+        Camera::get_instance()->handle_keyboard(key);
 }
 
 
@@ -115,7 +113,7 @@ int main(int argc, char** argv)
         glm::perspective(
             glm::radians(45.0f),
             1.0f * WIDTH / HEIGHT, 0.1f,
-            20.0f
+            4000.0f
         )
     );
 
@@ -125,8 +123,9 @@ int main(int argc, char** argv)
     // initiate the shaders
     shadingmanager->init("shaders");
     
-    // initiate the environment
-    Environment::init(*environmentmanager, *geometrymanager, "data/");
+    // initiate env and geometries
+    builders::geometry::init();
+    builders::environment::init();
     
     // forgive me teacher, for I have sinned.
     glEnable(GL_DEPTH_TEST);

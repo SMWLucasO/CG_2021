@@ -31,15 +31,13 @@ struct Uniforms {
 
 class Geometry
 {
-private:
+protected:
 	Texture texture = Texture();
 	Uniforms uniforms = Uniforms();
 
 	std::vector<glm::vec3> normals;
 	std::vector<glm::vec2> uvs;
 	std::vector<glm::vec3> vertices;
-
-	bool inited = false;
 
 public:
 	Geometry(std::vector<glm::vec3> vertices, std::vector<glm::vec2> uvs, std::vector<glm::vec3> normals);

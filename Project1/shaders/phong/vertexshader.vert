@@ -9,6 +9,9 @@ uniform vec3 light_pos;
 in vec3 position;
 in vec3 normal;
 
+in vec2 uv;
+out vec2 UV;
+
 out VS_OUT
 {
    vec3 N;
@@ -32,4 +35,7 @@ void main()
 
     // Calculate the clip-space position of each vertex
     gl_Position = projection * P;
+
+    UV = uv;
+
 }
