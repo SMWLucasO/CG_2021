@@ -133,10 +133,6 @@
     <ClCompile Include="drone_movement_controller.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="environmentbuilder.cpp" />
-    <ClCompile Include="fireblocker_geometry.cpp" />
-    <ClCompile Include="firesticks_geometry.cpp" />
-    <ClCompile Include="houseblock_geometry.cpp" />
-    <ClCompile Include="houseroof_geometry.cpp" />
     <ClCompile Include="mesh.cpp" />
     <ClCompile Include="environmentmanager.cpp" />
     <ClCompile Include="meshing_group.cpp" />
@@ -152,8 +148,6 @@
     <ClCompile Include="movement_controller.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="shadingmanager.cpp" />
-    <ClCompile Include="tentpole_geometry.cpp" />
-    <ClCompile Include="tentside_geometry.cpp" />
     <ClCompile Include="view_movement_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -161,10 +155,6 @@
     <ClInclude Include="drone_movement_controller.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="environmentbuilder.h" />
-    <ClInclude Include="fireblocker_geometry.h" />
-    <ClInclude Include="firesticks_geometry.h" />
-    <ClInclude Include="houseblock_geometry.h" />
-    <ClInclude Include="houseroof_geometry.h" />
     <ClInclude Include="mesh.h" />
     <ClInclude Include="environmentmanager.h" />
     <ClInclude Include="mesh_grouping.h" />
@@ -179,8 +169,6 @@
     <ClInclude Include="movement_controller.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shadingmanager.h" />
-    <ClInclude Include="tentpole_geometry.h" />
-    <ClInclude Include="tentside_geometry.h" />
     <ClInclude Include="view_movement_controller.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

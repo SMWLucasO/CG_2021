@@ -159,24 +159,6 @@
     <ClCompile Include="meshing_group.cpp">
       <Filter>Source Files\entity</Filter>
     </ClCompile>
-    <ClCompile Include="tentside_geometry.cpp">
-      <Filter>Source Files\geometry\primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="tentpole_geometry.cpp">
-      <Filter>Source Files\geometry\primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="houseroof_geometry.cpp">
-      <Filter>Source Files\geometry\primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="firesticks_geometry.cpp">
-      <Filter>Source Files\geometry\primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="houseblock_geometry.cpp">
-      <Filter>Source Files\geometry\primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="fireblocker_geometry.cpp">
-      <Filter>Source Files\geometry\primitives</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="loaders\glsl\glsl.h">
@@ -235,24 +217,6 @@
     </ClInclude>
     <ClInclude Include="mesh_grouping.h">
       <Filter>Header Files\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="tentside_geometry.h">
-      <Filter>Header Files\geometry\primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="tentpole_geometry.h">
-      <Filter>Header Files\geometry\primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="houseroof_geometry.h">
-      <Filter>Header Files\geometry\primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="firesticks_geometry.h">
-      <Filter>Header Files\geometry\primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="houseblock_geometry.h">
-      <Filter>Header Files\geometry\primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="fireblocker_geometry.h">
-      <Filter>Header Files\geometry\primitives</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,9 +3,7 @@
 void MeshGrouping::add(Mesh entity)
 {
 	entity.set_position(this->position + entity.get_position());
-	entity.set_shader_type(ShaderType::Basic);
 	entity.set_texture_enabled(true);
-	entity.setup();
 
 	entities.push_back(entity);
 }

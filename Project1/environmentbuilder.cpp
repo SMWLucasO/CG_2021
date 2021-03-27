@@ -79,14 +79,18 @@ namespace builders::environment {
 			for (int j = 0; j < columns; ++j) {
 				glm::vec3 pos = glm::vec3(i * 2.0, 1.0, j * 2.0);
 				if (tilemap[i][j] == 1) {
-					grouping->add(Mesh(GeometryManager::get_instance()->get_geometry("tile_A"), pos));
+					Mesh m = Mesh(GeometryManager::get_instance()->get_geometry("tile_A"), pos);
+					grouping->add(m);
 				}
 				else
 				{
-					grouping->add(Mesh(GeometryManager::get_instance()->get_geometry("tile_B"), pos));
+					Mesh m = Mesh(GeometryManager::get_instance()->get_geometry("tile_B"), pos);
+					grouping->add(m);
 				}
 			}
 		}
+
+		grouping->setup();
 
 		EnvironmentManager::get_instance()->add(grouping);
 	}

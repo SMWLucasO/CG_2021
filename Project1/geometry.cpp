@@ -23,16 +23,6 @@ void Geometry::set_texture(Texture texture)
 	this->texture = texture;
 }
 
-Uniforms Geometry::get_uniforms()
-{
-	return this->uniforms;
-}
-
-void Geometry::set_uniforms(Uniforms uniforms)
-{
-	this->uniforms = uniforms;
-}
-
 void Geometry::load_texture(std::string url, TextureType texture_type)
 {
 	switch (texture_type) {
