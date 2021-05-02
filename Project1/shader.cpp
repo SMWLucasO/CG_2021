@@ -36,8 +36,6 @@ void Shader::init(std::string folder_name)
 
 	glUniformMatrix4fv(uniforms.uniform_proj, 1, GL_FALSE, glm::value_ptr(Camera::get_instance()->get_projection()));
 	glUniform3fv(uniforms.uniform_light_pos, 1, glm::value_ptr(lighting->get_position()));
-
-
 }
 
 Uniforms& Shader::get_uniforms()

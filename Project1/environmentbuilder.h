@@ -15,4 +15,5 @@ namespace builders::environment {
 	void init();
 	static void build_floor(int** tilemap, int rows, int columns);
 
+	static void build_skybox();
 }

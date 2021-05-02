@@ -53,6 +53,8 @@ public:
 	void setup();
 	void render();
 
+	void set_material_power(float power);
+
 	glm::mat4 get_model();
 
 	glm::vec3 get_position();

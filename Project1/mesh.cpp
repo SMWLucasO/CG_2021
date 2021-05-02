@@ -15,64 +15,9 @@ void Mesh::setup()
 {
 	GLuint program_id = 
 		ShadingManager::get_instance()->get_shader(this->shader_type).get_id();
-
-	glGenBuffers(1, &this->vbo_normals);
-	glBindBuffer(GL_ARRAY_BUFFER, this->vbo_normals);
-	glBufferData(
-		GL_ARRAY_BUFFER,
-		this->geometry->get_normals().size() * sizeof(glm::vec3),
-		&this->geometry->get_normals()[0],
-		GL_STATIC_DRAW
-	);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	glGenBuffers(1, &this->vbo_uvs);
-	glBindBuffer(GL_ARRAY_BUFFER, this->vbo_uvs);
-	glBufferData(
-		GL_ARRAY_BUFFER,
-		this->geometry->get_uvs().size() * sizeof(glm::vec2),
-		&this->geometry->get_uvs()[0],
-		GL_STATIC_DRAW
-	);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	glGenBuffers(1, &this->vbo_vertices);
-	glBindBuffer(GL_ARRAY_BUFFER, this->vbo_vertices);
-	glBufferData(
-		GL_ARRAY_BUFFER,
-		this->geometry->get_vertices().size() * sizeof(glm::vec3),
-		&this->geometry->get_vertices()[0],
-		GL_STATIC_DRAW
-	);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	this->normal_id = glGetAttribLocation(program_id, "normal");
-	this->position_id = glGetAttribLocation(program_id, "position");
-	this->uv_id = glGetAttribLocation(program_id, "uv");
-
-	glGenVertexArrays(1, &this->vao);
-
-	glBindVertexArray(this->vao);
-
-	// Bind normals to vao
-	glBindBuffer(GL_ARRAY_BUFFER, this->vbo_normals);
-	glVertexAttribPointer(this->normal_id, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	glEnableVertexAttribArray(this->normal_id);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	// Bind uvs to vao
-	glBindBuffer(GL_ARRAY_BUFFER, this->vbo_uvs);
-	glVertexAttribPointer(this->uv_id, 2, GL_FLOAT, GL_FALSE, 0, 0);
-	glEnableVertexAttribArray(this->uv_id);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	// Bind vertices to vao
-	glBindBuffer(GL_ARRAY_BUFFER, this->vbo_vertices);
-	glVertexAttribPointer(this->position_id, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	glEnableVertexAttribArray(this->position_id);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	glBindVertexArray(0);
+	
+	// setup this mesh of the geometry.
+	this->geometry->setup(program_id, this->vao, this->vbo_vertices, this->vbo_uvs, this->vbo_normals, this->position_id, this->normal_id, this->uv_id);
 }
 
 void Mesh::render()
@@ -101,6 +46,11 @@ void Mesh::render()
 	glDrawArrays(GL_TRIANGLES, 0, this->geometry->get_vertices().size());
 	glBindVertexArray(0);
 
+}
+
+void Mesh::set_material_power(float power)
+{
+	this->material.power = power;
 }
 
 

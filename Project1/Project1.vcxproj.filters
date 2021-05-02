@@ -159,6 +159,24 @@
     <ClCompile Include="meshing_group.cpp">
       <Filter>Source Files\entity</Filter>
     </ClCompile>
+    <ClCompile Include="skyboxtop_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="skyboxback_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="skyboxbottom_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="skyboxfront_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="skyboxleft_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="skyboxright_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="loaders\glsl\glsl.h">
@@ -217,6 +235,24 @@
     </ClInclude>
     <ClInclude Include="mesh_grouping.h">
       <Filter>Header Files\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="skyboxtop_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="skyboxback_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="skyboxbottom_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="skyboxfront_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="skyboxleft_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="skyboxright_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
