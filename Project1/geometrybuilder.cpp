@@ -11,46 +11,55 @@ namespace builders::geometry {
 		std::vector<glm::vec3> normals;
 		std::vector<glm::vec2> uvs;
 
-		// load skybox geometry.
-		loadOBJ("models/skybox.obj", vertices, uvs, normals);
+		// load house roof geometry.
+		loadOBJ("models/house/house_roof.obj", vertices, uvs, normals);
 		Geometry geom = Geometry(vertices, uvs, normals);
+		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		GeometryManager::get_instance()->add_geometry("house_roof", geom);
+
+		vertices.clear();
+		normals.clear();
+		uvs.clear();
+
+		// load house block geometry
+		loadOBJ("models/house/house_block.obj", vertices, uvs, normals);
+		geom = Geometry(vertices, uvs, normals);
+		geom.load_texture("textures/Yellobrk.bmp", TextureType::BMP);
+		GeometryManager::get_instance()->add_geometry("house_block", geom);
+		
+		vertices.clear();
+		normals.clear();
+		uvs.clear();
+
+		// load house window geometry
+		loadOBJ("models/house/house_window.obj", vertices, uvs, normals);
+		geom = Geometry(vertices, uvs, normals);
+		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		GeometryManager::get_instance()->add_geometry("house_window", geom);
+
+		vertices.clear();
+		normals.clear();
+		uvs.clear();
+
+		// load house door geometry
+		loadOBJ("models/house/house_door.obj", vertices, uvs, normals);
+		geom = Geometry(vertices, uvs, normals);
+		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		GeometryManager::get_instance()->add_geometry("house_door", geom);
+
+		vertices.clear();
+		normals.clear();
+		uvs.clear();
+
+		// load skybox geometry
+		loadOBJ("models/skybox.obj", vertices, uvs, normals);
+		geom = Geometry(vertices, uvs, normals);
 		geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("skybox", geom);
 
 		vertices.clear();
 		normals.clear();
 		uvs.clear();
-
-		// load test geometry.
-		loadOBJ("models/box.obj", vertices, uvs, normals);
-		Geometry g2 = Geometry(vertices, uvs, normals);
-		g2.load_texture("textures/Yellobrk.bmp", TextureType::BMP);
-		GeometryManager::get_instance()->add_geometry("teapot", g2);
-
-
-		SkyboxBottomGeometry skybox_bottom;
-		skybox_bottom.load_texture("textures/skybox/bluecloud-dn.bmp", TextureType::BMP);
-		GeometryManager::get_instance()->add_geometry("skybox_bottom", skybox_bottom);
-
-		SkyboxTopGeometry skybox_top;
-		skybox_top.load_texture("textures/skybox/bluecloud-up.bmp", TextureType::BMP);
-		GeometryManager::get_instance()->add_geometry("skybox_top", skybox_top);
-
-		SkyboxLeftGeometry skybox_left;
-		skybox_left.load_texture("textures/skybox/bluecloud-lf.bmp", TextureType::BMP);
-		GeometryManager::get_instance()->add_geometry("skybox_left", skybox_left);
-
-		SkyboxRightGeometry skybox_right;
-		skybox_right.load_texture("textures/skybox/bluecloud-rt.bmp", TextureType::BMP);
-		GeometryManager::get_instance()->add_geometry("skybox_right", skybox_right);
-
-		SkyboxFrontGeometry skybox_front;
-		skybox_front.load_texture("textures/skybox/bluecloud-ft.bmp", TextureType::BMP);
-		GeometryManager::get_instance()->add_geometry("skybox_front", skybox_front);
-
-		SkyboxBackGeometry skybox_back;
-		skybox_back.load_texture("textures/skybox/bluecloud-bk.bmp", TextureType::BMP);
-		GeometryManager::get_instance()->add_geometry("skybox_back", skybox_back);
 
 		// Tile variant grass
 		FloorTileGeometry floor_tile_type_A;

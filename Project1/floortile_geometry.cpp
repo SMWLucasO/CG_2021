@@ -2,7 +2,7 @@
 
 FloorTileGeometry::FloorTileGeometry()
 {
-	// todo fix the normals
+
 	vertices.push_back(glm::vec3(1.0, 0.0, 1.0));
 	vertices.push_back(glm::vec3(-1.0, 0.0, -1.0));
 	vertices.push_back(glm::vec3(-1.0, 0.0, 1.0));

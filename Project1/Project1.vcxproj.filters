@@ -97,6 +97,12 @@
     <Filter Include="Header Files\builders">
       <UniqueIdentifier>{3ffe7924-5a6c-4c8d-b749-c8faca4dabb5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\animation">
+      <UniqueIdentifier>{fd8ca9f4-d2bd-4748-ab0d-0f004f69b9c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\animation">
+      <UniqueIdentifier>{3bd4369f-7f0a-4153-b9c1-681f152c27af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -159,23 +165,11 @@
     <ClCompile Include="meshing_group.cpp">
       <Filter>Source Files\entity</Filter>
     </ClCompile>
-    <ClCompile Include="skyboxtop_geometry.cpp">
-      <Filter>Source Files\geometry\primitives</Filter>
+    <ClCompile Include="animation_part.cpp">
+      <Filter>Source Files\animation</Filter>
     </ClCompile>
-    <ClCompile Include="skyboxback_geometry.cpp">
-      <Filter>Source Files\geometry\primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="skyboxbottom_geometry.cpp">
-      <Filter>Source Files\geometry\primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="skyboxfront_geometry.cpp">
-      <Filter>Source Files\geometry\primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="skyboxleft_geometry.cpp">
-      <Filter>Source Files\geometry\primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="skyboxright_geometry.cpp">
-      <Filter>Source Files\geometry\primitives</Filter>
+    <ClCompile Include="animation_manager.cpp">
+      <Filter>Source Files\animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -236,22 +230,13 @@
     <ClInclude Include="mesh_grouping.h">
       <Filter>Header Files\entity</Filter>
     </ClInclude>
-    <ClInclude Include="skyboxtop_geometry.h">
-      <Filter>Header Files\geometry\primitives</Filter>
+    <ClInclude Include="animation_manager.h">
+      <Filter>Header Files\animation</Filter>
     </ClInclude>
-    <ClInclude Include="skyboxback_geometry.h">
-      <Filter>Header Files\geometry\primitives</Filter>
+    <ClInclude Include="animation_part.h">
+      <Filter>Header Files\animation</Filter>
     </ClInclude>
-    <ClInclude Include="skyboxbottom_geometry.h">
-      <Filter>Header Files\geometry\primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="skyboxfront_geometry.h">
-      <Filter>Header Files\geometry\primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="skyboxleft_geometry.h">
-      <Filter>Header Files\geometry\primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="skyboxright_geometry.h">
+    <ClInclude Include="cube_geometry.h">
       <Filter>Header Files\geometry\primitives</Filter>
     </ClInclude>
   </ItemGroup>

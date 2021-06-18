@@ -9,23 +9,6 @@ namespace builders::environment {
 	*/
 	void init()
 	{
-		// setup skybox
-		/*Geometry* skybox = GeometryManager::get_instance()->get_geometry("skybox");
-		Mesh* skybox_entity = new Mesh(skybox, glm::vec3(0, 0, 0));
-		
-		skybox_entity->set_shader_type(ShaderType::Basic);
-		skybox_entity->set_scaling(glm::vec3(800, 800, 800));
-		
-		skybox_entity->set_texture_enabled(true);
-		skybox_entity->setup();
-		EnvironmentManager::get_instance()->add(skybox_entity);*/
-
-
-		Mesh* teapot_entity = new Mesh(GeometryManager::get_instance()->get_geometry("teapot"), glm::vec3(32, 2, 32));
-		teapot_entity->set_shader_type(ShaderType::Phong);
-		teapot_entity->set_texture_enabled(true);
-		teapot_entity->setup();
-		EnvironmentManager::get_instance()->add(teapot_entity);
 
 		// tilemap for the ground.
 		int** tile_map = new int* [32];
@@ -66,6 +49,8 @@ namespace builders::environment {
 		build_floor(tile_map, 32, 32);
 		build_skybox();
 
+		build_house(glm::vec3(10, 1, 10), glm::mat4());
+
 	}
 
 	/**
@@ -89,7 +74,7 @@ namespace builders::environment {
 			for (int j = 0; j < columns; ++j) {
 				glm::vec3 pos = glm::vec3(i * 2.0, 1.0, j * 2.0);
 				// middle should be shiniest, from then on should become less shiny.
-				int shininess = 32 + 32 * abs( ( midpoint.x - pos.x ) + (midpoint.y - pos.y) ); // apply manhattan distance with minimum shininess.
+				int shininess = 32 + 32 * glm::distance(midpoint, pos);  // apply Euclid distance with minimum shininess.
 				if (tilemap[i][j] == 1) {
 					Mesh m = Mesh(GeometryManager::get_instance()->get_geometry("tile_A"), pos);
 					m.set_material_power(shininess);
@@ -104,92 +89,37 @@ namespace builders::environment {
 			}
 		}
 
-		//grouping->setup();
-
 		EnvironmentManager::get_instance()->add(grouping);
 	}
 
 	void build_skybox()
 	{
+		Geometry* skybox = GeometryManager::get_instance()->get_geometry("skybox");
+		Mesh* skybox_entity = new Mesh(skybox, glm::vec3(0, 0, 0));
+
+		skybox_entity->set_shader_type(ShaderType::Basic);
+		skybox_entity->set_scaling(glm::vec3(800, 800, 800));
+
+		skybox_entity->set_texture_enabled(true);
+		skybox_entity->setup();
+
+		EnvironmentManager::get_instance()->add(skybox_entity);
+	}
+
+	void build_house(glm::vec3 position, glm::mat4 model) {
 		MeshGrouping* grouping = new MeshGrouping();
 
-		Mesh bottom = Mesh(GeometryManager::get_instance()->get_geometry("skybox_bottom"), glm::vec3(0, -1000, 0));
-		bottom.set_scaling(glm::vec3(1000, 1, 1000));
-		bottom.set_shader_type(ShaderType::Basic);
-		bottom.set_texture_enabled(true);
+		Mesh house_block = Mesh(GeometryManager::get_instance()->get_geometry("house_block"), position);
+		Mesh house_roof = Mesh(GeometryManager::get_instance()->get_geometry("house_roof"), position);
+		Mesh house_window = Mesh(GeometryManager::get_instance()->get_geometry("house_window"), position);
+		Mesh house_door = Mesh(GeometryManager::get_instance()->get_geometry("house_door"), position);
 
-		Mesh top = Mesh(GeometryManager::get_instance()->get_geometry("skybox_top"), glm::vec3(0, 1000, 0));
-		top.set_scaling(glm::vec3(1000, 1, 1000));
-		top.set_shader_type(ShaderType::Basic);
-		top.set_texture_enabled(true);
-
-		/*
-
-
-		
-		Mesh front = Mesh(GeometryManager::get_instance()->get_geometry("skybox_front"), glm::vec3(0, 0, 1000));*/
-
-		Mesh left = Mesh(GeometryManager::get_instance()->get_geometry("skybox_left"), glm::vec3(0, 0, 1000));
-		left.set_scaling(glm::vec3(1000, 1000, 1));
-		left.set_shader_type(ShaderType::Basic);
-		left.set_texture_enabled(true);
-		
-		Mesh right = Mesh(GeometryManager::get_instance()->get_geometry("skybox_right"), glm::vec3(0, 0, -1000));
-		right.set_scaling(glm::vec3(1000, 1000, 1));
-		right.set_shader_type(ShaderType::Basic);
-		right.set_texture_enabled(true);
-
-		Mesh back = Mesh(GeometryManager::get_instance()->get_geometry("skybox_back"), glm::vec3(-944, 0, 0));
-		back.set_rotations(glm::vec3(90, 0, 0));
-		back.set_scaling(glm::vec3(1, 1000, 1000));
-		back.set_shader_type(ShaderType::Basic);
-		back.set_texture_enabled(true);
-
-		grouping->add(top);
-		grouping->add(bottom);
-		
-		//grouping->add(left);
-		grouping->add(right);
-
-		grouping->add(back);
-		/*grouping->add(top);
-		
-		grouping->add(back);
-		grouping->add(front);
-
-		
-		grouping->add(right);*/
-
-		grouping->setup();
+		grouping->add(house_block);
+		grouping->add(house_roof);
+		grouping->add(house_window);
+		grouping->add(house_door);
 
 		EnvironmentManager::get_instance()->add(grouping);
 	}
 
-	static void build_tent(glm::vec3 pos) {
-		MeshGrouping* grouping = new MeshGrouping();
-		// tent poles
-		// tent sides
-	}
-
-	static void build_fire_preps(glm::vec3 pos) {
-		MeshGrouping* grouping = new MeshGrouping();
-		// fire sticks
-		// fire blockings
-
-		// teexture for wood and rock around
-		// ^ design obj for fire itself
-		// animate fire?
-	}
-
-	static void build_house(glm::vec3 pos) {
-		MeshGrouping* grouping = new MeshGrouping();
-		// house block
-		// house roof
-
-		// smoke out of house, animate this?
-		// texture for roof and block.
-
-	}
-
-	//static void 
 }

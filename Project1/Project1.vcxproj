@@ -129,6 +129,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="animation_part.cpp" />
+    <ClCompile Include="animation_manager.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="drone_movement_controller.cpp" />
     <ClCompile Include="entity.cpp" />
@@ -148,16 +150,13 @@
     <ClCompile Include="movement_controller.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="shadingmanager.cpp" />
-    <ClCompile Include="skyboxback_geometry.cpp" />
-    <ClCompile Include="skyboxbottom_geometry.cpp" />
-    <ClCompile Include="skyboxfront_geometry.cpp" />
-    <ClCompile Include="skyboxleft_geometry.cpp" />
-    <ClCompile Include="skyboxright_geometry.cpp" />
-    <ClCompile Include="skyboxtop_geometry.cpp" />
     <ClCompile Include="view_movement_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="animation_manager.h" />
+    <ClInclude Include="animation_part.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="cube_geometry.h" />
     <ClInclude Include="drone_movement_controller.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="environmentbuilder.h" />
@@ -175,12 +174,6 @@
     <ClInclude Include="movement_controller.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shadingmanager.h" />
-    <ClInclude Include="skyboxback_geometry.h" />
-    <ClInclude Include="skyboxbottom_geometry.h" />
-    <ClInclude Include="skyboxfront_geometry.h" />
-    <ClInclude Include="skyboxleft_geometry.h" />
-    <ClInclude Include="skyboxright_geometry.h" />
-    <ClInclude Include="skyboxtop_geometry.h" />
     <ClInclude Include="view_movement_controller.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
