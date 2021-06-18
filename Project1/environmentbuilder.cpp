@@ -114,10 +114,18 @@ namespace builders::environment {
 		Mesh house_window = Mesh(GeometryManager::get_instance()->get_geometry("house_window"), position);
 		Mesh house_door = Mesh(GeometryManager::get_instance()->get_geometry("house_door"), position);
 
+		house_block.set_shader_type(ShaderType::Basic);
+		house_roof.set_shader_type(ShaderType::Basic);
+		house_window.set_shader_type(ShaderType::Basic);
+		house_door.set_shader_type(ShaderType::Basic);
+
 		grouping->add(house_block);
 		grouping->add(house_roof);
 		grouping->add(house_window);
 		grouping->add(house_door);
+
+
+		grouping->setup();
 
 		EnvironmentManager::get_instance()->add(grouping);
 	}
