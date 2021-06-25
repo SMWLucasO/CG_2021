@@ -9,3 +9,33 @@ void Entity::set_transformations(Transformations transformations)
 {
     this->transformations = transformations;
 }
+
+glm::vec3 Entity::get_rotations()
+{
+	return this->transformations.rotations;
+}
+
+void Entity::set_rotations(glm::vec3 rotations)
+{
+	this->transformations.rotations = rotations;
+}
+
+glm::vec3 Entity::get_scaling()
+{
+	return this->transformations.scaling;
+}
+
+void Entity::set_scaling(glm::vec3 scaling)
+{
+	this->transformations.scaling = scaling;
+}
+
+glm::vec3 Entity::get_position()
+{
+	return this->transformations.position;
+}
+
+void Entity::set_position(glm::vec3 position)
+{
+	this->transformations.position = position;
+}

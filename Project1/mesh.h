@@ -49,18 +49,9 @@ public:
 	void render_with_additional_transformations(glm::mat4 additional_transformations);
 
 	void set_material_power(float power);
-
-	glm::vec3 get_position();
-	void set_position(glm::vec3 position);
-
+	
 	Material get_material();
 	void set_material(Material material);
-
-	void set_rotations(glm::vec3 rotations);
-	glm::vec3 get_rotations();
-
-	void set_scaling(glm::vec3 scaling);
-	glm::vec3 get_scaling();
 
 	void set_shader_type(ShaderType type);
 

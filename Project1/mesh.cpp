@@ -59,16 +59,6 @@ void Mesh::set_material_power(float power)
 }
 
 
-glm::vec3 Mesh::get_position()
-{
-	return this->get_transformations().position;
-}
-
-void Mesh::set_position(glm::vec3 position)
-{
-	this->get_transformations().position = position;
-}
-
 Material Mesh::get_material()
 {
 	return this->material;
@@ -79,30 +69,10 @@ void Mesh::set_material(Material material)
 	this->material = material;
 }
 
-void Mesh::set_rotations(glm::vec3 rotations)
-{
-	this->get_transformations().rotations = rotations;
-}
 
 void Mesh::set_shader_type(ShaderType type)
 {
 	this->shader_type = type;
-}
-
-
-glm::vec3 Mesh::get_rotations()
-{
-	return this->get_transformations().rotations;
-}
-
-void Mesh::set_scaling(glm::vec3 scaling)
-{
-	this->get_transformations().scaling = scaling;
-}
-
-glm::vec3 Mesh::get_scaling()
-{
-	return this->get_transformations().scaling;
 }
 
 void Mesh::set_texture_enabled(bool texture_enabled)
