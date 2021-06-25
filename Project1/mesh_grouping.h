@@ -2,13 +2,16 @@
 
 #include <vector>
 
+#include <glm/glm.hpp>
+
 #include "entity.h"
 #include "mesh.h"
+
+
 
 class MeshGrouping: public Entity
 {
 private:
-	glm::vec3 position = glm::vec3(0,0,0);
 	std::vector<Mesh> entities;
 public:
 

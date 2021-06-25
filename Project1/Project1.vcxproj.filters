@@ -162,14 +162,17 @@
     <ClCompile Include="mesh.cpp">
       <Filter>Source Files\entity</Filter>
     </ClCompile>
-    <ClCompile Include="meshing_group.cpp">
-      <Filter>Source Files\entity</Filter>
-    </ClCompile>
     <ClCompile Include="animation_part.cpp">
       <Filter>Source Files\animation</Filter>
     </ClCompile>
     <ClCompile Include="animation_manager.cpp">
       <Filter>Source Files\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="transformation.cpp">
+      <Filter>Source Files\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh_grouping.cpp">
+      <Filter>Source Files\entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="cube_geometry.h">
       <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="transformation.h">
+      <Filter>Header Files\entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,8 +3,8 @@
 Mesh::Mesh(Geometry* geometry, glm::vec3 position, Transformations transformations)
 {
 	this->geometry = geometry;
-	this->position = position;
-	this->transformations = transformations;
+	this->set_transformations(transformations);
+	this->get_transformations().position = position;
 }
 
 Mesh::Mesh(Geometry* geometry, glm::vec3 position) : Mesh(geometry, position, Transformations())
@@ -20,7 +20,12 @@ void Mesh::setup()
 	this->geometry->setup(program_id, this->vao, this->vbo_vertices, this->vbo_uvs, this->vbo_normals, this->position_id, this->normal_id, this->uv_id);
 }
 
-void Mesh::render()
+void Mesh::render() {
+	glm::mat4 identity = glm::mat4();
+	Mesh::render_with_additional_transformations(identity);
+}
+
+void Mesh::render_with_additional_transformations(glm::mat4 additional_transformations)
 {
 	Shader& program = 
 		ShadingManager::get_instance()->get_shader(this->shader_type);
@@ -29,7 +34,7 @@ void Mesh::render()
 	
 	glBindTexture(GL_TEXTURE_2D, this->geometry->get_texture().texture_id);
 
-	glm::mat4 mv = Camera::get_instance()->get_view() * this->get_model();
+	glm::mat4 mv = Camera::get_instance()->get_view() * (additional_transformations * this->get_transformations().get_model());
 	Lighting* lighting = Lighting::get_instance();
 	
 	// send uniforms and stuff.
@@ -56,22 +61,12 @@ void Mesh::set_material_power(float power)
 
 glm::vec3 Mesh::get_position()
 {
-	return this->position;
+	return this->get_transformations().position;
 }
 
 void Mesh::set_position(glm::vec3 position)
 {
-	this->position = position;
-}
-
-Transformations Mesh::get_transformations()
-{
-	return this->transformations;
-}
-
-void Mesh::set_transformations(Transformations transformations)
-{
-	this->transformations = transformations;
+	this->get_transformations().position = position;
 }
 
 Material Mesh::get_material()
@@ -86,7 +81,7 @@ void Mesh::set_material(Material material)
 
 void Mesh::set_rotations(glm::vec3 rotations)
 {
-	this->transformations.rotations = rotations;
+	this->get_transformations().rotations = rotations;
 }
 
 void Mesh::set_shader_type(ShaderType type)
@@ -94,38 +89,20 @@ void Mesh::set_shader_type(ShaderType type)
 	this->shader_type = type;
 }
 
-glm::mat4 Mesh::get_model()
-{
-	glm::mat4 model;
-	
-	// translation
-	model = glm::translate(model, this->position);
-
-	// rotation
-	model = glm::rotate(model, glm::radians(this->transformations.rotations.x), glm::vec3(1, 0, 0));
-	model = glm::rotate(model, glm::radians(this->transformations.rotations.y), glm::vec3(0, 1, 0));
-	model = glm::rotate(model, glm::radians(this->transformations.rotations.z), glm::vec3(0, 0, 1));
-
-	// scaling
-	model = glm::scale(model, this->transformations.scaling);
-
-	
-	return model;
-}
 
 glm::vec3 Mesh::get_rotations()
 {
-	return this->transformations.rotations;
+	return this->get_transformations().rotations;
 }
 
 void Mesh::set_scaling(glm::vec3 scaling)
 {
-	this->transformations.scaling = scaling;
+	this->get_transformations().scaling = scaling;
 }
 
 glm::vec3 Mesh::get_scaling()
 {
-	return this->transformations.scaling;
+	return this->get_transformations().scaling;
 }
 
 void Mesh::set_texture_enabled(bool texture_enabled)

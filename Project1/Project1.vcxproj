@@ -137,7 +137,7 @@
     <ClCompile Include="environmentbuilder.cpp" />
     <ClCompile Include="mesh.cpp" />
     <ClCompile Include="environmentmanager.cpp" />
-    <ClCompile Include="meshing_group.cpp" />
+    <ClCompile Include="mesh_grouping.cpp" />
     <ClCompile Include="floortile_geometry.cpp" />
     <ClCompile Include="geometry.cpp" />
     <ClCompile Include="geometrybuilder.cpp" />
@@ -150,6 +150,7 @@
     <ClCompile Include="movement_controller.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="shadingmanager.cpp" />
+    <ClCompile Include="transformation.cpp" />
     <ClCompile Include="view_movement_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +175,7 @@
     <ClInclude Include="movement_controller.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shadingmanager.h" />
+    <ClInclude Include="transformation.h" />
     <ClInclude Include="view_movement_controller.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
