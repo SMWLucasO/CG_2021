@@ -13,12 +13,24 @@
 namespace builders::environment {
 
 	void init();
-	static void build_floor(int tilemap[][32], int rows, int columns);
+	static MeshGrouping& build_floor(int tilemap[][32], int rows, int columns);
 
-	static void build_skybox();
+	static Mesh& build_skybox();
 
-	static void build_house(glm::vec3 position);
+	static MeshGrouping& build_house(glm::vec3 position);
 
-	static void build_fence(glm::vec3 position);
+	static MeshGrouping& build_fence(glm::vec3 position);
+
+	static MeshGrouping& build_tree(glm::vec3 position);
+	static MeshGrouping& build_dead_tree(glm::vec3 position);
+	
+	static MeshGrouping& build_flower(glm::vec3 position);
+
+	static MeshGrouping& build_stemmed_bush(glm::vec3 position);
+	static MeshGrouping& build_fruit_bush(glm::vec3 position);
+	
+	static MeshGrouping& build_bird(glm::vec3 position);
+
+	static MeshGrouping& build_couch(glm::vec3 position);
 
 }

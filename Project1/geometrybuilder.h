@@ -22,6 +22,8 @@ namespace builders::geometry {
 
 	static void load_fence_geometries();
 
+	static void load_fence_gate_geometries();
+
 	static void load_tree_geometries();
 
 	static void load_bush_geometries();
@@ -29,5 +31,7 @@ namespace builders::geometry {
 	static void load_flower_geometries();
 
 	static void load_animal_geometries();
+
+	static void load_furniture_geometries();
 
 }
