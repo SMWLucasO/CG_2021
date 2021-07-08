@@ -31,8 +31,9 @@ namespace builders::environment {
 
 		build_skybox();
 
-		build_house(glm::vec3(3, 1.5f, 5.4f), glm::mat4());
-
+		build_house(glm::vec3(5, 3, 25));
+		
+		build_fence(glm::vec3(18, 0.4, 10.4));
 	}
 
 	/**
@@ -54,8 +55,9 @@ namespace builders::environment {
 
 		for (int i = 0; i < rows; ++i) {
 			for (int j = 0; j < columns; ++j) {
-				glm::vec3 pos = glm::vec3(i * 2.0, 0, j * 2.0);
+				glm::vec3 pos = glm::vec3(i* 2.0, 0, j * 2.0);
 				// middle should be shiniest, from then on should become less shiny.
+				// TODO fix this so that it works (shininess is at its peak at th wrong point)
 				int shininess = 32 + 32 * glm::distance(midpoint, pos);  // apply Euclid distance with minimum shininess.
 				if (tilemap[i][j] == 1) {
 					Mesh m = Mesh(GeometryManager::get_instance()->get_geometry("tile_A"), pos);
@@ -88,29 +90,70 @@ namespace builders::environment {
 		EnvironmentManager::get_instance()->add(skybox_entity);
 	}
 
-	void build_house(glm::vec3 position, glm::mat4 model) {
+	void build_house(glm::vec3 position) {
+		
+		/// create a grouping for the house
 		MeshGrouping* grouping = new MeshGrouping();
 
-		Mesh house_block = Mesh(GeometryManager::get_instance()->get_geometry("house_block"), position);
-		Mesh house_roof = Mesh(GeometryManager::get_instance()->get_geometry("house_roof"), position);
-		Mesh house_window = Mesh(GeometryManager::get_instance()->get_geometry("house_window"), position);
-		Mesh house_door = Mesh(GeometryManager::get_instance()->get_geometry("house_door"), position);
+		// create the house meshes
+		Mesh house_block = Mesh(GeometryManager::get_instance()->get_geometry("house_block"), glm::vec3(0, 0, 0));
+		Mesh house_roof = Mesh(GeometryManager::get_instance()->get_geometry("house_roof"), glm::vec3(0, 0, 0));
+		Mesh house_window = Mesh(GeometryManager::get_instance()->get_geometry("house_window"), glm::vec3(0, 0, 0));
+		Mesh house_door = Mesh(GeometryManager::get_instance()->get_geometry("house_door"), glm::vec3(0,0,0));
 
+		// set the shaders for the house
 		house_block.set_shader_type(ShaderType::Basic);
 		house_roof.set_shader_type(ShaderType::Basic);
 		house_window.set_shader_type(ShaderType::Basic);
 		house_door.set_shader_type(ShaderType::Basic);
 
+		// add everything to the grouping
 		grouping->add(house_block);
 		grouping->add(house_roof);
 		grouping->add(house_window);
 		grouping->add(house_door);
 
+		// set any transformations
 		grouping->set_position(position);
-		grouping->set_rotations(glm::vec3(0, 45, 0));
+		grouping->set_rotations(glm::vec3(0, 110, 0));
 
+		// setup n stuff
 		grouping->setup();
+		EnvironmentManager::get_instance()->add(grouping);
+	}
 
+	void build_fence(glm::vec3 position)
+	{
+		/// create a grouping for the fence
+		MeshGrouping* grouping = new MeshGrouping();
+
+		// create the fence meshes
+		Mesh stone_fence_supports = Mesh(GeometryManager::get_instance()->get_geometry("stone_fence_supports"), glm::vec3(0,0,0));
+		Mesh fence_supports = Mesh(GeometryManager::get_instance()->get_geometry("fence_supports"), glm::vec3(0, 0, 0));
+		Mesh fence_planks = Mesh(GeometryManager::get_instance()->get_geometry("fence_planks"), glm::vec3(0, 0, 0));
+		Mesh fence_plank_tops = Mesh(GeometryManager::get_instance()->get_geometry("fence_plank_tops"), glm::vec3(0, 0, 0));
+		Mesh fence_plank_supports = Mesh(GeometryManager::get_instance()->get_geometry("fence_plank_supports"), glm::vec3(0, 0, 0));
+
+		// set the shaders for the fence
+		stone_fence_supports.set_shader_type(ShaderType::Phong);
+		fence_supports.set_shader_type(ShaderType::Phong);
+		fence_planks.set_shader_type(ShaderType::Phong);
+		fence_plank_tops.set_shader_type(ShaderType::Phong);
+		fence_plank_supports.set_shader_type(ShaderType::Phong);
+
+		// add everything to the grouping
+		grouping->add(stone_fence_supports);
+		grouping->add(fence_supports);
+		grouping->add(fence_planks);
+		grouping->add(fence_plank_tops);
+		grouping->add(fence_plank_supports);
+
+		// set any transformations
+		grouping->set_position(position);
+		//grouping->set_rotations(glm::vec3(0, 45, 0));
+
+		// setup n stuff
+		grouping->setup();
 		EnvironmentManager::get_instance()->add(grouping);
 	}
 

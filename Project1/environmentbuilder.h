@@ -16,5 +16,9 @@ namespace builders::environment {
 	static void build_floor(int tilemap[][32], int rows, int columns);
 
 	static void build_skybox();
-	static void build_house(glm::vec3 position, glm::mat4 model);
+
+	static void build_house(glm::vec3 position);
+
+	static void build_fence(glm::vec3 position);
+
 }
