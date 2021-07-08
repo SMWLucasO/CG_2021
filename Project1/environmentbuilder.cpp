@@ -128,6 +128,10 @@ namespace builders::environment {
 		return *grouping;
 	}
 
+	/**
+	* Create a skybox model for the given position.
+	* A reference is returned for transformation purposes.
+	*/
 	Mesh& build_skybox()
 	{
 		Geometry* skybox = GeometryManager::get_instance()->get_geometry("skybox");
@@ -144,6 +148,10 @@ namespace builders::environment {
 		return *skybox_entity;
 	}
 
+	/**
+	* Create a house model for the given position.
+	* A reference is returned for transformation purposes.
+	*/
 	MeshGrouping& build_house(glm::vec3 position) {
 		
 		/// create a grouping for the house
@@ -177,6 +185,10 @@ namespace builders::environment {
 		return *grouping;
 	}
 
+	/**
+	* Create a fence model for the given position.
+	* A reference is returned for transformation purposes.
+	*/
 	MeshGrouping& build_fence(glm::vec3 position)
 	{
 		/// create a grouping for the fence
@@ -217,6 +229,10 @@ namespace builders::environment {
 		return *grouping;
 	}
 
+	/**
+	* Create a tree model for the given position.
+	* A reference is returned for transformation purposes.
+	*/
 	MeshGrouping& build_tree(glm::vec3 position)
 	{
 		MeshGrouping* grouping = new MeshGrouping();
@@ -235,6 +251,10 @@ namespace builders::environment {
 		return *grouping;
 	}
 
+	/**
+	* Create a dead tree model for the given position.
+	* A reference is returned for transformation purposes.
+	*/
 	MeshGrouping& build_dead_tree(glm::vec3 position)
 	{
 		MeshGrouping* grouping = new MeshGrouping();
@@ -251,6 +271,10 @@ namespace builders::environment {
 		return *grouping;
 	}
 
+	/**
+	* Create a flower model for the given position.
+	* A reference is returned for transformation purposes.
+	*/
 	MeshGrouping& build_flower(glm::vec3 position)
 	{
 		MeshGrouping* grouping = new MeshGrouping();
@@ -271,6 +295,10 @@ namespace builders::environment {
 		return *grouping;
 	}
 
+	/**
+	* Create a stemmed bush model for the given position.
+	* A reference is returned for transformation purposes.
+	*/
 	MeshGrouping& build_stemmed_bush(glm::vec3 position)
 	{
 		MeshGrouping* grouping = new MeshGrouping();
@@ -289,6 +317,10 @@ namespace builders::environment {
 		return *grouping;
 	}
 
+	/**
+	* Create a fruit bush model for the given position.
+	* A reference is returned for transformation purposes.
+	*/
 	MeshGrouping& build_fruit_bush(glm::vec3 position)
 	{
 		MeshGrouping* grouping = new MeshGrouping();
@@ -307,6 +339,10 @@ namespace builders::environment {
 		return *grouping;
 	}
 
+	/**
+	* Create a bird model for the given position.
+	* A reference is returned for transformation purposes.
+	*/
 	MeshGrouping& build_bird(glm::vec3 position)
 	{
 		MeshGrouping* grouping = new MeshGrouping();
@@ -327,6 +363,10 @@ namespace builders::environment {
 		return *grouping;
 	}
 
+	/**
+	* Create a couch model for the given position.
+	* A reference is returned for transformation purposes.
+	*/
 	MeshGrouping& build_couch(glm::vec3 position)
 	{
 		MeshGrouping* grouping = new MeshGrouping();
