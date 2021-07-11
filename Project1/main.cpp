@@ -59,18 +59,11 @@ void keyboard_handler(unsigned char key, int x, int y)
         // Print relevant information for model placement in the world.
         std::cout << "(" << camera->get_position().x << ", " << camera->get_position().y << ", " << camera->get_position().z << ")" << std::endl;
         std::cout << "(" << camera->get_target().x << ", " << camera->get_target().y << ", " << camera->get_target().z << ")" << std::endl;
-        std::cout << camera->get_yaw() << std::endl;
-        std::cout << camera->get_pitch() << std::endl;
+        std::cout << "yaw: " << camera->get_yaw() << std::endl;
+        std::cout << "pitch: " << camera->get_pitch() << std::endl;
     }
     else
         Camera::get_instance()->handle_keyboard(key); // handle the user's (camera controlling) input
-}
-
-
-void enable_cam_handler(int x, int y, int z, int d) {
-    // enable camera and then remove handler.
-    camera->set_enabled(true);
-    glutMouseFunc(0);
 }
 
 /**
@@ -121,7 +114,6 @@ void init_glut_glew(int argc, char** argv)
     glutSetCursor(GLUT_CURSOR_NONE); // hide cursor
     glutKeyboardFunc(keyboard_handler); // handle keyboard actions
     glutPassiveMotionFunc(mouse_handler); // handle mouse actions
-    glutMouseFunc(enable_cam_handler);
     glutTimerFunc(DELTA_TIME, render, 0);
 
     glewInit();
@@ -140,6 +132,9 @@ int main(int argc, char** argv)
             4000.0f
         )
     );
+
+    // set mouse to middle of screen, such that we do not have a 'jump' when we start using the application.
+    glutWarpPointer(WIDTH / 2, HEIGHT / 2);
 
     // set the position of our light.
     Lighting::get_instance()->set_position(glm::vec3(15, 28, 30));

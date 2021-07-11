@@ -2,12 +2,17 @@
 // https://learnopengl.com/Getting-started/Camera
 // http://tuttlem.github.io/2013/12/30/a-camera-implementation-in-c.html
 
+#include <iostream>
+
 #include "camera.h"
 
 Camera* Camera::instance{ nullptr };
 
 Camera::Camera()
 {
+	// set up initial movement controller.
+	movement_controller->setup(this->position, this->pitch, this->yaw);
+	_recalculate_target_vector();
 }
 
 Camera::~Camera()
@@ -22,7 +27,6 @@ Camera* Camera::get_instance()
 	// if our instance does not exist yet, create it.
 	if (Camera::instance == nullptr)
 		Camera::instance = new Camera();
-	
 
 	return Camera::instance;
 }
@@ -56,16 +60,6 @@ float Camera::get_pitch()
 	return this->pitch;
 }
 
-bool Camera::is_enabled()
-{
-	return this->enabled;
-}
-
-void Camera::set_enabled(bool enabled)
-{
-	this->enabled = enabled;
-}
-
 glm::mat4 Camera::get_projection()
 {
 	return this->projection;
@@ -93,8 +87,9 @@ void Camera::handle_keyboard(unsigned char key)
 		this->drone_mode = !drone_mode;
 
 		// setup the movement controller.
-		this->movement_controller->setup(this->position);
-		
+		this->movement_controller->setup(this->position, this->pitch, this->yaw);
+		_recalculate_target_vector();
+
 		// free memory.
 		delete tmp;
 	}
@@ -107,8 +102,6 @@ void Camera::handle_keyboard(unsigned char key)
 
 void Camera::handle_mouse(int xpos, int ypos, int x_center, int y_center)
 {
-	if (!this->enabled) return; // only start working when enabled.
-	// since we are locking in the center, all movements are calculated from this point.
 
 	// we calculate the movement from the middle of our screen to the position where the mouse ended in this case.
 	float xoffset = xpos - x_center;
@@ -130,13 +123,20 @@ void Camera::handle_mouse(int xpos, int ypos, int x_center, int y_center)
 		pitch = -89.0f;
 
 	// calculate the new direction the camera is facing.
-	glm::vec3 direction;
-	direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-	direction.y = sin(glm::radians(pitch));
-	direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-	this->target = glm::normalize(direction);
+	_recalculate_target_vector();
 
 	// make sure that the mouse stays in the center of the screen.
 	if (xpos != x_center || ypos != y_center)
 		glutWarpPointer(x_center, y_center);
 }
+
+void Camera::_recalculate_target_vector()
+{
+	// recalculate target direction.
+	glm::vec3 direction;
+	direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+	direction.y = sin(glm::radians(pitch));
+	direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+	this->target = glm::normalize(direction);
+}
+

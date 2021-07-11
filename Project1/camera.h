@@ -17,13 +17,10 @@ private:
 	glm::vec3 position = glm::vec3(0, 1, 0);
 
 	// The direction which the camera is currently pointing at.
-	glm::vec3 target = glm::vec3(1, 0, -0.18);
+	glm::vec3 target = glm::vec3(0, 0, 0);
 
 	// The 'up' direction for the camera. Our Y-axis is our up-axis.
 	glm::vec3 up = glm::vec3(0, 1, 0);
-
-	// The camera is disabled until you click on the screen
-	bool enabled = false;
 
 	// yaw => look left/right
 	float yaw = 0;
@@ -45,6 +42,11 @@ private:
 
 	Camera();
 	~Camera();
+
+	/**
+	* Recalculate the target vector based upon the yaw/pitch.
+	*/
+	void _recalculate_target_vector();
 
 public:
 	Camera(Camera& camera) = delete;
@@ -93,20 +95,6 @@ public:
 	* @return float
 	*/
 	float get_pitch();
-
-	/**
-	* Check whether the camera is enabled.
-	*
-	* @return bool
-	*/
-	bool is_enabled();
-
-	/**
-	* Enable or disable the camera. Setting this to false locks the camera in place.
-	* 
-	* @param enabled boolean determining whether the camera is enabled.
-	*/
-	void set_enabled(bool enabled);
 
 	/**
 	* Get the camera's projection matrix.

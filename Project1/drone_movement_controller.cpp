@@ -1,8 +1,11 @@
 #include "drone_movement_controller.h"
 
-void DroneMovementController::setup(glm::vec3& position)
+void DroneMovementController::setup(glm::vec3& position, float& pitch, float& yaw)
 {
-	position = glm::vec3(0, 0, 0); // give it a good overview.
+	position = glm::vec3(44.63, 25.62, 67.20); // give it a good overview.
+
+	pitch = -25.2;
+	yaw = -134.3;
 }
 
 void DroneMovementController::handle_movement(unsigned char key, glm::vec3& position, glm::vec3 up, glm::vec3 target)

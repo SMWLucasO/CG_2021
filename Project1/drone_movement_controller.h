@@ -11,7 +11,7 @@
 class DroneMovementController: public MovementController
 {
 public:
-	void setup(glm::vec3& position);
+	void setup(glm::vec3& position, float& pitch, float& yaw);
 
 	/**
 	* Handle the movement for the drone camera.

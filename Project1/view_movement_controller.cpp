@@ -1,9 +1,12 @@
 #include "view_movement_controller.h"
 
-void ViewMovementController::setup(glm::vec3& position)
+void ViewMovementController::setup(glm::vec3& position, float& pitch, float& yaw)
 {
-	// camera position and angle must stay the same. Thus, don't change anything
-	// ^idk, what is view mode?
+	position = glm::vec3(20.40, 1.5, 18.5);
+
+	pitch = -3.6;
+	yaw = 150.4;
+
 }
 
 void ViewMovementController::handle_movement(unsigned char key, glm::vec3& position, glm::vec3 up, glm::vec3 target)
