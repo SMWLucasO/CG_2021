@@ -5,8 +5,10 @@
 class Lighting
 {
 private:
+	// the single lighting instance.
 	static Lighting* instance;
 
+	// the position of the lighting
 	glm::vec3 position;
 
 	Lighting();

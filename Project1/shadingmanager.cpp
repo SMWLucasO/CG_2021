@@ -1,5 +1,6 @@
 #include "shadingmanager.h"
 
+// the shading manager instance.
 ShadingManager* ShadingManager::instance { nullptr };
 
 ShadingManager::ShadingManager()
@@ -8,14 +9,15 @@ ShadingManager::ShadingManager()
 
 ShadingManager::~ShadingManager()
 {
+	// delete the instance of the shading manager.
 	delete instance;
 }
 
 ShadingManager* ShadingManager::get_instance()
 {
-	if (ShadingManager::instance == nullptr) {
+	if (ShadingManager::instance == nullptr) // create the single instance of the shading manager if there is none yet.
 		instance = new ShadingManager();
-	}
+	
 
 	return ShadingManager::instance;
 }

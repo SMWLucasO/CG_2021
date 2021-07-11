@@ -157,7 +157,6 @@
     <ClInclude Include="animation_manager.h" />
     <ClInclude Include="animation_part.h" />
     <ClInclude Include="camera.h" />
-    <ClInclude Include="cube_geometry.h" />
     <ClInclude Include="drone_movement_controller.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="environmentbuilder.h" />

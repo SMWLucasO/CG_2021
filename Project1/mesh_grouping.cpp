@@ -1,12 +1,12 @@
 #include "mesh_grouping.h"
 
-void MeshGrouping::add(Mesh entity)
+void MeshGrouping::add(Mesh mesh_to_add)
 {
-	entity.set_position(this->get_transformations().position + entity.get_position());
-	entity.set_texture_enabled(true);
-	entity.setup();
+	mesh_to_add.set_position(this->get_transformations().position + mesh_to_add.get_position());
+	mesh_to_add.set_texture_enabled(true);
+	mesh_to_add.setup();
 	
-	entities.push_back(entity);
+	entities.push_back(mesh_to_add);
 }
 
 void MeshGrouping::render()

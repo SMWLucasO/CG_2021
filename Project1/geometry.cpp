@@ -10,17 +10,7 @@ Geometry::Geometry(std::vector<glm::vec3> vertices, std::vector<glm::vec2> uvs, 
 
 Geometry::Geometry()
 {
-	// in this  case, do nothing.
-}
-
-Texture Geometry::get_texture()
-{
-	return this->texture;
-}
-
-void Geometry::set_texture(Texture texture)
-{
-	this->texture = texture;
+	// in this case, do nothing.
 }
 
 void Geometry::setup(GLuint program_id, GLuint& vao, GLuint& vbo_vertices, GLuint& vbo_uvs, GLuint &vbo_normals, GLuint& position_id, GLuint& normal_id, GLuint& uv_id)
@@ -85,9 +75,20 @@ void Geometry::setup(GLuint program_id, GLuint& vao, GLuint& vbo_vertices, GLuin
 	glBindVertexArray(0);
 }
 
+Texture Geometry::get_texture()
+{
+	return this->texture;
+}
+
+void Geometry::set_texture(Texture texture)
+{
+	this->texture = texture;
+}
+
 void Geometry::load_texture(std::string url, TextureType texture_type)
 {
-	switch (texture_type) {
+	switch (texture_type)
+	{
 		case TextureType::BMP:
 			this->texture.texture_id = loadBMP(url.c_str());
 			break;

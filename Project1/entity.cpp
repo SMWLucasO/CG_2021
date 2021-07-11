@@ -1,5 +1,6 @@
 #include "entity.h"
 
+
 Transformations& Entity::get_transformations()
 {
     return this->transformations;
@@ -29,6 +30,7 @@ void Entity::set_scaling(glm::vec3 scaling)
 {
 	this->transformations.scaling = scaling;
 }
+
 
 glm::vec3 Entity::get_position()
 {

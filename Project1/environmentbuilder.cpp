@@ -4,26 +4,23 @@
 
 namespace builders::environment {
 	
-	/**
-	* Initialize the environment by placing things in it.
-	*/
 	void init()
 	{
 
 		// tilemap for the ground.
 		int tile_map[][32] = {
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1 },
-			{ 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1 },
-			{ 1, 1, 1, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1 },
-			{ 1, 1, 1, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1 },
-			{ 1, 1, 1, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1 },
+			{ 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1 },
+			{ 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1 },
+			{ 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1 },
+			{ 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 		};
 
 
@@ -66,17 +63,18 @@ namespace builders::environment {
 				build_flower(glm::vec3(11.3 + i, 0, 31 - i));
 
 		// add some bushes
-		MeshGrouping& st_bush_1 = build_stemmed_bush(glm::vec3(12.6, 0, 12.8));
-		st_bush_1.set_rotations(glm::vec3(0, 315, 0));
+		MeshGrouping& stemmed_bush_1 = build_stemmed_bush(glm::vec3(12.6, 0, 12.8));
+		stemmed_bush_1.set_rotations(glm::vec3(0, 315, 0));
 
-		MeshGrouping& st_bush_2 = build_stemmed_bush(glm::vec3(19.8, 0, 12.8));
-		st_bush_2.set_rotations(glm::vec3(0, 45, 0));
+		MeshGrouping& stemmed_bush_2 = build_stemmed_bush(glm::vec3(19.8, 0, 12.8));
+		stemmed_bush_2.set_rotations(glm::vec3(0, 45, 0));
 
 		for (int i = 0; i < 27; i++)
-			if (i % 4 == 0)
+			if (i % 4 == 0) // place a fruit bush every 4 steps.
 			{
 				build_fruit_bush(glm::vec3(19.3, .1, 29 + i));
-
+				
+				// place an additional fruit bush on the right of it when i > 6 (looks good, that's the only reason.)
 				if (i > 6)
 					build_fruit_bush(glm::vec3(12.8, .1, 29 + i));
 			}
@@ -84,74 +82,69 @@ namespace builders::environment {
 
 	}
 
-	/**
-	* Construct the floor using tiles.
-	* 
-	* Different tiles are identified using different numbers.
-	* 1 = grass tile
-	* 2 = dirt tile
-	* 
-	* @param tilemap the multidimensional array containing the identifiers.
-	* @param rows the amount of arrays in the multidimensional array
-	* @param columns the amount of values per array in the multidimensional array
-	*/
 	MeshGrouping& build_floor(int tilemap[][32], int rows, int columns)
 	{
 		MeshGrouping* grouping = new MeshGrouping();
 
-		glm::vec3 midpoint = glm::vec3(rows / 2, 1.0, columns / 2);
+		glm::vec3 midpoint = glm::vec3(rows, 0, columns);
 
 		for (int i = 0; i < rows; ++i)
 		{
 			for (int j = 0; j < columns; ++j)
 			{
-				glm::vec3 pos = glm::vec3(i* 2.0, 0, j * 2.0);
-				// middle should be shiniest, from then on should become less shiny.
-				// TODO fix this so that it works (shininess is at its peak at th wrong point)
-				int shininess = 32 + 32 * glm::distance(midpoint, pos);  // apply Euclid distance with minimum shininess.
+				glm::vec3 pos = glm::vec3(i * 2.0, 0, j * 2.0);
+				
+				// calculate the shininess of the floor tile based upon our midpoint and the given position.
+				int shininess = 32 + 32 * glm::distance(midpoint, pos);  
 				if (tilemap[i][j] == 1)
 				{
 					Mesh m = Mesh(GeometryManager::get_instance()->get_geometry("tile_A"), pos);
+					m.set_shader_type(ShaderType::Phong);
+					m.set_material_power(shininess);
+					grouping->add(m);
+				}
+				else if (tilemap[i][j] == 2)
+				{
+					Mesh m = Mesh(GeometryManager::get_instance()->get_geometry("tile_B"), pos);
+					m.set_shader_type(ShaderType::Phong);
 					m.set_material_power(shininess);
 					grouping->add(m);
 				}
 				else
 				{
-					Mesh m = Mesh(GeometryManager::get_instance()->get_geometry("tile_B"), pos);
+					Mesh m = Mesh(GeometryManager::get_instance()->get_geometry("tile_C"), pos);
+					m.set_shader_type(ShaderType::Phong);
 					m.set_material_power(shininess);
 					grouping->add(m);
 				}
 			}
 		}
 
+		// add the floor to the world environment.
 		EnvironmentManager::get_instance()->add(grouping);
 		return *grouping;
 	}
 
-	/**
-	* Create a skybox model for the given position.
-	* A reference is returned for transformation purposes.
-	*/
 	Mesh& build_skybox()
 	{
+		// get the skybox geometry and make a new mesh from it.
 		Geometry* skybox = GeometryManager::get_instance()->get_geometry("skybox");
 		Mesh* skybox_entity = new Mesh(skybox, glm::vec3(0, 0, 0));
 
+		// set the shader type and size of the skybox
 		skybox_entity->set_shader_type(ShaderType::Basic);
 		skybox_entity->set_scaling(glm::vec3(800, 800, 800));
 
+		// set up the skybox
 		skybox_entity->set_texture_enabled(true);
 		skybox_entity->setup();
 
+		// add the skybox to the world.
 		EnvironmentManager::get_instance()->add(skybox_entity);
 
 		return *skybox_entity;
 	}
 
-	/**
-	* Create a house model for the given position.
-	* A reference is returned for transformation purposes.
-	*/
 	MeshGrouping& build_house(glm::vec3 position) {
 		
 		/// create a grouping for the house
@@ -185,10 +178,6 @@ namespace builders::environment {
 		return *grouping;
 	}
 
-	/**
-	* Create a fence model for the given position.
-	* A reference is returned for transformation purposes.
-	*/
 	MeshGrouping& build_fence(glm::vec3 position)
 	{
 		/// create a grouping for the fence
@@ -214,6 +203,7 @@ namespace builders::environment {
 		Mesh fencegate_gateplank = Mesh(GeometryManager::get_instance()->get_geometry("fencegate_gateplank"), glm::vec3(0, 0, 0));
 		Mesh fencegate_gatesupports = Mesh(GeometryManager::get_instance()->get_geometry("fencegate_gatesupports"), glm::vec3(0, 0, 0));
 
+		// add the fencegate to the grouping.
 		grouping->add(fencegate_garnier);
 		grouping->add(fencegate_gatehandle);
 		grouping->add(fencegate_gateplank);
@@ -229,12 +219,9 @@ namespace builders::environment {
 		return *grouping;
 	}
 
-	/**
-	* Create a tree model for the given position.
-	* A reference is returned for transformation purposes.
-	*/
 	MeshGrouping& build_tree(glm::vec3 position)
 	{
+		// Create a new mesh grouping and add the tree_leafs / tree_stem meshes to it.
 		MeshGrouping* grouping = new MeshGrouping();
 
 		Mesh tree_leafs = Mesh(GeometryManager::get_instance()->get_geometry("tree_leafs"), glm::vec3(0, 0, 0));
@@ -243,142 +230,148 @@ namespace builders::environment {
 		grouping->add(tree_leafs);
 		grouping->add(tree_stem);
 
+		// set the position of the grouping to the given one.
 		grouping->set_position(position);
 
+		// set it up & add it to the world.
 		grouping->setup();
 		EnvironmentManager::get_instance()->add(grouping);
 
 		return *grouping;
 	}
 
-	/**
-	* Create a dead tree model for the given position.
-	* A reference is returned for transformation purposes.
-	*/
 	MeshGrouping& build_dead_tree(glm::vec3 position)
 	{
+		// create a mesh grouping & add the dead_tree mesh to it.
 		MeshGrouping* grouping = new MeshGrouping();
 
 		Mesh dead_tree = Mesh(GeometryManager::get_instance()->get_geometry("dead_tree"), glm::vec3(0, 0, 0));
 		
 		grouping->add(dead_tree);
 
+		// set the position for the grouping
 		grouping->set_position(position);
 
+		// setup & add to the world.
 		grouping->setup();
 		EnvironmentManager::get_instance()->add(grouping);
 
 		return *grouping;
 	}
 
-	/**
-	* Create a flower model for the given position.
-	* A reference is returned for transformation purposes.
-	*/
 	MeshGrouping& build_flower(glm::vec3 position)
 	{
+		// create a grouping for the meshes.
 		MeshGrouping* grouping = new MeshGrouping();
 		
+		// create the meshes for the flower.
 		Mesh flower_stem = Mesh(GeometryManager::get_instance()->get_geometry("flower_stem"), glm::vec3(0, 0, 0));
 		Mesh flower_leafs = Mesh(GeometryManager::get_instance()->get_geometry("flower_leafs"), glm::vec3(0, 0, 0));
 		Mesh flower_inner = Mesh(GeometryManager::get_instance()->get_geometry("flower_inner"), glm::vec3(0, 0, 0));
 
+		// add the pieces to the grouping.
 		grouping->add(flower_stem);
 		grouping->add(flower_leafs);
 		grouping->add(flower_inner);
 
+		// set the position of the flower
 		grouping->set_position(position);
 
+		// setup & add to the world.
 		grouping->setup();
 		EnvironmentManager::get_instance()->add(grouping);
 
 		return *grouping;
 	}
 
-	/**
-	* Create a stemmed bush model for the given position.
-	* A reference is returned for transformation purposes.
-	*/
 	MeshGrouping& build_stemmed_bush(glm::vec3 position)
 	{
+		// Create a grouping for the stemmed bush.
 		MeshGrouping* grouping = new MeshGrouping();
 
+		// Create the meshes that the stemmed bush consists of.
 		Mesh stemmed_bush_bush = Mesh(GeometryManager::get_instance()->get_geometry("stemmed_bush_bush"), glm::vec3(0, 0, 0));
 		Mesh stemmed_bush_stem = Mesh(GeometryManager::get_instance()->get_geometry("stemmed_bush_stem"), glm::vec3(0, 0, 0));
 
+		// add the meshes to the grouping & set the position of the grouping to the correct location.
 		grouping->add(stemmed_bush_bush);
 		grouping->add(stemmed_bush_stem);
 
 		grouping->set_position(position);
 
+		// set up the grouping & add it to the world.
 		grouping->setup();
 		EnvironmentManager::get_instance()->add(grouping);
 
 		return *grouping;
 	}
-
-	/**
-	* Create a fruit bush model for the given position.
-	* A reference is returned for transformation purposes.
-	*/
+	
 	MeshGrouping& build_fruit_bush(glm::vec3 position)
 	{
+		// Create a grouping for the fruit bush
 		MeshGrouping* grouping = new MeshGrouping();
 
+		// Create the meshes that the fruit bush consists of.
 		Mesh regular_bush_bush = Mesh(GeometryManager::get_instance()->get_geometry("regular_bush_bush"), glm::vec3(0, 0, 0));
 		Mesh regular_bush_fruits = Mesh(GeometryManager::get_instance()->get_geometry("regular_bush_fruits"), glm::vec3(0, 0, 0));
 
+		// Add the meshes to the mesh grouping & set the position.
 		grouping->add(regular_bush_bush);
 		grouping->add(regular_bush_fruits);
 
 		grouping->set_position(position);
 
+		// set up the grouping & add it to the world.
 		grouping->setup();
 		EnvironmentManager::get_instance()->add(grouping);
 
 		return *grouping;
 	}
 
-	/**
-	* Create a bird model for the given position.
-	* A reference is returned for transformation purposes.
-	*/
 	MeshGrouping& build_bird(glm::vec3 position)
 	{
+		// Create a grouping for the bird.
 		MeshGrouping* grouping = new MeshGrouping();
 
+		// Create the meshes of which the bird consists of.
 		Mesh bird_body = Mesh(GeometryManager::get_instance()->get_geometry("bird_body"), glm::vec3(0, 0, 0));
 		Mesh bird_left_wing = Mesh(GeometryManager::get_instance()->get_geometry("bird_left_wing"), glm::vec3(0, 0, 0));
 		Mesh bird_right_wing = Mesh(GeometryManager::get_instance()->get_geometry("bird_right_wing"), glm::vec3(0, 0, 0));
 
+		// Add the meshes to the grouping & set the position of the grouping.
 		grouping->add(bird_body);
 		grouping->add(bird_left_wing);
 		grouping->add(bird_right_wing);
 
 		grouping->set_position(position);
 
+		// set up the grouping & add it to the world.
 		grouping->setup();
 		EnvironmentManager::get_instance()->add(grouping);
 
 		return *grouping;
 	}
 
-	/**
-	* Create a couch model for the given position.
-	* A reference is returned for transformation purposes.
-	*/
 	MeshGrouping& build_couch(glm::vec3 position)
 	{
+		// Create a grouping for the couch
 		MeshGrouping* grouping = new MeshGrouping();
 
+		// Create the meshes of which the couch meshgrouping consists.
 		Mesh couch_couch = Mesh(GeometryManager::get_instance()->get_geometry("couch_couch"), glm::vec3(0, 0, 0));
 		Mesh couch_seats = Mesh(GeometryManager::get_instance()->get_geometry("couch_seats"), glm::vec3(0, 0, 0));
 
+		// Set the material power of the couch for better shininess.
+		couch_couch.set_material_power(32);
+		couch_seats.set_material_power(32);
+
+		// Add the meshes to the grouping & set the position of the grouping
 		grouping->add(couch_couch);
 		grouping->add(couch_seats);
 
 		grouping->set_position(position);
 
+		// set up the grouping & add it to the world.
 		grouping->setup();
 		EnvironmentManager::get_instance()->add(grouping);
 

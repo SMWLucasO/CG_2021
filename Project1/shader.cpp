@@ -13,14 +13,19 @@ Shader::Shader()
 
 void Shader::init(std::string folder_name)
 {
+	// generate the vertex shader
     char* vertexshader = glsl::readFile((folder_name + "vertexshader.vert").c_str());
     GLuint vsh_id = glsl::makeVertexShader(vertexshader);
 
+	// generate the fragment shader
     char* fragshader = glsl::readFile((folder_name + "fragmentshader.frag").c_str());
     GLuint fsh_id = glsl::makeFragmentShader(fragshader);
 
+	// create a shader program using the vertex- and fragmentshader.
     program_id = glsl::makeShaderProgram(vsh_id, fsh_id);
 
+	// set the locations for sending the uniforms to the shading program.
+	// see: https://docs.gl/gl3/glGetUniformLocation
 	uniforms.uniform_mv = glGetUniformLocation(program_id, "mv");
 	uniforms.uniform_proj = glGetUniformLocation(program_id, "projection");
 	uniforms.uniform_light_pos = glGetUniformLocation(program_id, "light_pos");
@@ -30,6 +35,7 @@ void Shader::init(std::string folder_name)
 	uniforms.uniform_material_diffuse = glGetUniformLocation(program_id, "mat_diffuse");
 	uniforms.uniform_texture_enabled = glGetUniformLocation(program_id, "texture_enabled");
 
+	// use the shdaer program and send the projection uniform & position of the light.
 	glUseProgram(program_id);
 
 	Lighting* lighting = Lighting::get_instance();

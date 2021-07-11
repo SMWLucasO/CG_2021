@@ -239,9 +239,6 @@
     <ClInclude Include="animation_part.h">
       <Filter>Header Files\animation</Filter>
     </ClInclude>
-    <ClInclude Include="cube_geometry.h">
-      <Filter>Header Files\geometry\primitives</Filter>
-    </ClInclude>
     <ClInclude Include="transformation.h">
       <Filter>Header Files\entity</Filter>
     </ClInclude>

@@ -6,14 +6,6 @@ void ViewMovementController::setup(glm::vec3& position)
 	// ^idk, what is view mode?
 }
 
-/**
-* Handle the movement for the view camera.
-*
-* @param key the pressed key.
-* @param position the current position of the camera
-* @param up the 'up' of the camera.
-* @param target the location we are looking towards
-*/
 void ViewMovementController::handle_movement(unsigned char key, glm::vec3& position, glm::vec3 up, glm::vec3 target)
 {
 
@@ -24,19 +16,24 @@ void ViewMovementController::handle_movement(unsigned char key, glm::vec3& posit
 	switch (key)
 	{
 	case 'w':
+		// go towards our direction
 		new_position += target;
 		break;
 	case 's':
+		// move away from our direction
 		new_position -= target;
 		break;
 	case 'a':
+		// move left relative to our direction.
 		new_position -= glm::normalize(glm::cross(target, up));
 		break;
 	case 'd':
+		// move right relative to our direction.
 		new_position += glm::normalize(glm::cross(target, up));
 		break;
 	}
 
+	// Make sure that we do not go below the lowest point as determined by the Y_LOWEST_POINT const.
 	if (new_position.y < MovementController::Y_LOWEST_POINT)
 		new_position.y = MovementController::Y_LOWEST_POINT;
 

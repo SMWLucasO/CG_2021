@@ -2,9 +2,6 @@
 
 namespace builders::geometry {
 	
-	/**
-	* Initialize the geometries to be used within the environment.
-	*/
 	void init()
 	{
 		// load geometries for the house
@@ -38,9 +35,6 @@ namespace builders::geometry {
 		load_furniture_geometries();
 	}
 
-	/**
-	* Load the geometries for the house.
-	*/
 	void load_house_geometries()
 	{
 		std::vector<glm::vec3> vertices;
@@ -60,7 +54,7 @@ namespace builders::geometry {
 		// load house block geometry
 		loadOBJ("models/house/house_block.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		geom.load_texture("textures/Yellobrk.bmp", TextureType::BMP);
+		geom.load_texture("textures/house/wall.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("house_block", geom);
 
 		vertices.clear();
@@ -70,7 +64,7 @@ namespace builders::geometry {
 		// load house window geometry
 		loadOBJ("models/house/house_window.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/house/glass-texture.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("house_window", geom);
 
 		vertices.clear();
@@ -84,24 +78,19 @@ namespace builders::geometry {
 		GeometryManager::get_instance()->add_geometry("house_door", geom);
 	}
 
-	/**
-	* Load the geometries for the skybox.
-	*/
 	void load_skybox_geometries()
 	{
 		std::vector<glm::vec3> vertices;
 		std::vector<glm::vec3> normals;
 		std::vector<glm::vec2> uvs;
 
+		// load the skybox geometry.
 		loadOBJ("models/skybox.obj", vertices, uvs, normals);
 		Geometry geom = Geometry(vertices, uvs, normals);
 		geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("skybox", geom);
 	}
 
-	/**
-	* Load the geometries for the different types of (ground) tiles.
-	*/
 	void load_tile_geometries()
 	{
 		// Tile variant grass
@@ -113,11 +102,14 @@ namespace builders::geometry {
 		FloorTileGeometry floor_tile_type_B;
 		floor_tile_type_B.load_texture("textures/tiles/tile_B.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("tile_B", floor_tile_type_B);
+
+		// Tile variant road
+		FloorTileGeometry floor_tile_type_C;
+		floor_tile_type_C.load_texture("textures/tiles/tile_C.bmp", TextureType::BMP);
+		GeometryManager::get_instance()->add_geometry("tile_C", floor_tile_type_C);
 	}
 
-	/**
-	* Load the geometries for the fence.
-	*/
+
 	void load_fence_geometries()
 	{
 		std::vector<glm::vec3> vertices;
@@ -128,7 +120,7 @@ namespace builders::geometry {
 		// load fence stone supports
 		loadOBJ("models/fence/fence/stone_fence_supports.obj", vertices, uvs, normals);
 		Geometry geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/fence/seamless-granite.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("stone_fence_supports", geom);
 
 		vertices.clear();
@@ -138,7 +130,7 @@ namespace builders::geometry {
 		// load fence supports
 		loadOBJ("models/fence/fence/fence_supports.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/fence/seamless-wood.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("fence_supports", geom);
 
 		vertices.clear();
@@ -148,7 +140,7 @@ namespace builders::geometry {
 		// load fence planks
 		loadOBJ("models/fence/fence/fence_planks.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/fence/seamless-wood.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("fence_planks", geom);
 
 		vertices.clear();
@@ -158,7 +150,7 @@ namespace builders::geometry {
 		// load fence plank tops
 		loadOBJ("models/fence/fence/fence_plank_tops.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/fence/seamless-wood.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("fence_plank_tops", geom);
 
 		vertices.clear();
@@ -168,14 +160,11 @@ namespace builders::geometry {
 		// load fence plank supports
 		loadOBJ("models/fence/fence/fence_plank_supports.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/fence/seamless-wood.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("fence_plank_supports", geom);
 
 	}
 
-	/**
-	* Load the geometries for the fence gate.
-	*/
 	void load_fence_gate_geometries()
 	{
 		std::vector<glm::vec3> vertices;
@@ -220,10 +209,6 @@ namespace builders::geometry {
 		GeometryManager::get_instance()->add_geometry("fencegate_gatesupports", geom);
 	}
 
-	
-	/**
-	* Load the geometries for the trees.
-	*/
 	void load_tree_geometries()
 	{
 		std::vector<glm::vec3> vertices;
@@ -233,7 +218,7 @@ namespace builders::geometry {
 		// load dead tree.
 		loadOBJ("models/trees/deadtree/deadtree.obj", vertices, uvs, normals);
 		Geometry geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/trees/brown.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("dead_tree", geom);
 
 		vertices.clear();
@@ -243,7 +228,7 @@ namespace builders::geometry {
 		// load regular tree leafs
 		loadOBJ("models/trees/tree/tree_leafs.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/trees/leafs.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("tree_leafs", geom);
 
 		vertices.clear();
@@ -253,25 +238,20 @@ namespace builders::geometry {
 		// load regular tree stem
 		loadOBJ("models/trees/tree/tree_stem.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/trees/brown.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("tree_stem", geom);
 	}
 
-	/**
-	* Load the geometries for bushes.
-	*/
 	void load_bush_geometries()
 	{
 		std::vector<glm::vec3> vertices;
 		std::vector<glm::vec3> normals;
 		std::vector<glm::vec2> uvs;
 
-		// models/bushes/bush
-
 		// load regular bush's bush
 		loadOBJ("models/bushes/bush/bush_bush.obj", vertices, uvs, normals);
 		Geometry geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/bushes/bush.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("regular_bush_bush", geom);
 
 		vertices.clear();
@@ -281,7 +261,7 @@ namespace builders::geometry {
 		// load regular bush's fruits
 		loadOBJ("models/bushes/bush/bush_fruits.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/bushes/red.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("regular_bush_fruits", geom);
 
 		vertices.clear();
@@ -291,7 +271,7 @@ namespace builders::geometry {
 		// load stemmed bush bush
 		loadOBJ("models/bushes/bushwithstem/bush_bush.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/bushes/bush.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("stemmed_bush_bush", geom);
 
 		vertices.clear();
@@ -301,14 +281,11 @@ namespace builders::geometry {
 		// load stemmed bush stem
 		loadOBJ("models/bushes/bushwithstem/bush_stem.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/trees/brown.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("stemmed_bush_stem", geom);
 
 	}
 
-	/**
-	* Load the geometries for the flower.
-	*/
 	void load_flower_geometries()
 	{
 		std::vector<glm::vec3> vertices;
@@ -342,9 +319,6 @@ namespace builders::geometry {
 		GeometryManager::get_instance()->add_geometry("flower_inner", geom);
 	}
 
-	/**
-	* Load the geometries for the animals.
-	*/
 	void load_animal_geometries()
 	{
 		std::vector<glm::vec3> vertices;
@@ -378,9 +352,6 @@ namespace builders::geometry {
 		GeometryManager::get_instance()->add_geometry("bird_right_wing", geom);
 	}
 
-	/**
-	* Load the geometries for the furniture.
-	*/
 	void load_furniture_geometries()
 	{
 		std::vector<glm::vec3> vertices;
@@ -390,7 +361,7 @@ namespace builders::geometry {
 		// load the couch
 		loadOBJ("models/furniture/couch/couch_couch.obj", vertices, uvs, normals);
 		Geometry geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/furniture/seamless-sofa-texture.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("couch_couch", geom);
 
 		vertices.clear();
@@ -400,7 +371,7 @@ namespace builders::geometry {
 		// load the seats of the couch
 		loadOBJ("models/furniture/couch/couch_seats.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/furniture/seamless-sofa-texture.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("couch_seats", geom);
 	}
 
