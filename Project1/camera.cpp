@@ -20,9 +20,9 @@ Camera* Camera::get_instance()
 {
 
 	// if our instance does not exist yet, create it.
-	if (Camera::instance == nullptr) { 
+	if (Camera::instance == nullptr)
 		Camera::instance = new Camera();
-	}
+	
 
 	return Camera::instance;
 }
