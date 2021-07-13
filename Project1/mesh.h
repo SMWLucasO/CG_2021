@@ -14,6 +14,7 @@ struct Material {
 	glm::vec3 ambient_color = glm::vec3(0.2, 0.2, 0.1);
 	glm::vec3 diffuse_color = glm::vec3(0.5, 0.5, 0.3);
 	glm::vec3 specular = glm::vec3(0.7, 0.7, 0.7);
+	glm::vec3 color = glm::vec3(0, 0, 0);
 	float power = 1024;
 };
 
@@ -40,6 +41,9 @@ private:
 	
 	// ID to be used to send a normal to the shader program
 	GLuint normal_id;
+
+	// ID to be used to send a color to the shader program. (In case of no texture / texture not enabled.)
+	GLuint color_id;
 
 	// ID to be used to send a UV to the shader program.
 	GLuint uv_id;

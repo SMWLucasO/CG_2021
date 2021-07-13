@@ -54,6 +54,8 @@ namespace builders::environment {
 	/**
 	* Create a skybox model for the given position.
 	*
+	* @param position the coordinates (x/y/z) to put the model at.
+	* 
 	* @return Mesh&
 	*/
 	static Mesh& build_skybox();
@@ -61,6 +63,8 @@ namespace builders::environment {
 	/**
 	* Create a house model for the given position.
 	*
+	* @param position the coordinates (x/y/z) to put the model at.
+	* 
 	* @return MeshingGroup&
 	*/
 	static MeshGrouping& build_house(glm::vec3 position);
@@ -68,12 +72,25 @@ namespace builders::environment {
 	/**
 	* Create a fence model for the given position.
 	*
+	* @param position the coordinates (x/y/z) to put the model at.
+	* 
 	* @return MeshingGroup&
 	*/
 	static MeshGrouping& build_fence(glm::vec3 position);
 
 	/**
+	* Create a fence gate model for the given position
+	* 
+	* @param position the coordinates (x/y/z) to put the model at.
+	* 
+	* @return MeshingGroup&
+	*/
+	static MeshGrouping& build_fencegate(glm::vec3 position);
+
+	/**
 	* Create a tree model for the given position.
+	* 
+	* @param position the coordinates (x/y/z) to put the model at.
 	*
 	* @return MeshingGroup&
 	*/
@@ -81,6 +98,8 @@ namespace builders::environment {
 	
 	/**
 	* Create a dead tree model for the given position.
+	* 
+	* @param position the coordinates (x/y/z) to put the model at.
 	*
 	* @return MeshingGroup&
 	*/
@@ -88,6 +107,8 @@ namespace builders::environment {
 
 	/**
 	* Create a flower model for the given position.
+	* 
+	* @param position the coordinates (x/y/z) to put the model at.
 	*
 	* @return MeshingGroup&
 	*/
@@ -95,6 +116,8 @@ namespace builders::environment {
 
 	/**
 	* Create a stemmed bush model for the given position.
+	* 
+	* @param position the coordinates (x/y/z) to put the model at.
 	*
 	* @return MeshingGroup&
 	*/
@@ -102,6 +125,8 @@ namespace builders::environment {
 	
 	/**
 	* Create a fruit bush model for the given position.
+	* 
+	* @param position the coordinates (x/y/z) to put the model at.
 	*
 	* @return MeshingGroup&
 	*/
@@ -109,6 +134,8 @@ namespace builders::environment {
 	
 	/**
 	* Create a bird model for the given position.
+	* 
+	* @param position the coordinates (x/y/z) to put the model at.
 	*
 	* @return MeshingGroup&
 	*/
@@ -116,6 +143,8 @@ namespace builders::environment {
 
 	/**
 	* Create a couch model for the given position.
+	* 
+	* @param position the coordinates (x/y/z) to put the model at.
 	*
 	* @return MeshingGroup&
 	*/

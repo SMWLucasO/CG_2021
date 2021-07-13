@@ -1,6 +1,7 @@
 #pragma once
 
 #include "transformation.h"
+#include "entity.h"
 
 class Animation
 {
@@ -13,6 +14,9 @@ private:
 protected:
 	// The transformations which the animation applies.
 	Transformations transformations;
+
+	// The entity that owns the animation.
+	Entity* owner;
 public:
 	Animation();
 	/**
@@ -55,6 +59,11 @@ public:
 	*/
 	bool is_active();
 
-
+	/**
+	* Set the owner of this animation.
+	* 
+	* @param the entity to be set as owner of this animation.
+	*/
+	void set_owner(Entity* owner);
 };
 

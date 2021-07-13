@@ -43,6 +43,7 @@ namespace builders::environment {
 
 		// setup the fence
 		build_fence(glm::vec3(18, 0.4, 10.4));
+		build_fencegate(glm::vec3(18, 0.4, 10.4));
 
 		// setup the trees
 		build_dead_tree(glm::vec3(16, .9f, 9.7f));
@@ -135,9 +136,10 @@ namespace builders::environment {
 		skybox_entity->set_shader_type(ShaderType::Basic);
 		skybox_entity->set_scaling(glm::vec3(800, 800, 800));
 
-		// set the skybox rotation animation & register its presence for the animation manager.
-		skybox_entity->set_animation(new SkyboxRotationAnimation());
-		AnimationManager::get_instance()->register_entity_animation(&skybox_entity->get_animation());
+		// create the skybox rotation animation & register its presence for the animation manager.
+		SkyboxRotationAnimation* animation = new SkyboxRotationAnimation();
+		animation->set_owner(skybox_entity);
+		AnimationManager::get_instance()->register_entity_animation(animation);
 
 		// set up the skybox
 		skybox_entity->set_texture_enabled(true);
@@ -202,7 +204,23 @@ namespace builders::environment {
 		fence_grouping->add(fence_planks);
 		fence_grouping->add(fence_plank_tops);
 		fence_grouping->add(fence_plank_supports);
+		
+		// set the position of the fence
+		fence_grouping->set_position(position);
+		
 
+		// setup n stuff
+		fence_grouping->setup();
+		
+
+		EnvironmentManager::get_instance()->add(fence_grouping);
+		
+
+		return *fence_grouping;
+	}
+
+	MeshGrouping& build_fencegate(glm::vec3 position)
+	{
 		// create a grouping for the fence's gate (separate model)
 		MeshGrouping* fencegate_grouping = new MeshGrouping();
 
@@ -218,22 +236,20 @@ namespace builders::environment {
 		fencegate_grouping->add(fencegate_gateplank);
 		fencegate_grouping->add(fencegate_gatesupports);
 
-		fencegate_grouping->set_animation(new ToggleDoorAnimation());
-		AnimationManager::get_instance()->register_onkeypress_entity_animation('g',
-			&fencegate_grouping->get_animation());
+		// register the animation for the fence gate.
+		ToggleDoorAnimation* animation = new ToggleDoorAnimation();
+		animation->set_owner(fencegate_grouping);
+		AnimationManager::get_instance()->register_onkeypress_entity_animation('g', animation);
 
-		// set any transformations
-		fence_grouping->set_position(position);
 		fencegate_grouping->set_position(position);
 
-		// setup n stuff
-		fence_grouping->setup();
+		// set up the fence gate
 		fencegate_grouping->setup();
 
-		EnvironmentManager::get_instance()->add(fence_grouping);
+		// add the fence gate to the world.
 		EnvironmentManager::get_instance()->add(fencegate_grouping);
 
-		return *fence_grouping;
+		return *fencegate_grouping;
 	}
 
 	MeshGrouping& build_tree(glm::vec3 position)
@@ -294,10 +310,17 @@ namespace builders::environment {
 		// set the position of the flower
 		grouping->set_position(position);
 
-		flower_leafs->set_animation(new FlowerAnimation());
-		flower_inner->set_animation(new FlowerAnimation());
-		AnimationManager::get_instance()->register_entity_animation(&flower_leafs->get_animation());
-		AnimationManager::get_instance()->register_entity_animation(&flower_inner->get_animation());
+		// create the animation.
+		FlowerAnimation* animation = new FlowerAnimation();
+
+		// set the owner of the animation.
+		animation->set_owner(grouping);
+
+		// register the specific parts to animate for this flower.
+		animation->register_flower_piece(flower_leafs);
+		animation->register_flower_piece(flower_inner);
+		
+		AnimationManager::get_instance()->register_entity_animation(animation);
 
 		// setup & add to the world.
 		grouping->setup();
@@ -367,13 +390,20 @@ namespace builders::environment {
 
 		grouping->set_position(position);
 
-		bird_left_wing->set_animation(new MoveLeftBirdWingAnimation());
-		bird_right_wing->set_animation(new MoveRightBirdWingAnimation());
-		grouping->set_animation(new BirdMoveInCircleAnimation());
+		// register the animations for the bird.
+		MoveLeftBirdWingAnimation* left_wing_animation = new MoveLeftBirdWingAnimation();
+		MoveRightBirdWingAnimation* right_wing_animation = new MoveRightBirdWingAnimation();
+		BirdMoveInCircleAnimation* bird_movement_animation = new BirdMoveInCircleAnimation();
 
-		AnimationManager::get_instance()->register_entity_animation(&bird_left_wing->get_animation());
-		AnimationManager::get_instance()->register_entity_animation(&bird_right_wing->get_animation());
-		AnimationManager::get_instance()->register_entity_animation(&grouping->get_animation());
+		// set the owner of each animation
+		left_wing_animation->set_owner(bird_left_wing);
+		right_wing_animation->set_owner(bird_right_wing);
+		bird_movement_animation->set_owner(grouping);
+
+		// register the animation in the manager.
+		AnimationManager::get_instance()->register_entity_animation(left_wing_animation);
+		AnimationManager::get_instance()->register_entity_animation(right_wing_animation);
+		AnimationManager::get_instance()->register_entity_animation(bird_movement_animation);
 
 		// set up the grouping & add it to the world.
 		grouping->setup();
@@ -419,8 +449,8 @@ namespace builders::environment {
 		couch_wave_animation->register_couch_seat(couch_seat_right);
 
 		// Register the couch's animation.
-		grouping->set_animation(couch_wave_animation);
-		AnimationManager::get_instance()->register_entity_animation(&grouping->get_animation());
+		couch_wave_animation->set_owner(grouping);
+		AnimationManager::get_instance()->register_entity_animation(couch_wave_animation);
 
 		// set up the grouping & add it to the world.
 		grouping->setup();

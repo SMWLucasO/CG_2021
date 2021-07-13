@@ -20,3 +20,8 @@ bool Animation::is_active()
 {
 	return this->active;
 }
+
+void Animation::set_owner(Entity* owner)
+{
+	this->owner = owner;
+}

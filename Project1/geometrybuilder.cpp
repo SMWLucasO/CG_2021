@@ -64,7 +64,7 @@ namespace builders::geometry {
 		// load house window geometry
 		loadOBJ("models/house/house_window.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		geom.load_texture("textures/house/glass-texture.bmp", TextureType::BMP);
+		//geom.load_texture("textures/house/glass-texture.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("house_window", geom);
 
 		vertices.clear();
