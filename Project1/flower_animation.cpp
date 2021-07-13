@@ -20,7 +20,7 @@ void FlowerAnimation::execute()
 void FlowerAnimation::update_flower_piece_rotations(FlowerAnimationData& data)
 {
 	// current rotations of the flower piece.
-	glm::vec3 rotations = data.flower_piece->get_rotations();
+	glm::vec3 rotations = data.animation_entity->get_rotations();
 
 	// toggle between rotating Z in [initial, initial + 5]
 	if (data.initial_transformations.rotations.z + 5 <= rotations.z)
@@ -40,13 +40,13 @@ void FlowerAnimation::update_flower_piece_rotations(FlowerAnimationData& data)
 	if (rotations.y >= 360)
 		rotations.y = 0;
 
-	data.flower_piece->set_rotations(rotations);
+	data.animation_entity->set_rotations(rotations);
 }
 
 void FlowerAnimation::update_flower_piece_position(FlowerAnimationData& data)
 {
 	// current position of the flower piece.
-	glm::vec3 position = data.flower_piece->get_position();
+	glm::vec3 position = data.animation_entity->get_position();
 
 	// make the flower pieces move up and down from [initial, initial + 1]
 	if (data.initial_transformations.position.y + 1 <= position.y)
@@ -60,7 +60,7 @@ void FlowerAnimation::update_flower_piece_position(FlowerAnimationData& data)
 	else
 		position.y += 0.01;
 
-	data.flower_piece->set_position(position);
+	data.animation_entity->set_position(position);
 }
 
 void FlowerAnimation::register_flower_piece(Mesh* flower_piece)
@@ -68,13 +68,11 @@ void FlowerAnimation::register_flower_piece(Mesh* flower_piece)
 	FlowerAnimationData data;
 
 	// make a copy of the transformations
-	Transformations transformations;
-	transformations.rotations = flower_piece->get_transformations().rotations;
-	transformations.position = flower_piece->get_transformations().position;
-	transformations.scaling = flower_piece->get_transformations().scaling;
+	Transformations transformations = Animation::extract_transformation_data(flower_piece);
+	
 
 	// store the necessary data in the flower animation data struct.
-	data.flower_piece = flower_piece;
+	data.animation_entity = flower_piece;
 	data.initial_transformations = transformations;
 
 	this->flower_piece_data.push_back(data);

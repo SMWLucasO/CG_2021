@@ -2,6 +2,13 @@
 
 #include "transformation.h"
 #include "entity.h"
+#include "mesh.h"
+
+struct AnimationData 
+{
+	Mesh* animation_entity;
+	Transformations initial_transformations;
+};
 
 class Animation
 {
@@ -51,5 +58,14 @@ public:
 	* @param the entity to be set as owner of this animation.
 	*/
 	void set_owner(Entity* owner);
+
+	/**
+	* Extract transformation data from the given mesh.
+	* 
+	* @param mesh the mesh to extract the transformation data from.
+	* 
+	* @return Transformations
+	*/
+	static Transformations extract_transformation_data(Mesh* mesh);
 };
 

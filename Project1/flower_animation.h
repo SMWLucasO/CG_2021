@@ -6,10 +6,8 @@
 #include "mesh.h"
 #include "animation.h"
 
-struct FlowerAnimationData
+struct FlowerAnimationData: public AnimationData
 {
-	Mesh* flower_piece;
-	Transformations initial_transformations;
 	bool move_position_back = false;
 	bool rotate_z_back = false;
 };

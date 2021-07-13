@@ -3,12 +3,25 @@
 #include "animation.h"
 #include "mesh.h"
 
+struct CouchWaveAnimationData: public AnimationData
+{
+	bool move_position_back = false;
+	bool may_go_up = true;
+};
 
 class CouchWaveAnimation: public Animation
 {
 private:
-	// the meshes to animate.
-	std::vector<Mesh*> couch_seats;
+	// data for the animation to work.
+	std::vector<CouchWaveAnimationData> couch_seats;
+
+	// The amount of calls that have been done for this animation.
+	// gets reset every 10 calls.
+	int execution_calls = 0;
+	
+	// The amount of seats we need to move.
+	int couch_seats_to_animate = 1;
+
 public:
 	void execute();
 	
