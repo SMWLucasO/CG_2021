@@ -63,6 +63,4 @@ public:
 	* @param key the key which is bound to the animation to start executing.
 	*/
 	void toggle_executing_keyed_animation(char key);
-
 };
-

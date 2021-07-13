@@ -2,13 +2,36 @@
 
 #include <vector>
 
+#include "transformation.h"
 #include "mesh.h"
 #include "animation.h"
+
+struct FlowerAnimationData
+{
+	Mesh* flower_piece;
+	Transformations initial_transformations;
+	bool move_position_back = false;
+	bool rotate_z_back = false;
+};
 
 class FlowerAnimation: public Animation
 {
 private:
-	std::vector<Mesh*> flower_pieces;
+	std::vector<FlowerAnimationData> flower_piece_data;
+
+	/**
+	* Update the position of the flower piece.
+	* 
+	* @param data the flower piece's information.
+	*/
+	void update_flower_piece_position(FlowerAnimationData& data);
+
+	/**
+	* Update the rotations of the flower piece.
+	* 
+	* @param data the flower piece's information.
+	*/
+	void update_flower_piece_rotations(FlowerAnimationData& data);
 public:
 	void execute();
 
