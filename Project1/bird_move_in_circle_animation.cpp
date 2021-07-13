@@ -1,13 +1,6 @@
 #include "bird_move_in_circle_animation.h"
 
-void BirdMoveInCircleAnimation::enter()
+void BirdMoveInCircleAnimation::execute()
 {
 }
 
-void BirdMoveInCircleAnimation::process()
-{
-}
-
-void BirdMoveInCircleAnimation::exit()
-{
-}

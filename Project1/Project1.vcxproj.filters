@@ -112,6 +112,9 @@
     <Filter Include="Header Files\animation\animations\bird">
       <UniqueIdentifier>{f18a2951-bea6-48c8-91f0-e07fb537432b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\animation\animations\bird">
+      <UniqueIdentifier>{23f1ad3a-51e6-4cf1-8f17-daba9608b740}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -180,9 +183,6 @@
     <ClCompile Include="animation.cpp">
       <Filter>Source Files\animation</Filter>
     </ClCompile>
-    <ClCompile Include="bird_move_in_circle_animation.cpp">
-      <Filter>Source Files\animation\animations</Filter>
-    </ClCompile>
     <ClCompile Include="skybox_rotation_animation.cpp">
       <Filter>Source Files\animation\animations</Filter>
     </ClCompile>
@@ -195,14 +195,17 @@
     <ClCompile Include="toggle_door_animation.cpp">
       <Filter>Source Files\animation\animations</Filter>
     </ClCompile>
-    <ClCompile Include="move_left_bird_wing_animation.cpp">
-      <Filter>Source Files\animation\animations</Filter>
-    </ClCompile>
-    <ClCompile Include="move_right_bird_wing_animation.cpp">
-      <Filter>Source Files\animation\animations</Filter>
-    </ClCompile>
     <ClCompile Include="animation_manager.cpp">
       <Filter>Source Files\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="bird_move_in_circle_animation.cpp">
+      <Filter>Source Files\animation\animations\bird</Filter>
+    </ClCompile>
+    <ClCompile Include="move_left_bird_wing_animation.cpp">
+      <Filter>Source Files\animation\animations\bird</Filter>
+    </ClCompile>
+    <ClCompile Include="move_right_bird_wing_animation.cpp">
+      <Filter>Source Files\animation\animations\bird</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

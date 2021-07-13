@@ -6,8 +6,6 @@ class ToggleDoorAnimation: public Animation
 {
 private:
 public:
-	void enter();
-	void process();
-	void exit();
+	void execute();
 };
 

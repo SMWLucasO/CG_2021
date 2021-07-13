@@ -10,6 +10,9 @@ class AnimationManager
 {
 private:
 	std::unordered_map<char, Animation*> keyed_animations;
+
+	// The animations that are run once per tick.
+	// Important: we define a 'tick' as a 60th of a second.
 	std::vector<Animation*> ticked_animations;
 
 	// The single animation manager instance.

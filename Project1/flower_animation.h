@@ -10,9 +10,7 @@ class FlowerAnimation: public Animation
 private:
 	std::vector<Mesh*> flower_pieces;
 public:
-	void enter();
-	void process();
-	void exit();
+	void execute();
 
 	/**
 	* Register a flower piece to be animated.

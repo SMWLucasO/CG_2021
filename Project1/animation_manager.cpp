@@ -22,6 +22,7 @@ AnimationManager* AnimationManager::get_instance()
 
 void AnimationManager::register_entity_animation(Animation* animation)
 {
+	animation->set_active(true);
 	this->ticked_animations.push_back(animation);
 }
 
@@ -34,7 +35,7 @@ void AnimationManager::execute_ticked_animations()
 {
 	// execute all animations on that are registered on the ticked animations list.
 	std::for_each(this->ticked_animations.begin(), this->ticked_animations.end(),
-		[](Animation* anim) { anim->process(); }
+		[](Animation* anim) { anim->execute(); }
 	);
 }
 
@@ -49,7 +50,7 @@ void AnimationManager::toggle_executing_keyed_animation(char key)
 	// toggle the keyed animation.
 	if (animation->is_active())
 	{
-		// remove animation from ticked.
+		// remove animation from the tick animations.
 		this->ticked_animations.erase(std::remove(this->ticked_animations.begin(), this->ticked_animations.end(), animation),
 			this->ticked_animations.end());
 

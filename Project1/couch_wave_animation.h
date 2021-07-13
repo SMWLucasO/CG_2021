@@ -10,11 +10,13 @@ private:
 	// the meshes to animate.
 	std::vector<Mesh*> couch_seats;
 public:
-
-	void enter();
-	void process();
-	void exit();
+	void execute();
 	
+	/**
+	* Register a couch seat to be animated.
+	* 
+	* @param couch_seat the seat to be animated.
+	*/
 	void register_couch_seat(Mesh* couch_seat);
 };
 

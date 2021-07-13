@@ -25,25 +25,11 @@ public:
 	~Animation();
 
 	/**
-	* Handle any memory allocation or other setup stuff.
-	* 
-	* Called upon first execution of this event.
-	*/
-	virtual void enter() = 0;
-
-	/**
 	* Handle the animation.
 	* 
 	* This method is called 60 times per seconds (60fps).
 	*/
-	virtual void process() = 0;
-
-	/**
-	* Handle any memory deallocation or other cleanup stuff.
-	* 
-	* Called when exiting this event so that the next one may be started.
-	*/
-	virtual void exit() = 0;
+	virtual void execute() = 0;
 
 	/**
 	* activate or deactivate the animation.
