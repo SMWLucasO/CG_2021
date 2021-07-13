@@ -31,6 +31,25 @@ void Entity::set_scaling(glm::vec3 scaling)
 	this->transformations.scaling = scaling;
 }
 
+void Entity::set_animation(Animation* animation)
+{
+	delete this->animation;
+	this->animation = animation;
+}
+
+Animation& Entity::get_animation()
+{
+	return *this->animation;
+}
+
+void Entity::activate_animation()
+{
+	if (this->animation != nullptr)
+		this->animation->enter();
+
+	this->allow_animation_execution = true;
+}
+
 
 glm::vec3 Entity::get_position()
 {

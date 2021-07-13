@@ -1,11 +1,19 @@
 #pragma once
 
 #include "transformation.h"
+#include "animation.h"
 
 class Entity
 {
 private:
+	// the transformations of the entity.
 	Transformations transformations = Transformations();
+
+	// the entity's animation.
+	Animation* animation = nullptr;
+
+	// boolean determining whether the animation may be executed (if there is one)
+	bool allow_animation_execution = false;
 public:
 	virtual void setup() = 0;
 	virtual void render() = 0;
@@ -66,6 +74,24 @@ public:
 	*/
 	void set_scaling(glm::vec3 scaling);
 
+	/**
+	* Set the animation to be executed. Note that the previous animation will be destroyed.
+	* 
+	* @param animation a heap-allocated pointer to the animation object.
+	*/
+	void set_animation(Animation* animation);
+
+	/**
+	* Get the animation of the given entity.
+	* 
+	* @return Animation
+	*/
+	Animation& get_animation();
+
+	/**
+	* Activate the animation so that it starts playing.
+	*/
+	void activate_animation();
 
 };
 

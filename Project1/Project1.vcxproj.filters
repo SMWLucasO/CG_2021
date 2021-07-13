@@ -103,6 +103,12 @@
     <Filter Include="Source Files\animation">
       <UniqueIdentifier>{3bd4369f-7f0a-4153-b9c1-681f152c27af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\animation\animations">
+      <UniqueIdentifier>{f34f412b-c82e-4a0a-8951-bc34e96ad7bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\animation\animations">
+      <UniqueIdentifier>{843a0178-53df-4e45-9873-57e6d90a098d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -162,17 +168,23 @@
     <ClCompile Include="mesh.cpp">
       <Filter>Source Files\entity</Filter>
     </ClCompile>
-    <ClCompile Include="animation_part.cpp">
-      <Filter>Source Files\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="animation_manager.cpp">
-      <Filter>Source Files\animation</Filter>
-    </ClCompile>
     <ClCompile Include="transformation.cpp">
       <Filter>Source Files\entity</Filter>
     </ClCompile>
     <ClCompile Include="mesh_grouping.cpp">
       <Filter>Source Files\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="animation.cpp">
+      <Filter>Source Files\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyboxRotationAnimation.cpp">
+      <Filter>Source Files\animation\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="rotate_up_and_down_animation.cpp">
+      <Filter>Source Files\animation\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="bird_move_in_circle_animation.cpp">
+      <Filter>Source Files\animation\animations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,14 +245,20 @@
     <ClInclude Include="mesh_grouping.h">
       <Filter>Header Files\entity</Filter>
     </ClInclude>
-    <ClInclude Include="animation_manager.h">
-      <Filter>Header Files\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="animation_part.h">
-      <Filter>Header Files\animation</Filter>
-    </ClInclude>
     <ClInclude Include="transformation.h">
       <Filter>Header Files\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="animation.h">
+      <Filter>Header Files\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="skybox_rotation_animation.h">
+      <Filter>Header Files\animation\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="rotate_up_and_down_animation.h">
+      <Filter>Header Files\animation\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="bird_move_in_circle_animation.h">
+      <Filter>Header Files\animation\animations</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
