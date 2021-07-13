@@ -11,9 +11,6 @@ private:
 
 	// the entity's animation.
 	Animation* animation = nullptr;
-
-	// boolean determining whether the animation may be executed (if there is one)
-	bool allow_animation_execution = false;
 public:
 	virtual void setup() = 0;
 	virtual void render() = 0;
@@ -87,11 +84,6 @@ public:
 	* @return Animation
 	*/
 	Animation& get_animation();
-
-	/**
-	* Activate the animation so that it starts playing.
-	*/
-	void activate_animation();
 
 };
 

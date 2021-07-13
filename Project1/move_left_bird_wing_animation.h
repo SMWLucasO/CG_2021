@@ -2,7 +2,7 @@
 
 #include "animation.h"
 
-class BirdMoveInCircleAnimation: public Animation
+class MoveLeftBirdWingAnimation: public Animation
 {
 private:
 public:

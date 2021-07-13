@@ -7,8 +7,26 @@
 #include "geometry.h"
 #include "floortile_geometry.h"
 
+// our animations
+#include "bird_move_in_circle_animation.h"
+#include "move_left_bird_wing_animation.h"
+#include "move_right_bird_wing_animation.h"
+
+#include "couch_wave_animation.h"
+
+#include "flower_animation.h"
+
+#include "skybox_rotation_animation.h"
+
+#include "toggle_door_animation.h"
+// END our animations
+
+#include "animation_manager.h"
+
 #include "mesh.h"
 #include "mesh_grouping.h"
+
+
 
 namespace builders::environment {
 

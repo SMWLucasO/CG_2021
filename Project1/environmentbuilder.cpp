@@ -98,23 +98,23 @@ namespace builders::environment {
 				int shininess = 32 + 32 * glm::distance(midpoint, pos);  
 				if (tilemap[i][j] == 1)
 				{
-					Mesh m = Mesh(GeometryManager::get_instance()->get_geometry("tile_A"), pos);
-					m.set_shader_type(ShaderType::Phong);
-					m.set_material_power(shininess);
+					Mesh* m = new Mesh(GeometryManager::get_instance()->get_geometry("tile_A"), pos);
+					m->set_shader_type(ShaderType::Phong);
+					m->set_material_power(shininess);
 					grouping->add(m);
 				}
 				else if (tilemap[i][j] == 2)
 				{
-					Mesh m = Mesh(GeometryManager::get_instance()->get_geometry("tile_B"), pos);
-					m.set_shader_type(ShaderType::Phong);
-					m.set_material_power(shininess);
+					Mesh* m = new Mesh(GeometryManager::get_instance()->get_geometry("tile_B"), pos);
+					m->set_shader_type(ShaderType::Phong);
+					m->set_material_power(shininess);
 					grouping->add(m);
 				}
 				else
 				{
-					Mesh m = Mesh(GeometryManager::get_instance()->get_geometry("tile_C"), pos);
-					m.set_shader_type(ShaderType::Phong);
-					m.set_material_power(shininess);
+					Mesh* m = new Mesh(GeometryManager::get_instance()->get_geometry("tile_C"), pos);
+					m->set_shader_type(ShaderType::Phong);
+					m->set_material_power(shininess);
 					grouping->add(m);
 				}
 			}
@@ -135,6 +135,10 @@ namespace builders::environment {
 		skybox_entity->set_shader_type(ShaderType::Basic);
 		skybox_entity->set_scaling(glm::vec3(800, 800, 800));
 
+		// set the skybox rotation animation & register its presence for the animation manager.
+		skybox_entity->set_animation(new SkyboxRotationAnimation());
+		AnimationManager::get_instance()->register_entity_animation(&skybox_entity->get_animation());
+
 		// set up the skybox
 		skybox_entity->set_texture_enabled(true);
 		skybox_entity->setup();
@@ -151,16 +155,16 @@ namespace builders::environment {
 		MeshGrouping* grouping = new MeshGrouping();
 
 		// create the house meshes
-		Mesh house_block = Mesh(GeometryManager::get_instance()->get_geometry("house_block"), glm::vec3(0, 0, 0));
-		Mesh house_roof = Mesh(GeometryManager::get_instance()->get_geometry("house_roof"), glm::vec3(0, 0, 0));
-		Mesh house_window = Mesh(GeometryManager::get_instance()->get_geometry("house_window"), glm::vec3(0, 0, 0));
-		Mesh house_door = Mesh(GeometryManager::get_instance()->get_geometry("house_door"), glm::vec3(0,0,0));
+		Mesh* house_block = new Mesh(GeometryManager::get_instance()->get_geometry("house_block"), glm::vec3(0, 0, 0));
+		Mesh* house_roof = new Mesh(GeometryManager::get_instance()->get_geometry("house_roof"), glm::vec3(0, 0, 0));
+		Mesh* house_window = new Mesh(GeometryManager::get_instance()->get_geometry("house_window"), glm::vec3(0, 0, 0));
+		Mesh* house_door = new Mesh(GeometryManager::get_instance()->get_geometry("house_door"), glm::vec3(0,0,0));
 
 		// set the shaders for the house
-		house_block.set_shader_type(ShaderType::Basic);
-		house_roof.set_shader_type(ShaderType::Basic);
-		house_window.set_shader_type(ShaderType::Basic);
-		house_door.set_shader_type(ShaderType::Basic);
+		house_block->set_shader_type(ShaderType::Basic);
+		house_roof->set_shader_type(ShaderType::Basic);
+		house_window->set_shader_type(ShaderType::Basic);
+		house_door->set_shader_type(ShaderType::Basic);
 
 		// add everything to the grouping
 		grouping->add(house_block);
@@ -180,43 +184,56 @@ namespace builders::environment {
 
 	MeshGrouping& build_fence(glm::vec3 position)
 	{
+		// TODO: Move fencegate to its own build method.
+
 		/// create a grouping for the fence
-		MeshGrouping* grouping = new MeshGrouping();
+		MeshGrouping* fence_grouping = new MeshGrouping();
 
 		// create the fence meshes
-		Mesh stone_fence_supports = Mesh(GeometryManager::get_instance()->get_geometry("stone_fence_supports"), glm::vec3(0,0,0));
-		Mesh fence_supports = Mesh(GeometryManager::get_instance()->get_geometry("fence_supports"), glm::vec3(0, 0, 0));
-		Mesh fence_planks = Mesh(GeometryManager::get_instance()->get_geometry("fence_planks"), glm::vec3(0, 0, 0));
-		Mesh fence_plank_tops = Mesh(GeometryManager::get_instance()->get_geometry("fence_plank_tops"), glm::vec3(0, 0, 0));
-		Mesh fence_plank_supports = Mesh(GeometryManager::get_instance()->get_geometry("fence_plank_supports"), glm::vec3(0, 0, 0));
+		Mesh* stone_fence_supports = new Mesh(GeometryManager::get_instance()->get_geometry("stone_fence_supports"), glm::vec3(0,0,0));
+		Mesh* fence_supports = new Mesh(GeometryManager::get_instance()->get_geometry("fence_supports"), glm::vec3(0, 0, 0));
+		Mesh* fence_planks = new Mesh(GeometryManager::get_instance()->get_geometry("fence_planks"), glm::vec3(0, 0, 0));
+		Mesh* fence_plank_tops = new Mesh(GeometryManager::get_instance()->get_geometry("fence_plank_tops"), glm::vec3(0, 0, 0));
+		Mesh* fence_plank_supports = new Mesh(GeometryManager::get_instance()->get_geometry("fence_plank_supports"), glm::vec3(0, 0, 0));
 
 		// add everything to the grouping
-		grouping->add(stone_fence_supports);
-		grouping->add(fence_supports);
-		grouping->add(fence_planks);
-		grouping->add(fence_plank_tops);
-		grouping->add(fence_plank_supports);
+		fence_grouping->add(stone_fence_supports);
+		fence_grouping->add(fence_supports);
+		fence_grouping->add(fence_planks);
+		fence_grouping->add(fence_plank_tops);
+		fence_grouping->add(fence_plank_supports);
+
+		// create a grouping for the fence's gate (separate model)
+		MeshGrouping* fencegate_grouping = new MeshGrouping();
 
 		// create fence gate meshes
-		Mesh fencegate_garnier = Mesh(GeometryManager::get_instance()->get_geometry("fencegate_garnier"), glm::vec3(0, 0, 0));
-		Mesh fencegate_gatehandle = Mesh(GeometryManager::get_instance()->get_geometry("fencegate_gatehandle"), glm::vec3(0, 0, 0));
-		Mesh fencegate_gateplank = Mesh(GeometryManager::get_instance()->get_geometry("fencegate_gateplank"), glm::vec3(0, 0, 0));
-		Mesh fencegate_gatesupports = Mesh(GeometryManager::get_instance()->get_geometry("fencegate_gatesupports"), glm::vec3(0, 0, 0));
+		Mesh* fencegate_garnier = new Mesh(GeometryManager::get_instance()->get_geometry("fencegate_garnier"), glm::vec3(0, 0, 0));
+		Mesh* fencegate_gatehandle = new Mesh(GeometryManager::get_instance()->get_geometry("fencegate_gatehandle"), glm::vec3(0, 0, 0));
+		Mesh* fencegate_gateplank = new Mesh(GeometryManager::get_instance()->get_geometry("fencegate_gateplank"), glm::vec3(0, 0, 0));
+		Mesh* fencegate_gatesupports = new Mesh(GeometryManager::get_instance()->get_geometry("fencegate_gatesupports"), glm::vec3(0, 0, 0));
 
-		// add the fencegate to the grouping.
-		grouping->add(fencegate_garnier);
-		grouping->add(fencegate_gatehandle);
-		grouping->add(fencegate_gateplank);
-		grouping->add(fencegate_gatesupports);
+		// add the fencegate to its grouping.
+		fencegate_grouping->add(fencegate_garnier);
+		fencegate_grouping->add(fencegate_gatehandle);
+		fencegate_grouping->add(fencegate_gateplank);
+		fencegate_grouping->add(fencegate_gatesupports);
+
+		fencegate_grouping->set_animation(new ToggleDoorAnimation());
+		AnimationManager::get_instance()->register_onkeypress_entity_animation('g',
+			&fencegate_grouping->get_animation());
 
 		// set any transformations
-		grouping->set_position(position);
+		fence_grouping->set_position(position);
+		fencegate_grouping->set_position(position);
 
 		// setup n stuff
-		grouping->setup();
-		EnvironmentManager::get_instance()->add(grouping);
+		fence_grouping->setup();
+		fencegate_grouping->setup();
 
-		return *grouping;
+		EnvironmentManager::get_instance()->add(fence_grouping);
+		EnvironmentManager::get_instance()->add(fencegate_grouping);
+
+		return *fence_grouping;
 	}
 
 	MeshGrouping& build_tree(glm::vec3 position)
@@ -224,8 +241,8 @@ namespace builders::environment {
 		// Create a new mesh grouping and add the tree_leafs / tree_stem meshes to it.
 		MeshGrouping* grouping = new MeshGrouping();
 
-		Mesh tree_leafs = Mesh(GeometryManager::get_instance()->get_geometry("tree_leafs"), glm::vec3(0, 0, 0));
-		Mesh tree_stem = Mesh(GeometryManager::get_instance()->get_geometry("tree_stem"), glm::vec3(0, 0, 0));
+		Mesh* tree_leafs = new Mesh(GeometryManager::get_instance()->get_geometry("tree_leafs"), glm::vec3(0, 0, 0));
+		Mesh* tree_stem = new Mesh(GeometryManager::get_instance()->get_geometry("tree_stem"), glm::vec3(0, 0, 0));
 
 		grouping->add(tree_leafs);
 		grouping->add(tree_stem);
@@ -245,7 +262,7 @@ namespace builders::environment {
 		// create a mesh grouping & add the dead_tree mesh to it.
 		MeshGrouping* grouping = new MeshGrouping();
 
-		Mesh dead_tree = Mesh(GeometryManager::get_instance()->get_geometry("dead_tree"), glm::vec3(0, 0, 0));
+		Mesh* dead_tree = new Mesh(GeometryManager::get_instance()->get_geometry("dead_tree"), glm::vec3(0, 0, 0));
 		
 		grouping->add(dead_tree);
 
@@ -265,9 +282,9 @@ namespace builders::environment {
 		MeshGrouping* grouping = new MeshGrouping();
 		
 		// create the meshes for the flower.
-		Mesh flower_stem = Mesh(GeometryManager::get_instance()->get_geometry("flower_stem"), glm::vec3(0, 0, 0));
-		Mesh flower_leafs = Mesh(GeometryManager::get_instance()->get_geometry("flower_leafs"), glm::vec3(0, 0, 0));
-		Mesh flower_inner = Mesh(GeometryManager::get_instance()->get_geometry("flower_inner"), glm::vec3(0, 0, 0));
+		Mesh* flower_stem = new Mesh(GeometryManager::get_instance()->get_geometry("flower_stem"), glm::vec3(0, 0, 0));
+		Mesh* flower_leafs = new Mesh(GeometryManager::get_instance()->get_geometry("flower_leafs"), glm::vec3(0, 0, 0));
+		Mesh* flower_inner = new Mesh(GeometryManager::get_instance()->get_geometry("flower_inner"), glm::vec3(0, 0, 0));
 
 		// add the pieces to the grouping.
 		grouping->add(flower_stem);
@@ -276,6 +293,11 @@ namespace builders::environment {
 
 		// set the position of the flower
 		grouping->set_position(position);
+
+		flower_leafs->set_animation(new FlowerAnimation());
+		flower_inner->set_animation(new FlowerAnimation());
+		AnimationManager::get_instance()->register_entity_animation(&flower_leafs->get_animation());
+		AnimationManager::get_instance()->register_entity_animation(&flower_inner->get_animation());
 
 		// setup & add to the world.
 		grouping->setup();
@@ -290,8 +312,8 @@ namespace builders::environment {
 		MeshGrouping* grouping = new MeshGrouping();
 
 		// Create the meshes that the stemmed bush consists of.
-		Mesh stemmed_bush_bush = Mesh(GeometryManager::get_instance()->get_geometry("stemmed_bush_bush"), glm::vec3(0, 0, 0));
-		Mesh stemmed_bush_stem = Mesh(GeometryManager::get_instance()->get_geometry("stemmed_bush_stem"), glm::vec3(0, 0, 0));
+		Mesh* stemmed_bush_bush = new Mesh(GeometryManager::get_instance()->get_geometry("stemmed_bush_bush"), glm::vec3(0, 0, 0));
+		Mesh* stemmed_bush_stem = new Mesh(GeometryManager::get_instance()->get_geometry("stemmed_bush_stem"), glm::vec3(0, 0, 0));
 
 		// add the meshes to the grouping & set the position of the grouping to the correct location.
 		grouping->add(stemmed_bush_bush);
@@ -312,8 +334,8 @@ namespace builders::environment {
 		MeshGrouping* grouping = new MeshGrouping();
 
 		// Create the meshes that the fruit bush consists of.
-		Mesh regular_bush_bush = Mesh(GeometryManager::get_instance()->get_geometry("regular_bush_bush"), glm::vec3(0, 0, 0));
-		Mesh regular_bush_fruits = Mesh(GeometryManager::get_instance()->get_geometry("regular_bush_fruits"), glm::vec3(0, 0, 0));
+		Mesh* regular_bush_bush = new Mesh(GeometryManager::get_instance()->get_geometry("regular_bush_bush"), glm::vec3(0, 0, 0));
+		Mesh* regular_bush_fruits = new Mesh(GeometryManager::get_instance()->get_geometry("regular_bush_fruits"), glm::vec3(0, 0, 0));
 
 		// Add the meshes to the mesh grouping & set the position.
 		grouping->add(regular_bush_bush);
@@ -334,9 +356,9 @@ namespace builders::environment {
 		MeshGrouping* grouping = new MeshGrouping();
 
 		// Create the meshes of which the bird consists of.
-		Mesh bird_body = Mesh(GeometryManager::get_instance()->get_geometry("bird_body"), glm::vec3(0, 0, 0));
-		Mesh bird_left_wing = Mesh(GeometryManager::get_instance()->get_geometry("bird_left_wing"), glm::vec3(0, 0, 0));
-		Mesh bird_right_wing = Mesh(GeometryManager::get_instance()->get_geometry("bird_right_wing"), glm::vec3(0, 0, 0));
+		Mesh* bird_body = new Mesh(GeometryManager::get_instance()->get_geometry("bird_body"), glm::vec3(0, 0, 0));
+		Mesh* bird_left_wing = new Mesh(GeometryManager::get_instance()->get_geometry("bird_left_wing"), glm::vec3(0, 0, 0));
+		Mesh* bird_right_wing = new Mesh(GeometryManager::get_instance()->get_geometry("bird_right_wing"), glm::vec3(0, 0, 0));
 
 		// Add the meshes to the grouping & set the position of the grouping.
 		grouping->add(bird_body);
@@ -344,6 +366,14 @@ namespace builders::environment {
 		grouping->add(bird_right_wing);
 
 		grouping->set_position(position);
+
+		bird_left_wing->set_animation(new MoveLeftBirdWingAnimation());
+		bird_right_wing->set_animation(new MoveRightBirdWingAnimation());
+		grouping->set_animation(new BirdMoveInCircleAnimation());
+
+		AnimationManager::get_instance()->register_entity_animation(&bird_left_wing->get_animation());
+		AnimationManager::get_instance()->register_entity_animation(&bird_right_wing->get_animation());
+		AnimationManager::get_instance()->register_entity_animation(&grouping->get_animation());
 
 		// set up the grouping & add it to the world.
 		grouping->setup();
@@ -358,18 +388,39 @@ namespace builders::environment {
 		MeshGrouping* grouping = new MeshGrouping();
 
 		// Create the meshes of which the couch meshgrouping consists.
-		Mesh couch_couch = Mesh(GeometryManager::get_instance()->get_geometry("couch_couch"), glm::vec3(0, 0, 0));
-		Mesh couch_seats = Mesh(GeometryManager::get_instance()->get_geometry("couch_seats"), glm::vec3(0, 0, 0));
+		Mesh* couch_couch = new Mesh(GeometryManager::get_instance()->get_geometry("couch_couch"), glm::vec3(0, 0, 0));
+		
+		Mesh* couch_seat_left = new Mesh(GeometryManager::get_instance()->get_geometry("couch_seat"), glm::vec3(0, 0, 0));
+		Mesh* couch_seat_left_middle = new Mesh(GeometryManager::get_instance()->get_geometry("couch_seat"), glm::vec3(0, 0, -0.95));
+		Mesh* couch_seat_right_middle = new Mesh(GeometryManager::get_instance()->get_geometry("couch_seat"), glm::vec3(0, 0, -1.9));
+		Mesh* couch_seat_right = new Mesh(GeometryManager::get_instance()->get_geometry("couch_seat"), glm::vec3(0, 0, -2.85));
 
 		// Set the material power of the couch for better shininess.
-		couch_couch.set_material_power(32);
-		couch_seats.set_material_power(32);
+		couch_couch->set_material_power(32);
+		couch_seat_left->set_material_power(32);
+		couch_seat_left_middle->set_material_power(32);
+		couch_seat_right_middle->set_material_power(32);
+		couch_seat_right->set_material_power(32);
 
 		// Add the meshes to the grouping & set the position of the grouping
 		grouping->add(couch_couch);
-		grouping->add(couch_seats);
+		grouping->add(couch_seat_left);
+		grouping->add(couch_seat_left_middle);
+		grouping->add(couch_seat_right_middle);
+		grouping->add(couch_seat_right);
 
 		grouping->set_position(position);
+
+		// register the couch seats for the animation.
+		CouchWaveAnimation* couch_wave_animation = new CouchWaveAnimation();
+		couch_wave_animation->register_couch_seat(couch_seat_left);
+		couch_wave_animation->register_couch_seat(couch_seat_left_middle);
+		couch_wave_animation->register_couch_seat(couch_seat_right_middle);
+		couch_wave_animation->register_couch_seat(couch_seat_right);
+
+		// Register the couch's animation.
+		grouping->set_animation(couch_wave_animation);
+		AnimationManager::get_instance()->register_entity_animation(&grouping->get_animation());
 
 		// set up the grouping & add it to the world.
 		grouping->setup();

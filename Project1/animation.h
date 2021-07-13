@@ -7,11 +7,14 @@ class Animation
 private:
 	// The next part of the animation in this list.
 	Animation* next;
+
+	// boolean determining whether the animation is active.
+	bool active = false;
 protected:
 	// The transformations which the animation applies.
 	Transformations transformations;
 public:
-
+	Animation();
 	/**
 	* Animation destructor.
 	*/
@@ -37,6 +40,21 @@ public:
 	* Called when exiting this event so that the next one may be started.
 	*/
 	virtual void exit() = 0;
+
+	/**
+	* activate or deactivate the animation.
+	* 
+	* @param active the bool determining whether the animation is active or not.
+	*/
+	void set_active(bool active);
+
+	/**
+	* Boolean determining whether the animation is active.
+	* 
+	* @return bool
+	*/
+	bool is_active();
+
 
 };
 

@@ -42,15 +42,6 @@ Animation& Entity::get_animation()
 	return *this->animation;
 }
 
-void Entity::activate_animation()
-{
-	if (this->animation != nullptr)
-		this->animation->enter();
-
-	this->allow_animation_execution = true;
-}
-
-
 glm::vec3 Entity::get_position()
 {
 	return this->transformations.position;

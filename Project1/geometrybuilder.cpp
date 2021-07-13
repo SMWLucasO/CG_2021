@@ -369,10 +369,10 @@ namespace builders::geometry {
 		uvs.clear();
 
 		// load the seats of the couch
-		loadOBJ("models/furniture/couch/couch_seats.obj", vertices, uvs, normals);
+		loadOBJ("models/furniture/couch/couch_seat.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
 		geom.load_texture("textures/furniture/seamless-sofa-texture.bmp", TextureType::BMP);
-		GeometryManager::get_instance()->add_geometry("couch_seats", geom);
+		GeometryManager::get_instance()->add_geometry("couch_seat", geom);
 	}
 
 }

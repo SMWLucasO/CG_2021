@@ -13,7 +13,7 @@ class MeshGrouping: public Entity
 {
 private:
 	// the meshes in this mesh grouping.
-	std::vector<Mesh> entities;
+	std::vector<Mesh*> entities;
 public:
 
 	/**
@@ -21,7 +21,7 @@ public:
 	*
 	* @param mesh_to_add the mesh to add to the grouping.
 	*/
-	void add(Mesh mesh_to_add);
+	void add(Mesh* mesh_to_add);
 
 	/**
 	* Render the mesh grouping.

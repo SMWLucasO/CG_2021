@@ -130,11 +130,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="animation_manager.cpp" />
     <ClCompile Include="bird_move_in_circle_animation.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="drone_movement_controller.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="environmentbuilder.cpp" />
+    <ClCompile Include="couch_wave_animation.cpp" />
+    <ClCompile Include="flower_animation.cpp" />
     <ClCompile Include="mesh.cpp" />
     <ClCompile Include="environmentmanager.cpp" />
     <ClCompile Include="mesh_grouping.cpp" />
@@ -148,20 +151,25 @@
     <ClCompile Include="loaders\texture\texture.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="movement_controller.cpp" />
-    <ClCompile Include="rotate_up_and_down_animation.cpp" />
+    <ClCompile Include="move_right_bird_wing_animation.cpp" />
+    <ClCompile Include="move_left_bird_wing_animation.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="shadingmanager.cpp" />
-    <ClCompile Include="SkyboxRotationAnimation.cpp" />
+    <ClCompile Include="skybox_rotation_animation.cpp" />
+    <ClCompile Include="toggle_door_animation.cpp" />
     <ClCompile Include="transformation.cpp" />
     <ClCompile Include="view_movement_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="animation_manager.h" />
     <ClInclude Include="bird_move_in_circle_animation.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="drone_movement_controller.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="environmentbuilder.h" />
+    <ClInclude Include="couch_wave_animation.h" />
+    <ClInclude Include="flower_animation.h" />
     <ClInclude Include="mesh.h" />
     <ClInclude Include="environmentmanager.h" />
     <ClInclude Include="mesh_grouping.h" />
@@ -174,10 +182,12 @@
     <ClInclude Include="loaders\object\objloader.h" />
     <ClInclude Include="loaders\texture\texture.h" />
     <ClInclude Include="movement_controller.h" />
-    <ClInclude Include="rotate_up_and_down_animation.h" />
+    <ClInclude Include="move_left_bird_wing_animation.h" />
+    <ClInclude Include="move_right_bird_wing_animation.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shadingmanager.h" />
     <ClInclude Include="skybox_rotation_animation.h" />
+    <ClInclude Include="toggle_door_animation.h" />
     <ClInclude Include="transformation.h" />
     <ClInclude Include="view_movement_controller.h" />
   </ItemGroup>

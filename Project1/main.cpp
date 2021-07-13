@@ -8,6 +8,8 @@
 #include "shadingmanager.h"
 #include "geometrymanager.h"
 
+#include "animation_manager.h"
+
 #include "geometrybuilder.h"
 #include "environmentbuilder.h"
 
@@ -25,7 +27,7 @@ using namespace std;
 
 const int WIDTH = 800, HEIGHT = 600;
 
-const int DELTA_TIME = 10;
+const int DELTA_TIME = 1000 / 60; // for 60 calls per second
 
 // Instance for managing our shader programs
 ShadingManager* shadingmanager = ShadingManager::get_instance();
@@ -35,6 +37,8 @@ GeometryManager* geometrymanager = GeometryManager::get_instance();
 
 // Instance for managing the environment (all our models are stored here)
 EnvironmentManager* environmentmanager = EnvironmentManager::get_instance();
+
+AnimationManager* animationmanager = AnimationManager::get_instance();
 
 // The player's camera.
 Camera* camera = Camera::get_instance();
@@ -59,11 +63,15 @@ void keyboard_handler(unsigned char key, int x, int y)
         // Print relevant information for model placement in the world.
         std::cout << "(" << camera->get_position().x << ", " << camera->get_position().y << ", " << camera->get_position().z << ")" << std::endl;
         std::cout << "(" << camera->get_target().x << ", " << camera->get_target().y << ", " << camera->get_target().z << ")" << std::endl;
-        std::cout << "yaw: " << camera->get_yaw() << std::endl;
         std::cout << "pitch: " << camera->get_pitch() << std::endl;
+        std::cout << "yaw: " << camera->get_yaw() << std::endl;
     }
     else
+    {
         Camera::get_instance()->handle_keyboard(key); // handle the user's (camera controlling) input
+        animationmanager->toggle_executing_keyed_animation(key);
+    }
+        
 }
 
 /**
@@ -95,6 +103,7 @@ void render()
 
 void render(int n)
 {
+    animationmanager->execute_ticked_animations();
     render();
     glutTimerFunc(DELTA_TIME, render, 0);
 }

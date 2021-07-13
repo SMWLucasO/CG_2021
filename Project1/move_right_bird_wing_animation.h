@@ -2,7 +2,7 @@
 
 #include "animation.h"
 
-class MoveBirdWingsAnimation: public Animation
+class MoveRightBirdWingAnimation: public Animation
 {
 private:
 public:
