@@ -2,24 +2,55 @@
 
 #include <iostream>
 
+void BirdMoveAnimation::decide_direction()
+{
+	int direction = rand() % 3;
+
+	if (direction == 0)
+	{
+		this->incrementor = glm::vec3(1, 0, 0);
+		this->owner->set_rotations(glm::vec3(0, 0, 0));
+	}
+	else if (direction == 1)
+	{
+		this->incrementor = glm::vec3(1, 0, 1);
+		this->owner->set_rotations(glm::vec3(0, -45, 0));
+	}
+	else if (direction == 2)
+	{
+		this->incrementor = glm::vec3(0, 0, 1);
+		this->owner->set_rotations(glm::vec3(0, -90, 0));
+	}
+}
+
 void BirdMoveAnimation::execute()
 {
-	glm::vec3 rotations = this->owner->get_rotations();
+	// change direction every ~10 seconds (1 second = 60 execution calls.)
+	if (this->execution_calls % 600 == 0)
+		decide_direction();
+
+	this->execution_calls += 1;
+
 	glm::vec3 position = this->owner->get_position();
 
-	rotations.y += 5;
-	if (rotations.y >= 360)
-		rotations.y = 0;
+	// Keep the birds within our given bounds.
+	if (position.x >= x_end)
+		position.x = x_start;
 
-	glm::vec3 dir;
-	dir.x = cos(glm::radians(rotations.y)) * cos(glm::radians(rotations.x));
-	dir.y = sin(glm::radians(rotations.x));
-	dir.z = sin(glm::radians(rotations.y)) * cos(glm::radians(rotations.x));
-	this->direction = glm::normalize(dir);
+	if (position.z >= z_end)
+		position.z = z_start;
 
-	position += glm::vec3(0.1, 0, 0.1) * this->direction;
+	if (position.x < x_start)
+		position.x = x_end;
 
-	this->owner->set_rotations(rotations);
+	if (position.z < z_start)
+		position.z = z_end;
+
+	// move the object.
+	position += this->incrementor;
+	
+	// update the position for the object
 	this->owner->set_position(position);
 }
+
 

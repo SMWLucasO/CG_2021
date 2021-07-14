@@ -380,8 +380,8 @@ namespace builders::environment {
 
 		// Create the meshes of which the bird consists of.
 		Mesh* bird_body = new Mesh(GeometryManager::get_instance()->get_geometry("bird_body"), glm::vec3(0, 0, 0));
-		Mesh* bird_left_wing = new Mesh(GeometryManager::get_instance()->get_geometry("bird_left_wing"), glm::vec3(0, 0, -0.15));
-		Mesh* bird_right_wing = new Mesh(GeometryManager::get_instance()->get_geometry("bird_right_wing"), glm::vec3(0, 0, -0.15));
+		Mesh* bird_left_wing = new Mesh(GeometryManager::get_instance()->get_geometry("bird_left_wing"), glm::vec3(0.15, 0, 0));
+		Mesh* bird_right_wing = new Mesh(GeometryManager::get_instance()->get_geometry("bird_right_wing"), glm::vec3(0.15, 0, 0));
 
 		// Add the meshes to the grouping & set the position of the grouping.
 		grouping->add(bird_body);
