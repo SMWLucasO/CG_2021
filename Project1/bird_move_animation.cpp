@@ -6,19 +6,20 @@ void BirdMoveAnimation::decide_direction()
 {
 	int direction = rand() % 3;
 
+	// decide a direction to move in based upon a random number 'direction' [0, 2]
 	if (direction == 0)
 	{
-		this->incrementor = glm::vec3(1, 0, 0);
+		this->movement_incrementor = glm::vec3(1, 0, 0);
 		this->owner->set_rotations(glm::vec3(0, 0, 0));
 	}
 	else if (direction == 1)
 	{
-		this->incrementor = glm::vec3(1, 0, 1);
+		this->movement_incrementor = glm::vec3(1, 0, 1);
 		this->owner->set_rotations(glm::vec3(0, -45, 0));
 	}
 	else if (direction == 2)
 	{
-		this->incrementor = glm::vec3(0, 0, 1);
+		this->movement_incrementor = glm::vec3(0, 0, 1);
 		this->owner->set_rotations(glm::vec3(0, -90, 0));
 	}
 }
@@ -47,7 +48,7 @@ void BirdMoveAnimation::execute()
 		position.z = z_end;
 
 	// move the object.
-	position += this->incrementor;
+	position += this->movement_incrementor;
 	
 	// update the position for the object
 	this->owner->set_position(position);
