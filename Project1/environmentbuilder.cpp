@@ -393,7 +393,7 @@ namespace builders::environment {
 		// register the animations for the bird.
 		MoveLeftBirdWingAnimation* left_wing_animation = new MoveLeftBirdWingAnimation();
 		MoveRightBirdWingAnimation* right_wing_animation = new MoveRightBirdWingAnimation();
-		BirdMoveInCircleAnimation* bird_movement_animation = new BirdMoveInCircleAnimation();
+		BirdMoveAnimation* bird_movement_animation = new BirdMoveAnimation();
 
 		// set the owner of each animation
 		left_wing_animation->set_owner(bird_left_wing);

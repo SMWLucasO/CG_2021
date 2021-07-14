@@ -131,7 +131,7 @@
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="animation_manager.cpp" />
-    <ClCompile Include="bird_move_in_circle_animation.cpp" />
+    <ClCompile Include="bird_move_animation.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="drone_movement_controller.cpp" />
     <ClCompile Include="entity.cpp" />
@@ -163,7 +163,7 @@
   <ItemGroup>
     <ClInclude Include="animation.h" />
     <ClInclude Include="animation_manager.h" />
-    <ClInclude Include="bird_move_in_circle_animation.h" />
+    <ClInclude Include="bird_move_animation.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="drone_movement_controller.h" />
     <ClInclude Include="entity.h" />

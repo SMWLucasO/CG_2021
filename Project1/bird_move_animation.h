@@ -2,9 +2,10 @@
 
 #include "animation.h"
 
-class BirdMoveInCircleAnimation: public Animation
+class BirdMoveAnimation: public Animation
 {
 private:
+	glm::vec3 direction;
 public:
 	void execute();
 };

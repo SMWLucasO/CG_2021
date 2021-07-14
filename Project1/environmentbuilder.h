@@ -8,7 +8,7 @@
 #include "floortile_geometry.h"
 
 // our animations
-#include "bird_move_in_circle_animation.h"
+#include "bird_move_animation.h"
 #include "move_left_bird_wing_animation.h"
 #include "move_right_bird_wing_animation.h"
 
