@@ -284,17 +284,17 @@
     <ClInclude Include="toggle_door_animation.h">
       <Filter>Header Files\animation\animations</Filter>
     </ClInclude>
-    <ClInclude Include="move_right_bird_wing_animation.h">
-      <Filter>Header Files\animation\animations\bird</Filter>
-    </ClInclude>
-    <ClInclude Include="move_left_bird_wing_animation.h">
-      <Filter>Header Files\animation\animations\bird</Filter>
-    </ClInclude>
     <ClInclude Include="bird_move_in_circle_animation.h">
       <Filter>Header Files\animation\animations\bird</Filter>
     </ClInclude>
     <ClInclude Include="animation_manager.h">
       <Filter>Header Files\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="move_left_bird_wing_animation.h">
+      <Filter>Header Files\animation\animations\bird</Filter>
+    </ClInclude>
+    <ClInclude Include="move_right_bird_wing_animation.h">
+      <Filter>Header Files\animation\animations\bird</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

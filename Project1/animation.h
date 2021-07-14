@@ -13,9 +13,6 @@ struct AnimationData
 class Animation
 {
 private:
-	// The next part of the animation in this list.
-	Animation* next;
-
 	// boolean determining whether the animation is active.
 	bool active = false;
 protected:
@@ -26,10 +23,6 @@ protected:
 	Entity* owner;
 public:
 	Animation();
-	/**
-	* Animation destructor.
-	*/
-	~Animation();
 
 	/**
 	* Handle the animation.

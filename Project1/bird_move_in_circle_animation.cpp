@@ -2,5 +2,6 @@
 
 void BirdMoveInCircleAnimation::execute()
 {
+	
 }
 

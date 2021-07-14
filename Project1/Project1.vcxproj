@@ -151,8 +151,8 @@
     <ClCompile Include="loaders\texture\texture.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="movement_controller.cpp" />
-    <ClCompile Include="move_right_bird_wing_animation.cpp" />
     <ClCompile Include="move_left_bird_wing_animation.cpp" />
+    <ClCompile Include="move_right_bird_wing_animation.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="shadingmanager.cpp" />
     <ClCompile Include="skybox_rotation_animation.cpp" />
