@@ -134,7 +134,7 @@ namespace builders::environment {
 
 		// set the shader type and size of the skybox
 		skybox_entity->set_shader_type(ShaderType::Basic);
-		skybox_entity->set_scaling(glm::vec3(800, 800, 800));
+		skybox_entity->set_scaling(glm::vec3(1000, 1000, 1000));
 
 		// create the skybox rotation animation & register its presence for the animation manager.
 		SkyboxRotationAnimation* animation = new SkyboxRotationAnimation();
