@@ -305,7 +305,7 @@ namespace builders::geometry {
 		// load flower leafs
 		loadOBJ("models/flower/flower_leafs.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/flower/sunflower.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("flower_leafs", geom);
 
 		vertices.clear();
@@ -315,7 +315,7 @@ namespace builders::geometry {
 		// load inner part of flower (where the seeds n stuff would be)
 		loadOBJ("models/flower/flower_inner.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/flower/sunflower.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("flower_inner", geom);
 	}
 
