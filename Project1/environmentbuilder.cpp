@@ -299,8 +299,8 @@ namespace builders::environment {
 		
 		// create the meshes for the flower.
 		Mesh* flower_stem = new Mesh(GeometryManager::get_instance()->get_geometry("flower_stem"), glm::vec3(0, 0, 0));
-		Mesh* flower_leafs = new Mesh(GeometryManager::get_instance()->get_geometry("flower_leafs"), glm::vec3(0, 0, 0));
-		Mesh* flower_inner = new Mesh(GeometryManager::get_instance()->get_geometry("flower_inner"), glm::vec3(0, 0, 0));
+		Mesh* flower_leafs = new Mesh(GeometryManager::get_instance()->get_geometry("flower_leafs"), glm::vec3(0, .5, 0));
+		Mesh* flower_inner = new Mesh(GeometryManager::get_instance()->get_geometry("flower_inner"), glm::vec3(0, .5, 0));
 
 		// add the pieces to the grouping.
 		grouping->add(flower_stem);
