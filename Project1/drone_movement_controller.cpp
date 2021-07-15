@@ -34,15 +34,10 @@ void DroneMovementController::handle_movement(unsigned char key, glm::vec3& posi
 			new_position.y += Y_INCREMENT;
 			break;
 		case 'e':
-			// Move down depending on whether the camera is still above or on the lowest point afterwards.
-			if (position.y - MovementController::Y_INCREMENT >= MovementController::Y_LOWEST_POINT)
-				new_position.y -= Y_INCREMENT;
+			// move down
+			new_position.y -= Y_INCREMENT;
 			break;
 	}
-
-	// make sure that the camera cannot go below the lowest Y point.
-	if (new_position.y < MovementController::Y_LOWEST_POINT)
-		new_position.y = MovementController::Y_LOWEST_POINT;
 
 	position = new_position;
 }

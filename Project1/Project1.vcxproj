@@ -158,7 +158,7 @@
     <ClCompile Include="skybox_rotation_animation.cpp" />
     <ClCompile Include="toggle_door_animation.cpp" />
     <ClCompile Include="transformation.cpp" />
-    <ClCompile Include="view_movement_controller.cpp" />
+    <ClCompile Include="walk_movement_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
@@ -189,7 +189,7 @@
     <ClInclude Include="skybox_rotation_animation.h" />
     <ClInclude Include="toggle_door_animation.h" />
     <ClInclude Include="transformation.h" />
-    <ClInclude Include="view_movement_controller.h" />
+    <ClInclude Include="walk_movement_controller.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -403,7 +403,6 @@ namespace builders::geometry {
 		// load left wing of bird
 		loadOBJ("models/animals/bird/bird_left_wing.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("bird_left_wing", geom);
 
 		vertices.clear();
@@ -413,7 +412,6 @@ namespace builders::geometry {
 		// load right wing of bird
 		loadOBJ("models/animals/bird/bird_right_wing.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("bird_right_wing", geom);
 	}
 

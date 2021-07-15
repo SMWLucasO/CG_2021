@@ -153,9 +153,6 @@
     <ClCompile Include="entity.cpp">
       <Filter>Source Files\entity</Filter>
     </ClCompile>
-    <ClCompile Include="view_movement_controller.cpp">
-      <Filter>Source Files\camera\controllers</Filter>
-    </ClCompile>
     <ClCompile Include="movement_controller.cpp">
       <Filter>Source Files\camera\controllers</Filter>
     </ClCompile>
@@ -207,6 +204,9 @@
     <ClCompile Include="bird_move_animation.cpp">
       <Filter>Source Files\animation\animations\bird</Filter>
     </ClCompile>
+    <ClCompile Include="walk_movement_controller.cpp">
+      <Filter>Source Files\camera\controllers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="loaders\glsl\glsl.h">
@@ -241,9 +241,6 @@
     </ClInclude>
     <ClInclude Include="entity.h">
       <Filter>Header Files\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="view_movement_controller.h">
-      <Filter>Header Files\camera\controllers</Filter>
     </ClInclude>
     <ClInclude Include="movement_controller.h">
       <Filter>Header Files\camera\controllers</Filter>
@@ -295,6 +292,9 @@
     </ClInclude>
     <ClInclude Include="bird_move_animation.h">
       <Filter>Header Files\animation\animations\bird</Filter>
+    </ClInclude>
+    <ClInclude Include="walk_movement_controller.h">
+      <Filter>Header Files\camera\controllers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
