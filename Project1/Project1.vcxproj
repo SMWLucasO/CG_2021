@@ -133,6 +133,7 @@
     <ClCompile Include="animation_manager.cpp" />
     <ClCompile Include="bird_move_animation.cpp" />
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="cube_geometry.cpp" />
     <ClCompile Include="drone_movement_controller.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="environmentbuilder.cpp" />
@@ -153,9 +154,12 @@
     <ClCompile Include="movement_controller.cpp" />
     <ClCompile Include="move_left_bird_wing_animation.cpp" />
     <ClCompile Include="move_right_bird_wing_animation.cpp" />
+    <ClCompile Include="pyramid_geometry.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="shadingmanager.cpp" />
     <ClCompile Include="skybox_rotation_animation.cpp" />
+    <ClCompile Include="slope_corner_geometry.cpp" />
+    <ClCompile Include="slope_geometry.cpp" />
     <ClCompile Include="toggle_door_animation.cpp" />
     <ClCompile Include="transformation.cpp" />
     <ClCompile Include="walk_movement_controller.cpp" />
@@ -165,6 +169,7 @@
     <ClInclude Include="animation_manager.h" />
     <ClInclude Include="bird_move_animation.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="cube_geometry.h" />
     <ClInclude Include="drone_movement_controller.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="environmentbuilder.h" />
@@ -184,9 +189,12 @@
     <ClInclude Include="movement_controller.h" />
     <ClInclude Include="move_left_bird_wing_animation.h" />
     <ClInclude Include="move_right_bird_wing_animation.h" />
+    <ClInclude Include="pyramid_geometry.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shadingmanager.h" />
     <ClInclude Include="skybox_rotation_animation.h" />
+    <ClInclude Include="slope_corner_geometry.h" />
+    <ClInclude Include="slope_geometry.h" />
     <ClInclude Include="toggle_door_animation.h" />
     <ClInclude Include="transformation.h" />
     <ClInclude Include="walk_movement_controller.h" />

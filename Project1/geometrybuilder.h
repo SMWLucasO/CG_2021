@@ -6,6 +6,12 @@
 #include "geometry.h"
 #include "geometrymanager.h"
 
+// primitives
+#include "cube_geometry.h"
+#include "slope_geometry.h"
+#include "slope_corner_geometry.h"
+#include "pyramid_geometry.h"
+
 #include "floortile_geometry.h"
 
 #include "loaders/object/objloader.h"
@@ -71,5 +77,10 @@ namespace builders::geometry {
 	* Load the geometries for the furniture.
 	*/
 	static void load_furniture_geometries();
+
+	/**
+	* Load the non-specific geometries for the world.
+	*/
+	static void load_primitive_geometries();
 
 }

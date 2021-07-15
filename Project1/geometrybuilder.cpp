@@ -36,6 +36,9 @@ namespace builders::geometry {
 
 		// load geometries for furniture
 		load_furniture_geometries();
+
+		// load our non-specific primitive geometries
+		load_primitive_geometries();
 	}
 
 	void load_house_geometries()
@@ -436,6 +439,14 @@ namespace builders::geometry {
 		geom = Geometry(vertices, uvs, normals);
 		geom.load_texture("textures/furniture/seamless-sofa-texture.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("couch_seat", geom);
+	}
+
+	void load_primitive_geometries()
+	{
+		GeometryManager::get_instance()->add_geometry("cube",  CubeGeometry());
+		GeometryManager::get_instance()->add_geometry("slope",  SlopeGeometry());
+		GeometryManager::get_instance()->add_geometry("slope_corner",  SlopeCornerGeometry());
+		GeometryManager::get_instance()->add_geometry("pyramid",  PyramidGeometry());
 	}
 
 }

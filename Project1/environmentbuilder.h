@@ -159,4 +159,6 @@ namespace builders::environment {
 	*/
 	static MeshGrouping& build_couch(glm::vec3 position);
 
+	static void build_primitives(glm::vec3 position);
+
 }

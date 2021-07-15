@@ -207,6 +207,18 @@
     <ClCompile Include="walk_movement_controller.cpp">
       <Filter>Source Files\camera\controllers</Filter>
     </ClCompile>
+    <ClCompile Include="cube_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="slope_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="slope_corner_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="pyramid_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="loaders\glsl\glsl.h">
@@ -295,6 +307,18 @@
     </ClInclude>
     <ClInclude Include="walk_movement_controller.h">
       <Filter>Header Files\camera\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="cube_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="slope_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="slope_corner_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="pyramid_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
