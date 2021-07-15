@@ -29,6 +29,13 @@ public:
 	void render();
 
 	/**
+	* Set the shader type for all entities of this mesh grouping.
+	* 
+	* @param shader_type the shader type to be set for all entities of this group.
+	*/
+	void set_shader_type(ShaderType shader_type);
+
+	/**
 	* Set up the mesh grouping.
 	*/
 	void setup();

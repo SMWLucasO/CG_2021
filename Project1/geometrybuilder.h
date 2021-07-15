@@ -23,6 +23,11 @@ namespace builders::geometry {
 	static void load_house_geometries();
 
 	/**
+	* Load the geometries for the house veranda.
+	*/
+	static void load_house_veranda_geometries();
+
+	/**
 	* Load the geometries for the skybox.
 	*/
 	static void load_skybox_geometries();

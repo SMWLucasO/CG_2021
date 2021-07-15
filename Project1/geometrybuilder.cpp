@@ -6,6 +6,9 @@ namespace builders::geometry {
 	{
 		// load geometries for the house
 		load_house_geometries();
+
+		// load geometries for the house veranda.
+		load_house_veranda_geometries();
 		
 		// load geometries for the skybox
 		load_skybox_geometries();
@@ -44,15 +47,15 @@ namespace builders::geometry {
 		// load house roof geometry.
 		loadOBJ("models/house/house_roof.obj", vertices, uvs, normals);
 		Geometry geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/gray.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("house_roof", geom);
 
 		vertices.clear();
 		normals.clear();
 		uvs.clear();
 
-		// load house block geometry
-		loadOBJ("models/house/house_block.obj", vertices, uvs, normals);
+		// load house walls geometry
+		loadOBJ("models/house/house_walls.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
 		geom.load_texture("textures/house/wall.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("house_block", geom);
@@ -61,10 +64,10 @@ namespace builders::geometry {
 		normals.clear();
 		uvs.clear();
 
-		// load house window geometry
-		loadOBJ("models/house/house_window.obj", vertices, uvs, normals);
+		// load house windows geometry
+		loadOBJ("models/house/house_windows.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/house/glass-texture.bmp", TextureType::BMP);
+		geom.load_texture("textures/window_blue.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("house_window", geom);
 
 		vertices.clear();
@@ -74,8 +77,71 @@ namespace builders::geometry {
 		// load house door geometry
 		loadOBJ("models/house/house_door.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/brown.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("house_door", geom);
+	}
+
+	void load_house_veranda_geometries()
+	{
+		std::vector<glm::vec3> vertices;
+		std::vector<glm::vec3> normals;
+		std::vector<glm::vec2> uvs;
+
+		// load house veranda floor geometry.
+		loadOBJ("models/house/veranda/veranda_floor.obj", vertices, uvs, normals);
+		Geometry geom = Geometry(vertices, uvs, normals);
+		geom.load_texture("textures/house/veranda/veranda_floor.bmp", TextureType::BMP);
+		GeometryManager::get_instance()->add_geometry("veranda_floor", geom);
+
+		vertices.clear();
+		normals.clear();
+		uvs.clear();
+
+		// load veranda poles geometry
+		loadOBJ("models/house/veranda/veranda_poles.obj", vertices, uvs, normals);
+		geom = Geometry(vertices, uvs, normals);
+		geom.load_texture("textures/brown.bmp", TextureType::BMP);
+		GeometryManager::get_instance()->add_geometry("veranda_poles", geom);
+
+		vertices.clear();
+		normals.clear();
+		uvs.clear();
+
+		// load veranda roof geometry
+		loadOBJ("models/house/veranda/veranda_roof.obj", vertices, uvs, normals);
+		geom = Geometry(vertices, uvs, normals);
+		geom.load_texture("textures/house/veranda/veranda_roof.bmp", TextureType::BMP);
+		GeometryManager::get_instance()->add_geometry("veranda_roof", geom);
+
+		vertices.clear();
+		normals.clear();
+		uvs.clear();
+
+		// load veranda stairs geometry
+		loadOBJ("models/house/veranda/veranda_stairs.obj", vertices, uvs, normals);
+		geom = Geometry(vertices, uvs, normals);
+		geom.load_texture("textures/gray.bmp", TextureType::BMP);
+		GeometryManager::get_instance()->add_geometry("veranda_stairs", geom);
+
+		vertices.clear();
+		normals.clear();
+		uvs.clear();
+
+		// load veranda supports geometry
+		loadOBJ("models/house/veranda/veranda_supports.obj", vertices, uvs, normals);
+		geom = Geometry(vertices, uvs, normals);
+		geom.load_texture("textures/gray.bmp", TextureType::BMP);
+		GeometryManager::get_instance()->add_geometry("veranda_supports", geom);
+
+		vertices.clear();
+		normals.clear();
+		uvs.clear();
+
+		// load house door geometry
+		loadOBJ("models/house/veranda/veranda_walls.obj", vertices, uvs, normals);
+		geom = Geometry(vertices, uvs, normals);
+		geom.load_texture("textures/house/veranda/veranda_wall.bmp", TextureType::BMP);
+		GeometryManager::get_instance()->add_geometry("veranda_walls", geom);
 	}
 
 	void load_skybox_geometries()
@@ -115,7 +181,6 @@ namespace builders::geometry {
 		std::vector<glm::vec3> vertices;
 		std::vector<glm::vec3> normals;
 		std::vector<glm::vec2> uvs;
-		// models/fence/fence
 
 		// load fence stone supports
 		loadOBJ("models/fence/fence/stone_fence_supports.obj", vertices, uvs, normals);
@@ -218,7 +283,7 @@ namespace builders::geometry {
 		// load dead tree.
 		loadOBJ("models/trees/deadtree/deadtree.obj", vertices, uvs, normals);
 		Geometry geom = Geometry(vertices, uvs, normals);
-		geom.load_texture("textures/trees/brown.bmp", TextureType::BMP);
+		geom.load_texture("textures/brown.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("dead_tree", geom);
 
 		vertices.clear();
@@ -238,7 +303,7 @@ namespace builders::geometry {
 		// load regular tree stem
 		loadOBJ("models/trees/tree/tree_stem.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		geom.load_texture("textures/trees/brown.bmp", TextureType::BMP);
+		geom.load_texture("textures/brown.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("tree_stem", geom);
 	}
 
@@ -261,7 +326,7 @@ namespace builders::geometry {
 		// load regular bush's fruits
 		loadOBJ("models/bushes/bush/bush_fruits.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		geom.load_texture("textures/bushes/red.bmp", TextureType::BMP);
+		geom.load_texture("textures/red.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("regular_bush_fruits", geom);
 
 		vertices.clear();
@@ -281,7 +346,7 @@ namespace builders::geometry {
 		// load stemmed bush stem
 		loadOBJ("models/bushes/bushwithstem/bush_stem.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		geom.load_texture("textures/trees/brown.bmp", TextureType::BMP);
+		geom.load_texture("textures/brown.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("stemmed_bush_stem", geom);
 
 	}

@@ -70,6 +70,15 @@ namespace builders::environment {
 	static MeshGrouping& build_house(glm::vec3 position);
 
 	/**
+	* Create a house veranda model for the given position.
+	*
+	* @param position the coordinates (x/y/z) to put the model at.
+	*
+	* @return MeshingGroup&
+	*/
+	static MeshGrouping& build_house_veranda(glm::vec3 position);
+
+	/**
 	* Create a fence model for the given position.
 	*
 	* @param position the coordinates (x/y/z) to put the model at.

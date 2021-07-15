@@ -31,12 +31,14 @@ namespace builders::environment {
 		build_skybox();
 
 		// setup the house
-		MeshGrouping& house = build_house(glm::vec3(5, 3, 25));
-		house.set_rotations(glm::vec3(0, 110, 0));
+		build_house(glm::vec3(4.5, 0, 24));
 
+		// setup the house's veranda.
+		build_house_veranda(glm::vec3(4.5, 0, 24));
+		
 		// setup couches
-		MeshGrouping& house_couch = build_couch(glm::vec3(7, 0, 29.1));
-		house_couch.set_rotations(glm::vec3(0, 290, 0));
+		MeshGrouping& house_couch = build_couch(glm::vec3(3, 0, 29.8));
+		house_couch.set_rotations(glm::vec3(0, 270, 0));
 
 		MeshGrouping& fence_couch = build_couch(glm::vec3(19, 0, 16));
 		fence_couch.set_rotations(glm::vec3(0, 100, 0));
@@ -174,7 +176,45 @@ namespace builders::environment {
 		grouping->add(house_window);
 		grouping->add(house_door);
 
-		// set any transformations
+		// set the position of the house
+		grouping->set_position(position);
+
+		// setup n stuff
+		grouping->setup();
+		EnvironmentManager::get_instance()->add(grouping);
+
+		return *grouping;
+	}
+
+	MeshGrouping& build_house_veranda(glm::vec3 position)
+	{
+		/// create a grouping for the house veranda
+		MeshGrouping* grouping = new MeshGrouping();
+
+		// create the house veranda meshes
+		Mesh* veranda_floor = new Mesh(GeometryManager::get_instance()->get_geometry("veranda_floor"), glm::vec3(0, 0, 0));
+		Mesh* veranda_poles = new Mesh(GeometryManager::get_instance()->get_geometry("veranda_poles"), glm::vec3(0, 0, 0));
+		Mesh* veranda_roof = new Mesh(GeometryManager::get_instance()->get_geometry("veranda_roof"), glm::vec3(0, 0, 0));
+		Mesh* veranda_stairs = new Mesh(GeometryManager::get_instance()->get_geometry("veranda_stairs"), glm::vec3(0, 0, 0));
+		Mesh* veranda_supports = new Mesh(GeometryManager::get_instance()->get_geometry("veranda_supports"), glm::vec3(0, 0, 0));
+		Mesh* veranda_walls = new Mesh(GeometryManager::get_instance()->get_geometry("veranda_walls"), glm::vec3(0, 0, 0));
+	
+		// set the shaders for the house veranda
+		veranda_floor->set_shader_type(ShaderType::Basic);
+		veranda_poles->set_shader_type(ShaderType::Basic);
+		veranda_roof->set_shader_type(ShaderType::Basic);
+		veranda_stairs->set_shader_type(ShaderType::Basic);
+		veranda_supports->set_shader_type(ShaderType::Basic);
+		veranda_walls->set_shader_type(ShaderType::Basic);
+
+		// add everything to the grouping
+		grouping->add(veranda_floor);
+		grouping->add(veranda_poles);
+		grouping->add(veranda_roof);
+		grouping->add(veranda_stairs);
+		grouping->add(veranda_supports);
+		grouping->add(veranda_walls);
+
 		grouping->set_position(position);
 
 		// setup n stuff
@@ -341,6 +381,8 @@ namespace builders::environment {
 		// add the meshes to the grouping & set the position of the grouping to the correct location.
 		grouping->add(stemmed_bush_bush);
 		grouping->add(stemmed_bush_stem);
+
+		grouping->set_shader_type(ShaderType::Lambert);
 
 		grouping->set_position(position);
 

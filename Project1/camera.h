@@ -8,7 +8,7 @@
 
 #include "movement_controller.h"
 #include "drone_movement_controller.h"
-#include "view_movement_controller.h"
+#include "walk_movement_controller.h"
 
 class Camera
 {

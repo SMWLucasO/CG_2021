@@ -15,6 +15,12 @@ void MeshGrouping::render()
 		entity->render_with_additional_transformations(this->get_transformations().get_model());
 }
 
+void MeshGrouping::set_shader_type(ShaderType shader_type)
+{
+	for (Mesh* entity : this->entities)
+		entity->set_shader_type(shader_type);
+}
+
 void MeshGrouping::setup()
 {
 	for (Mesh* entity: this->entities)

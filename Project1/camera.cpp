@@ -78,7 +78,7 @@ void Camera::handle_keyboard(unsigned char key)
 
 		// We want to toggle between modes, the mode we are in is determined by the boolean drone_mode.
 		if (drone_mode) {
-			this->movement_controller = new ViewMovementController();
+			this->movement_controller = new WalkMovementController();
 		}
 		else {
 			this->movement_controller = new DroneMovementController();
