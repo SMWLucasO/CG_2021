@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\loaders">
+      <UniqueIdentifier>{a3f7498d-a7bf-4075-9bc1-a8a812674753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\loaders\glsl">
+      <UniqueIdentifier>{936a326f-613d-403c-8270-77cf03a629ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\loaders\object">
+      <UniqueIdentifier>{1c58defa-ff53-4500-9fa1-58b320c02cad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\loaders">
+      <UniqueIdentifier>{83b5b942-5a09-4368-8ed9-5b50fc063731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\loaders\object">
+      <UniqueIdentifier>{eacc892b-a6e1-40fd-b467-71ae1835d739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\loaders\glsl">
+      <UniqueIdentifier>{e151e4cb-6826-4d63-8bb7-d5f4c54e4847}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\loaders\texture">
+      <UniqueIdentifier>{1a0d25f8-0125-4bfa-ab9f-1b076a0ecc08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\loaders\texture">
+      <UniqueIdentifier>{5be00efd-3f2b-4af8-a6fc-eff1cbedc4f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\camera">
+      <UniqueIdentifier>{aeb1e39e-d130-42e8-975e-ae8f4107286f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\camera">
+      <UniqueIdentifier>{7e435573-7187-43ba-bcc0-7ae600d313de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\environment">
+      <UniqueIdentifier>{c2261068-6f44-4c65-9818-c6bb86eb5293}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\geometry">
+      <UniqueIdentifier>{da786a26-b367-47a7-9af8-fe462ab429bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\environment">
+      <UniqueIdentifier>{96d2615c-dad3-4230-b03f-9cbe7dea0f7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geometry">
+      <UniqueIdentifier>{a1a4f214-c199-481b-a4f1-469a38e69109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\managers">
+      <UniqueIdentifier>{886c4ccc-f12d-4d25-982a-6cc9c06bb507}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\managers">
+      <UniqueIdentifier>{5d973f49-08b9-42fe-85e4-1067dc876062}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\shading">
+      <UniqueIdentifier>{64236ab5-edfd-45cc-8a5d-2eb5528f2f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\shading">
+      <UniqueIdentifier>{aa013fcc-ab71-4bac-9a1d-9dee58f07d18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\lighting">
+      <UniqueIdentifier>{c6d336fe-b606-405c-b89e-9c6664fd1f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lighting">
+      <UniqueIdentifier>{81e45341-75c1-40dd-aa80-ff5de2fa5a9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\geometry\primitives">
+      <UniqueIdentifier>{fb01903c-b16d-40ae-a1fb-050be116be8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geometry\primitives">
+      <UniqueIdentifier>{11832c0c-2522-4454-bb01-473e3cb44d98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\camera\controllers">
+      <UniqueIdentifier>{5e867713-863a-4276-8627-1aeb4e55955a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\entity">
+      <UniqueIdentifier>{9b923320-c371-4f4c-a36d-59f496f1fc5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\entity">
+      <UniqueIdentifier>{4b42ed62-12e7-4857-a0d5-a7243f621d47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\camera\controllers">
+      <UniqueIdentifier>{d9078994-667f-4243-849f-5ed81181c2f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\builders">
+      <UniqueIdentifier>{47394a27-5a01-42e1-b283-745e9d1cff7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\builders">
+      <UniqueIdentifier>{3ffe7924-5a6c-4c8d-b749-c8faca4dabb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\animation">
+      <UniqueIdentifier>{fd8ca9f4-d2bd-4748-ab0d-0f004f69b9c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\animation">
+      <UniqueIdentifier>{3bd4369f-7f0a-4153-b9c1-681f152c27af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\animation\animations">
+      <UniqueIdentifier>{f34f412b-c82e-4a0a-8951-bc34e96ad7bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\animation\animations">
+      <UniqueIdentifier>{843a0178-53df-4e45-9873-57e6d90a098d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\animation\animations\bird">
+      <UniqueIdentifier>{f18a2951-bea6-48c8-91f0-e07fb537432b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\animation\animations\bird">
+      <UniqueIdentifier>{23f1ad3a-51e6-4cf1-8f17-daba9608b740}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\object\objloader.cpp">
+      <Filter>Source Files\loaders\object</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\glsl\glsl.cpp">
+      <Filter>Source Files\loaders\glsl</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\texture\texture.cpp">
+      <Filter>Source Files\loaders\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Source Files\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry.cpp">
+      <Filter>Source Files\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="shadingmanager.cpp">
+      <Filter>Source Files\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="geometrymanager.cpp">
+      <Filter>Source Files\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="shader.cpp">
+      <Filter>Source Files\shading</Filter>
+    </ClCompile>
+    <ClCompile Include="environmentmanager.cpp">
+      <Filter>Source Files\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="lighting.cpp">
+      <Filter>Source Files\lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>Source Files\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="movement_controller.cpp">
+      <Filter>Source Files\camera\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="drone_movement_controller.cpp">
+      <Filter>Source Files\camera\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="geometrybuilder.cpp">
+      <Filter>Source Files\builders</Filter>
+    </ClCompile>
+    <ClCompile Include="environmentbuilder.cpp">
+      <Filter>Source Files\builders</Filter>
+    </ClCompile>
+    <ClCompile Include="floortile_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh.cpp">
+      <Filter>Source Files\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="transformation.cpp">
+      <Filter>Source Files\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh_grouping.cpp">
+      <Filter>Source Files\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="animation.cpp">
+      <Filter>Source Files\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="skybox_rotation_animation.cpp">
+      <Filter>Source Files\animation\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="flower_animation.cpp">
+      <Filter>Source Files\animation\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="couch_wave_animation.cpp">
+      <Filter>Source Files\animation\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="toggle_door_animation.cpp">
+      <Filter>Source Files\animation\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="animation_manager.cpp">
+      <Filter>Source Files\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="move_left_bird_wing_animation.cpp">
+      <Filter>Source Files\animation\animations\bird</Filter>
+    </ClCompile>
+    <ClCompile Include="move_right_bird_wing_animation.cpp">
+      <Filter>Source Files\animation\animations\bird</Filter>
+    </ClCompile>
+    <ClCompile Include="bird_move_animation.cpp">
+      <Filter>Source Files\animation\animations\bird</Filter>
+    </ClCompile>
+    <ClCompile Include="walk_movement_controller.cpp">
+      <Filter>Source Files\camera\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="cube_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="slope_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="slope_corner_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="pyramid_geometry.cpp">
+      <Filter>Source Files\geometry\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="spike_movement_animation.cpp">
+      <Filter>Source Files\animation\animations</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="loaders\glsl\glsl.h">
+      <Filter>Header Files\loaders\glsl</Filter>
+    </ClInclude>
+    <ClInclude Include="loaders\object\objloader.h">
+      <Filter>Header Files\loaders\object</Filter>
+    </ClInclude>
+    <ClInclude Include="loaders\texture\texture.h">
+      <Filter>Header Files\loaders\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Header Files\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry.h">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="shadingmanager.h">
+      <Filter>Header Files\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="geometrymanager.h">
+      <Filter>Header Files\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>Header Files\shading</Filter>
+    </ClInclude>
+    <ClInclude Include="environmentmanager.h">
+      <Filter>Header Files\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="lighting.h">
+      <Filter>Header Files\lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.h">
+      <Filter>Header Files\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="movement_controller.h">
+      <Filter>Header Files\camera\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="drone_movement_controller.h">
+      <Filter>Header Files\camera\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="environmentbuilder.h">
+      <Filter>Header Files\builders</Filter>
+    </ClInclude>
+    <ClInclude Include="geometrybuilder.h">
+      <Filter>Header Files\builders</Filter>
+    </ClInclude>
+    <ClInclude Include="floortile_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh.h">
+      <Filter>Header Files\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh_grouping.h">
+      <Filter>Header Files\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="transformation.h">
+      <Filter>Header Files\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="animation.h">
+      <Filter>Header Files\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="skybox_rotation_animation.h">
+      <Filter>Header Files\animation\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="couch_wave_animation.h">
+      <Filter>Header Files\animation\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="flower_animation.h">
+      <Filter>Header Files\animation\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="toggle_door_animation.h">
+      <Filter>Header Files\animation\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="animation_manager.h">
+      <Filter>Header Files\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="move_left_bird_wing_animation.h">
+      <Filter>Header Files\animation\animations\bird</Filter>
+    </ClInclude>
+    <ClInclude Include="move_right_bird_wing_animation.h">
+      <Filter>Header Files\animation\animations\bird</Filter>
+    </ClInclude>
+    <ClInclude Include="bird_move_animation.h">
+      <Filter>Header Files\animation\animations\bird</Filter>
+    </ClInclude>
+    <ClInclude Include="walk_movement_controller.h">
+      <Filter>Header Files\camera\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="cube_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="slope_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="slope_corner_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="pyramid_geometry.h">
+      <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="spike_movement_animation.h">
+      <Filter>Header Files\animation\animations</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
