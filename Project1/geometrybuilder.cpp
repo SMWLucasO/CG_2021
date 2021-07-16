@@ -243,7 +243,7 @@ namespace builders::geometry {
 		// load fence stone supports
 		loadOBJ("models/fence/gate/fencegate_garnier.obj", vertices, uvs, normals);
 		Geometry geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/fence/fence_gate/gate_wood.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("fencegate_garnier", geom);
 
 		vertices.clear();
@@ -253,7 +253,7 @@ namespace builders::geometry {
 		// load fence supports
 		loadOBJ("models/fence/gate/fencegate_gatehandle.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/fence/fence_gate/gate_handle.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("fencegate_gatehandle", geom);
 
 		vertices.clear();
@@ -263,7 +263,7 @@ namespace builders::geometry {
 		// load fence planks
 		loadOBJ("models/fence/gate/fencegate_gateplank.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/fence/fence_gate/gate_wood.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("fencegate_gateplank", geom);
 
 		vertices.clear();
@@ -273,7 +273,7 @@ namespace builders::geometry {
 		// load fence plank tops
 		loadOBJ("models/fence/gate/fencegate_gatesupports.obj", vertices, uvs, normals);
 		geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/fence/fence_gate/gate_wood.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("fencegate_gatesupports", geom);
 	}
 
@@ -363,7 +363,7 @@ namespace builders::geometry {
 		// load flower stem
 		loadOBJ("models/flower/flower_stem.obj", vertices, uvs, normals);
 		Geometry geom = Geometry(vertices, uvs, normals);
-		//geom.load_texture("textures/skybox/skybox.bmp", TextureType::BMP);
+		geom.load_texture("textures/green.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("flower_stem", geom);
 
 		vertices.clear();
@@ -445,18 +445,22 @@ namespace builders::geometry {
 	{
 		// Create cube geometry.
 		CubeGeometry cube_geometry;
+		cube_geometry.load_texture("textures/fence/seamless-granite.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("cube", cube_geometry);
 
 		// Create slope geometry.
 		SlopeGeometry slope_geometry;
+		slope_geometry.load_texture("textures/fence/seamless-granite.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("slope", slope_geometry);
 
 		// Create slope corner geometry.
 		SlopeCornerGeometry slope_corner_geometry;
+		slope_corner_geometry.load_texture("textures/fence/seamless-granite.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("slope_corner", slope_corner_geometry);
 
 		// Create pyramid geometry.
 		PyramidGeometry pyramid_geometry;
+		pyramid_geometry.load_texture("textures/spike_trap/spike.bmp", TextureType::BMP);
 		GeometryManager::get_instance()->add_geometry("pyramid", pyramid_geometry);
 	}
 

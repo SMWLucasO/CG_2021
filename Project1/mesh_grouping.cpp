@@ -21,6 +21,12 @@ void MeshGrouping::set_shader_type(ShaderType shader_type)
 		entity->set_shader_type(shader_type);
 }
 
+void MeshGrouping::set_texture_enabled(bool enabled)
+{
+	for (Mesh* entity : this->entities)
+		entity->set_texture_enabled(enabled);
+}
+
 void MeshGrouping::setup()
 {
 	for (Mesh* entity: this->entities)

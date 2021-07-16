@@ -29,11 +29,18 @@ public:
 	void render();
 
 	/**
-	* Set the shader type for all entities of this mesh grouping.
+	* Set the shader type for all current entities of this mesh grouping.
 	* 
 	* @param shader_type the shader type to be set for all entities of this group.
 	*/
 	void set_shader_type(ShaderType shader_type);
+
+	/**
+	* Set whether the texture is enabled for all current entities of this mesh grouping.
+	*
+	* @param enabled a bool determining whether the texture should be enabled or disabled.
+	*/
+	void set_texture_enabled(bool enabled);
 
 	/**
 	* Set up the mesh grouping.
