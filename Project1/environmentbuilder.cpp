@@ -550,6 +550,9 @@ namespace builders::environment {
 
 		grouping->add(cube_platform);
 
+		// set the shader type for the meshes added to the grouping until now.
+		grouping->set_shader_type(ShaderType::Lambert);
+
 		// add 3x3 spikes
 		for (int i = 0; i < 3; i++)
 		{
