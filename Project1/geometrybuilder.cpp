@@ -443,10 +443,21 @@ namespace builders::geometry {
 
 	void load_primitive_geometries()
 	{
-		GeometryManager::get_instance()->add_geometry("cube",  CubeGeometry());
-		GeometryManager::get_instance()->add_geometry("slope",  SlopeGeometry());
-		GeometryManager::get_instance()->add_geometry("slope_corner",  SlopeCornerGeometry());
-		GeometryManager::get_instance()->add_geometry("pyramid",  PyramidGeometry());
+		// Create cube geometry.
+		CubeGeometry cube_geometry;
+		GeometryManager::get_instance()->add_geometry("cube", cube_geometry);
+
+		// Create slope geometry.
+		SlopeGeometry slope_geometry;
+		GeometryManager::get_instance()->add_geometry("slope", slope_geometry);
+
+		// Create slope corner geometry.
+		SlopeCornerGeometry slope_corner_geometry;
+		GeometryManager::get_instance()->add_geometry("slope_corner", slope_corner_geometry);
+
+		// Create pyramid geometry.
+		PyramidGeometry pyramid_geometry;
+		GeometryManager::get_instance()->add_geometry("pyramid", pyramid_geometry);
 	}
 
 }

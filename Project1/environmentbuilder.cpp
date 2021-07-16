@@ -31,7 +31,7 @@ namespace builders::environment {
 		build_skybox();
 
 		// test primitives
-		build_primitives(glm::vec3(15, 5, 25));
+		build_primitive_spike_trap(glm::vec3(15, 5, 25));
 
 		// setup the house
 		build_house(glm::vec3(4.5, 0, 24));
@@ -504,7 +504,7 @@ namespace builders::environment {
 		return *grouping;
 	}
 
-	void build_primitives(glm::vec3 position)
+	void build_primitive_spike_trap(glm::vec3 position)
 	{
 		// TODO: create spike trap with geometries.
 		Mesh* cube = new Mesh(GeometryManager::get_instance()->get_geometry("cube"), position);
@@ -512,7 +512,8 @@ namespace builders::environment {
 		Mesh* slope_corner = new Mesh(GeometryManager::get_instance()->get_geometry("slope_corner"), position + glm::vec3(5, 0, 5));
 		Mesh* pyramid = new Mesh(GeometryManager::get_instance()->get_geometry("pyramid"), position + glm::vec3(0, 0, 5));
 
-		cube->set_shader_type(ShaderType::Basic);
+		cube->set_shader_type(ShaderType::Phong);
+		cube->set_texture_enabled(true);
 		cube->setup();
 
 		EnvironmentManager::get_instance()->add(cube);
