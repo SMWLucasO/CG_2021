@@ -1,5 +1,4 @@
 #include "couch_wave_animation.h"
-#include <iostream>
 
 void CouchWaveAnimation::execute()
 {

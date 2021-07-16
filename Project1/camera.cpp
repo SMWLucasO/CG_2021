@@ -2,8 +2,6 @@
 // https://learnopengl.com/Getting-started/Camera
 // http://tuttlem.github.io/2013/12/30/a-camera-implementation-in-c.html
 
-#include <iostream>
-
 #include "camera.h"
 
 Camera* Camera::instance{ nullptr };

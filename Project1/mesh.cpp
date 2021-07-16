@@ -5,6 +5,9 @@ Mesh::Mesh(Geometry* geometry, glm::vec3 position, Transformations transformatio
 	this->geometry = geometry;
 	this->set_transformations(transformations);
 	this->get_transformations().position = position;
+
+	// give a material power between [256, 1024]
+	this->material.power = 256 + (rand() % 769);
 }
 
 Mesh::Mesh(Geometry* geometry, glm::vec3 position) : Mesh(geometry, position, Transformations())

@@ -1,7 +1,5 @@
 #include "environmentbuilder.h"
 
-#include <iostream>
-
 namespace builders::environment {
 	
 	void init()

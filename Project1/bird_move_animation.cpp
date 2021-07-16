@@ -1,7 +1,5 @@
 #include "bird_move_animation.h"
 
-#include <iostream>
-
 void BirdMoveAnimation::decide_direction()
 {
 	int direction = rand() % 3;

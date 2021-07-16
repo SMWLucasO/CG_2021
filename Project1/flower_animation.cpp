@@ -1,7 +1,5 @@
 #include "flower_animation.h"
 
-#include <iostream>
-
 void FlowerAnimation::execute()
 {
 	for (auto it = flower_piece_data.begin(); it != flower_piece_data.end(); ++it)
