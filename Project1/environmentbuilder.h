@@ -19,6 +19,8 @@
 #include "skybox_rotation_animation.h"
 
 #include "toggle_door_animation.h"
+
+#include "spike_movement_animation.h"
 // END our animations
 
 #include "animation_manager.h"
@@ -47,7 +49,7 @@ namespace builders::environment {
 	* @param rows the amount of arrays in the multidimensional array
 	* @param columns the amount of values per array in the multidimensional array
 	*
-	* @return MeshingGroup&
+	* @return MeshGrouping&
 	*/
 	static MeshGrouping& build_floor(int tilemap[][32], int rows, int columns);
 
@@ -65,7 +67,7 @@ namespace builders::environment {
 	*
 	* @param position the coordinates (x/y/z) to put the model at.
 	* 
-	* @return MeshingGroup&
+	* @return MeshGrouping&
 	*/
 	static MeshGrouping& build_house(glm::vec3 position);
 
@@ -74,7 +76,7 @@ namespace builders::environment {
 	*
 	* @param position the coordinates (x/y/z) to put the model at.
 	*
-	* @return MeshingGroup&
+	* @return MeshGrouping&
 	*/
 	static MeshGrouping& build_house_veranda(glm::vec3 position);
 
@@ -83,7 +85,7 @@ namespace builders::environment {
 	*
 	* @param position the coordinates (x/y/z) to put the model at.
 	* 
-	* @return MeshingGroup&
+	* @return MeshGrouping&
 	*/
 	static MeshGrouping& build_fence(glm::vec3 position);
 
@@ -92,7 +94,7 @@ namespace builders::environment {
 	* 
 	* @param position the coordinates (x/y/z) to put the model at.
 	* 
-	* @return MeshingGroup&
+	* @return MeshGrouping&
 	*/
 	static MeshGrouping& build_fencegate(glm::vec3 position);
 
@@ -101,7 +103,7 @@ namespace builders::environment {
 	* 
 	* @param position the coordinates (x/y/z) to put the model at.
 	*
-	* @return MeshingGroup&
+	* @return MeshGrouping&
 	*/
 	static MeshGrouping& build_tree(glm::vec3 position);
 	
@@ -110,7 +112,7 @@ namespace builders::environment {
 	* 
 	* @param position the coordinates (x/y/z) to put the model at.
 	*
-	* @return MeshingGroup&
+	* @return MeshGrouping&
 	*/
 	static MeshGrouping& build_dead_tree(glm::vec3 position);
 
@@ -119,7 +121,7 @@ namespace builders::environment {
 	* 
 	* @param position the coordinates (x/y/z) to put the model at.
 	*
-	* @return MeshingGroup&
+	* @return MeshGrouping&
 	*/
 	static MeshGrouping& build_flower(glm::vec3 position);
 
@@ -128,7 +130,7 @@ namespace builders::environment {
 	* 
 	* @param position the coordinates (x/y/z) to put the model at.
 	*
-	* @return MeshingGroup&
+	* @return MeshGrouping&
 	*/
 	static MeshGrouping& build_stemmed_bush(glm::vec3 position);
 	
@@ -137,7 +139,7 @@ namespace builders::environment {
 	* 
 	* @param position the coordinates (x/y/z) to put the model at.
 	*
-	* @return MeshingGroup&
+	* @return MeshGrouping&
 	*/
 	static MeshGrouping& build_fruit_bush(glm::vec3 position);
 	
@@ -146,7 +148,7 @@ namespace builders::environment {
 	* 
 	* @param position the coordinates (x/y/z) to put the model at.
 	*
-	* @return MeshingGroup&
+	* @return MeshGrouping&
 	*/
 	static MeshGrouping& build_bird(glm::vec3 position);
 
@@ -155,10 +157,17 @@ namespace builders::environment {
 	* 
 	* @param position the coordinates (x/y/z) to put the model at.
 	*
-	* @return MeshingGroup&
+	* @return MeshGrouping&
 	*/
 	static MeshGrouping& build_couch(glm::vec3 position);
 
-	static void build_primitive_spike_trap(glm::vec3 position);
+	/**
+	* Create a spike trap from primitive meshes.
+	* 
+	* @param position the coordinates (x/y/z) to put the model at.
+	* 
+	* @return MeshGrouping& 
+	*/
+	static MeshGrouping& build_primitive_spike_trap(glm::vec3 position);
 
 }

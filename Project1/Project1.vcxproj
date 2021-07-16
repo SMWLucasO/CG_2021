@@ -160,6 +160,7 @@
     <ClCompile Include="skybox_rotation_animation.cpp" />
     <ClCompile Include="slope_corner_geometry.cpp" />
     <ClCompile Include="slope_geometry.cpp" />
+    <ClCompile Include="spike_movement_animation.cpp" />
     <ClCompile Include="toggle_door_animation.cpp" />
     <ClCompile Include="transformation.cpp" />
     <ClCompile Include="walk_movement_controller.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="skybox_rotation_animation.h" />
     <ClInclude Include="slope_corner_geometry.h" />
     <ClInclude Include="slope_geometry.h" />
+    <ClInclude Include="spike_movement_animation.h" />
     <ClInclude Include="toggle_door_animation.h" />
     <ClInclude Include="transformation.h" />
     <ClInclude Include="walk_movement_controller.h" />

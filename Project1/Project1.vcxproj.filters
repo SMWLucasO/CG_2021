@@ -219,6 +219,9 @@
     <ClCompile Include="pyramid_geometry.cpp">
       <Filter>Source Files\geometry\primitives</Filter>
     </ClCompile>
+    <ClCompile Include="spike_movement_animation.cpp">
+      <Filter>Source Files\animation\animations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="loaders\glsl\glsl.h">
@@ -319,6 +322,9 @@
     </ClInclude>
     <ClInclude Include="pyramid_geometry.h">
       <Filter>Header Files\geometry\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="spike_movement_animation.h">
+      <Filter>Header Files\animation\animations</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

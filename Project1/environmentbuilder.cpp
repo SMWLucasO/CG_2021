@@ -30,8 +30,8 @@ namespace builders::environment {
 		// setup the skybox.
 		build_skybox();
 
-		// test primitives
-		build_primitive_spike_trap(glm::vec3(15, 5, 25));
+		// setup the primitive spike trap.
+		build_primitive_spike_trap(glm::vec3(1, 0, 40));
 
 		// setup the house
 		build_house(glm::vec3(4.5, 0, 24));
@@ -229,8 +229,6 @@ namespace builders::environment {
 
 	MeshGrouping& build_fence(glm::vec3 position)
 	{
-		// TODO: Move fencegate to its own build method.
-
 		/// create a grouping for the fence
 		MeshGrouping* fence_grouping = new MeshGrouping();
 
@@ -250,15 +248,12 @@ namespace builders::environment {
 		
 		// set the position of the fence
 		fence_grouping->set_position(position);
-		
 
 		// setup n stuff
 		fence_grouping->setup();
-		
 
 		EnvironmentManager::get_instance()->add(fence_grouping);
 		
-
 		return *fence_grouping;
 	}
 
@@ -504,33 +499,78 @@ namespace builders::environment {
 		return *grouping;
 	}
 
-	void build_primitive_spike_trap(glm::vec3 position)
+	MeshGrouping& build_primitive_spike_trap(glm::vec3 position)
 	{
-		// TODO: create spike trap with geometries.
-		Mesh* cube = new Mesh(GeometryManager::get_instance()->get_geometry("cube"), position);
-		Mesh* slope = new Mesh(GeometryManager::get_instance()->get_geometry("slope"), position + glm::vec3(5, 0, 0));
-		Mesh* slope_corner = new Mesh(GeometryManager::get_instance()->get_geometry("slope_corner"), position + glm::vec3(5, 0, 5));
-		Mesh* pyramid = new Mesh(GeometryManager::get_instance()->get_geometry("pyramid"), position + glm::vec3(0, 0, 5));
+		// create the mesh grouping for the spike trap.
+		MeshGrouping* grouping = new MeshGrouping();
 
-		cube->set_shader_type(ShaderType::Phong);
-		cube->set_texture_enabled(true);
-		cube->setup();
+		// create all the meshes, set the scaling, rotations and the position of each mesh.
+		Mesh* slope_1 = new Mesh(GeometryManager::get_instance()->get_geometry("slope"), position);
+		slope_1->set_scaling(glm::vec3(1, 1, 6));
 
-		EnvironmentManager::get_instance()->add(cube);
+		Mesh* slope_2 = new Mesh(GeometryManager::get_instance()->get_geometry("slope"), position + glm::vec3(1, 0, 7));
+		slope_2->set_scaling(glm::vec3(1, 1, 6));
+		slope_2->set_rotations(glm::vec3(0, 90, 0));
 
-		slope->set_shader_type(ShaderType::Basic);
-		slope->setup();
+		Mesh* slope_3 = new Mesh(GeometryManager::get_instance()->get_geometry("slope"), position + glm::vec3(8, 0, 6));
+		slope_3->set_scaling(glm::vec3(1, 1, 6));
+		slope_3->set_rotations(glm::vec3(0, 180, 0));
 
-		EnvironmentManager::get_instance()->add(slope);
+		Mesh* slope_4 = new Mesh(GeometryManager::get_instance()->get_geometry("slope"), position + glm::vec3(7, 0, -1));
+		slope_4->set_scaling(glm::vec3(1, 1, 6));
+		slope_4->set_rotations(glm::vec3(0, 270, 0));
 
-		slope_corner->set_shader_type(ShaderType::Basic);
-		slope_corner->setup();
+		Mesh* slope_corner_1 = new Mesh(GeometryManager::get_instance()->get_geometry("slope_corner"), position + glm::vec3(0, 0, -1));
 
-		EnvironmentManager::get_instance()->add(slope_corner);
+		Mesh* slope_corner_2 = new Mesh(GeometryManager::get_instance()->get_geometry("slope_corner"), position + glm::vec3(0, 0, 7));
+		slope_corner_2->set_rotations(glm::vec3(0, 90, 0));
 
-		pyramid->set_shader_type(ShaderType::Basic);
-		pyramid->setup();
+		Mesh* slope_corner_3 = new Mesh(GeometryManager::get_instance()->get_geometry("slope_corner"), position + glm::vec3(8, 0, 7));
+		slope_corner_3->set_rotations(glm::vec3(0, 180, 0));
 
-		EnvironmentManager::get_instance()->add(pyramid);
+		Mesh* slope_corner_4 = new Mesh(GeometryManager::get_instance()->get_geometry("slope_corner"), position + glm::vec3(8, 0, -1));
+		slope_corner_4->set_rotations(glm::vec3(0, 270, 0));
+
+		Mesh* cube_platform = new Mesh(GeometryManager::get_instance()->get_geometry("cube"), position + glm::vec3(1, 0, 0));
+		cube_platform->set_scaling(glm::vec3(6, 1, 6));
+
+		// create animation for spikes.
+		SpikeMovementAnimation* spike_animation = new SpikeMovementAnimation();
+
+		// add all the meshes to the mesh grouping.
+		grouping->add(slope_1);
+		grouping->add(slope_2);
+		grouping->add(slope_3);
+		grouping->add(slope_4);
+		
+		grouping->add(slope_corner_1);
+		grouping->add(slope_corner_2);
+		grouping->add(slope_corner_3);
+		grouping->add(slope_corner_4);
+
+		grouping->add(cube_platform);
+
+		// add 3x3 spikes
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				Mesh* spike = new Mesh(GeometryManager::get_instance()->get_geometry("pyramid"), position + glm::vec3(1 + 2.5 * i, 1, 2.5 * j));
+				spike->set_scaling(glm::vec3(1, 5, 1));
+				spike->set_shader_type(ShaderType::Basic);
+				spike_animation->register_spike(spike);
+				grouping->add(spike);
+			}
+		}
+
+		// register the animation
+		AnimationManager::get_instance()->register_entity_animation(spike_animation);
+
+		// set up & add to the world.
+		grouping->setup();
+		
+		EnvironmentManager::get_instance()->add(grouping);
+
+		return *grouping;
 	}
 }
